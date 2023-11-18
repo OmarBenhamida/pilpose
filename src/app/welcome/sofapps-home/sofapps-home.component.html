@@ -1,0 +1,43 @@
+<div class="example-container">
+  <div class="row" style="padding: 0">
+    <div class="col-7" style="margin-right: 2.5%">
+      <p class="titre1">{{ "HOME.TEXT.P1" | translate }}</p>
+
+      <p class="headap">
+        {{ "HOME.TEXT.P2" | translate }}
+        <b>{{ ldap?.nom_complet }} SOFRECOM</b>.
+        <br />
+        <br />
+        {{ "HOME.TEXT.P3" | translate }}
+        <b>{{ ldap?.nom_complet }} SOFRECOM</b>,
+        <a
+          [routerLink]=""
+          routerLinkActive="router-link-active"
+          (click)="logout()"
+          >{{ "HOME.TEXT.P5" | translate }}</a
+        >
+        <br />
+        <br />
+        {{ "HOME.TEXT.P6" | translate }}
+        <br />
+
+        <br />
+        {{ "HOME.TEXT.P10" | translate }}
+        <span class="number">{{ ldap?.pwdLastSetDate }}</span>
+        <br />
+        <br />
+        {{ "HOME.TEXT.P7" | translate }}
+        <span class="number">{{ ldap?.expiredDay }} </span>
+        {{ "HOME.TEXT.P9" | translate }}
+
+        <br />
+        <br />
+        {{ "HOME.TEXT.P8" | translate }}
+        <span class="number">{{ isActif }} </span>
+      </p>
+    </div>
+    <div class="col-4">
+      <img src="../assets/img/office.jpg" width="350px" height="250px" />
+    </div>
+  </div>
+</div>

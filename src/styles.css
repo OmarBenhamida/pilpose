@@ -1,0 +1,85 @@
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~open-iconic/font/css/open-iconic-bootstrap.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #f2f2f2 !important;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* fonts */
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("src\assets\WorkSans\Windows\Fonts\worksans-roman-vf.ttf");
+}
+.btns-container {
+  display: flex;
+  justify-content: space-between;
+}
+.oppenSnackBarSuccessClass {
+  color: #fff;
+  background-color: #008000;
+}
+.oppenSnackBarFailureClass {
+  color: #fff;
+  background-color: #ff0000;
+}
+.oppenSnackBarPrimaryClass {
+  color: #fff;
+  background-color: #006cc2;
+}
+
+.oppenSnackBarSuccessClass .mat-simple-snackbar-action .mat-button {
+  border: 1px solid white;
+  color: white;
+}
+.oppenSnackBarFailureClass .mat-simple-snackbar-action .mat-button {
+  border: 1px solid white;
+  color: white;
+}
+.oppenSnackBarPrimaryClass .mat-simple-snackbar-action .mat-button {
+  border: 1px solid white;
+  color: white;
+}
+.oppenSnackBarFailureClass {
+  color: #fff;
+  background-color: #ff0000;
+}
+.oppenSnackBarWorningClass {
+  color: black;
+  background-color: #ffcd07;
+}
+.oppenSnackBarWorningClass .mat-simple-snackbar-action .mat-button {
+  border: 1px solid white;
+  color: black;
+}
+.oppenSnackBarSuccessClass .mat-simple-snackbar-action .mat-button {
+  border: 1px solid white;
+  color: white;
+}
+.oppenSnackBarFailureClass .mat-simple-snackbar-action .mat-button {
+  border: 1px solid white;
+  color: white;
+}
+
+.mat-drawer-content {
+  background: #f2f2f2;
+}
+
+.transparent .mat-dialog-container {
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0);
+}

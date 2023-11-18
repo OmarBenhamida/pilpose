@@ -1,0 +1,50 @@
+stages:
+  - infos
+  - build
+  - deploy
+
+infos:
+  stage: infos
+  image: ictu/sshpass:latest
+  script:
+    - "echo environnement de livraison : $ENVIRONMENT"
+  tags:
+    - anode
+
+build:
+  image: node:12
+  stage: build
+  script:
+    - npm config set registry 
+    - npm install --sass-binary-path=$(pwd)/adds/node-sass/linux-x64-72/binding.node
+    - "echo environnement de livraison : $ENVIRONMENT"
+    - if [ "$ENVIRONMENT" == "dev" ];     then BASE_HREF="/PILPOSE/";    fi
+    - if [ "$ENVIRONMENT" == "qualif" ];  then BASE_HREF="/PILPOSE/"; fi
+    - if [ "$ENVIRONMENT" == "prod" ];    then BASE_HREF="/";
+    - "echo Lien racine de livraison : $BASE_HREF"
+    - npm run build --sass-binary-path=`pwd`/adds/node-sass/linux-x64-72/binding.node -- --base-href=$BASE_HREF --configuration=$ENVIRONMENT --outputHashing=all
+    # - npm run sonar-scanner -Dsonar.host.url=https://faas-gw.rd.francetelecom.fr/sirhus/sonar -Dsonar.login=9e9134665ea099a84a1f262161da2f6eac055083 -Dsonar.projectKey=sirhus-front- -Dsonar.projectName=sirhus-front
+  tags:
+    - anode
+  artifacts:
+    paths:
+      - dist
+
+deploy:
+  stage: deploy
+  image: ictu/sshpass:latest
+  script:
+    - if [ "$ENVIRONMENT" == "dev" ];     then TARGET_SERVER=$ADR_VM_DEV; TARGET_FRONT="/var/www/html/pilpose";     fi
+    - if [ "$ENVIRONMENT" == "qualif" ];  then TARGET_SERVER=$ADR_VM_RECETTE; TARGET_FRONT="/var/www/html/pilpose"; fi
+    - if [ "$ENVIRONMENT" == "prod" ];    then TARGET_SERVER=$ADR_VM_PROD; TARGET_FRONT="/var/www/html/pilpose";     fi
+    - "echo dossier front de livraison : $TARGET_FRONT"
+    - chmod 0600 id_rsa
+    - ssh -i id_rsa -o StrictHostKeyChecking=no osadmin@$TARGET_SERVER
+    - scp -i id_rsa -r -v dist/* osadmin@$TARGET_SERVER:$TARGET_FRONT
+  tags:
+    - anode
+  only:
+    variables:
+      - $ENVIRONMENT == "dev"
+      - $ENVIRONMENT == "qualif"
+      - $ENVIRONMENT == "prod"

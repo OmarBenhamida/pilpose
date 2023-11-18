@@ -1,0 +1,117 @@
+{
+  "SOFPASS.OLD_MDP": "Old password",
+  "SOFPASS.NEW_MDP": "New password",
+  "SOFPASS.CONFIRM_MDP": "Confirm password",
+  "SOFPASS.GMDP.P1": "When you do not have a computer connected to the Sofrecom network, this tool allows you to change the Sofrecom password.",
+  "SOFPASS.GMDP.P2": "Please enter your new password :",
+  "SOFPASS.GMDP.P3": "The password of an account must respect the following rules :",
+  "SOFPASS.GMDP.P4": "To help you :",
+  "SOFPASS.GMDP.P5": "Use passwords from quotes or easy-to-remember personal phrases, taking the initial of each word.",
+  "SOFPASS.GMDP.P6": "exemples :",
+  "SOFPASS.GMDP.P7": "Change password ",
+
+  "SOFPASS.GMDP.P9": "Is composed of",
+  "SOFPASS.GMDP.P10": "uppercase",
+  "SOFPASS.GMDP.P11": "lowercase",
+  "SOFPASS.GMDP.P12": "Have a minimum height of ",
+  "SOFPASS.GMDP.P13": "special characters",
+  "SOFPASS.GMDP.P14": "Prohibition of substringing the user's last name, first name, identifier and service name",
+  "SOFPASS.GMDP.P15": "Being difficult to piece together, by anyone other than you.",
+  "SOFPASS.GMDP.P16": "month",
+  "SOFPASS.GMDP.P21": "characters",
+  "SOFPASS.GMDP.P17": "Must be changed every",
+  "SOFPASS.GMDP.P18": "Life is a long calm river! becomes Lve1lft! The capital letter is part of the type of characters to use",
+  "SOFPASS.GMDP.P19": "I was born in July 70 becomes Jsn,ej70",
+  "SOFPASS.GMDP.P20": "Test the SMS language.",
+  "SOFPASS.GMDP.P31": "Number",
+
+
+  "PASSWORD" : {
+
+    "MESSAGE": {
+      "PASSWORD_OK": " Password updated successfully",
+      "PASSWORD_X": "The update failed",
+      "PASSWORD_CLOSE": "Close"
+    }
+
+
+  },
+
+  "PARAMETRAGE" : {
+
+    "TEXT": {
+      "P1": "Please enter the new settings :",
+      "P2": "Number of capitals",
+      "P3": "Number of lowercase",
+      "P5": "Number of digits",
+      "P6": "Special character",
+      "P7": "Duration (Month)",
+      "P8": "Description",
+      "P9": "Minimum characters"
+    },
+    "BOUTTON": {
+      "SAVE": "Save"
+    },
+    "TITRE": {
+      "TITLE": "Password setting "
+    },
+    "MESSAGE": {
+      "PARAMETRAGE_OK": "Settings updated successfully",
+      "PARAMETRAGE_X": "The update failed",
+      "PARAMETRAGE_CLOSE": "Close"
+    }
+
+
+  },
+  "LOGIN" : {
+
+    "TEXT": {
+      "P1": "Login Sofrecom :",
+      "PX": "Password",
+      "PR":"Password is required",
+      "IS": "Username is required"
+
+    },
+    "BOUTTON": {
+      "NEXT": "Next",
+      "LOGIN": "Sign in"
+    }
+
+  },
+  "HOME" : {
+
+    "TEXT": {
+      "P1": "Home ",
+      "P2": "Welcome",
+      "P3": "If you are not",
+      "P5": "click here.",
+      "P6": "Set up your profile and manage your passwords using the menu on the left.",
+      "P7": "Your password expires in ",
+      "P8": "Account Status :",
+      "P9": "days",
+      "P10": "Your password was last changed on "
+
+    },
+    "BOUTTON": {
+      "SAVE": "Enregistrer"
+    }
+
+
+  },
+
+  "BOUTTON": {
+    "SAVE": "Save"
+  },
+  "MESSAGE": {
+    "SAVE": "Enregistrer"
+  },
+  "TITRE": {
+    "SAVE": "Enregistrer"
+  },
+  "MENU": {
+    "VOS_info": "Your information",
+    "GMDP": "Password Management",
+    "PARAMETRAGE": "Setting Password"
+
+  }
+}

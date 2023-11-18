@@ -1,0 +1,14 @@
+
+<router-outlet></router-outlet>
+<div *ngIf="show" class="transition-cont {{ whiteColor }}">
+  <div class="animate {{ animationClass }}">
+    <div class="transitiontitle">
+      <div class="headdingone">
+        Bonjour <br><strong>{{ firstname | titlecase }}</strong>
+      </div>
+      <div class="transitiondescription">
+        Bienvenue dans votre espace Sofapps
+      </div>
+    </div>
+  </div>
+</div>

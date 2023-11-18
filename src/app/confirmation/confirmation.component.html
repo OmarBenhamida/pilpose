@@ -1,0 +1,12 @@
+<div class="dialog-header">
+	<img src="./assets/img/info-icon.png" alt="info"/>
+	<div class="titre-information">{{title }}</div>
+	<div class="divider"></div>
+</div>
+<mat-dialog-content class="dialog-content">
+	{{message}}
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+	<button mat-button class="okBtn" (click)="onConfirmClick()">{{confirmButtonText}}</button>
+	<button mat-button class="noBtn" mat-dialog-close>{{cancelButtonText}}</button>
+</mat-dialog-actions>

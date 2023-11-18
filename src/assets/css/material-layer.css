@@ -1,0 +1,655 @@
+@font-face {
+  font-family: 'WorkSans';
+  src: url('src\assets\WorkSans\Windows\Fonts\WorkSans-SemiBold.otf');
+}
+
+.takeAllWith {
+  width: 100%;
+}
+
+.mat-expansion-panel-body {
+  background-color: #ebe9e9;
+  padding: 0 !important;
+  padding-left: 8px !important;
+}
+
+.mat-expansion-panel {
+  background-color: #ebe9e9 !important;
+  margin: 0 !important;
+  width: 280px !important;
+}
+
+.mat-content {
+  overflow: unset !important;
+  height: 100%;
+  justify-content: flex-start !important;
+}
+
+.mat-expansion-panel-header-title {
+  height: 100%;
+  flex-grow: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.mat-expansion-panel-header-description {
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 0 !important;
+}
+
+.no-child-menu .mat-expansion-indicator {
+  display: none !important;
+}
+
+.mat-card:not([class*='mat-elevation-z']) {
+  box-shadow: none !important;
+}
+
+.mat-card:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+  width: 219px !important;
+}
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: none !important;
+}
+
+.slideInpute > div > div > .mat-slider-track-fill {
+  background-color: #006cc2 !important;
+}
+
+.slideInpute > div > div > .mat-slider-thumb {
+  background-color: #006cc2 !important;
+}
+
+.slideInpute > div > div > .mat-slider-thumb-label {
+  background-color: #006cc2 !important;
+}
+
+.btnTogleField > .mat-button-toggle-checked {
+  background-color: #006cc2;
+}
+
+.btnTogleField
+  > .mat-button-toggle-checked
+  > button
+  > .mat-button-toggle-label-content {
+  color: white;
+}
+
+.btnTogleField
+  > .mat-button-toggle
+  > button
+  > .mat-button-toggle-label-content {
+  line-height: 35px;
+}
+
+.btnTogleField {
+  width: 100%;
+  margin-top: 8.5px;
+}
+
+.btnTogleFieldThree > .mat-button-toggle {
+  width: 33.33%;
+}
+
+.btnTogleFieldTow > .mat-button-toggle {
+  width: 50%;
+}
+
+.radioField > label > .mat-radio-label-content {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: left;
+  color: #242424;
+}
+
+.radioField.mat-radio-checked > label > .mat-radio-label-content {
+  color: #006cc2;
+  font-weight: 500;
+}
+
+.radioField.mat-radio-checked
+  > label
+  > .mat-radio-container
+  > .mat-radio-outer-circle {
+  border-color: #006cc2;
+}
+
+.radioField.mat-radio-checked
+  > label
+  > .mat-radio-container
+  > .mat-radio-inner-circle {
+  background-color: #006cc2;
+}
+
+.switchField {
+  margin-top: 17.5px;
+  padding-bottom: 1.25em;
+}
+
+.switchField > label {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  color: #242424;
+}
+
+.switchField > .mat-slide-toggle > label > .mat-slide-toggle-bar {
+  background-color: rgba(135, 214, 129, 0.57);
+}
+
+.switchField > .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: rgba(135, 214, 129, 1);
+}
+
+.switchField > div:last-child {
+  text-align: right;
+}
+
+.btnTogleCont {
+  padding-bottom: 1.25em;
+}
+
+.radioGroupFieldCont {
+  margin-top: 17.5px;
+}
+
+.fileFieldCont {
+  margin-top: 17.5px;
+}
+
+.stepperField > div > div > form > div:last-child {
+  margin-top: 20px;
+}
+
+.stepperField > div > div > form > div:last-child > .stepperleftbtn {
+  border-radius: 3px;
+  border: 1px solid #006cc2;
+  color: #006cc2 !important;
+  padding: 0px 35px;
+  color: white;
+  font-size: 18px;
+  /* position: absolute;
+    left: 0px;
+    margin-left: 25px;
+    margin-right: 25px; */
+}
+
+.leftbtn {
+  border-radius: 3px !important;
+  border: 1px solid #006cc2 !important;
+  color: #006cc2 !important;
+  padding: 0px 35px !important;
+  color: white !important;
+  font-size: 18px !important;
+}
+
+.leftbtn > span {
+  color: #006cc2 !important;
+}
+
+.stepperField > div > div > form > div:last-child > .stepperrightbtn {
+  border-radius: 3px !important;
+  background-color: #006cc2 !important;
+  padding: 0px 35px !important;
+  color: white !important;
+  font-size: 18px !important;
+  /* position: absolute !important;
+    right: 0px !important;
+    margin-left: 25px !important;
+    margin-right: 25px !important; */
+}
+
+.rightbtn {
+  border-radius: 3px !important;
+  background-color: #006cc2 !important;
+  padding: 0px 35px !important;
+  color: white !important;
+  font-size: 18px !important;
+}
+
+.stepperField > div > .mat-step-header > .mat-step-label-selected {
+  color: #006cc2;
+}
+
+.stepperField > div > .mat-step-header > .mat-step-label {
+  font-size: 18px;
+}
+
+.stepperField > div > .mat-step-header > .mat-step-icon-selected {
+  background-color: #006cc2;
+}
+
+.tableField > thead > tr > th {
+  text-align: center;
+}
+
+.languages-table.tableField > thead > tr > th.langue-th {
+  text-align: left !important;
+}
+
+.languages-table.tableField > tbody > tr > td.supprimer-td {
+  text-align: center !important;
+}
+
+.tableField {
+  box-shadow: none !important;
+}
+
+.languages-table.tableField {
+  -webkit-box-shadow: 0px 0px 8px -4px rgba(0, 0, 0, 1) !important;
+  -moz-box-shadow: 0px 0px 8px -4px rgba(0, 0, 0, 1) !important;
+  box-shadow: 0px 0px 8px -4px rgba(0, 0, 0, 1) !important;
+}
+
+.tableField > tr.mat-header-row {
+  height: 40px;
+}
+
+.tableField > tr.mat-header-row {
+  height: 40px;
+}
+
+.tr.mat-row {
+  height: 35px;
+}
+
+.smallBtnField {
+  width: 22px;
+  min-width: 22px !important;
+  height: 22px;
+  border-radius: 2px !important;
+  padding: 0px !important;
+  line-height: 20px !important;
+}
+
+.dangerbtnField {
+  background-color: #f97373 !important;
+  color: white !important;
+}
+
+.displayListField {
+  padding-bottom: 1.25em;
+}
+
+.consulter-class {
+  background-color: #527edb;
+  color: white;
+}
+
+.modifier-class {
+  background-color: #52db69;
+  color: white;
+}
+
+.supprimer-class {
+  background-color: brown;
+  color: white;
+}
+
+.associer-class {
+  background-color: #006cc2;
+  color: white;
+}
+
+.regenerer-code-acces-class {
+  background-color: #8539c4;
+  color: white;
+}
+
+/* .cdk-overlay-container {
+    position: fixed !important;
+    z-index: 1000000000000000000 !important;
+}
+
+.cdk-overlay-container * {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase;
+} */
+
+.cdk-overlay-pane .mat-datepicker-dialog {
+  height: auto !important;
+  width: auto !important;
+  max-height: auto !important;
+  max-height: auto !important;
+}
+
+/**
+Lahoucine
+*/
+
+.mat-tab-label-content {
+  height: 29px;
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.16;
+  letter-spacing: normal;
+  text-align: left;
+  color: #006cc2;
+}
+
+.consultcandidat .mat-tab-label {
+  width: 50%;
+}
+
+.mat-tab-body-content {
+  height: 100%;
+  overflow: inherit !important;
+}
+
+.dangerdialog {
+  background-color: #ff0000 !important;
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.dangerdialog span {
+  text-align: center;
+}
+
+.successdialog {
+  background-color: #008000 !important;
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.warningdialog {
+  background-color: #ffeb3b !important;
+  color: #000 !important;
+  font-weight: 500;
+}
+
+.successdialog .mat-simple-snackbar-action .mat-button {
+  border: 1px solid white;
+  color: white;
+}
+
+.dangerdialog .mat-simple-snackbar-action .mat-button {
+  border: 1px solid white;
+  color: white;
+}
+
+.infodialog {
+  background-color: rgb(78, 98, 196) !important;
+  color: rgba(255, 255, 255, 0.959) !important;
+  font-weight: 500;
+}
+
+.successdialog span,
+.infodialog span {
+  text-align: center;
+}
+
+.cardClass {
+  margin-top: 10vh;
+  width: 80wh;
+  margin: auto;
+  margin-left: 100px;
+  margin-right: 100px;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10vh;
+  padding: 10px;
+}
+
+.sirhus-card:hover {
+  background-color: white !important;
+  max-width: 90vw !important;
+  width: 100% !important;
+}
+
+.sirhus-card {
+  max-width: 90vw;
+  margin: auto;
+  width: 100%;
+  margin-bottom: 16px;
+  /* margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    padding-bottom: 60px !important; */
+}
+
+.card-btns {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  margin-left: 2px;
+}
+
+.card-btns > i {
+  font-weight: 100;
+}
+
+.add-classe {
+  margin-top: 5px !important;
+  background-color: #006cc2 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding: 4px 5px 4px 5px !important;
+}
+
+/* .cdk-overlay-pane {
+    min-width: 300px !important;
+    max-width: 650px !important;
+    min-height: 130px !important;
+    max-height: 200px !important;
+} */
+
+.mat-tab-label-active {
+  opacity: 1 !important;
+}
+
+.mat-tab-label > .mat-tab-label-content {
+  color: black;
+  font-weight: 500 !important;
+  font-family: 'WorkSans';
+  text-align: justify !important;
+}
+
+.mat-tab-label.mat-tab-label-active > .mat-tab-label-content {
+  color: #197ac8;
+  font-weight: bold !important;
+  font-family: 'WorkSans';
+}
+
+.mat-ink-bar {
+  background-color: #197ac8 !important;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: #197ac8 !important;
+}
+
+/* confirmation popup */
+
+.confirmation-popup {
+  width: 40%;
+}
+
+.confirmation-popup .mat-dialog-container {
+  overflow: unset;
+  height: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .confirmation-popup {
+    width: 75%;
+  }
+}
+
+/* refuser demande popup */
+
+/* @media screen and (max-width: 613px) {
+    .refuser-demande-recrut-popup {
+        width: 98% !important;
+        min-width: 98% !important;
+    }
+}
+*/
+
+@media screen and (max-width: 580px) {
+  .refuser-demande-recrut-popup {
+    width: 90% !important;
+    min-width: 90% !important;
+  }
+}
+
+@media screen and (min-width: 580px) {
+  .refuser-demande-recrut-popup {
+    width: 80% !important;
+    min-width: 80% !important;
+  }
+}
+
+/*
+@media screen and (min-width: 660px) {
+    .refuser-demande-recrut-popup {
+        width: 80% !important;
+        min-width: 80% !important;
+    }
+} */
+
+@media screen and (min-width: 770px) {
+  .refuser-demande-recrut-popup {
+    width: 70% !important;
+    min-width: 70% !important;
+  }
+}
+
+@media screen and (min-width: 975px) {
+  .refuser-demande-recrut-popup {
+    width: 55% !important;
+    min-width: 55% !important;
+  }
+}
+
+.refuser-demande-recrut-popup .mat-dialog-container {
+  width: 100% !important;
+  overflow: unset !important;
+  height: 100% !important;
+  padding: 20px !important;
+}
+
+.refuser-demande-recrut-popup .mat-dialog-content {
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+/* affectations popup */
+
+@media screen and (max-width: 730px) {
+  .affectations-popup {
+    width: 98% !important;
+    min-width: 98% !important;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .affectations-popup {
+    width: 95% !important;
+    min-width: 95% !important;
+  }
+}
+
+@media screen and (min-width: 860px) {
+  .affectations-popup {
+    width: 90% !important;
+    min-width: 90% !important;
+  }
+}
+
+@media screen and (min-width: 978px) {
+  .affectations-popup {
+    width: 65% !important;
+    min-width: 65% !important;
+  }
+}
+
+.affectations-popup .mat-dialog-container {
+  overflow: unset;
+  height: 100%;
+  min-height: unset !important;
+  padding: 16px !important;
+}
+
+.affectations-popup .mat-dialog-content {
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+.affectations-header .mat-content {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-right: 10px !important;
+}
+
+.affectations-popup mat-expansion-panel-header {
+  padding: 0 10px !important;
+}
+
+#candidat-fa {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  height: 1.5rem !important;
+  line-height: 18.4px !important;
+  font-size: 25px !important;
+  margin-right: 15px !important;
+  color: #006cc2;
+}
+
+#reference-id {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+#description-id {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+.mat-expansion-panel-body {
+  padding-left: 0 !important;
+}
+
+/* .mat-dialog-container {
+  padding: 8px !important;
+} */
+
+/*End affectation popup*/
+
+.sirhus-margin-top {
+  margin-top: 10vh;
+}
+
+/*popup consulter profile collaborateur */
+
+.popup-profile-collaborateur .mat-dialog-container {
+  width: 100% !important;
+  overflow: unset !important;
+  height: 100% !important;
+  padding: 0px !important;
+  border-radius: 0 !important;
+}
+
+.popup-profile-collaborateur .mat-dialog-content {
+  height: 100% !important;
+  min-height: 100% !important;
+}

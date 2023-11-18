@@ -1,0 +1,191 @@
+<div class="example-container">
+  <p class="titre1">{{ "PARAMETRAGE.TITRE.TITLE" | translate }}</p>
+
+  <br />
+
+  <p class="headap">
+    {{ "PARAMETRAGE.TEXT.P1" | translate }}
+  </p>
+
+  <br />
+  <form [formGroup]="myForm" *ngIf="myForm" novalidate>
+    <div class="example-container2">
+      <div class="row">
+        <div class="col-3">
+          <label for="">{{ "PARAMETRAGE.TEXT.P2" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-user-input">
+            <input
+              matInput
+              type="number"
+              formControlName="majuscule"
+              min="0"
+              max="99"
+              aria-label="Nombre de caractére"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-9">
+          <label for="">{{ "PARAMETRAGE.TEXT.P8" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-full-width">
+            <textarea
+              matInput
+              formControlName="descriptionMajuscule"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <br />
+      <mat-divider></mat-divider>
+      <br />
+      <div class="row">
+        <div class="col-3">
+          <label for="">{{ "PARAMETRAGE.TEXT.P3" | translate }} : </label
+          >&nbsp;&nbsp;
+
+          <mat-form-field class="example-user-input">
+            <input
+              matInput
+              type="number"
+              formControlName="minuscule"
+              min="0"
+              max="99"
+              aria-label="Nombre de caractére"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-9">
+          <label for="">{{ "PARAMETRAGE.TEXT.P8" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-full-width">
+            <textarea
+              matInput
+              formControlName="descriptionMinuscule"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+      <mat-divider></mat-divider>
+      <br />
+
+      <div class="row">
+        <div class="col-3">
+          <label for="">{{ "PARAMETRAGE.TEXT.P5" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-user-input">
+            <input
+              matInput
+              type="number"
+              formControlName="chiffre"
+              min="0"
+              max="99"
+              aria-label="Nombre de caractére"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-9">
+          <label for="">{{ "PARAMETRAGE.TEXT.P8" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-full-width">
+            <textarea matInput formControlName="descriptionChiffre"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+      <mat-divider></mat-divider>
+      <br />
+
+      <div class="row">
+        <div class="col-3">
+          <label for="">{{ "PARAMETRAGE.TEXT.P6" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-user-input">
+            <input
+              matInput
+              type="number"
+              formControlName="caractereSpecial"
+              min="0"
+              max="99"
+              aria-label="Nombre de caractére"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-9">
+          <label for="">{{ "PARAMETRAGE.TEXT.P8" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-full-width">
+            <textarea matInput formControlName="descriptionCS"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+      <mat-divider></mat-divider>
+      <br />
+
+      <div class="row">
+        <div class="col-3">
+          <label for="">{{ "PARAMETRAGE.TEXT.P7" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-user-input">
+            <input
+              matInput
+              type="number"
+              formControlName="dureeMdp"
+              min="0"
+              max="99"
+              aria-label="Nombre de caractére"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-9" style="margin-top: -15px;">
+          <label for="">{{ "PARAMETRAGE.TEXT.P8" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-full-width">
+            <textarea matInput formControlName="descriptionDMDP"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+      <mat-divider></mat-divider>
+      <br />
+      <div class="row">
+        <div class="col-3">
+          <label for="">{{ "PARAMETRAGE.TEXT.P9" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-user-input">
+            <input
+              matInput
+              type="number"
+              formControlName="caractereMinimum"
+              min="0"
+              max="99"
+              aria-label="Nombre de caractére"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-9">
+          <label for="">{{ "PARAMETRAGE.TEXT.P8" | translate }} : </label
+          >&nbsp;&nbsp;
+          <mat-form-field class="example-full-width">
+            <textarea matInput formControlName="descriptionCM"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+      <mat-divider></mat-divider>
+    </div>
+    <br />
+
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      {{ "PARAMETRAGE.BOUTTON.SAVE" | translate }}
+    </button>
+  </form>
+  <br />
+</div>
