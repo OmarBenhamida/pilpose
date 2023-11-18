@@ -5,6 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Utils } from '../shared/utils/utils';
 import { LoginAdminService } from './login-admin.service';
 import { Constants } from './utils/constants';
+import { MatDialog } from '@angular/material/dialog';
+import { ForgotPwdComponent } from '../forgot-pwd/forgot-pwd.component';
 
 @Component({
   selector: 'app-login-admin',
@@ -36,6 +38,7 @@ export class LoginAdminComponent implements OnInit {
     private router: Router,
     private loginService: LoginAdminService,
     private translate: TranslateService,
+    public dialog: MatDialog,
   ) {
     // verifier si l'application est en mode maintenance
     this.loginService.isMaintenance().subscribe((value) => {
@@ -57,6 +60,18 @@ export class LoginAdminComponent implements OnInit {
 
   get f() {
     return this.loginForm.controls;
+  }
+
+  openPopup(): void {
+    const dialogRef = this.dialog.open(ForgotPwdComponent, {
+      width: '250px', // Adjust width as needed
+      // Other configuration options like height, data, etc.
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle any result or action after the dialog is closed
+    });
   }
 
   onSubmit() {

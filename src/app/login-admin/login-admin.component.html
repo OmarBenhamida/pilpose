@@ -1,7 +1,10 @@
 <div class="wrapper">
     <app-maintenance-mode *ngIf="isMaintenance"></app-maintenance-mode>
     <div *ngIf="!isMaintenance" class="login-container">
-        <div class="login-side"></div>
+        <div class="login-side">
+            <div class="login-pic1"></div>
+         <!-- <img src="../assests/img/pilposepic.jpeg" width="100px" height="100px" alt="image"/>-->
+        </div>
         <div class="login-form-container">
             <div class="login-form-header">   
                 LOGIN
@@ -31,8 +34,7 @@
                 </mat-form-field>
                 <button class="btn-rounded" (click)="onSubmit()" role="button" aria-disabled="false">{{ 'LOGIN.BOUTTON.LOGIN' | translate }}</button>
                 <br><br>
-                
-                <div class="input-container-mdp"><a href="https://fathiyoussef9.github.io/FathiYoussef.github.io/"><font color="black">Mot de passe oublié ?</font> </a></div>
+                <div class="input-container-mdp"><a (click)="openPopup()"><font color="black">Mot de passe oublié ?</font> </a></div>
                 
             </form>
         </div>

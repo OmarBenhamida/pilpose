@@ -54,6 +54,7 @@ import { SofappsPasswordComponent } from './welcome/sofapps-password/sofapps-pas
 import { SofappsParametrageComponent } from './welcome/sofapps-parametrage/sofapps-parametrage.component';
 import { HttpClientRequest } from './service/http-request.service';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -67,6 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
     InfoComponent,
     WelcomeComponent,
     LoginAdminComponent,
+    ForgotPwdComponent,
   ],
   imports: [
     RxReactiveFormsModule,
