@@ -4,9 +4,9 @@
 
 /* wrapper of content */
 .wrapper {
-  width: 100vw;
+  width: 105vw;
   height: 90vh;
-  background-color: #eee;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,20 +14,22 @@
 
 /* login container : picture + login form container*/
 .login-container {
-  width: 60%;
-  height: 80%;
+  width: 50%;
+  height: 70%;
   border-radius: 8px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+ /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
   display: flex;
   justify-content: space-between;
 }
 
 /* login picture */
-.login-picture {
+.login-side {
+  border-radius: 10px;
+  padding: 20px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   width: 50%;
-  background-image: url("src\assets\img\loginpictside.jpg");
+  background-color: #FB0104;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -51,8 +53,9 @@
 }
 
 .login-form-header {
-  color: #006cc2;
+  color: black;
   font-size: 2rem;
+  margin-top: 0%;
   font-family: Cambria 'Courier New', Courier, monospace;
   text-align: center;
   font-weight: 500;
@@ -60,7 +63,7 @@
 
 .login-divider {
   height: 1px;
-  background-color: #006cc2;
+  background-color: #FB0104;
   width: 40%;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -82,19 +85,27 @@
   font-size: 1.1rem;
 }
 
+.input-container-mdp {
+  text-align: center;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
 .eye-button:focus {
   outline: none !important;
 }
 
+
+
 .btn-rounded {
   border: none;
-  background-color: #0079db;
+  background-color: #FB0104;
   color: white;
   width: 100%;
   padding: 0.75rem 1rem;
   cursor: pointer;
   font-weight: bold;
-  border-radius: 4px;
+  border-radius: 15px;
   margin-top: 1.1rem;
 }
 
@@ -137,11 +148,18 @@ footer {
   }
 
   footer {
-    background-color: #eee;
+    background-color: white;
   }
 }
 .lang-icon-dimension {
   width: 25px;
   height: 25px;
   margin-right: 5px;
+}
+
+
+a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
 }
