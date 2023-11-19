@@ -3,13 +3,13 @@ import {environment} from '../../environments/environment';
 
 @Injectable()
 export class HostService {
-  sofappsHost: string;
+  pilposeHost: string;
 
     constructor() {
-        this.sofappsHost = environment.sofappsHost;
+        this.pilposeHost = environment.pilposeHost;
     }
 
-    getSofappsHost() {
-        return this.sofappsHost;
+    getPilposeHost() {
+        return this.pilposeHost;
     }
 }

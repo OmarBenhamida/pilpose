@@ -18,7 +18,7 @@ export class NotLoggedInGuardGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
       if(this.loginService.isLogged()){
-        this.router.navigateByUrl('/modules');
+        this.router.navigateByUrl('/');
         return false;
      }
       return true;

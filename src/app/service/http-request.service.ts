@@ -105,8 +105,8 @@ export class HttpClientRequest {
 
   initHttpHeader() {
     let currentUser: any = JSON.parse(localStorage.getItem("currentUser"));
-    if (currentUser && currentUser.token_dto.token) {
-      let token = currentUser.token_dto.token;
+    if (currentUser && currentUser.token_dto?.token) {
+      let token = currentUser.token_dto?.token;
       return new HttpHeaders({
         "Content-Type": "application/json",
         Authorization: token,

@@ -2,10 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs';
-import { map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HostService } from '../service/host.service';
+import { HttpClientRequest } from '../service/http-request.service';
 import { SofappsHomeService } from '../welcome/sofapps-home/sofapps-home.service';
-import { CurrentUserModel } from './model/current-user.model';
+import { UserModel } from './model/user.model';
 
 import { authUrlsConstants } from './utils/urls-constants';
 
@@ -36,11 +38,11 @@ export class LoginAdminService {
     private hostService: HostService,
     private sofappsHomeService: SofappsHomeService,
     private router: Router,
-    private httpClient: HttpClient,
+    private httpClient: HttpClientRequest,
 
 
   ) {
-    this.host = this.hostService.getSofappsHost();
+    this.host = this.hostService.getPilposeHost;
   }
 
   /**
@@ -49,25 +51,8 @@ export class LoginAdminService {
    * @param username
    * @param password
    */
-  authUser(username, password) {
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(username + ':' + password),
-    });
-    return this.httpClient
-      .post<any>(
-        this.hostService.getSofappsHost() + authUrlsConstants.urlAuthentication,
-        null,
-        { headers }
-      )
-      .pipe(
-        map((user: CurrentUserModel) => {
-          /* store user details and jwt token in local storage to keep user logged in between page refreshes */
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.sofappsHomeService.setFullNameSubject(user.nom_complet);
-
-          return user;
-        })
-      );
+  authUser(user: UserModel) {
+    return this.http.post(this.hostService.getPilposeHost() + authUrlsConstants.urlAuthentication, user );
   }
 
   isLogged() {
@@ -79,8 +64,8 @@ export class LoginAdminService {
    * is maintenance mode active
    */
   isMaintenance() {
-    return this.httpClient.get(
-      this.hostService.getSofappsHost() + authUrlsConstants.urlIsMaintenance
+    return this.httpClient.getObject(
+      this.hostService.getPilposeHost() + authUrlsConstants.urlIsMaintenance
     );
   }
 

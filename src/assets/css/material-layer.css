@@ -8,13 +8,13 @@
 }
 
 .mat-expansion-panel-body {
-  background-color: #ebe9e9;
+  background-color: white ;
   padding: 0 !important;
   padding-left: 8px !important;
 }
 
 .mat-expansion-panel {
-  background-color: #ebe9e9 !important;
+  background-color: white !important;
   margin: 0 !important;
   width: 280px !important;
 }

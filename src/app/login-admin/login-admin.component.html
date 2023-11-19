@@ -3,14 +3,13 @@
     <div *ngIf="!isMaintenance" class="login-container">
         <div class="login-side">
             <div class="login-pic1"></div>
-         <!-- <img src="../assests/img/pilposepic.jpeg" width="100px" height="100px" alt="image"/>-->
         </div>
         <div class="login-form-container">
             <div class="login-form-header">   
                 LOGIN
             </div>
       <br><br>
-            <form class="login-form" [formGroup]="loginForm">
+            <form [formGroup]="loginForm" class="login-form" >
                 <mat-form-field appearance="outline" class="input-container">
                     <mat-label>{{ 'LOGIN.TEXT.P1' | translate }}</mat-label>
                     <input type="text" matInput formControlName="username"

@@ -1,0 +1,41 @@
+.toolbar-item-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    background-color: #FB0104;
+    color: white;
+}
+
+.app-container {
+    height: 90%;
+    margin: 0;
+}  
+.app-sidenav {
+    width: 280px;
+}
+.app-sidenav-content {
+  
+    height: 100%;
+   
+    justify-content: center;
+} 
+
+.pilpose-logo {
+  margin-top: auto;
+  margin-left: 15%
+
+}
+.nomPrenom{
+    justify-content: center;
+    margin-left: 29%
+}
+
+mat-expansion-panel-header{
+    margin-top: 7%;
+    background-color: white;
+}
+.mat-expansion-panel{
+    background-color: white!;
+    
+}

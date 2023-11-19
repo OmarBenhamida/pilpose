@@ -124,7 +124,7 @@ const httpInterceptorProviders = [
     MatNativeDateModule,
     MatTreeModule,
   ],
-  providers: [httpInterceptorProviders],
+  // providers: [httpInterceptorProviders],
   entryComponents: [],
 })
 export class SharedModule {}
