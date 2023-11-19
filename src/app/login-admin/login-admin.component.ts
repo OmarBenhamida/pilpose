@@ -52,7 +52,8 @@ export class LoginAdminComponent implements OnInit {
 
   openPopup(): void {
     const dialogRef = this.dialog.open(ForgotPwdComponent, {
-      width: '250px', // Adjust width as needed
+      width: '750px',
+      height: '60vh' // Adjust width as needed
       // Other configuration options like height, data, etc.
     });
 
