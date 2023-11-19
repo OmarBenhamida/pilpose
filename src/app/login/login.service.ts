@@ -36,7 +36,7 @@ export class LoginService {
     private sofappsHomeService: SofappsHomeService,
     private httpClient: HttpClient
   ) {
-    this.host = this.hostService.getSofappsHost();
+    this.host = this.hostService.getPilposeHost();
   }
 
   /**
@@ -51,7 +51,7 @@ export class LoginService {
     });
     return this.httpClient
       .post<any>(
-        this.hostService.getSofappsHost() + authUrlsConstants.urlAuthentication,
+        this.hostService.getPilposeHost() + authUrlsConstants.urlAuthentication,
         null,
         { headers }
       )
@@ -75,7 +75,7 @@ export class LoginService {
    */
   isMaintenance() {
     return this.httpClient.get(
-      this.hostService.getSofappsHost() + authUrlsConstants.urlIsMaintenance
+      this.hostService.getPilposeHost() + authUrlsConstants.urlIsMaintenance
     );
   }
 

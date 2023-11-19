@@ -19,7 +19,7 @@ export class PasswordService {
 
     private hostService: HostService
   ) {
-    this.host = this.hostService.getSofappsHost();
+    this.host = this.hostService.getPilposeHost();
   }
 
 

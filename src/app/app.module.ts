@@ -46,15 +46,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { InfoComponent } from './info/info.component';
 import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
-
 import { WelcomeComponent } from './welcome/welcome.component';
-
-import { SofappsHomeComponent } from './welcome/sofapps-home/sofapps-home.component';
-import { SofappsPasswordComponent } from './welcome/sofapps-password/sofapps-password.component';
-import { SofappsParametrageComponent } from './welcome/sofapps-parametrage/sofapps-parametrage.component';
 import { HttpClientRequest } from './service/http-request.service';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
+import { PilposeComponent } from './pilpose/pilpose.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -67,6 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
     ConfirmationComponent,
     InfoComponent,
     WelcomeComponent,
+    PilposeComponent,
     LoginAdminComponent,
     ForgotPwdComponent,
   ],
@@ -116,7 +113,6 @@ export function createTranslateLoader(http: HttpClient) {
     MatSortModule,
     MatPaginatorModule,
     MatDividerModule,
-
     MatNativeDateModule,
     MatTreeModule,
     MatMenuModule,
@@ -154,7 +150,8 @@ export function createTranslateLoader(http: HttpClient) {
     MatNativeDateModule,
     MatTreeModule,
   ],
-  providers: [LoginService,HttpClientRequest,
+  providers: [LoginService
+    ,HttpClientRequest,
     { provide: MatDialogRef, useValue: {} },
   ],
   bootstrap: [AppComponent],

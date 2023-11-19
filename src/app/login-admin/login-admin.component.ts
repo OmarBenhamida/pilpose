@@ -7,6 +7,7 @@ import { LoginAdminService } from './login-admin.service';
 import { Constants } from './utils/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { ForgotPwdComponent } from '../forgot-pwd/forgot-pwd.component';
+import { UserModel } from './model/user.model';
 
 @Component({
   selector: 'app-login-admin',
@@ -26,13 +27,7 @@ export class LoginAdminComponent implements OnInit {
   ];
   currentLang: any;
 
-  /**
-   *
-   * @param formBuilder
-   * @param router
-   * @param loginService
-   * @param translate
-   */
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -40,21 +35,14 @@ export class LoginAdminComponent implements OnInit {
     private translate: TranslateService,
     public dialog: MatDialog,
   ) {
-    // verifier si l'application est en mode maintenance
-    this.loginService.isMaintenance().subscribe((value) => {
-      this.isMaintenance = value;
-      // redirect to home if already logged in
-      if (this.loginService.isLogged() && !this.isMaintenance) {
-        this.router.navigate(['/ssm']);
-      }
-    });
+ 
   }
 
   ngOnInit() {
     this.initLang();
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ["", Validators.required],
+      password: ["", Validators.required],
     });
   }
 
@@ -67,7 +55,7 @@ export class LoginAdminComponent implements OnInit {
       width: '250px', // Adjust width as needed
       // Other configuration options like height, data, etc.
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       // Handle any result or action after the dialog is closed
@@ -76,18 +64,37 @@ export class LoginAdminComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    console.log("entry");
+
+    console.warn(this.loginForm.invalid)
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      return;
+      // return;
     }
-    /* login by username & password */
-    this.loginService
-      .authUser(this.f.username.value, this.f.password.value)
-      .subscribe(() => {
-        this.router.navigate(['/ssm']).then(() => {});
-        this.show = true;
-        localStorage.setItem('showwelcomemsg', '1');
-      });
+    else {
+      console.log("valid form");
+
+      let user: UserModel = {
+        username: this.f.username.value,
+        password: this.f.password.value,
+        email: "",
+        dateCreation: "",
+      }
+
+      console.log("user: ", user);/* login by username & password */
+      this.loginService.authUser(user).subscribe({
+          error: (e) => {
+            console.error(e);
+          },
+
+          complete : () => {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.router.navigate(['/pilpose']);
+          },
+
+        });
+    }
+
   }
 
   /* change current language */

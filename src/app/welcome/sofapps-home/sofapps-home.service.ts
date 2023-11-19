@@ -13,7 +13,7 @@ export class SofappsHomeService {
   host: string;
 
   constructor(private hostService: HostService, private http: HttpClient) {
-    this.host = this.hostService.getSofappsHost();
+    this.host = this.hostService.getPilposeHost();
   }
 
   /**

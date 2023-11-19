@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  sofappsHost: "http://localhost:9090",
+  pilposeHost: "http://localhost:8888",
 };
 
 /*
