@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./change-pwd.component.css']
 })
 export class ChangePwdComponent implements OnInit {
-
+  imageUrl : string = "assets/img/pilposepic.jpeg";
   constructor() { }
 
   ngOnInit(): void {

@@ -1,0 +1,14 @@
+/* wrapper of content */
+.wrapper {
+    width: 105vw;
+    height: 90vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  hr.new4 {
+    border-top: 3px solid;
+    border-color:  #FB0104;
+  }
