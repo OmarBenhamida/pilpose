@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forgot-pwd.component.css']
 })
 export class ForgotPwdComponent implements OnInit {
-
+  imageUrl : string = "assets/img/pilposepic.jpeg";
   constructor() { }
 
   ngOnInit(): void {

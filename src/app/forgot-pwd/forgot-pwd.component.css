@@ -1,0 +1,32 @@
+.wrapper {
+width: 120%;
+height: 120%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-pic1 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:50%;
+    margin-top:40%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 48%;
+    height: 21.8%;
+    background-image: url("src\assets\img\pilposepic.jpeg");
+    background-repeat: no-repeat;
+    
+    
+  }
+
+  hr.new4 {
+    border: 10px;
+    border: solid;
+    border-color:  #FB0104;
+  }
+  
+ 
