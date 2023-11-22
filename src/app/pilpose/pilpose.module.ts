@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AddChantierComponent } from './chantier/add-chantier/add-chantier.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -34,7 +35,8 @@ export function createTranslateLoader(http: HttpClient) {
     NotesComponent,
     ChantierComponent,
     PlannigComponent,
-    TacheComponent
+    TacheComponent,
+    AddChantierComponent
   ],
   imports: [
     CommonModule,

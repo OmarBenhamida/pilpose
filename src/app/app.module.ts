@@ -52,6 +52,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { PilposeComponent } from './pilpose/pilpose.component';
 import { ChangePwdComponent } from './change-pwd/change-pwd.component';
+
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -102,6 +104,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatListModule,
     MatCardModule,
     MatStepperModule,
+    MatPaginatorModule,
     MatTabsModule,
     MatExpansionModule,
     MatButtonToggleModule,

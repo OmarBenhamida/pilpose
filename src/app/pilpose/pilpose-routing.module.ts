@@ -6,6 +6,7 @@ import { PilposeComponent } from './pilpose.component';
 import { PlannigComponent } from './plannig/plannig.component';
 import { TacheComponent } from './tache/tache.component';
 import { NotesComponent } from './notes/notes.component';
+import { AddChantierComponent } from './chantier/add-chantier/add-chantier.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'plannig', component: PlannigComponent },
       { path: 'conge', component: CongeComponent },
       { path: 'chantier', component: ChantierComponent },
+      { path: 'add-chantier', component: AddChantierComponent },
       { path: 'tache', component: TacheComponent },
       { path: 'note', component: NotesComponent },
     ],
