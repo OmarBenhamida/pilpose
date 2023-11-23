@@ -1,10 +1,41 @@
 <div class="wrapper">
     <div class="container">
     <div> <img [src]="imageUrl" alt="My Image"></div>
-    <br>
-    <h3>Chnager mon mot de passe</h3>
-    <hr class="new4">
-    <br>
-   <div>gggggg</div>
+    <div class="form_wrapper">
+        <div class="form_container">
+          <div class="title_container">
+            <h2>Changer mon mot de passe</h2>
+          </div>
+          <div>
+            <h3> Votre nouveau mot de passe doit respecter les criteres suivantes :</h3>
+            <br>
+            <p class="regle">- une lettre majuscule </p>
+            <p class="regle">- une lettre minuscule </p>
+            <p class="regle">- un caractere special </p>
+            <p class="regle">- le nombre des caracteres minimum est de 12 </p>
+          </div>
+          <div class="row clearfix">
+            <div class="">
+              <form >
+                <div class="row clearfix">
+                  <div class="col_half">
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                      <input matInput type="text" formControlName="password" placeholder="mot de passe" />
+                    </div>
+                  </div>
+                  <div class="col_half">
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                      <input matInput type="text" formControlName="confirmpwd" placeholder="Confirmer mot de passe"  />
+                    </div>
+                  </div>
+                </div>
+               
+      
+                <button class="btn-rounded"  role="button" aria-disabled="false">Changer Mot de Passe</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
 </div>
