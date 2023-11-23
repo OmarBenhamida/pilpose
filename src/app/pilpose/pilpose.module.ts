@@ -48,6 +48,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTreeModule } from '@angular/material/tree';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+import { AddTacheComponent } from './tache/add-tache/add-tache.component';
+import { UpdateTacheComponent } from './tache/update-tache/update-tache.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -63,6 +65,8 @@ export function createTranslateLoader(http: HttpClient) {
     AddChantierComponent,
     AvoDatatableComponent,
     ConfirmModalComponent,
+    AddTacheComponent,
+    UpdateTacheComponent,
   ],
   imports: [
     CommonModule,

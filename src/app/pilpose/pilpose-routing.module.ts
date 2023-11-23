@@ -7,6 +7,7 @@ import { PlannigComponent } from './plannig/plannig.component';
 import { TacheComponent } from './tache/tache.component';
 import { NotesComponent } from './notes/notes.component';
 import { AddChantierComponent } from './chantier/add-chantier/add-chantier.component';
+import { AddTacheComponent } from './tache/add-tache/add-tache.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'chantier', component: ChantierComponent },
       { path: 'add-chantier', component: AddChantierComponent },
       { path: 'tache', component: TacheComponent },
+      { path: 'add-tache', component: AddTacheComponent},
       { path: 'note', component: NotesComponent },
     ],
   },

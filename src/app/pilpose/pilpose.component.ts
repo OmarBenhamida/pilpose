@@ -27,6 +27,12 @@ export class PilposeComponent implements OnInit {
     this.router.navigate(['pilpose/tache']);
 
   }
+
+  redirectAddTache(){
+    this.router.navigate(['pilpose/add-tache']);
+  }
+
+  
   redirectToNoteListe(){
     this.router.navigate(['pilpose/note']);
 
@@ -34,6 +40,11 @@ export class PilposeComponent implements OnInit {
 
   redirectToCongeListe(){
     this.router.navigate(['pilpose/conge']);
+
+  }
+
+  redirectToPlanning(){
+    this.router.navigate(['pilpose/plannig']);
 
   }
 

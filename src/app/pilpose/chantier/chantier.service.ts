@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { ChantierModel } from 'src/app/model/chantierModel';
 import { chantier } from 'src/app/model/chantier.model';
 import { HostService } from 'src/app/service/host.service';
-
-import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
 import { urlsConstantsChantier } from './urlsConstants';
 
 

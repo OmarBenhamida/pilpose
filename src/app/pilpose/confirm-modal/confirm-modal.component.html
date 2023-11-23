@@ -4,11 +4,11 @@
 </div>
 <div *ngIf="dialogData.action == 'Confirmation'" mat-dialog-actions align="end">
     <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="confirm(false)"> {{ 'POP_UP.BTN.NO' | translate}}</button>
-    <button type="button" class="btn btn-sm btn-primary " (click)="confirm(true)"> {{ 'POP_UP.BTN.YES' | translate}}</button>
+    <button type="button" class="btn-rounded" (click)="confirm(true)"> {{ 'POP_UP.BTN.YES' | translate}}</button>
 </div>
 <div *ngIf="dialogData.action == 'Suppression'" mat-dialog-actions align="end">
     <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="confirm(false)"> {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
-    <button type="button" class="btn btn-sm btn-primary " (click)="confirm(true)"> {{ 'POP_UP.BTN.DELETE' | translate}}</button>
+    <button type="button" class="btn-rounded " (click)="confirm(true)"> {{ 'POP_UP.BTN.DELETE' | translate}}</button>
 </div>
 <div *ngIf="dialogData.action == 'Avertissement'" mat-dialog-actions align="end">
     <button type="button" class="btn btn-primary" (click)="closeDialog(false)"> {{ 'POP_UP.BTN.YES' | translate}}</button>

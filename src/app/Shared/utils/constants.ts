@@ -23,4 +23,30 @@ export class Constants {
     'Action',
   ];
 
+  /**
+   * Chantier Data Tables Structures
+   */
+
+  static TACHE_DISPLAY_COLUMNS: string[] = [
+    'numero',
+    'intitule',
+    'dateDebut',
+    'DateFin',
+    'Heuredebut',
+    'Heurefin',
+    'type',
+    'action',
+
+  ];
+  static TACHE_DISPLAY_COLUMNS_NAME: string[] = [
+    'numero',
+    'intitule',
+    'dateDebut',
+    'DateFin',
+    'Heuredebut',
+    'Heurefin',
+    'type',
+    'action',
+  ];
+
 }
