@@ -6,6 +6,7 @@ import { ConfirmModalComponent } from 'src/app/pilpose/confirm-modal/confirm-mod
 import { Constants } from 'src/app/Shared/utils/constants';
 import { ChantierService } from './chantier.service';
 import { UpdateChantierComponent } from './update-chantier/update-chantier.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chantier',
@@ -18,7 +19,7 @@ export class ChantierComponent implements OnInit {
   displayedColumnsName: string[] = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   size: number = 0;
-  constructor(public translate: TranslateService, private dialog: MatDialog, private dialogRef: MatDialog, private chantierService: ChantierService) { }
+  constructor(private router: Router,public translate: TranslateService, private dialog: MatDialog, private dialogRef: MatDialog, private chantierService: ChantierService) { }
 
   ngOnInit(): void {
     this.getModelTableStructur();
@@ -121,6 +122,9 @@ export class ChantierComponent implements OnInit {
 
   }
 
+  redirect(){
+    this.router.navigate(['pilpose/add-chantier']);
+  }
   getModelData() {
 
     this.chantierService.getAllChantier().then((res) => {
