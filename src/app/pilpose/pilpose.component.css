@@ -32,10 +32,14 @@ mat-toolbar {
 }
 
 mat-expansion-panel-header{
-    margin-top: 7%;
+    margin-top: 12%;
     background-color: white;
 }
 .mat-expansion-panel{
     background-color: white!;
     
+}
+
+.nav-list{
+    margin-top: 7%;
 }

@@ -1,0 +1,83 @@
+<div class="container2">
+  <div class="table-responsive">
+      <mat-table [dataSource]="dataSource" matSort>
+          <!-- Nom Complet Column -->
+          <ng-container *ngFor="let name of displayedColumns; let i = index" matColumnDef="{{name}}">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="bold">
+                  {{nameDisplayedColumns[i] | translate}}
+                  <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="menu"> <i class="fas fa-filter"></i></button>
+                  <mat-menu #menu="matMenu" yPosition="above">
+                      <button mat-menu-item class="mat-content">
+                          <input type="text" class="form-control" placeholder="rechercher par {{name}}" (keyup)="applyFilter($event.target,name)" (click)="$event.stopPropagation();">
+                      </button>
+                  </mat-menu>
+              </mat-header-cell>
+              <!-- display input for commentaire||ServiceId||EquaT||PourcentCommis||NomOperateur||CodeOperateur-->
+              <mat-cell *matCellDef="let element">
+                  <ng-container *ngIf="name=='ActionChantier'  ;else elseBlock">
+                      <button type="button" [title]=" 'ACTION.ACTION_UPDATE' | translate" (click)="updateAndDeleteCommissionSva(element,'update')" style="font-size: 20px;"><i class="fas fa-pencil-alt"></i></button> &nbsp;&nbsp;
+                      <button type="button" [title]=" 'ACTION.ACTION_DELETE' | translate" (click)="updateAndDeleteCommissionSva(element,'Suppression')" style="font-size: 20px;"><i class="fa fa-trash trash-icon"></i></button>
+                  </ng-container>
+
+               
+                  <ng-template #elseBlock>
+                      <ng-container *ngIf="name=='Actionf'  ;else elseBlock1">
+                          <button type="button" [title]=" 'CENTAURE_TABLE.ACTION_UPDATE' | translate" (click)="updateAndDeleteCommissionSva(element,'update')" style="font-size: 20px;"><i class="fas fa-pencil-alt"></i></button>
+                      </ng-container>
+                  </ng-template>
+                  <ng-template #elseBlock1>
+                      <ng-container *ngIf="name=='ActionPrestfation'  ;else elseBlock2">
+                          <button type="button" class="btn btn-primary" style="border-radius: 10%;
+                          width: 10px;" [title]=" 'CENTAURE_TABLE.ADD_PRESTA_TO_TREE_TOOLTIP' | translate" (click)="addToTree(element)"><i class="fas fa-plus"></i></button>
+                      </ng-container>
+
+                      <ng-template #elseBlock2>
+                        <ng-container *ngIf="name=='ActionfCdt'  ;else elseBooleanBloc">
+                            <button type="button" class="btn btn-primary" style="border-radius: 10%;
+                            width: 10px;" [title]=" 'Voir les messages des erreurs' | translate" (click)="addToTree(element)">Voir</button>
+                        </ng-container>
+                    </ng-template>
+
+
+                  </ng-template>
+                  <ng-template #elseBooleanBloc>
+                      <ng-container *ngIf="checkBooleanVal(element[name]) ;else elseBlock2">
+                          <ng-container *ngIf="element[name]==true;else elseFaux">
+                              Vrai
+                          </ng-container>
+                          <ng-template #elseFaux>
+                              Faux
+                          </ng-template>
+                      </ng-container>
+                  </ng-template>
+                  <ng-template #elseBlock2>
+                      {{ element[name] }}
+
+                  </ng-template>
+
+              </mat-cell>
+
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+      </mat-table>
+
+      <div *ngIf="size == 0" class="no-data-message">
+          {{"CENTAURE_TABLE.DATA_EMPTY"|translate}}
+      </div>
+      <ng-container *ngIf="isTransit;else notTransit">
+          <mat-paginator  [length]="size" [pageIndex]="0" 
+          [pageSize]="pageSize"  [pageSizeOptions]="pageSizeArray"></mat-paginator>
+      </ng-container>
+      <ng-template #notTransit>
+          <mat-paginator 
+          [length]="size" 
+          [pageIndex]="0" 
+          [pageSize]="pageSize"
+          [showFirstLastButtons]="true"
+          (page)="onPageChange($event)" 
+          [pageSizeOptions]="pageSizeArray"></mat-paginator>
+      </ng-template>
+  </div>
+</div>

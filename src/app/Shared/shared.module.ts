@@ -38,6 +38,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from '../app-routing.module';
+import { AvoDatatableComponent } from '../pilpose/avo-datatable/avo-datatable.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
 
 const httpInterceptorProviders = [
@@ -120,7 +121,7 @@ const httpInterceptorProviders = [
     MatSortModule,
     MatPaginatorModule,
     MatDividerModule,
-
+  
     MatNativeDateModule,
     MatTreeModule,
   ],

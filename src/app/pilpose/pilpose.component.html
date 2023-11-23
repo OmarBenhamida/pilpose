@@ -18,7 +18,7 @@
             <mat-icon>help</mat-icon><span>Help</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="#">
+        <button mat-menu-item routerLink="/login">
             <mat-icon>exit_to_app</mat-icon>Logout
         </button>
     </mat-menu>
@@ -32,7 +32,7 @@
             </div>
             <br>
             <div class="nomPrenom">
-                <h3>Nom Prenom</h3>
+                <h3>BENHAMIDA FATHI</h3>
             </div>
             <mat-nav-list>
                 <a mat-list-item routerLink="#">
@@ -41,63 +41,65 @@
             </mat-nav-list>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
-                    Gestion des Chantiers
+                  <p class="nav-list"> Gestion des Chantiers</p> 
                 </mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="#">
-                        <mat-icon>assignment</mat-icon><span>Liste des Chantiers</span>
+                <mat-nav-list >
+                    <a mat-list-item  (click)="redirectToListChantier()">
+                        <mat-icon>assignment</mat-icon>&nbsp;<span>Liste des Chantiers</span>
                     </a>
-                    <a mat-list-item routerLink="#">
-                        <mat-icon>note add</mat-icon><span>Nouveau Chantier</span>
+
+                    
+                    <a mat-list-item (click)="redirectToNewChantier()">
+                        <mat-icon>add_task</mat-icon>&nbsp;<span>Nouveau Chantier</span>
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>
-                    Gestion des Taches
+                    <p class="nav-list"> Gestion des Taches</p>
                 </mat-expansion-panel-header>
                 <mat-nav-list>
-                    <a mat-list-item routerLink="#">
-                        <mat-icon>assignment</mat-icon><span>Liste des Chantiers</span>
+                    <a mat-list-item (click)="redirectToTacheListe()">
+                        <mat-icon>work</mat-icon>&nbsp;<span>Liste des Taches</span>
                     </a>
                     <a mat-list-item routerLink="#">
-                        <mat-icon>note add</mat-icon><span>Nouveau Chantier</span>
+                        <mat-icon>library_add</mat-icon>&nbsp;<span>Nouvelle Tache</span>
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>
-                    Gestion des Conges
+                    <p class="nav-list"> Gestion des Conges </p>
                 </mat-expansion-panel-header>
                 <mat-nav-list>
-                    <a mat-list-item routerLink="#">
-                        <mat-icon>assignment</mat-icon><span>Liste des Chantiers</span>
+                    <a mat-list-item (click)="redirectToCongeListe()">
+                        <mat-icon>landscape</mat-icon>&nbsp;<span>Liste des Congés</span>
                     </a>
                     <a mat-list-item routerLink="#">
-                        <mat-icon>note add</mat-icon><span>Nouveau Chantier</span>
+                        <mat-icon>library_add</mat-icon>&nbsp;<span>Nouveau Congé</span>
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>
-                    Gestion des notes de frais
+                    <p class="nav-list"> Gestion des notes de frais </p>
                 </mat-expansion-panel-header>
                 <mat-nav-list>
-                    <a mat-list-item routerLink="#">
-                        <mat-icon>assignment</mat-icon><span>Liste des Chantiers</span>
+                    <a mat-list-item  (click)="redirectToNoteListe()">
+                        <mat-icon>assignment</mat-icon>&nbsp;<span>Liste des Notes de frais</span>
                     </a>
                     <a mat-list-item routerLink="#">
-                        <mat-icon>note add</mat-icon><span>Nouveau Chantier</span>
+                        <mat-icon>addchart</mat-icon>&nbsp;<span>Nouvelle Note de frais</span>
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <router-outlet>
+      
             <div class="app-sidenav-content">
                <router-outlet></router-outlet>
             </div>
-        </router-outlet>
+    
     </mat-sidenav-content>
 </mat-sidenav-container> 

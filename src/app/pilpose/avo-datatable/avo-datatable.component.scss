@@ -1,0 +1,108 @@
+.table-sm > :not(caption) > * > * {
+  padding: 5px;
+  margin: auto;
+  font-size: small;
+}
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+.table-responsive mat-table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  display: table;
+  margin: 0px;
+}
+.mat-header-cell {
+  color: black;
+}
+.bold {
+  width: fit-content !important;
+}
+.container2 {
+  min-height: 50vh;
+  margin: 0px 50px 10px 50px;
+}
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+  display: flex;
+  justify-content: space-between;
+}
+mat-header-cell, mat-cell, mat-footer-cell {
+  justify-content: center;
+  font-size: 11px !important;
+  font-family: "helveticaneueregular" !important;
+}
+mat-footer-cell {
+  background-color: #ff7900;
+  font-weight: bold;
+}
+.mat-footer-row, .mat-header-row, .mat-row {
+  display: inline-flex;
+  min-width: 100%;
+}
+a {
+  color: blue;
+}
+a:hover {
+  color: red;
+  text-decoration: none;
+}
+.form-control {
+  height: 30px !important;
+}
+.mat-sort-header-arrow {
+  color: black !important;
+}
+.btn {
+  background-color: transparent;
+}
+button {
+  background-color: transparent;
+  border: none;
+}
+.mat-menu-content:not(:empty) {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+.fa-pencil-alt:before {
+  content: "\f303";
+  color: green;
+}
+.fa-trash:before {
+  content: "\f1f8";
+  color: red;
+}
+.btn {
+  font-size: 1rem;
+  font-weight: bold !important;
+}
+/* BUTTONS*/
+.btn-primary {
+  color: #fff !important;
+  background-color: #f26e02;
+  border: #f26e02;
+  font-family: "helveticaneuebold" !important;
+  padding: calc(0.4rem - 1px) 1.2rem calc(0.4rem + 1px);
+}
+.btn-primary:hover:enabled, .btn-primary:active:enabled, .btn-primary.active:enabled {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+}
+.btn-primary:focus:enabled, .btn-primary.focus:enabled {
+  background-color: #fff f !important;
+  color: #000 !important;
+  border: 1px solid #f26e02 !important;
+  -webkit-box-shadow: 0 0 0 2px rgba(242, 110, 2, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(242, 110, 2, 0.5) !important;
+}
+.btn-primary:disabled {
+  pointer-events: none;
+  border-color: #ccc !important;
+  color: #fff !important;
+  background-color: #ccc !important;
+}

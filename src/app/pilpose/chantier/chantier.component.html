@@ -1,1 +1,11 @@
-<p>chantier works!</p>
+<div>
+<div class="title">
+    <h3>Gestion des Chantiers</h3>
+    <mat-divider class="divider"></mat-divider>
+</div>
+<br>
+<app-avo-datatable [displayedColumns]="displayedColumns" [nameDisplayedColumns]="displayedColumnsName" [dataSource]="dataSource" [size]="size" (sendAction)="actionEvent($event)">
+</app-avo-datatable>
+
+
+</div>

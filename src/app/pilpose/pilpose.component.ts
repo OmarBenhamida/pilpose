@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pilpose',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PilposeComponent implements OnInit {
  imageUrl : string = "assets/img/pilposepic.jpeg";
-  constructor() { }
+  constructor( private router: Router,) { }
 
   ngOnInit(): void {
+  }
+
+  redirectToListChantier(){
+    this.router.navigate(['pilpose/chantier']);
+
+  }
+
+  redirectToNewChantier(){
+    this.router.navigate(['pilpose/add-chantier']);
+
+  }
+
+  redirectToTacheListe(){
+    this.router.navigate(['pilpose/tache']);
+
+  }
+  redirectToNoteListe(){
+    this.router.navigate(['pilpose/note']);
+
+  }
+
+  redirectToCongeListe(){
+    this.router.navigate(['pilpose/conge']);
+
   }
 
 }

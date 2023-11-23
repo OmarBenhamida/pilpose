@@ -1,88 +1,56 @@
 {
-  "SOFPASS.OLD_MDP": "Ancien mot de passe",
-  "SOFPASS.NEW_MDP": "Nouveau mot de passe",
-  "SOFPASS.CONFIRM_MDP": "Confirmer  mot de passe",
-  "SOFPASS.GMDP.P1": "Lorsque l'on ne dispose pas d'un poste connecté au réseau sofrecom, cet outil permet de changer le mot de passe Sofrecom.",
-  "SOFPASS.GMDP.P2": "Merci de bien vouloir saisir votre nouveau mot de passe :",
-  "SOFPASS.GMDP.P3": "Le mot de passe d'un compte doit respecter les règles suivantes :",
-  "SOFPASS.GMDP.P4": "Pour vous aider :",
-  "SOFPASS.GMDP.P5": "Utiliser des mots de passe issus de citations ou de phrases personnelles faciles à retenir, en prenant l'initiale de chaque mot.",
-  "SOFPASS.GMDP.P6": "exemples :",
-  "SOFPASS.GMDP.P7": "Changement du mot de passe ",
-  "SOFPASS.GMDP.P9": "Être composé de",
-  "SOFPASS.GMDP.P10": "majuscule",
-  "SOFPASS.GMDP.P11": "minuscule",
-  "SOFPASS.GMDP.P12": "Avoir une taille de minimum de ",
-  "SOFPASS.GMDP.P13": "caractères spéciaux",
-  "SOFPASS.GMDP.P14": "Interdiction de mettre en sous-chaîne le nom, le prénom, l'identifiant et le nom du service de l'utilisateur",
-  "SOFPASS.GMDP.P15": "Être difficile à reconstituer, par une autre personne que vous.",
-  "SOFPASS.GMDP.P16": "mois",
-  "SOFPASS.GMDP.P31": "chiffre",
-  "SOFPASS.GMDP.P21": "caractères",
-  "SOFPASS.GMDP.P17": "Doit être changé tous les",
-  "SOFPASS.GMDP.P18": "La vie est un long fleuve tranquille ! devient Lve1lft ! La majusculefait partie du type de caractéres à utiliser",
-  "SOFPASS.GMDP.P19": "Je suis né en juillet 70 devient Jsn,ej70",
-  "SOFPASS.GMDP.P20": "Testez le langage SMS.",
-
-
-  "PASSWORD" : {
-
-    "MESSAGE": {
-      "PASSWORD_OK": "Mot de passe mis à jour avec succés",
-      "PASSWORD_X": "La mise à jour à échoué",
-      "PASSWORD_CLOSE": "Fermer"
+  "TABLES": {
+    "CHANTIER": {
+      "REFERENCE": "Réference",
+      "CLIENT": "Nom Complet Client",
+      "LOCALISATION": "Localisation",
+      "ETAT": "état"
     }
-
-
   },
-
-
-  "PARAMETRAGE" : {
-
-    "TEXT": {
-      "P1": "Merci de bien vouloir saisir le nouveau paramétrage :",
-      "P2": "Nombre de majuscule",
-      "P3": "Nombre de minuscule",
-      "P5": "Nombre de chiffre",
-      "P6": "Caractére spéciale",
-      "P7": "Durée (Mois)",
-      "P8": "Description",
-      "P9": "Caractére minimum"
+  "POP_UP": {
+    "TITLE": {
+      "LOGOUT": "Déconnexion",
+      "CONFIRMATION": "Confirmation",
+      "UPLOAD": "Charger un fichier",
+      "DELETE": "Confirmation de suppression",
+      "MSG_ERREUR": "Messages d'erreurs"
     },
-    "BOUTTON": {
-      "SAVE": "Enregistrer"
+    "BODY": {
+      "DELETE_CHANTIER": "Voulez-vous supprimer le chantier ?",
+      "LOGOUT": "Voulez-vous vraiment quitter Pilpose ?"
     },
-    "TITRE": {
-      "TITLE": "Paramétrage du mot de passe "
+    "BTN": {
+      "CANCEL": "Annuler",
+      "DELETE": "Supprimer",
+      "YES": "Oui",
+      "NO": "Non",
+      "DROP": "Déplacer",
+      "UPLOAD": "Charger",
+      "DOWNLOAD_ERRORS": "Export",
+      "SE_CONNECTER": "Se connecter"
     },
-    "MESSAGE": {
-      "PARAMETRAGE_OK": "Paramétrage mis à jour avec succés",
-      "PARAMETRAGE_X": "La mise à jour à échoué",
-      "PARAMETRAGE_CLOSE": "Fermer"
+    "ACTION": {
+      "DELETE": "Suppression",
+      "CONFIRMATION": "Confirmation",
+      "RECUPERATION": "Récupération",
+      "DROP": "Déplacer",
+      "MODIF_MODE": "ModifMode",
+      "IDLE": "Idle"
     }
-
-
   },
-
-  "LOGIN" : {
-
+  "LOGIN": {
     "TEXT": {
       "P1": "Identifiant pilpose :",
       "PX": "Mot de passe :",
-      "PR":"Mot de passe requis",
+      "PR": "Mot de passe requis",
       "IS": "Identifiant pilpose requis"
-
     },
     "BOUTTON": {
       "NEXT": "Suivant",
       "LOGIN": "Se connecter"
     }
-
   },
-
-
-  "HOME" : {
-
+  "HOME": {
     "TEXT": {
       "P1": "Accueil ",
       "P2": "Bienvenue",
@@ -97,11 +65,7 @@
     "BOUTTON": {
       "SAVE": "Enregistrer"
     }
-
-
   },
-
-
   "BOUTTON": {
     "SAVE": "Enregistrer"
   },
@@ -115,6 +79,13 @@
     "VOS_info": "Vos information",
     "GMDP": "Gestion Mot De Passe",
     "PARAMETRAGE": "Paramétrage"
+  },
 
+  "ACTION": {
+    "ACTION_UPDATE": "Modifier",
+    "ACTION_DELETE": "Supprimer"
+ 
   }
+
+
 }

@@ -6,24 +6,24 @@
     </div>
     <div class="row clearfix">
       <div class="">
-        <form>
+        <form [formGroup]="ChantierForm">
           <div class="row clearfix">
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-brush"></i></span>
-                <input type="text" formControlName="codechantier" placeholder="code chantier" />
+                <input matInput type="text" formControlName="codechantier" placeholder="code chantier" />
               </div>
             </div>
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                <input type="text" formControlName="nomclient" placeholder="Nom Client"  />
+                <input matInput type="text" formControlName="nomclient" placeholder="Nom Client"  />
               </div>
             </div>
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-globe"></i></span>
-            <input type="text" formControlName="localisation" placeholder="localisation" required />
+            <input matInput type="text" formControlName="localisation" placeholder="localisation"  />
           </div>
 
-          <input class="button" type="submit" value="Soumettre" />
+          <button class="btn-rounded" (click)="add()" role="button" aria-disabled="false">Soumettre</button>
         </form>
       </div>
     </div>
