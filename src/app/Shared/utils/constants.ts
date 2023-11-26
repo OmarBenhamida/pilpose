@@ -1,5 +1,33 @@
+import { IndividualConfig } from "ngx-toastr";
 
 export class Constants {
+
+
+    /**Toast Global config */
+    public static toastOptions: Partial<IndividualConfig> = {
+      closeButton: true,
+      timeOut: 7000,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      extendedTimeOut: 700,
+    };
+  
+    public static toastOptionsUpload: Partial<IndividualConfig> = {
+      closeButton: true,
+      disableTimeOut: true,
+      progressBar: true,
+    };
+  
+    public static toastOptionsEXEJdd: Partial<IndividualConfig> = {
+      closeButton: true,
+      timeOut: 50000,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      extendedTimeOut: 20000,
+    };
+  
+    public static readonly ID_TOAST_IN_PROGRESS_JDD: number = 1;
+    public static readonly ID_TOAST_IN_PROGRESS_LOAD_FILE_JDD: number = 2;
 
   public static ACTION: string = 'ActionChantier';
 

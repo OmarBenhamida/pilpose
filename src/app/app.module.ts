@@ -52,6 +52,7 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { PilposeComponent } from './pilpose/pilpose.component';
 import { ChangePwdComponent } from './change-pwd/change-pwd.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -89,6 +90,7 @@ export function createTranslateLoader(http: HttpClient) {
       },
       defaultLanguage: 'fr',
     }),
+    ToastrModule.forRoot(),
     MatCheckboxModule,
     MatButtonModule,
     MatInputModule,

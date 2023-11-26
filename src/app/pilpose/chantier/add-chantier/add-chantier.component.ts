@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { chantier } from 'src/app/model/chantier.model';
+import { FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { Chantier } from 'src/app/model/chantier.model';
 import { ChantierService } from 'src/app/pilpose/chantier/chantier.service';
+import { Constants } from 'src/app/Shared/utils/constants';
 
 
 @Component({
@@ -11,20 +14,49 @@ import { ChantierService } from 'src/app/pilpose/chantier/chantier.service';
 })
 export class AddChantierComponent implements OnInit {
 
-  ChantierForm: FormGroup;
-  constructor(private  chantierService:ChantierService) { }
+  ChantierForm: UntypedFormGroup;
+  constructor(private chantierService: ChantierService,
+    public toast: ToastrService,
+    public translate: TranslateService,
+    public formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
+
+    this.ChantierForm = this.formBuilder.group({
+      id: new UntypedFormControl(''),
+      reference: new UntypedFormControl('', Validators.required),
+      client: new UntypedFormControl('', Validators.required),
+      localisation: new UntypedFormControl('', Validators.required),
+    });
+
   }
 
-  add(){
-    
-    let Chantier = new chantier(
-this.ChantierForm.get("codechantier").value,
-this.ChantierForm.get("nomclient").value,
-this.ChantierForm.get("localisation").value,
-);
-this.chantierService.addOrUpdateChantier(Chantier)
+  onSubmit() {
+
+    let chantier;
+    let reference: String = this.ChantierForm.get("codeChantier").value;
+    let client: String = this.ChantierForm.get("nomClient").value;
+    let localisation: String = this.ChantierForm.get("localisation").value;
+    let etat: String = "En cours";
+
+    chantier = new Chantier(
+      0,
+      reference,
+      client,
+      etat,
+      localisation
+    );
+
+    this.chantierService.addOrUpdateChantier(chantier).then(res => {
+      this.toast.error(this.translate.instant('Chantier ajouté avec succés'), '', Constants.toastOptions);
+
+    }).catch(error => {
+
+      this.toast.error(this.translate.instant('Erreur lors de la création d un chantier'), '', Constants.toastOptions);
+
+
+    });
+
 
   }
 

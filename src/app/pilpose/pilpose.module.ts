@@ -50,6 +50,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { AddTacheComponent } from './tache/add-tache/add-tache.component';
 import { UpdateTacheComponent } from './tache/update-tache/update-tache.component';
+import { ComptesComponent } from './comptes/comptes.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -67,6 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
     ConfirmModalComponent,
     AddTacheComponent,
     UpdateTacheComponent,
+    ComptesComponent,
   ],
   imports: [
     CommonModule,

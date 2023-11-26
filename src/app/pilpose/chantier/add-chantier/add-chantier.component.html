@@ -10,20 +10,20 @@
           <div class="row clearfix">
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-brush"></i></span>
-                <input matInput type="text" formControlName="codechantier" placeholder="code chantier" />
+                <input id="reference" matInput type="text" formControlName="reference" placeholder="code chantier"  />
               </div>
             </div>
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                <input matInput type="text" formControlName="nomclient" placeholder="Nom Client"  />
+                <input id="client" matInput type="text" formControlName="client" placeholder="Nom Client"  />
               </div>
             </div>
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-globe"></i></span>
-            <input matInput type="text" formControlName="localisation" placeholder="localisation"  />
+            <input  id="localisation" matInput type="text" formControlName="localisation" placeholder="localisation"  />
           </div>
 
-          <button class="btn-rounded" (click)="add()" role="button" aria-disabled="false">Soumettre</button>
+          <button class="btn-rounded" type="submit" (click)="onSubmit()"><em class="fas fa-check"></em> &nbsp;Soumettre</button>
         </form>
       </div>
     </div>

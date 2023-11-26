@@ -7,43 +7,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./pilpose.component.css']
 })
 export class PilposeComponent implements OnInit {
- imageUrl : string = "assets/img/pilposepic.jpeg";
-  constructor( private router: Router,) { }
+  imageUrl: string = "assets/img/pilposepic.jpeg";
+  constructor(private router: Router,) { }
 
   ngOnInit(): void {
   }
 
-  redirectToListChantier(){
+  redirectToListChantier() {
     this.router.navigate(['pilpose/chantier']);
 
   }
 
-  redirectToNewChantier(){
+  redirectToComptes() {
+    this.router.navigate(['pilpose/comptes']);
+
+  }
+
+  redirectToNewChantier() {
     this.router.navigate(['pilpose/add-chantier']);
 
   }
 
-  redirectToTacheListe(){
+  redirectToTacheListe() {
     this.router.navigate(['pilpose/tache']);
 
   }
 
-  redirectAddTache(){
+  redirectAddTache() {
     this.router.navigate(['pilpose/add-tache']);
   }
 
-  
-  redirectToNoteListe(){
+
+  redirectToNoteListe() {
     this.router.navigate(['pilpose/note']);
 
   }
 
-  redirectToCongeListe(){
+  redirectToCongeListe() {
     this.router.navigate(['pilpose/conge']);
 
   }
 
-  redirectToPlanning(){
+  redirectToPlanning() {
     this.router.navigate(['pilpose/plannig']);
 
   }
