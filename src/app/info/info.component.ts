@@ -1,4 +1,3 @@
-import { SofappsHomeService } from './../welcome/sofapps-home/sofapps-home.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class InfoComponent implements OnInit {
   fullName = JSON.parse(localStorage.getItem('currentUser'))?.nom_complet;
 
-  constructor(private sofappsHomeService: SofappsHomeService) {
-    console.log(this.fullName);
-    this.sofappsHomeService.setFullNameSubject(this.fullName);
-  }
+  //constructor(//private sofappsHomeService: SofappsHomeService) {
+   // console.log(this.fullName);
+   // this.sofappsHomeService.setFullNameSubject(this.fullName);
+ // }
 
   ngOnInit(): void {
     console.log('hellloo');

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../login/login.service';
+import { LoginAdminService } from '../login-admin/login-admin.service';
+
 
 @Component({
   selector: 'app-accueil',
@@ -12,7 +13,7 @@ export class AccueilComponent implements OnInit {
   animationClass: string;
   whiteColor:string;
   firstname: string;
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private router: Router, private loginAdminService: LoginAdminService) {
   }
 
   ngOnInit() {
@@ -22,12 +23,13 @@ export class AccueilComponent implements OnInit {
       this.animationClass = 'slideInUp'
       this.show = true
       this.slidedown()
-      localStorage.removeItem('showwelcomemsg')
+     localStorage.removeItem('showwelcomemsg')
       /* Getting name user from the token */
-      this.firstname = JSON.parse(localStorage.currentUser).nom_complet;
+      //this.firstname = JSON.parse(localStorage.currentUser).nom_complet;
+      this.firstname = "Benhamida Omar";
     }
 
-    //this.router.navigateByUrl("/welcome/home").then(() => {});
+    
 
   }
 
@@ -53,9 +55,11 @@ export class AccueilComponent implements OnInit {
       function() {
         that.show = false
       }, 1100);
+      this.router.navigateByUrl("pilpose").then(() => {});
+    
   }
 
   logout(){
-    this.loginService.logout();
+    this.loginAdminService.logout();
   }
 }

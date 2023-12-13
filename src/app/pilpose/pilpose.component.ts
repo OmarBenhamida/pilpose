@@ -53,4 +53,18 @@ export class PilposeComponent implements OnInit {
 
   }
 
+  redirectAddConge(){
+    this.router.navigate(['pilpose/add-conge']);
+  }
+
+  redirectInfoCollab(){
+    this.router.navigate(['pilpose/info-collab']);
+  }
+  redirectAddNote(){
+    this.router.navigate(['pilpose/add-note']);
+  }
+
+  redirectAffectation(){
+    this.router.navigate(['pilpose/affectation']);
+  }
 }

@@ -6,7 +6,7 @@
     </div>
     <div class="row clearfix">
       <div class="">
-        <form [formGroup]="ChantierForm">
+        <form [formGroup]="ChantierForm" ngNativeValidate>
           <div class="row clearfix">
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-brush"></i></span>
@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-globe"></i></span>
-            <input  id="localisation" matInput type="text" formControlName="localisation" placeholder="localisation"  />
+            <input  id="localisationDto" matInput type="text" formControlName="localisationDto" placeholder="localisation"  />
           </div>
 
           <button class="btn-rounded" type="submit" (click)="onSubmit()"><em class="fas fa-check"></em> &nbsp;Soumettre</button>

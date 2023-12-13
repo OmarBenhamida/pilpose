@@ -1,12 +1,9 @@
-
 export class Chantier {
-    constructor(
-    idChantier?: number,
-    reference?: String,
-    client?: String,
-    etat? : String,
-    localisationDto?: String,
-    ){
-        
-    }
+  constructor(
+    public idChantier?: number,
+    public reference?: String,
+    public client?: String,
+    public etat?: String,
+    public localisationDto?: String
+  ) {}
 }

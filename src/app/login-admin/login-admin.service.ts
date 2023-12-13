@@ -5,8 +5,8 @@ import 'rxjs';
 import { throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HostService } from '../service/host.service';
-import { HttpClientRequest } from '../service/http-request.service';
-import { SofappsHomeService } from '../welcome/sofapps-home/sofapps-home.service';
+import { HttpClientRequest } from '../shared/services/common/http-request.service';
+
 import { UserModel } from './model/user.model';
 
 import { authUrlsConstants } from './utils/urls-constants';
@@ -36,7 +36,7 @@ export class LoginAdminService {
   constructor(
     private http: HttpClient,
     private hostService: HostService,
-    private sofappsHomeService: SofappsHomeService,
+  
     private router: Router,
     private httpClient: HttpClientRequest,
 

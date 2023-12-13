@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Chantier } from 'src/app/model/chantier.model';
-import { ChantierService } from 'src/app/pilpose/chantier/chantier.service';
 import { Constants } from 'src/app/Shared/utils/constants';
+import { AddChantierService } from './addChantier.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { Constants } from 'src/app/Shared/utils/constants';
 export class AddChantierComponent implements OnInit {
 
   ChantierForm: UntypedFormGroup;
-  constructor(private chantierService: ChantierService,
+  constructor(private router: Router,private chantierService: AddChantierService,
     public toast: ToastrService,
     public translate: TranslateService,
     public formBuilder: UntypedFormBuilder) { }
@@ -23,32 +24,35 @@ export class AddChantierComponent implements OnInit {
   ngOnInit(): void {
 
     this.ChantierForm = this.formBuilder.group({
-      id: new UntypedFormControl(''),
+      idChantier: new UntypedFormControl(''),
       reference: new UntypedFormControl('', Validators.required),
       client: new UntypedFormControl('', Validators.required),
-      localisation: new UntypedFormControl('', Validators.required),
+      localisationDto: new UntypedFormControl('', Validators.required),
     });
 
   }
 
   onSubmit() {
 
-    let chantier;
-    let reference: String = this.ChantierForm.get("codeChantier").value;
-    let client: String = this.ChantierForm.get("nomClient").value;
-    let localisation: String = this.ChantierForm.get("localisation").value;
+    let reference: String = this.ChantierForm.get('reference').value;
+    let client: String = this.ChantierForm.get('client').value;
+    let localisationDto: String = this.ChantierForm.get('localisationDto').value;
     let etat: String = "En cours";
 
-    chantier = new Chantier(
-      0,
-      reference,
-      client,
-      etat,
-      localisation
-    );
+    let chantier1 = new Chantier();
+    chantier1.idChantier = null;
+    chantier1.reference = reference;
+    chantier1.client = client;
+    chantier1.etat = etat;
+    chantier1.localisationDto = localisationDto;
+    console.log(chantier1);
 
-    this.chantierService.addOrUpdateChantier(chantier).then(res => {
-      this.toast.error(this.translate.instant('Chantier ajouté avec succés'), '', Constants.toastOptions);
+    this.chantierService.addOrUpdateChantier(chantier1).then(res => {
+
+      
+      
+      this.toast.success(this.translate.instant('Chantier ajouté avec succés'), '', Constants.toastOptions);
+      this.router.navigate(['pilpose/chantier']);
 
     }).catch(error => {
 

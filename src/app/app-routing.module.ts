@@ -4,8 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
-import { AuthGuard } from './login/auth-guard.guard';
-import { NotLoggedInGuardGuard } from './login/not-logged-in-guard.guard';
 import { HostService } from './service/host.service';
 
 const routes: Routes = [
@@ -13,6 +11,12 @@ const routes: Routes = [
 
   {
     path: 'login', component: LoginAdminComponent,
+    
+  },
+
+  {
+    path: 'modules',
+    component: AccueilComponent,
     
   },
 

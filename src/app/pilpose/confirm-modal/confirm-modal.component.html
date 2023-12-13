@@ -3,26 +3,26 @@
     <p>{{dialogData.userMessage}}</p>
 </div>
 <div *ngIf="dialogData.action == 'Confirmation'" mat-dialog-actions align="end">
-    <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="confirm(false)"> {{ 'POP_UP.BTN.NO' | translate}}</button>
+    <button type="button" class="btn-rounded-annuler" (click)="confirm(false)"> {{ 'POP_UP.BTN.NO' | translate}}</button>
     <button type="button" class="btn-rounded" (click)="confirm(true)"> {{ 'POP_UP.BTN.YES' | translate}}</button>
 </div>
 <div *ngIf="dialogData.action == 'Suppression'" mat-dialog-actions align="end">
-    <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="confirm(false)"> {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
+    <button type="button" class="btn-rounded-annuler" (click)="confirm(false)"> {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
     <button type="button" class="btn-rounded " (click)="confirm(true)"> {{ 'POP_UP.BTN.DELETE' | translate}}</button>
 </div>
 <div *ngIf="dialogData.action == 'Avertissement'" mat-dialog-actions align="end">
     <button type="button" class="btn btn-primary" (click)="closeDialog(false)"> {{ 'POP_UP.BTN.YES' | translate}}</button>
 </div>
 <div *ngIf="dialogData.action == 'Récupération'" mat-dialog-actions align="end">
-    <button type="button" class="btn btn-secondary mr-2" (click)="confirm(false)"><i class="fas fa-times"></i>&nbsp; {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
+    <button type="button" class="btn-rounded-annuler" (click)="confirm(false)"><i class="fas fa-times"></i>&nbsp; {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
     <button type="button" class="btn btn-primary" (click)="confirm(true)"><i class="fas fa-check"></i>&nbsp; Valider</button>
 </div>
 <div *ngIf="dialogData.action == 'Déplacer'" mat-dialog-actions align="end">
-    <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="confirm(false)"> {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
+    <button type="button" class="btn-rounded-annuler" (click)="confirm(false)"> {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
     <button type="button" class="btn btn-sm btn-primary " (click)="confirm(true)"> {{ 'POP_UP.BTN.DROP' | translate}}</button>
 </div>
 <div *ngIf="dialogData.action == 'ModifMode'" mat-dialog-actions align="end">
-    <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="confirm(false)"> {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
+    <button type="button" class="btn-rounded-annuler" (click)="confirm(false)"> {{ 'POP_UP.BTN.CANCEL' | translate}}</button>
     <button type="button" class="btn btn-sm btn-primary " (click)="startCountDown()"> ({{showCountDown()}}){{ 'POP_UP.BTN.YES' | translate}}</button>
 </div>
 <div *ngIf="dialogData.action == 'Idle'" mat-dialog-actions align="end">

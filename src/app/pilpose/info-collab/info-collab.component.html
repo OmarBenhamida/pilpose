@@ -1,0 +1,97 @@
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Mes infos</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="">
+        <form [formGroup]="ChantierForm" ngNativeValidate>
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <input
+                  id="reference"
+                  matInput
+                  type="text"
+                  formControlName="reference"
+                  placeholder="Nom"
+                />
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <input
+                  id="client"
+                  matInput
+                  type="text"
+                  formControlName="client"
+                  placeholder="Prenom"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-pen"></i></span>
+                <input
+                  id="reference"
+                  matInput
+                  type="text"
+                  formControlName="reference"
+                  placeholder="email"
+                />
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-brush"></i></span>
+                <input
+                  id="client"
+                  matInput
+                  type="text"
+                  formControlName="client"
+                  placeholder="CIN"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-calendar"></i></span>
+                <input
+                  id="reference"
+                  matInput
+                  type="date"
+                  formControlName="reference"
+                  placeholder="date de naissance"
+                />
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-pen"></i></span>
+                <input
+                  id="client"
+                  matInput
+                  type="text"
+                  formControlName="client"
+                  placeholder="nationalite"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-rounded" type="submit" (click)="onSubmit()">
+            <em class="fas fa-check"></em> &nbsp;Soumettre
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HostService } from '../service/host.service';
-import { HttpClientRequest } from '../service/http-request.service';
+
 import { PilposeRoutingModule } from './pilpose-routing.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -51,6 +51,19 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { AddTacheComponent } from './tache/add-tache/add-tache.component';
 import { UpdateTacheComponent } from './tache/update-tache/update-tache.component';
 import { ComptesComponent } from './comptes/comptes.component';
+import { HttpClientRequest } from '../shared/services/common/http-request.service';
+import { UpdateChantierComponent } from './chantier/update-chantier/update-chantier.component';
+import { AddCongeComponent } from './conge/add-conge/add-conge.component';
+import { UpdateCongeComponent } from './conge/update-conge/update-conge.component';
+import { AddNoteComponent } from './notes/add-note/add-note.component';
+import { UpdateNoteComponent } from './notes/update-note/update-note.component';
+import { InfoCollabComponent } from './info-collab/info-collab.component';
+import { AffectationComponent } from './tache/affectation/affectation.component';
+import { AddAffectationComponent } from './tache/affectation/add-affectation/add-affectation.component';
+import { UpdateAffectationComponent } from './tache/affectation/update-affectation/update-affectation.component';
+import { AddCompteComponent } from './comptes/add-compte/add-compte.component';
+import { UpdateCompteComponent } from './comptes/update-compte/update-compte.component';
+
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -68,7 +81,18 @@ export function createTranslateLoader(http: HttpClient) {
     ConfirmModalComponent,
     AddTacheComponent,
     UpdateTacheComponent,
+    UpdateChantierComponent,
     ComptesComponent,
+    AddCongeComponent,
+    UpdateCongeComponent,
+    AddNoteComponent,
+    UpdateNoteComponent,
+    InfoCollabComponent,
+    AffectationComponent,
+    AddAffectationComponent,
+    UpdateAffectationComponent,
+    AddCompteComponent,
+    UpdateCompteComponent,
   ],
   imports: [
     CommonModule,

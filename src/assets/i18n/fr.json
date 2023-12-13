@@ -17,6 +17,7 @@
     },
     "BODY": {
       "DELETE_CHANTIER": "Voulez-vous supprimer le chantier ?",
+      "DELETE_COMPTE": "Voulez-vous supprimer le compte ?",
       "LOGOUT": "Voulez-vous vraiment quitter Pilpose ?"
     },
     "BTN": {

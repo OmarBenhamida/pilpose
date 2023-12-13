@@ -6,16 +6,16 @@
        </div>
        <div class="row clearfix">
          <div class="">
-           <form>
+           <form [formGroup]="ChantierForm" ngNativeValidate>
              <div class="row clearfix">
                <div class="col_half">
                  <div class="input_field"> <span><i aria-hidden="true" class="fa fa-brush"></i></span>
-                   <input type="text" formControlName="codechantier" placeholder="code chantier" />
+                   <input type="text" formControlName="reference" placeholder="code chantier" />
                  </div>
                </div>
                <div class="col_half">
                  <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                   <input type="text" formControlName="nomclient" placeholder="Nom Client"  />
+                   <input type="text" formControlName="client" placeholder="Nom Client"  />
                  </div>
                </div>
              </div>
@@ -23,18 +23,25 @@
              <div class="row clearfix">
                 <div class="col_half">
                   <div class="input_field"> <span><i aria-hidden="true" class="fa fa-globe"></i></span>
-                    <input type="text" formControlName="localisation" placeholder="localisation" />
+                    <input type="text" formControlName="localisationDto" placeholder="localisation" />
                   </div>
                 </div>
                 <div class="col_half">
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-cog"></i></span>
-                        <input type="text" formControlName="etat" placeholder="Etat" />
+                       <!-- <input type="text" formControlName="etat" placeholder="Etat" />-->
+                       <select formControlName="etat" >
+                        <option>-- Etat</option>
+                         <option value="En Cours">En Cours</option>
+                         <option value="Terminé">Terminé</option>
+                       </select>
                       </div>
                 </div>
               </div>
 
-             <input class="button" type="submit" value="Modifier" />
-             <input class="button" type="button" value="Annuler" />
+              <button class="btn-rounded" type="submit" (click)="onSubmit()"><em class="fas fa-check"></em> &nbsp;Soumettre</button>
+              &nbsp;
+              <button class="btn-rounded-supp" type="submit" (click)="close()"> &nbsp;Annuler</button>
+             
            </form>
          </div>
        </div>

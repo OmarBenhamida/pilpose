@@ -12,15 +12,16 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { LoginService } from '../../login/login.service';
-import { User } from '../../login/User';
+
 import { HttpStatusConst } from './HttpStatusResponses';
 import { Observable } from 'rxjs';
+import { LoginAdminService } from 'src/app/login-admin/login-admin.service';
+import { User } from 'src/app/login-admin/User';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(
-    private loginService: LoginService,
+    private loginService: LoginAdminService,
     private router: Router,
     private http: HttpClient,
     private location: Location

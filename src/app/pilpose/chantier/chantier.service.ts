@@ -27,19 +27,6 @@ export class ChantierService {
   }
 
 
-
-    addOrUpdateChantier(chantier : Chantier): Promise<any> {
-      /*return this.http
-        .postObject<any>(
-          chantier,
-          this.host + urlsConstantsChantier.urlChantier
-        ).toPromise();*/
-        console.table(chantier);
-        
-        return this.http.post(urlsConstantsChantier.urlChantier,chantier).toPromise();
-    }
-    
-  
     deleteChantier(idChantier: any): Promise<any> {
       return this.http
         .get<any>(

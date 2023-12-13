@@ -7,22 +7,61 @@ import { Constants } from 'src/app/Shared/utils/constants';
 import { ChantierService } from './chantier.service';
 import { UpdateChantierComponent } from './update-chantier/update-chantier.component';
 import { Router } from '@angular/router';
+import { Chantier } from 'src/app/model/chantier.model';
+import { ToastrService } from 'ngx-toastr';
+import { AddChantierService } from './add-chantier/addChantier.service';
 
 @Component({
   selector: 'app-chantier',
   templateUrl: './chantier.component.html',
-  styleUrls: ['./chantier.component.css']
+  styleUrls: ['./chantier.component.css'],
 })
 export class ChantierComponent implements OnInit {
-
   displayedColumns: string[] = [];
   displayedColumnsName: string[] = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   size: number = 0;
-  constructor(private router: Router,public translate: TranslateService, private dialog: MatDialog, private dialogRef: MatDialog, private chantierService: ChantierService) { }
+  constructor(
+    private router: Router,
+    public translate: TranslateService,
+    public toastr: ToastrService,
+    private addChantierService: AddChantierService,
+
+    private dialog: MatDialog,
+    private dialogRef: MatDialog,
+    private chantierService: ChantierService
+  ) {}
 
   ngOnInit(): void {
     this.getModelTableStructur();
+  }
+
+  getModelTableStructur() {
+    this.displayedColumns = Constants.CHANTIER_DISPLAY_COLUMNS;
+    this.displayedColumnsName = Constants.CHANTIER_DISPLAY_COLUMNS_NAME;
+    this.getModelData();
+  }
+
+  getModelData() {
+    this.chantierService
+      .getAllChantier()
+      .then((res) => {
+        let chantiers: any[] = [];
+
+        console.table(res);
+        for (let code of res) {
+          chantiers.push({
+            id: code.idChantier,
+            reference: code.reference,
+            client: code.client,
+            etat: code.etat,
+            localisationDto: code.localisationDto,
+          });
+        }
+        this.dataSource.data = chantiers;
+        this.size = this.dataSource.data.length;
+      })
+      .catch((err) => {});
   }
 
   actionEvent(event: any) {
@@ -48,105 +87,61 @@ export class ChantierComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-          this.chantierService.deleteChantier(model.id).then(res => {
-            this.getModelTableStructur();
-          }).catch(err => { });
+          this.chantierService
+            .deleteChantier(model.id)
+            .then((res) => {
+              this.getModelTableStructur();
+            })
+            .catch((err) => {});
         }
       });
     }
-
-
-
-
-
   }
 
   openAlterModelPopup(model: any) {
+   
+    
     const dialogRef = this.dialog.open(UpdateChantierComponent, {
       width: '50vw',
       height: '50vh',
       data: {
-        // codeCategorie: model,
-        //categoriesList: this.categoriesList,
+        chantier: model,
       },
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((data: any) => {
+      if (data) {
+        let chantier = new Chantier();
+        chantier.idChantier = data.idChantier;
+        chantier.reference = data.reference;
+        chantier.client = data.client;
+        chantier.etat = data.etat;
+        chantier.localisationDto = data.localisationDto;
 
-      //  if (data) {
-      //  let codeCategorie = new Code();
-      //codeCategorie.id = data.id;
-      //  codeCategorie.code = data.code;
-      // codeCategorie.codeClone = data.codeClone;
-      // codeCategorie.categorieDto = data.categorieDto;
-      // data.active === false ? codeCategorie.active = false : codeCategorie.active = true;
-      // data.saturated === false ? codeCategorie.saturated = false : codeCategorie.saturated = true;
-
-      //  this.codeCategorieService.addOrUpdateCodeCategorie(codeCategorie).then(res => {
-
-      //   this.toastr.success(
-      //     this.translate.instant('TOAST.OK.CODE_CATEGORIE_UPDATE'),
-      //    '',
-      //    Constants.toastOptions
-      //);
-
-
-      /*
-                this.getModelTableStructur(this.selected);
-              }).catch(err => {
-                this.toastr.warning(
-                  this.translate.instant('TOAST.KO.CODE_CATEGORIE_ACTIVE'),
-                  '',
-                  Constants.toastOptions
-                );
-              });
-            }
-            this.getModelTableStructur(this.selected);
+        this.addChantierService
+          .addOrUpdateChantier(chantier)
+          .then((res) => {
+            this.toastr.success(
+              this.translate.instant('Chantier modifé avec succés'),
+              '',
+              Constants.toastOptions
+            );
+            this.getModelTableStructur();
+          })
+          .catch((err) => {
+            this.toastr.warning(
+              this.translate.instant('Erreur lors de la modification du chantier'),
+              '',
+              Constants.toastOptions
+            );
           });
-              
-      */
 
-
-
-      //}
-
-
+        this.getModelTableStructur();
+      }
     });
   }
 
-  getModelTableStructur() {
-
-    this.displayedColumns = Constants.CHANTIER_DISPLAY_COLUMNS;
-    this.displayedColumnsName = Constants.CHANTIER_DISPLAY_COLUMNS_NAME;
-    this.getModelData();
-
-  }
-
-  redirect(){
+  redirect() {
     this.router.navigate(['pilpose/add-chantier']);
   }
-  getModelData() {
-
-    this.chantierService.getAllChantier().then((res) => {
-      let chantiers: any[] = [];
-
-      console.table(res);
-      for (let code of res) {
-        chantiers.push({
-          id: code.idChantier,
-          reference : code.reference,
-          client: code.client,
-          etat: code.etat,
-          localisationDto: code.localisationDto,
-        });
-      }
-      this.dataSource.data = chantiers;
-      this.size = this.dataSource.data.length;
-    })
-      .catch((err) => { });
-
-
-  }
-
 }
-

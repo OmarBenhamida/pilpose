@@ -22,7 +22,9 @@ export class TacheComponent implements OnInit {
   size: number = 0;
 
 
-  constructor(private router: Router,public translate: TranslateService, private dialog: MatDialog, private dialogRef: MatDialog,private tacheService: TacheService) { }
+  constructor(private router: Router,
+    public translate: TranslateService,
+     private dialog: MatDialog, private dialogRef: MatDialog,private tacheService: TacheService) { }
 
   ngOnInit(): void {
     this.getModelTableStructur();
@@ -133,25 +135,29 @@ export class TacheComponent implements OnInit {
 
   getModelData() {
 
-   /* this.chantierService.getAllChantier().then((res) => {
-      let chantiers: any[] = [];
+    this.tacheService.getAllTache().then((res) => {
+      let taches: any[] = [];
 
       console.table(res);
       for (let code of res) {
-        chantiers.push({
-          id: code.idChantier,
+        taches.push({
+          idTache: code.idTache,
           reference : code.reference,
-          client: code.client,
-          etat: code.etat,
-          localisationDto: code.localisationDto,
+          libelle: code.libelle,
+          dateDebut: code.dateDebut,
+          dateFin: code.dateFin,
+          heureDebut : code.heureDebut,
+          heureFin: code.heureFin,
+          commantaire: code.commantaire,
+          idChantier: code.idChantier.client,
         });
       }
-      this.dataSource.data = chantiers;
+      this.dataSource.data = taches;
       this.size = this.dataSource.data.length;
     })
       .catch((err) => { });
 
-*/
+
   }
 
 }

@@ -8,7 +8,7 @@
         <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
-        <button mat-menu-item routerLink="#">
+        <button mat-menu-item (click)="redirectInfoCollab()">
             <mat-icon>person</mat-icon><span>My Account</span>
         </button>
         <button mat-menu-item (click)="redirectToComptes()">
@@ -63,6 +63,9 @@
                     <a mat-list-item (click)="redirectAddTache()">
                         <mat-icon>library_add</mat-icon>&nbsp;<span>Nouvelle Tache</span>
                     </a>
+                    <a mat-list-item (click)="redirectAffectation()">
+                        <mat-icon>library_add</mat-icon>&nbsp;<span>Affectation</span>
+                    </a>
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel [class.mat-elevation-z0]="true">
@@ -73,7 +76,7 @@
                     <a mat-list-item (click)="redirectToCongeListe()">
                         <mat-icon>landscape</mat-icon>&nbsp;<span>Liste des Congés</span>
                     </a>
-                    <a mat-list-item routerLink="#">
+                    <a mat-list-item (click)="redirectAddConge()">
                         <mat-icon>library_add</mat-icon>&nbsp;<span>Nouveau Congé</span>
                     </a>
                 </mat-nav-list>
@@ -86,7 +89,7 @@
                     <a mat-list-item  (click)="redirectToNoteListe()">
                         <mat-icon>assignment</mat-icon>&nbsp;<span>Liste des Notes de frais</span>
                     </a>
-                    <a mat-list-item routerLink="#">
+                    <a mat-list-item (click)="redirectAddNote()">
                         <mat-icon>addchart</mat-icon>&nbsp;<span>Nouvelle Note de frais</span>
                     </a>
                 </mat-nav-list>

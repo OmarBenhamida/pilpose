@@ -27,22 +27,19 @@ export class LoginAdminComponent implements OnInit {
   ];
   currentLang: any;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private loginService: LoginAdminService,
     private translate: TranslateService,
-    public dialog: MatDialog,
-  ) {
- 
-  }
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.initLang();
     this.loginForm = this.formBuilder.group({
-      username: ["", Validators.required],
-      password: ["", Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
@@ -53,11 +50,11 @@ export class LoginAdminComponent implements OnInit {
   openPopup(): void {
     const dialogRef = this.dialog.open(ForgotPwdComponent, {
       width: '750px',
-      height: '60vh' // Adjust width as needed
+      height: '60vh', // Adjust width as needed
       // Other configuration options like height, data, etc.
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
       // Handle any result or action after the dialog is closed
     });
@@ -65,37 +62,28 @@ export class LoginAdminComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log("entry");
+    console.log('entry');
 
-    console.warn(this.loginForm.invalid)
+    console.warn(this.loginForm.invalid);
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       // return;
-    }
-    else {
-      console.log("valid form");
+    } else {
+      console.log('valid form');
 
       let user: UserModel = {
         username: this.f.username.value,
         password: this.f.password.value,
-        email: "",
-        dateCreation: "",
-      }
+        email: '',
+        dateCreation: '',
+      };
 
-      console.log("user: ", user);/* login by username & password */
-      this.loginService.authUser(user).subscribe({
-          error: (e) => {
-            console.error(e);
-          },
-
-          complete : () => {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.router.navigate(['/pilpose']);
-          },
-
-        });
+      this.loginService.authUser(user).subscribe(() => {
+        this.router.navigate(['/modules']).then(() => {});
+        this.show = true;
+        localStorage.setItem('showwelcomemsg', '1');
+      });
     }
-
   }
 
   /* change current language */

@@ -1,0 +1,13 @@
+<div>
+	<div class="title">
+		<h3>Affectations</h3>
+		<mat-divider class="divider"></mat-divider>
+	</div>
+	
+	<button class="btn-rounded" (click)="openPopup()"  role="button" aria-disabled="false"> <span><i aria-hidden="true" class="fa fa-plus"></i></span> Nouvelle Affectation</button>
+	<br><br>
+	<app-avo-datatable [displayedColumns]="displayedColumns" [nameDisplayedColumns]="displayedColumnsName" [dataSource]="dataSource" [size]="size" (sendAction)="actionEvent($event)">
+	</app-avo-datatable>
+	
+	
+	</div>

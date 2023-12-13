@@ -10,9 +10,6 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
-import { LoginComponent } from './login/login.component';
-import { LoginService } from './login/login.service';
-import { MaintenanceModeComponent } from './login/maintenance-mode/maintenance-mode.component';
 import { SharedModule } from './Shared/shared.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -46,13 +43,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { InfoComponent } from './info/info.component';
 import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
-import { WelcomeComponent } from './welcome/welcome.component';
-import { HttpClientRequest } from './service/http-request.service';
+
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { PilposeComponent } from './pilpose/pilpose.component';
 import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientRequest } from './shared/services/common/http-request.service';
+import { PilposeModule } from './pilpose/pilpose.module';
+import { LoginAdminService } from './login-admin/login-admin.service';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -61,12 +60,9 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    AccueilComponent,
-    LoginComponent,
-    MaintenanceModeComponent,
     ConfirmationComponent,
+    AccueilComponent,
     InfoComponent,
-    WelcomeComponent,
     PilposeComponent,
     LoginAdminComponent,
     ForgotPwdComponent,
@@ -80,6 +76,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatMenuModule,
     SharedModule,
     FormsModule,
+    PilposeModule,
     ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -157,7 +154,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatNativeDateModule,
     MatTreeModule,
   ],
-  providers: [LoginService
+  providers: [LoginAdminService
     ,HttpClientRequest,
     { provide: MatDialogRef, useValue: {} },
   ],
