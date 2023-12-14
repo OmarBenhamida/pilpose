@@ -8,9 +8,15 @@ import { Router } from '@angular/router';
 })
 export class PilposeComponent implements OnInit {
   imageUrl: string = "assets/img/pilposepic.jpeg";
+  firstname: string;
   constructor(private router: Router,) { }
 
   ngOnInit(): void {
+
+    if(localStorage.getItem('nom') != null && localStorage.getItem('prenom') != null ) {
+      this.firstname = localStorage.getItem('nom') + " " +localStorage.getItem('prenom');
+    
+    }
   }
 
   redirectToListChantier() {

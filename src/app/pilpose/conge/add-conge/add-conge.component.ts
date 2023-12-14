@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AddCongeService } from './addConge.service';
+import { Conge } from 'src/app/model/conge.model';
+import { Constants } from 'src/app/Shared/utils/constants';
+import { Collaborateur } from 'src/app/model/collaborateur.model';
 
 @Component({
   selector: 'app-add-conge',
@@ -19,45 +23,46 @@ export class AddCongeComponent implements OnInit {
     public formBuilder: UntypedFormBuilder) { }
 
   ngOnInit(): void {
-/*
     this.CongeForm = this.formBuilder.group({
-      idChantier: new UntypedFormControl(''),
-      reference: new UntypedFormControl('', Validators.required),
-      client: new UntypedFormControl('', Validators.required),
-      localisationDto: new UntypedFormControl('', Validators.required),
+      idConge: new UntypedFormControl(''),
+      dateDebut: new UntypedFormControl('', Validators.required),
+      dateFin: new UntypedFormControl('', Validators.required),
+      heureDebut: new UntypedFormControl('', Validators.required),
+      heureFin: new UntypedFormControl('', Validators.required),
+      typeconge: new UntypedFormControl('', Validators.required),
     });
-*/
+
   }
 
   onSubmit() {
-/*
-    let reference: String = this.ChantierForm.get('reference').value;
-    let client: String = this.ChantierForm.get('client').value;
-    let localisationDto: String = this.ChantierForm.get('localisationDto').value;
+    let dateDebut: String = this.CongeForm.get('dateDebut').value;
+    let dateFin: String = this.CongeForm.get('dateFin').value;
+    let heureDebut: number = this.CongeForm.get('heureDebut').value;
+    let heureFin: number = this.CongeForm.get('heureFin').value;
+    let typeconge: String = this.CongeForm.get('typeconge').value;
     let etat: String = "En cours";
-
-    let chantier1 = new Chantier();
-    chantier1.idChantier = null;
-    chantier1.reference = reference;
-    chantier1.client = client;
-    chantier1.etat = etat;
-    chantier1.localisationDto = localisationDto;
-    console.log(chantier1);
-
-    this.chantierService.addOrUpdateChantier(chantier1).then(res => {
+    let iduser : number = Number(localStorage.getItem('idUser'));
+    let conge = new Conge();
+    conge.idConge = null;
+    conge.dateDebut =dateDebut
+    conge.dateFin=dateFin
+    conge.heureDebut=heureDebut
+    conge.heureFin=heureFin
+    conge.typeConge=typeconge
+    conge.statut=etat
+    conge.idCollaborateur = new Collaborateur(iduser)
+    this.congeService.addOrUpdateConge(conge).then(res => {
 
       
       
-      this.toast.success(this.translate.instant('Chantier ajouté avec succés'), '', Constants.toastOptions);
-      this.router.navigate(['pilpose/chantier']);
+      this.toast.success(this.translate.instant('demande ajoutée avec succés'), '', Constants.toastOptions);
+      this.router.navigate(['pilpose/conge']);
 
     }).catch(error => {
 
-      this.toast.error(this.translate.instant('Erreur lors de la création d un chantier'), '', Constants.toastOptions);
+      this.toast.error(this.translate.instant('Erreur lors de la création d une demande de conge'), '', Constants.toastOptions);
 
 
     });
-
-*/
   }
 }

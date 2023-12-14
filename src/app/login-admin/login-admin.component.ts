@@ -78,7 +78,11 @@ export class LoginAdminComponent implements OnInit {
         dateCreation: '',
       };
 
-      this.loginService.authUser(user).subscribe(() => {
+      this.loginService.authUser(user).subscribe((res : any) => {
+        console.log(res);
+        localStorage.setItem('nom',res.nom );
+        localStorage.setItem('prenom',res.prenom );
+        localStorage.setItem('idUser',res.idUser );
         this.router.navigate(['/modules']).then(() => {});
         this.show = true;
         localStorage.setItem('showwelcomemsg', '1');

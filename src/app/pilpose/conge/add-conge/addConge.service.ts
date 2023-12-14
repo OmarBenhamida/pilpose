@@ -6,6 +6,7 @@ import { HostService } from 'src/app/service/host.service';
 
 import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
 import { urlsConstantsConge } from '../urlsConstants';
+import { Conge } from 'src/app/model/conge.model';
 
 
 
@@ -26,13 +27,13 @@ export class AddCongeService {
 
 
 
-    addOrUpdateConge(chantier : Chantier): Promise<any> {
+    addOrUpdateConge(conger : Conge): Promise<any> {
       
-      console.log("chantier: ", chantier);
+      console.log("conger: ", conger);
       
       return this.http
         .postObject<any>(
-          chantier,
+          conger,
           this.host + urlsConstantsConge.urlConge
         ).toPromise();
       
