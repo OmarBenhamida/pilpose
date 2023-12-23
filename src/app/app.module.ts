@@ -19,7 +19,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -52,6 +52,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientRequest } from './shared/services/common/http-request.service';
 import { PilposeModule } from './pilpose/pilpose.module';
 import { LoginAdminService } from './login-admin/login-admin.service';
+import { CalendarModule } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -120,6 +123,11 @@ export function createTranslateLoader(http: HttpClient) {
     MatNativeDateModule,
     MatTreeModule,
     MatMenuModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+        provide: DateAdapter,
+        useFactory: adapterFactory,
+    }),
   ],
   exports: [
     MatCheckboxModule,

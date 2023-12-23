@@ -6,7 +6,7 @@
       </div>
       <div class="row clearfix">
         <div class="">
-          <form>
+          <form  [formGroup]="TacheForm" ngNativeValidate>
             <div class="input_field" style="width: 49%">
               <span><i aria-hidden="true" class="fa fa-brush"></i></span>
               <input
@@ -57,7 +57,7 @@
                 </div>
               </div>
               <div class="col_half">
-                <label>Min Début :</label>
+                <label>heure Fin :</label>
                 <div class="input_field">
                   <span><i aria-hidden="true" class="fa fa-clock"></i></span>
                   <input
@@ -70,32 +70,7 @@
               </div>
             </div>
 
-            <div class="row clearfix">
-                <div class="col_half">
-                  <label>Heure Fin :</label>
-                  <div class="input_field">
-                    <span><i aria-hidden="true" class="fa fa-clock"></i></span>
-                    <input
-                      matInput
-                      type="number"
-                      formControlName="heureDebut"
-                      placeholder="Heure fin"
-                    />
-                  </div>
-                </div>
-                <div class="col_half">
-                  <label>Min Fin :</label>
-                  <div class="input_field">
-                    <span><i aria-hidden="true" class="fa fa-clock"></i></span>
-                    <input
-                      matInput
-                      type="number"
-                      formControlName="heureFin"
-                      placeholder="min Fin"
-                    />
-                  </div>
-                </div>
-              </div>
+           
             <div class="row clearfix">
               <div class="col_half">
                 <label>Chantier :</label>
@@ -103,10 +78,10 @@
                 <div class="input_field">
                   <span><i aria-hidden="true" class="fa fa-cog"></i></span>
                   <!-- <input type="text" formControlName="etat" placeholder="Etat" />-->
-                  <select>
-                    <option>-- Etat</option>
-                    <option>En cours</option>
-                    <option>Terminé</option>
+                  <select formControlName="chantier">
+                    <option *ngFor="let chantier of listChantiers"
+                    [value] = "chantier.id">{{chantier.reference }}</option>
+                   
                   </select>
                 </div>
               </div>
@@ -116,12 +91,12 @@
               <input
                 matInput
                 type="text"
-                formControlName="intitule"
+                formControlName="commentaire"
                 placeholder="Commentaire"
               />
             </div>
 
-            <button class="btn-rounded" role="button" aria-disabled="false">
+            <button class="btn-rounded"  aria-disabled="false" type="submit" (click)="onSubmit()">
               Soumettre
             </button>
           </form>

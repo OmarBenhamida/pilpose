@@ -21,7 +21,8 @@ const routes: Routes = [
     component: PilposeComponent,
     children: [
       { path: '', redirectTo: 'plannig', pathMatch: 'full' },
-      { path: 'plannig', component: PlannigComponent },
+      { path: 'plannig00', component: PlannigComponent },
+      {path: 'plannig', loadChildren: () => import('./plannig/planning.module').then(m => m.PlanningModule)},
       { path: 'conge', component: CongeComponent },
       { path: 'add-conge', component: AddCongeComponent },
       { path: 'chantier', component: ChantierComponent },

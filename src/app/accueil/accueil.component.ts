@@ -17,20 +17,17 @@ export class AccueilComponent implements OnInit {
   }
 
   ngOnInit() {
-     /* The transaction must be shown only on the first time */
-     if(localStorage.getItem('showwelcomemsg') !== null) {
+
+
+    if(localStorage.getItem('nom') != null && localStorage.getItem('prenom') != null ) {
+
       this.whiteColor = 'transitionContWhiteColor'
       this.animationClass = 'slideInUp'
       this.show = true
       this.slidedown()
-     localStorage.removeItem('showwelcomemsg')
-      /* Getting name user from the token */
-      //this.firstname = JSON.parse(localStorage.currentUser).nom_complet;
-      this.firstname = "Benhamida Omar";
-    }
-
+      this.firstname = localStorage.getItem('nom') + " " +localStorage.getItem('prenom');
     
-
+    }
   }
 
   /**

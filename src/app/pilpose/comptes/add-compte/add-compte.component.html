@@ -6,7 +6,7 @@
       </div>
       <div class="row clearfix">
         <div class="">
-          <form>
+          <form [formGroup]="CompteForm" ngNativeValidate>
             <div class="row clearfix">
               <div class="col_half">
                 <label>Nom :</label>
@@ -15,7 +15,7 @@
                   <input
                     matInput
                     type="text"
-                    formControlName="dateDebut"
+                    formControlName="nom"
                     placeholder="nom"
                   />
                 </div>
@@ -27,7 +27,7 @@
                   <input
                     matInput
                     type="text"
-                    formControlName="dateFin"
+                    formControlName="prenom"
                     placeholder="prenom"
                   />
                 </div>
@@ -41,7 +41,7 @@
                     <input
                       matInput
                       type="text"
-                      formControlName="dateDebut"
+                      formControlName="username"
                       placeholder="username"
                     />
                   </div>
@@ -53,7 +53,7 @@
                     <input
                       matInput
                       type="password"
-                      formControlName="dateFin"
+                      formControlName="password"
                       placeholder="pasword"
                     />
                   </div>
@@ -69,7 +69,7 @@
                     <input
                       matInput
                       type="text"
-                      formControlName="dateDebut"
+                      formControlName="cin"
                       placeholder="cin"
                     />
                   </div>
@@ -81,8 +81,36 @@
                     <input
                       matInput
                       type="date"
-                      formControlName="dateFin"
+                      formControlName="naissance"
                       placeholder="date naissance"
+                    />
+                  </div>
+                </div>
+              </div>
+
+    
+              <div class="row clearfix">
+                <div class="col_half">
+                  <label>adresse :</label>
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-brush"></i></span>
+                    <input
+                      matInput
+                      type="text"
+                      formControlName="adresse"
+                      placeholder="adresse"
+                    />
+                  </div>
+                </div>
+                <div class="col_half">
+                  <label>telephone :</label>
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-calendar"></i></span>
+                    <input
+                      matInput
+                      type="text"
+                      formControlName="telephone"
+                      placeholder="telephone"
                     />
                   </div>
                 </div>
@@ -96,7 +124,7 @@
                     <input
                       matInput
                       type="text"
-                      formControlName="dateDebut"
+                      formControlName="email"
                       placeholder="email"
                     />
                   </div>
@@ -108,7 +136,7 @@
                     <input
                       matInput
                       type="text"
-                      formControlName="dateFin"
+                      formControlName="nationalite"
                       placeholder="nationalite"
                     />
                   </div>
@@ -117,22 +145,33 @@
 
             <div class="row clearfix">
               <div class="col_half">
+                <label>Fonction :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-globe"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="fonction"
+                    placeholder="fonction"
+                  />
+                </div>
+              </div>
+              <div class="col_half">
                 <label>role :</label>
 
                 <div class="input_field">
                   <span><i aria-hidden="true" class="fa fa-cog"></i></span>
                   <!-- <input type="text" formControlName="etat" placeholder="Etat" />-->
-                  <select>
-                    <option>-- Etat</option>
-                    <option>En cours</option>
-                    <option>Terminé</option>
+                  <select formControlName="role" >
+                    <option>Collaborateur</option>
+                    <option>Administration</option>
                   </select>
                 </div>
               </div>
             </div>
         
 
-            <button class="btn-rounded" role="button" aria-disabled="false">
+            <button class="btn-rounded" type="submit" (click)="onSubmit()">
               Soumettre
             </button>
           </form>

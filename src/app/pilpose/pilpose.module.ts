@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { CongeComponent } from './conge/conge.component';
 import { NotesComponent } from './notes/notes.component';
 import { ChantierComponent } from './chantier/chantier.component';
-import { PlannigComponent } from './plannig/plannig.component';
 import { TacheComponent } from './tache/tache.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +30,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -63,6 +62,10 @@ import { AddAffectationComponent } from './tache/affectation/add-affectation/add
 import { UpdateAffectationComponent } from './tache/affectation/update-affectation/update-affectation.component';
 import { AddCompteComponent } from './comptes/add-compte/add-compte.component';
 import { UpdateCompteComponent } from './comptes/update-compte/update-compte.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarModule } from 'angular-calendar';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 
@@ -74,7 +77,6 @@ export function createTranslateLoader(http: HttpClient) {
     CongeComponent,
     NotesComponent,
     ChantierComponent,
-    PlannigComponent,
     TacheComponent,
     AddChantierComponent,
     AvoDatatableComponent,
@@ -140,7 +142,15 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModalModule,
   ],
-  providers:[HttpClientRequest,HostService]
+  providers:[
+    HttpClientRequest,
+    HostService,
+    {
+      provide: DateAdapter,
+        useFactory: adapterFactory,
+    }
+  ]
 })
 export class PilposeModule {}

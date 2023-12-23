@@ -96,7 +96,7 @@ export class ComptesComponent implements OnInit {
  
       const dialogRef = this.dialog.open(AddCompteComponent, {
         width: '750px',
-        height: '80vh' // Adjust width as needed
+        height: '100vh' // Adjust width as needed
         // Other configuration options like height, data, etc.
       });
   

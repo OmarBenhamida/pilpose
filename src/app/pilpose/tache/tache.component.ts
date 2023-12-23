@@ -69,8 +69,8 @@ export class TacheComponent implements OnInit {
 
   openAlterModelPopup(model: any) {
     const dialogRef = this.dialog.open(UpdateTacheComponent, {
-      width: '50vw',
-      height: '50vh',
+      width: '70vw',
+      height: '90vh',
       data: {
         // codeCategorie: model,
         //categoriesList: this.categoriesList,

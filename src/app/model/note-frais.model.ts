@@ -1,3 +1,4 @@
+import { Chantier } from "./chantier.model";
 import { Collaborateur } from "./collaborateur.model";
 
 export class NoteFrais {
@@ -7,6 +8,7 @@ export class NoteFrais {
     public typeNote?: String,
     public dateNote?: String,
     public recu?: File,
-    public idCollaborateur?: Collaborateur
+    public idCollaborateur?: Collaborateur,
+    public idChantier?: Chantier
   ) {}
 }

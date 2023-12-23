@@ -5,8 +5,9 @@ import { Chantier } from 'src/app/model/chantier.model';
 import { HostService } from 'src/app/service/host.service';
 
 import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
-import { urlsConstantsConge } from '../urlsConstants';
-import { Conge } from 'src/app/model/conge.model';
+import { urlsConstantsCompte } from '../../chantier/urlsConstants';
+import { Collaborateur } from 'src/app/model/collaborateur.model';
+
 
 
 
@@ -14,7 +15,7 @@ import { Conge } from 'src/app/model/conge.model';
 @Injectable({
   providedIn: 'root',
 })
-export class AddCongeService {
+export class AddCompteService {
   public host: string;
 
   constructor(
@@ -27,14 +28,12 @@ export class AddCongeService {
 
 
 
-    addOrUpdateConge(conger : Conge): Promise<any> {
-      
-      console.log("conger: ", conger);
+    addOrUpdateCollab(collab : Collaborateur): Promise<any> {
       
       return this.http
         .postObject<any>(
-          conger,
-          this.host + urlsConstantsConge.urlConge
+            collab,
+          this.host + urlsConstantsCompte.urlCompte
         ).toPromise();
       
 

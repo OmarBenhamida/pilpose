@@ -1,6 +1,7 @@
 @import "~material-design-icons/iconfont/material-icons.css";
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~open-iconic/font/css/open-iconic-bootstrap.css";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 * {
   box-sizing: border-box;

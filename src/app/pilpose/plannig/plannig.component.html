@@ -1,26 +1,53 @@
-<br>
-<section class="page_404">
-	<div class="container">
-		<div class="row">	
-		<div class="col-sm-12 ">
-		<div class="col-sm-10 col-sm-offset-1  text-center">
-		<div class="four_zero_four_bg">
-			<h1 class="text-center ">404</h1>
-		
-		
-		</div>
-		
-		<div class="contant_box_404">
-		<h3 class="h2">
-		Page de gestion de plannig indisponible
-		</h3>
-		
-		<p>Ce module est en cours de développement</p>
-		
-		
-	</div>
-		</div>
-		</div>
-		</div>
-	</div>
-</section>
+<div class="row text-center mt-5">
+    <div class="col-md-4">
+        <div class="btn-group">
+            <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()">
+                Previous
+            </div>
+            <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                Today
+            </div>
+            <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()">
+                Next
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    </div>
+</div>
+
+<br/>
+<div [ngSwitch]="view">
+    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="plainning$ | async"
+        [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" 
+        (eventClicked)="handleEvent('Clicked', $any($event.event))" (dayClicked)="dayClicked($event.day)">
+    </mwl-calendar-month-view>
+</div>
+
+
+
+<ng-template #modalContent let-close="close">
+    <div class="modal-header">
+        <h5 class="modal-title">{{modalData.idCollaborateur.nom}} ({{modalData.idTache.libelle}}) </h5>
+        <button type="button" class="close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <span class="col-6">reference</span><span class="col-6">{{modalData.idTache.reference}}</span>
+            <span class="col-6">libelle</span><span class="col-6">{{modalData.idTache.libelle}}</span>
+            <span class="col-6">date debut</span><span class="col-6">{{modalData.idTache.dateDebut | date:'dd/MM/yyyy'}}</span>
+            <span class="col-6">date fin</span><span class="col-6">{{modalData.idTache.dateFin | date:'dd/MM/yyyy'}}</span>
+            <span class="col-6">commantaire</span><span class="col-6">{{modalData.idTache.commantaire}}</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="close()">
+            OK
+        </button>
+    </div>
+</ng-template>

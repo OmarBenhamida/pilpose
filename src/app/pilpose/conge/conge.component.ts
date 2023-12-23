@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CongeService } from './conge.service';
 import { UpdateCongeComponent } from './update-conge/update-conge.component';
 import { Conge } from 'src/app/model/conge.model';
+import { UntypedFormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-conge',
@@ -20,8 +22,10 @@ export class CongeComponent implements OnInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   size: number = 0;
   nomComplet : String ="";
-
+  selectedFile: File | null = null;
+  CongeForm: UntypedFormGroup;
   constructor(
+    private http: HttpClient,
     private router: Router,
     public translate: TranslateService,
     private dialog: MatDialog,
@@ -33,12 +37,33 @@ export class CongeComponent implements OnInit {
     this.getModelTableStructur();
   }
 
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
   actionEvent(event: any) {
     if (event[1] == 'update') {
       this.openAlterModelPopup(event[0]);
     } else if (event[1] == 'Suppression') {
       this.openDeleteModelPopup(event[0]);
     }
+  }
+
+  onUpload(): void {
+    const formData = new FormData();
+    let iduser : number = Number(localStorage.getItem('idUser'));
+   
+    formData.append('file', this.selectedFile);
+    this.http.post('http://localhost:8888/conge/excel/'+iduser, formData)
+      .subscribe(
+        () => {
+          console.log('File uploaded successfully');
+          // Handle success
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+          // Handle error
+        }
+      );
   }
 
   openDeleteModelPopup(model: any) {
