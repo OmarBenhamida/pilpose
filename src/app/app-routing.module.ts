@@ -24,6 +24,7 @@ const routes: Routes = [
     path: 'change-pwd', component: ChangePwdComponent,
     
   },
+
   {
     path: 'pilpose', loadChildren: () => import('./pilpose/pilpose.module').then((m) => m.PilposeModule),
   },

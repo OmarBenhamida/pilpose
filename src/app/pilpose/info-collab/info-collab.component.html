@@ -5,7 +5,7 @@
     </div>
     <div class="row clearfix">
       <div class="">
-        <form [formGroup]="ChantierForm" ngNativeValidate>
+        <form [formGroup]="collabForm" ngNativeValidate>
           <div class="row clearfix">
             <div class="col_half">
               <div class="input_field">
@@ -14,7 +14,7 @@
                   id="reference"
                   matInput
                   type="text"
-                  formControlName="reference"
+                  formControlName="nom"
                   placeholder="Nom"
                 />
               </div>
@@ -26,7 +26,7 @@
                   id="client"
                   matInput
                   type="text"
-                  formControlName="client"
+                  formControlName="prenom"
                   placeholder="Prenom"
                 />
               </div>
@@ -41,7 +41,7 @@
                   id="reference"
                   matInput
                   type="text"
-                  formControlName="reference"
+                  formControlName="email"
                   placeholder="email"
                 />
               </div>
@@ -53,7 +53,7 @@
                   id="client"
                   matInput
                   type="text"
-                  formControlName="client"
+                  formControlName="cin"
                   placeholder="CIN"
                 />
               </div>
@@ -68,7 +68,7 @@
                   id="reference"
                   matInput
                   type="date"
-                  formControlName="reference"
+                  formControlName="naissance"
                   placeholder="date de naissance"
                 />
               </div>
@@ -80,7 +80,7 @@
                   id="client"
                   matInput
                   type="text"
-                  formControlName="client"
+                  formControlName="nationalite"
                   placeholder="nationalite"
                 />
               </div>

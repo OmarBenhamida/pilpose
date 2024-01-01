@@ -58,6 +58,10 @@ export class PilposeComponent implements OnInit {
     this.router.navigate(['pilpose/plannig']);
 
   }
+  redirectToAllPlanning() {
+    this.router.navigate(['pilpose/plannig']);
+
+  }
 
   redirectAddConge(){
     this.router.navigate(['pilpose/add-conge']);

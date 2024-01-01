@@ -34,6 +34,7 @@ const routes: Routes = [
       { path: 'comptes', component: ComptesComponent },
       { path: 'info-collab', component: InfoCollabComponent },
       { path: 'affectation', component: AffectationComponent },
+      { path: 'all-planning', component: PlannigComponent },
       
       
     ],
