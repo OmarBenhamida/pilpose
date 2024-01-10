@@ -83,6 +83,7 @@ export class LoginAdminComponent implements OnInit {
         localStorage.setItem('nom',res.nom );
         localStorage.setItem('prenom',res.prenom );
         localStorage.setItem('idUser',res.idUser );
+        localStorage.setItem('cin',res.cin);
         this.router.navigate(['/modules']).then(() => {});
         this.show = true;
         localStorage.setItem('showwelcomemsg', '1');
