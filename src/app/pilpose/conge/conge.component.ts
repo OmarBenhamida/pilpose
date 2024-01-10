@@ -10,6 +10,11 @@ import { UpdateCongeComponent } from './update-conge/update-conge.component';
 import { Conge } from 'src/app/model/conge.model';
 import { UntypedFormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AddCongeService } from './add-conge/addConge.service';
+import { ToastrService } from 'ngx-toastr';
+import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
+import { Utils } from 'src/app/shared/utils/utils';
+import * as saveAs from 'file-saver'
 
 @Component({
   selector: 'app-conge',
@@ -21,15 +26,17 @@ export class CongeComponent implements OnInit {
   displayedColumnsName: string[] = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   size: number = 0;
-  nomComplet : String ="";
+  nomComplet: String = '';
   selectedFile: File | null = null;
   CongeForm: UntypedFormGroup;
   constructor(
     private http: HttpClient,
     private router: Router,
     public translate: TranslateService,
+    private addCongeService: AddCongeService,
     private dialog: MatDialog,
     private dialogRef: MatDialog,
+    public toast: ToastrService,
     private congeService: CongeService
   ) {}
 
@@ -50,18 +57,17 @@ export class CongeComponent implements OnInit {
 
   onUpload(): void {
     const formData = new FormData();
-    let iduser : number = Number(localStorage.getItem('idUser'));
-   
+    let iduser: number = Number(localStorage.getItem('idUser'));
+
     formData.append('file', this.selectedFile);
-    this.http.post('http://localhost:8888/conge/excel/'+iduser, formData)
+    this.http
+      .post('http://localhost:8888/conge/excel/' + iduser, formData)
       .subscribe(
         () => {
           console.log('File uploaded successfully');
-          // Handle success
         },
         (error) => {
           console.error('Error uploading file:', error);
-          // Handle error
         }
       );
   }
@@ -82,7 +88,7 @@ export class CongeComponent implements OnInit {
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
           this.congeService
-            .deleteConge(model.id)
+            .deleteConge(model.idConge)
             .then((res) => {
               this.getModelTableStructur();
             })
@@ -92,46 +98,76 @@ export class CongeComponent implements OnInit {
     }
   }
 
+  exportData() {
+    this.congeService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
+
+        console.log("res" +res);
+        
+        var blobExcel = Utils.contentToBlob(
+          res.pilposeXsl,
+          Constants.EXCEL_XLS
+        );
+
+        var blobChantierCsv = Utils.contentToBlob(
+          res.pilposeCsv,
+          Constants.EXCEL_CSV
+        );
+
+        console.log("excel : " +  res.pilposeXsl);
+        console.log("csv : " +  res.pilposeCsv);
+
+        saveAs(blobExcel, 'CONGE_EXCEL' + '.xlsx');
+
+        saveAs(blobChantierCsv, 'CONGE_CSV' + '.csv');
+      })
+      .catch((err) => {});
+  }
+
   openAlterModelPopup(model: any) {
     const dialogRef = this.dialog.open(UpdateCongeComponent, {
-      width: '50vw',
-      height: '50vh',
+      width: '60vw',
+      height: '70vh',
       data: {
-        // codeCategorie: model,
-        //categoriesList: this.categoriesList,
+        conge: model,
       },
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((data: any) => {
-      //  if (data) {
-      //  let codeCategorie = new Code();
-      //codeCategorie.id = data.id;
-      //  codeCategorie.code = data.code;
-      // codeCategorie.codeClone = data.codeClone;
-      // codeCategorie.categorieDto = data.categorieDto;
-      // data.active === false ? codeCategorie.active = false : codeCategorie.active = true;
-      // data.saturated === false ? codeCategorie.saturated = false : codeCategorie.saturated = true;
-      //  this.codeCategorieService.addOrUpdateCodeCategorie(codeCategorie).then(res => {
-      //   this.toastr.success(
-      //     this.translate.instant('TOAST.OK.CODE_CATEGORIE_UPDATE'),
-      //    '',
-      //    Constants.toastOptions
-      //);
-      /*
-                this.getModelTableStructur(this.selected);
-              }).catch(err => {
-                this.toastr.warning(
-                  this.translate.instant('TOAST.KO.CODE_CATEGORIE_ACTIVE'),
-                  '',
-                  Constants.toastOptions
-                );
-              });
-            }
-            this.getModelTableStructur(this.selected);
+      if (data) {
+        let conge = new Conge();
+        conge.idConge = data.idConge;
+        conge.idCollaborateur = data.idCollaborateur;
+        conge.dateDebut = data.dateDebut;
+        conge.dateDepot = data.dateDepot;
+        conge.dateFin = data.dateFin;
+        conge.heureDebut = data.heureDebut;
+        conge.heureFin = data.heureFin;
+        conge.statut = data.statut;
+        conge.reference = data.reference;
+        conge.typeConge = data.typeConge;
+
+        this.addCongeService
+          .addOrUpdateConge(conge)
+          .then((res) => {
+            this.toast.success(
+              this.translate.instant('Congé modifé avec succés'),
+              '',
+              Constants.toastOptions
+            );
+            this.getModelTableStructur();
+          })
+          .catch((err) => {
+            this.toast.warning(
+              this.translate.instant('Erreur lors de la modification du congé'),
+              '',
+              Constants.toastOptions
+            );
           });
-              
-      */
-      //}
+
+        this.getModelTableStructur();
+      }
     });
   }
 
@@ -163,7 +199,8 @@ export class CongeComponent implements OnInit {
             heureDebut: code.heureDebut,
             heureFin: code.heureFin,
             typeConge: code.typeConge,
-            idCollaborateur: code.idCollaborateur.nom + " " + code.idCollaborateur.prenom
+            nomCompletEmploye : code.nomCompletEmploye,
+            idCollaborateur:code.idCollaborateur,
           });
         }
         this.dataSource.data = conges;

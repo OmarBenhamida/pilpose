@@ -11,6 +11,7 @@ export class Conge {
     public heureDebut?: number,
     public heureFin?: number,
     public typeConge?: String,
+    public nomCompletEmploye?: String,
     public idCollaborateur?: Collaborateur
   ) {}
 }

@@ -1,5 +1,4 @@
-
- <div class="form_wrapper">
+<div class="form_wrapper">
   <div class="form_container">
     <div class="title_container">
       <h2>Nouveau Chantier</h2>
@@ -9,25 +8,59 @@
         <form [formGroup]="ChantierForm" ngNativeValidate>
           <div class="row clearfix">
             <div class="col_half">
-              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-brush"></i></span>
-                <input id="reference" matInput type="text" formControlName="reference" placeholder="code chantier"  />
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-brush"></i></span>
+                <input
+                  id="reference"
+                  matInput
+                  type="text"
+                  formControlName="reference"
+                  placeholder="Référence"
+                />
               </div>
             </div>
             <div class="col_half">
-              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                <input id="client" matInput type="text" formControlName="client" placeholder="Nom Client"  />
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <select formControlName="clientDto" required>
+                  <option *ngFor="let item of clients" [value]="item.idClient">
+                    {{ item.nom }}&nbsp;{{ item.prenom }}
+                  </option>
+                </select>
               </div>
             </div>
           </div>
-          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-globe"></i></span>
-            <input  id="localisationDto" matInput type="text" formControlName="localisationDto" placeholder="localisation"  />
-          </div>
 
-          <button class="btn-rounded" type="submit" (click)="onSubmit()"><em class="fas fa-check"></em> &nbsp;Soumettre</button>
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-university"></i></span>
+                <input
+                  id="nomChantier"
+                  matInput
+                  type="text"
+                  formControlName="nomChantier"
+                  placeholder="Nom du Chantier"
+                />
+              </div>
+            </div>
+
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-globe"></i></span>
+                <select formControlName="localisationDto" required>
+                  <option *ngFor="let item of localisations" [value]="item.idLocalisation">
+                    {{ item.ville }} - {{ item.codePostale }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button class="btn-rounded" type="submit" (click)="onSubmit()">
+            <em class="fas fa-check"></em> &nbsp;Soumettre
+          </button>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-

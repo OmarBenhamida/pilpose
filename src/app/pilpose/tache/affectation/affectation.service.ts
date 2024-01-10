@@ -22,4 +22,8 @@ export class AffectationService {
       .delete<any>(this.host + urlsConstantsAffectation.urlAffectation + idAffecatation)
       .toPromise();
   }
+
+  exportFile(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsAffectation.urlExport).toPromise();
+  }
 }

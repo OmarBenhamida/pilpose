@@ -3,11 +3,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Constants } from 'src/app/Shared/utils/constants';
+import { Utils } from 'src/app/shared/utils/utils';
 import { ConfirmModalComponent } from '../../confirm-modal/confirm-modal.component';
 import { AddAffectationComponent } from './add-affectation/add-affectation.component';
 import { AffectationService } from './affectation.service';
 import { UpdateAffectationComponent } from './update-affectation/update-affectation.component';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-affectation',
@@ -106,6 +109,32 @@ export class AffectationComponent implements OnInit {
     });
   }
 
+  exportData() {
+    this.affectationService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
+        console.log('res' + res);
+
+        var blobExcel = Utils.contentToBlob(
+          res.pilposeXsl,
+          Constants.EXCEL_XLS
+        );
+
+        var blobChantierCsv = Utils.contentToBlob(
+          res.pilposeCsv,
+          Constants.EXCEL_CSV
+        );
+
+        console.log('excel : ' + res.pilposeXsl);
+        console.log('csv : ' + res.pilposeCsv);
+
+        saveAs(blobExcel, 'AFFECTATION_EXCEL' + '.xlsx');
+
+        saveAs(blobChantierCsv, 'AFFECTATION_CSV' + '.csv');
+      })
+      .catch((err) => {});
+  }
+
   getModelTableStructur() {
     this.displayedColumns = Constants.AFFECTATION_DISPLAY_COLUMNS;
     this.displayedColumnsName = Constants.AFFECTATION_DISPLAY_COLUMNS_NAME;
@@ -124,6 +153,13 @@ export class AffectationComponent implements OnInit {
             idCollaborateur:
               code.idCollaborateur.nom + ' ' + code.idCollaborateur.prenom,
             idTache: code.idTache.libelle,
+            dateDebut: code.idTache.dateDebut,
+            dateFin: code.idTache.dateFin,
+            heureDebut: code.idTache.heureDebut,
+            heureFin: code.idTache.heureFin,
+            nomCompletChantier: code.idTache.nomCompletChantier,
+            nomCompletResponsable: code.idTache.nomCompletResponsable,
+            commantaire: code.idTache.commantaire,
           });
         }
         this.dataSource.data = affectatios;

@@ -26,8 +26,18 @@ export class ChantierService {
     return this.http.get(this.host + urlsConstantsChantier.urlChantier).toPromise();
   }
 
+  getAllVille(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsChantier.urlVilles).toPromise();
+  }
 
-    deleteChantier(idChantier: any): Promise<any> {
+  exportFile(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsChantier.urlExport).toPromise();
+  }
+
+ 
+
+
+    deleteChantier(idChantier: number): Promise<any> {
       return this.http
         .get<any>(
           this.host + urlsConstantsChantier.urlChantier  + idChantier

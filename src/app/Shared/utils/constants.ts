@@ -10,6 +10,10 @@ export class Constants {
     extendedTimeOut: 700,
   };
 
+
+ public static EXCEL_XLS : string ='application/vnd.ms-excel';
+ public static EXCEL_CSV : string ='text/csv';
+
   public static toastOptionsUpload: Partial<IndividualConfig> = {
     closeButton: true,
     disableTimeOut: true,
@@ -35,16 +39,37 @@ export class Constants {
   /* table Chantier */
   static CHANTIER_DISPLAY_COLUMNS: string[] = [
     'reference',
-    'client',
-    'localisationDto',
+    'nomCompletClient',
+    'nomChantier',
+    'ville',
     'etat',
     'ActionChantier',
   ];
   static CHANTIER_DISPLAY_COLUMNS_NAME: string[] = [
     'TABLES.CHANTIER.REFERENCE',
     'TABLES.CHANTIER.CLIENT',
+    'Nom du chantier',
     'TABLES.CHANTIER.LOCALISATION',
     'TABLES.CHANTIER.ETAT',
+    'Actions',
+  ];
+
+   /**
+   * client Data Tables Structures
+   */
+  /* table Chantier */
+  static CLIENT_DISPLAY_COLUMNS: string[] = [
+    'nom',
+    'prenom',
+    'adresse',
+    'telephone',
+    'ActionChantier',
+  ];
+  static CLIENT_DISPLAY_COLUMNS_NAME: string[] = [
+    'Nom',
+    'Prénom',
+    'Adresse',
+    'Téléphone',
     'Actions',
   ];
 
@@ -53,24 +78,24 @@ export class Constants {
    */
 
   static TACHE_DISPLAY_COLUMNS: string[] = [
-    'reference',
     'libelle',
     'dateDebut',
     'dateFin',
     'heureDebut',
     'heureFin',
-    'idChantier',
+    'nomCompletChantier',
+    'nomCompletResponsable',
     'commantaire',
     'ActionChantier',
   ];
   static TACHE_DISPLAY_COLUMNS_NAME: string[] = [
-    'Réference',
-    'Libelle',
-    'Date Début',
-    'Date Fin',
-    'Heure Debut',
-    'Heure Fin',
+    'Libellé',
+    'Date de début',
+    'Date de fin',
+    'Heure de debut',
+    'Heure de fin',
     'Chantier',
+    'Résponsable',
     'Commantaire',
     'Actions',
   ];
@@ -107,11 +132,26 @@ export class Constants {
   static AFFECTATION_DISPLAY_COLUMNS: string[] = [
     'idCollaborateur',
     'idTache',
+    'dateDebut',
+    'dateFin',
+    'heureDebut',
+    'heureFin',
+    'nomCompletChantier',
+    'nomCompletResponsable',
+    'commantaire',
     'ActionChantier',
   ];
   static AFFECTATION_DISPLAY_COLUMNS_NAME: string[] = [
     'Collaborateur',
     'Tache',
+    'Date de début',
+    'Date de fin',
+    'Heure de debut',
+    'Heure de fin',
+    'Chantier',
+    'Résponsable',
+    'Commantaire',
+
     'Actions',
   ];
 
@@ -121,7 +161,7 @@ export class Constants {
 
   static CONGE_DISPLAY_COLUMNS: string[] = [
     'reference',
-    'idCollaborateur',
+    'nomCompletEmploye',
     'dateDebut',
     'dateFin',
     'heureDebut',
@@ -133,13 +173,13 @@ export class Constants {
   ];
   static CONGE_DISPLAY_COLUMNS_NAME: string[] = [
     'Réference',
-    'Collaborateur',
-    'Date Début',
-    'Date Fin',
-    'Heure Debut',
-    'Heure Fin',
-    'Date Dépot',
-    'Type Conge',
+    'Salarié(e)',
+    'Date de début',
+    'Date de fin',
+    'Heure de debut',
+    'Heure de fin',
+    'Date de dépot',
+    'Type de congé',
     'Statut',
     'Actions',
   ];
@@ -173,12 +213,11 @@ export class Constants {
     'fonction',
     'dateEmbauche',
     'email',
-    'cin',
-    'nationalite',
     'dateNaissance',
     'adresse',
     'telephone',
     'username',
+    'role',
     'ActionChantier',
   ];
   static COLLABORATEUR_DISPLAY_COLUMNS_NAME: string[] = [
@@ -187,12 +226,11 @@ export class Constants {
     'Fonction',
     'Date Embauche',
     'Email',
-    'CIN',
-    'Nationalite',
     'Date Naissance',
     'Adresse',
     'Téléphone',
     'Username',
+    'Role',
     'Actions',
   ];
 }

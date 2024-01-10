@@ -1,0 +1,34 @@
+<div>
+  <div class="title">
+    <h3>Gestion des Client</h3>
+    <mat-divider class="divider"></mat-divider>
+  </div>
+
+  <button
+    class="btn-rounded"
+    (click)="redirect()"
+    role="button"
+    aria-disabled="false"
+  >
+    <span><i aria-hidden="true" class="fa fa-plus"></i></span> Nouveau client
+  </button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+      <button
+        class="btn-rounded-green"
+        (click)="exportData()"
+        role="button"
+        aria-disabled="false"
+      >
+        <span><i aria-hidden="true" class="fa fa-plus"></i></span> Export Excel
+      </button>
+<br><br>
+  <app-avo-datatable
+    [displayedColumns]="displayedColumns"
+    [nameDisplayedColumns]="displayedColumnsName"
+    [dataSource]="dataSource"
+    [size]="size"
+    (sendAction)="actionEvent($event)"
+  >
+  </app-avo-datatable>
+</div>

@@ -13,6 +13,8 @@ import { AddCongeComponent } from './conge/add-conge/add-conge.component';
 import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { InfoCollabComponent } from './info-collab/info-collab.component';
 import { AffectationComponent } from './tache/affectation/affectation.component';
+import { AddClientComponent } from './mes-clients/add-client/add-client.component';
+import { MesClientsComponent } from './mes-clients/mes-clients.component';
 
 
 const routes: Routes = [
@@ -26,12 +28,15 @@ const routes: Routes = [
       { path: 'conge', component: CongeComponent },
       { path: 'add-conge', component: AddCongeComponent },
       { path: 'chantier', component: ChantierComponent },
+      { path: 'clients', component: MesClientsComponent },
       { path: 'add-chantier', component: AddChantierComponent },
+      { path: 'add-client', component: AddClientComponent },
       { path: 'tache', component: TacheComponent },
       { path: 'add-tache', component: AddTacheComponent},
       { path: 'note', component: NotesComponent },
       { path: 'add-note', component: AddNoteComponent },
       { path: 'comptes', component: ComptesComponent },
+      { path: 'clients', component: AddClientComponent },
       { path: 'info-collab', component: InfoCollabComponent },
       { path: 'affectation', component: AffectationComponent },
       

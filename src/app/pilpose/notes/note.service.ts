@@ -33,7 +33,10 @@ export class NoteService {
           this.host + urlsConstantsNote.urlNote  + idNote
         ).toPromise();
     }
+
+    exportFile(): Promise<any> {
+      return this.http.get(this.host + urlsConstantsNote.urlExport).toPromise();
+    }
     
-  
 
 }

@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
 import { Chantier } from 'src/app/model/chantier.model';
 import { ToastrService } from 'ngx-toastr';
 import { AddChantierService } from './add-chantier/addChantier.service';
+import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
+import { Utils } from 'src/app/shared/utils/utils';
+import * as saveAs from 'file-saver'
 
 @Component({
   selector: 'app-chantier',
   templateUrl: './chantier.component.html',
   styleUrls: ['./chantier.component.css'],
 })
+
+
 export class ChantierComponent implements OnInit {
   displayedColumns: string[] = [];
   displayedColumnsName: string[] = [];
@@ -46,18 +51,24 @@ export class ChantierComponent implements OnInit {
     this.chantierService
       .getAllChantier()
       .then((res) => {
-        let chantiers: any[] = [];
+        let chantiers: Chantier[] = [];
 
         console.table(res);
         for (let code of res) {
           chantiers.push({
-            id: code.idChantier,
+            idChantier: code.idChantier,
             reference: code.reference,
-            client: code.client,
+            clientDto: code.clientDto,
+            nomCompletClient: code.nomCompletClient,
             etat: code.etat,
+            nomChantier: code.nomChantier,
             localisationDto: code.localisationDto,
+            ville: code.ville,
           });
         }
+
+     
+
         this.dataSource.data = chantiers;
         this.size = this.dataSource.data.length;
       })
@@ -88,7 +99,7 @@ export class ChantierComponent implements OnInit {
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
           this.chantierService
-            .deleteChantier(model.id)
+            .deleteChantier(model.idChantier)
             .then((res) => {
               this.getModelTableStructur();
             })
@@ -99,27 +110,18 @@ export class ChantierComponent implements OnInit {
   }
 
   openAlterModelPopup(model: any) {
-   
-    
     const dialogRef = this.dialog.open(UpdateChantierComponent, {
-      width: '50vw',
-      height: '50vh',
+      width: '60vw',
+      height: '80vh',
       data: {
         chantier: model,
       },
       disableClose: true,
     });
-    dialogRef.afterClosed().subscribe((data: any) => {
+    dialogRef.afterClosed().subscribe((data: Chantier) => {
       if (data) {
-        let chantier = new Chantier();
-        chantier.idChantier = data.idChantier;
-        chantier.reference = data.reference;
-        chantier.client = data.client;
-        chantier.etat = data.etat;
-        chantier.localisationDto = data.localisationDto;
-
         this.addChantierService
-          .addOrUpdateChantier(chantier)
+          .addOrUpdateChantier(data)
           .then((res) => {
             this.toastr.success(
               this.translate.instant('Chantier modifé avec succés'),
@@ -130,7 +132,9 @@ export class ChantierComponent implements OnInit {
           })
           .catch((err) => {
             this.toastr.warning(
-              this.translate.instant('Erreur lors de la modification du chantier'),
+              this.translate.instant(
+                'Erreur lors de la modification du chantier'
+              ),
               '',
               Constants.toastOptions
             );
@@ -141,7 +145,37 @@ export class ChantierComponent implements OnInit {
     });
   }
 
+  exportData() {
+    this.chantierService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
+
+        console.log("res" +res);
+        
+        var blobExcel = Utils.contentToBlob(
+          res.pilposeXsl,
+          Constants.EXCEL_XLS
+        );
+
+        var blobChantierCsv = Utils.contentToBlob(
+          res.pilposeCsv,
+          Constants.EXCEL_CSV
+        );
+
+        console.log("excel : " +  res.pilposeXsl);
+        console.log("csv : " +  res.pilposeCsv);
+
+        saveAs(blobExcel, 'CHANTIERS_EXCEL' + '.xlsx');
+
+        saveAs(blobChantierCsv, 'CHANTIERS_CSV' + '.csv');
+      })
+      .catch((err) => {});
+  }
+
   redirect() {
     this.router.navigate(['pilpose/add-chantier']);
   }
 }
+
+
+

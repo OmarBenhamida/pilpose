@@ -7,8 +7,6 @@ export class Collaborateur {
     public dateEmbauche?: String,
     public email?: String,
     public role?: String,
-    public cin?: String,
-    public nationalite?: String,
     public dateNaissance?: String,
     public adresse?: String,
     public telephone?: String,

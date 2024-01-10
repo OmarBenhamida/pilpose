@@ -14,18 +14,28 @@
                  </div>
                </div>
                <div class="col_half">
-                 <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                   <input type="text" formControlName="client" placeholder="Nom Client"  />
-                 </div>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <select formControlName="clientDto" required>
+                    <option *ngFor="let item of clients" [value]="item.idClient">
+                      {{ item.nom }}&nbsp;{{ item.prenom }}
+                    </option>
+                  </select>
+                </div>
                </div>
              </div>
     
              <div class="row clearfix">
-                <div class="col_half">
-                  <div class="input_field"> <span><i aria-hidden="true" class="fa fa-globe"></i></span>
-                    <input type="text" formControlName="localisationDto" placeholder="localisation" />
-                  </div>
+              <div class="col_half">
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-globe"></i></span>
+                  <select formControlName="localisationDto" required>
+                    <option *ngFor="let item of localisations" [value]="item.idLocalisation">
+                      {{ item.ville }} - {{ item.codePostale }}
+                    </option>
+                  </select>
                 </div>
+              </div>
                 <div class="col_half">
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-cog"></i></span>
                        <!-- <input type="text" formControlName="etat" placeholder="Etat" />-->
@@ -37,6 +47,20 @@
                       </div>
                 </div>
               </div>
+
+              <div class="row clearfix">
+                <div class="col_half">
+                  <div class="input_field"> <span><i aria-hidden="true" class="fa fa-university"></i></span>
+                    <input
+                    id="nomChantier"
+                    matInput
+                    type="text"
+                    formControlName="nomChantier"
+                    placeholder="Nom du Chantier"
+                  />
+                  </div>
+                </div>
+                </div>
 
               <button class="btn-rounded" type="submit" (click)="onSubmit()"><em class="fas fa-check"></em> &nbsp;Soumettre</button>
               &nbsp;

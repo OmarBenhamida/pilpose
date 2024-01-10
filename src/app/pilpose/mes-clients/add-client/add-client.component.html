@@ -1,0 +1,70 @@
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Nouveau Client</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="">
+        <form [formGroup]="ClientForm" ngNativeValidate>
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <input
+                  id="nom"
+                  matInput
+                  type="text"
+                  formControlName="nom"
+                  placeholder="Nom du client"
+                />
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <input
+                  id="prenom"
+                  matInput
+                  type="text"
+                  formControlName="prenom"
+                  placeholder="Prénom du client"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-globe"></i></span>
+                <input
+                  id="adresse"
+                  matInput
+                  type="text"
+                  formControlName="adresse"
+                  placeholder="Adresse du client"
+                />
+              </div>
+            </div>
+
+            <div class="col_half">
+              <div class="input_field">
+                <span><i aria-hidden="true" class="fa fa-phone"></i></span>
+                <input
+                  id="telephone"
+                  matInput
+                  type="text"
+                  formControlName="telephone"
+                  placeholder="Téléphone du client"
+                />
+              </div>
+            </div>
+          </div>
+          <button class="btn-rounded" type="submit" (click)="onSubmit()">
+            <em class="fas fa-check"></em> &nbsp;Soumettre
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

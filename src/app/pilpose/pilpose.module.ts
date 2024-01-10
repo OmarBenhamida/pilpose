@@ -22,7 +22,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AddChantierComponent } from './chantier/add-chantier/add-chantier.component';
 import { SharedModule } from '../Shared/shared.module';
 import { AvoDatatableComponent } from './avo-datatable/avo-datatable.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -67,6 +66,11 @@ import { CalendarModule } from 'angular-calendar';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
+import { MesClientsComponent } from './mes-clients/mes-clients.component';
+import { AddClientComponent } from './mes-clients/add-client/add-client.component';
+import { UpdateClientComponent } from './mes-clients/update-client/update-client.component';
+import { AddChantierComponent } from './chantier/add-chantier/add-chantier.component';
+
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -95,6 +99,9 @@ export function createTranslateLoader(http: HttpClient) {
     UpdateAffectationComponent,
     AddCompteComponent,
     UpdateCompteComponent,
+    AddClientComponent,
+    UpdateClientComponent,
+    MesClientsComponent,
   ],
   imports: [
     CommonModule,

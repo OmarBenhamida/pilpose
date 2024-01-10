@@ -1,0 +1,68 @@
+<div>
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Modifier Client</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form [formGroup]="ClientForm" ngNativeValidate>
+            <div class="row clearfix">
+              <div class="col_half">
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input
+                    type="text"
+                    formControlName="nom"
+                    placeholder="Nom du client"
+                  />
+                </div>
+              </div>
+              <div class="col_half">
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input
+                    type="text"
+                    formControlName="prenom"
+                    placeholder="Prénom du Client"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col_half">
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-map"></i></span>
+                  <input
+                    type="text"
+                    formControlName="adresse"
+                    placeholder="Adresse du Client"
+                  />
+                </div>
+              </div>
+              <div class="col_half">
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-phone"></i></span>
+                  <input
+                    type="text"
+                    formControlName="telephone"
+                    placeholder="Téléphone du Client"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button class="btn-rounded" type="submit" (click)="onSubmit()">
+              <em class="fas fa-check"></em> &nbsp;Soumettre
+            </button>
+            &nbsp;
+            <button class="btn-rounded-supp" type="submit" (click)="close()">
+              &nbsp;Annuler
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

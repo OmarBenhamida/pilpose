@@ -36,32 +36,32 @@
             </div>
             <mat-nav-list>
                 <a mat-list-item (click)="redirectToPlanning()">
-                    <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; My Planing</span>
+                    <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mon Planning</span>
                 </a>
             </mat-nav-list>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
-                  <p class="nav-list"> Gestion des Chantiers</p> 
+                  <p class="nav-list"> Gestion des chantiers</p> 
                 </mat-expansion-panel-header>
                 <mat-nav-list >
                     <a mat-list-item  (click)="redirectToListChantier()">
-                        <mat-icon>assignment</mat-icon>&nbsp;<span>Liste des Chantiers</span>
+                        <mat-icon>assignment</mat-icon>&nbsp;<span>Liste des chantiers</span>
                     </a>
                     <a mat-list-item (click)="redirectToNewChantier()">
-                        <mat-icon>add_task</mat-icon>&nbsp;<span>Nouveau Chantier</span>
+                        <mat-icon>add_task</mat-icon>&nbsp;<span>Nouveau chantier</span>
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>
-                    <p class="nav-list"> Gestion des Taches</p>
+                    <p class="nav-list"> Gestion des tâches</p>
                 </mat-expansion-panel-header>
                 <mat-nav-list>
                     <a mat-list-item (click)="redirectToTacheListe()">
-                        <mat-icon>work</mat-icon>&nbsp;<span>Liste des Taches</span>
+                        <mat-icon>work</mat-icon>&nbsp;<span>Liste des tâches</span>
                     </a>
                     <a mat-list-item (click)="redirectAddTache()">
-                        <mat-icon>library_add</mat-icon>&nbsp;<span>Nouvelle Tache</span>
+                        <mat-icon>library_add</mat-icon>&nbsp;<span>Nouvelle tâche</span>
                     </a>
                     <a mat-list-item (click)="redirectAffectation()">
                         <mat-icon>library_add</mat-icon>&nbsp;<span>Affectation</span>
@@ -70,14 +70,14 @@
             </mat-expansion-panel>
             <mat-expansion-panel [class.mat-elevation-z0]="true">
                 <mat-expansion-panel-header>
-                    <p class="nav-list"> Gestion des Conges </p>
+                    <p class="nav-list"> Gestion des congés </p>
                 </mat-expansion-panel-header>
                 <mat-nav-list>
                     <a mat-list-item (click)="redirectToCongeListe()">
-                        <mat-icon>landscape</mat-icon>&nbsp;<span>Liste des Congés</span>
+                        <mat-icon>landscape</mat-icon>&nbsp;<span>Liste des congés</span>
                     </a>
                     <a mat-list-item (click)="redirectAddConge()">
-                        <mat-icon>library_add</mat-icon>&nbsp;<span>Nouveau Congé</span>
+                        <mat-icon>library_add</mat-icon>&nbsp;<span>Nouveau congé</span>
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
@@ -87,10 +87,38 @@
                 </mat-expansion-panel-header>
                 <mat-nav-list>
                     <a mat-list-item  (click)="redirectToNoteListe()">
-                        <mat-icon>assignment</mat-icon>&nbsp;<span>Liste des Notes de frais</span>
+                        <mat-icon>assignment</mat-icon>&nbsp;<span>Liste des notes de frais</span>
                     </a>
                     <a mat-list-item (click)="redirectAddNote()">
-                        <mat-icon>addchart</mat-icon>&nbsp;<span>Nouvelle Note de frais</span>
+                        <mat-icon>addchart</mat-icon>&nbsp;<span>Nouvelle note de frais</span>
+                    </a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [class.mat-elevation-z0]="true">
+                <mat-expansion-panel-header>
+                    <p class="nav-list"> Gestion des salariés </p>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                    <a mat-list-item  (click)="redirectToComptes()">
+                        <mat-icon>account_circle</mat-icon>&nbsp;<span>Liste des salariés</span>
+                    </a>
+                    <a mat-list-item (click)="openNewCompte()">
+                        <mat-icon>add_circle_outline<</mat-icon>&nbsp;<span>Nouveau salarié</span>
+                    </a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [class.mat-elevation-z0]="true">
+                <mat-expansion-panel-header>
+                    <p class="nav-list"> Gestion des clients </p>
+                </mat-expansion-panel-header>
+                <mat-nav-list>
+                    <a mat-list-item  (click)="redirectToClients()">
+                        <mat-icon>account_circle</mat-icon>&nbsp;<span>Liste des cliens</span>
+                    </a>
+                    <a mat-list-item (click)="redirectToNewClient()">
+                        <mat-icon>add_circle_outline<</mat-icon>&nbsp;<span>Nouveau client</span>
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>

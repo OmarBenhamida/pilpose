@@ -7,9 +7,6 @@ import { HostService } from 'src/app/service/host.service';
 import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
 import { urlsConstantsChantier } from '../urlsConstants';
 
-
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -23,26 +20,11 @@ export class AddChantierService {
     this.host = this.hostService.getPilposeHost();
   }
 
+  addOrUpdateChantier(chantier: Chantier): Promise<any> {
+    console.log('chantier: ', chantier);
 
-
-
-    addOrUpdateChantier(chantier : Chantier): Promise<any> {
-      
-      console.log("chantier: ", chantier);
-      
-      return this.http
-        .postObject<any>(
-          chantier,
-          this.host + urlsConstantsChantier.urlChantier
-        ).toPromise();
-      
-
-        
-        
-    }
-    
-  
- 
-  
-
+    return this.http
+      .postObject<any>(chantier, this.host + urlsConstantsChantier.urlChantier)
+      .toPromise();
+  }
 }

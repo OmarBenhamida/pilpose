@@ -7,6 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NoteService } from './note.service';
 import { UpdateNoteComponent } from './update-note/update-note.component';
+import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
+import { Utils } from 'src/app/shared/utils/utils';
+import * as saveAs from 'file-saver'
 
 @Component({
   selector: 'app-notes',
@@ -63,6 +66,33 @@ export class NotesComponent implements OnInit {
         }
       });
     }
+  }
+
+  exportData() {
+    this.noteService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
+
+        console.log("res" +res);
+        
+        var blobExcel = Utils.contentToBlob(
+          res.pilposeXsl,
+          Constants.EXCEL_XLS
+        );
+
+        var blobChantierCsv = Utils.contentToBlob(
+          res.pilposeCsv,
+          Constants.EXCEL_CSV
+        );
+
+        console.log("excel : " +  res.pilposeXsl);
+        console.log("csv : " +  res.pilposeCsv);
+
+        saveAs(blobExcel, 'NOTE_FRAIS_EXCEL' + '.xlsx');
+
+        saveAs(blobChantierCsv, 'NOTE_FRAIS_CSV' + '.csv');
+      })
+      .catch((err) => {});
   }
 
   openAlterModelPopup(model: any) {

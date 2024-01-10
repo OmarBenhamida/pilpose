@@ -34,6 +34,11 @@ export class CompteService {
         ).toPromise();
     }
     
+
+    exportFile(): Promise<any> {
+      return this.http.get(this.host + urlsConstantsCompte.urlExport).toPromise();
+    }
+  
   
 
 }

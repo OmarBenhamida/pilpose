@@ -68,7 +68,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    color: #333;
+  
     height: 100%;
     border-right: 1px solid #ccc;
     text-align: center;
@@ -229,7 +229,7 @@
     height: 35px;
     padding: 0px 15px;
     cursor: pointer;
-    color: #7b7b7b;
+    
     border: 1px solid #ccc;
     border-radius: 0;
     background: #fff;

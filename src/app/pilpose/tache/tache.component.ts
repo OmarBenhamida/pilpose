@@ -7,6 +7,10 @@ import { ConfirmModalComponent } from 'src/app/pilpose/confirm-modal/confirm-mod
 import { TacheService } from './tache.service';
 import { Constants } from 'src/app/Shared/utils/constants';
 import { UpdateTacheComponent } from './update-tache/update-tache.component';
+import { Tache } from 'src/app/model/tache.model';
+import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
+import { Utils } from 'src/app/shared/utils/utils';
+import * as saveAs from 'file-saver'
 
 @Component({
   selector: 'app-tache',
@@ -42,7 +46,7 @@ export class TacheComponent implements OnInit {
   openDeleteModelPopup(model: any) {
     let body = undefined;
 
-    body = 'POP_UP.BODY.DELETE_CHANTIER';
+    body = 'Voulez-vous supprimer la tache ?';
     if (body) {
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         panelClass: '',
@@ -54,18 +58,45 @@ export class TacheComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-          this.tacheService.deleteTache(model.id).then(res => {
+
+          console.log(data);
+          
+          this.tacheService.deleteTache(model.idTache).then(res => {
             this.getModelTableStructur();
           }).catch(err => { });
         }
       });
     }
 
-
-
-
-
   }
+
+  exportData() {
+    this.tacheService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
+
+        console.log("res" +res);
+        
+        var blobExcel = Utils.contentToBlob(
+          res.pilposeXsl,
+          Constants.EXCEL_XLS
+        );
+
+        var blobChantierCsv = Utils.contentToBlob(
+          res.pilposeCsv,
+          Constants.EXCEL_CSV
+        );
+
+        console.log("excel : " +  res.pilposeXsl);
+        console.log("csv : " +  res.pilposeCsv);
+
+        saveAs(blobExcel, 'TACHE_EXCEL' + '.xlsx');
+
+        saveAs(blobChantierCsv, 'TACHE_CSV' + '.csv');
+      })
+      .catch((err) => {});
+  }
+
 
   openAlterModelPopup(model: any) {
     const dialogRef = this.dialog.open(UpdateTacheComponent, {
@@ -79,44 +110,7 @@ export class TacheComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((data: any) => {
 
-      //  if (data) {
-      //  let codeCategorie = new Code();
-      //codeCategorie.id = data.id;
-      //  codeCategorie.code = data.code;
-      // codeCategorie.codeClone = data.codeClone;
-      // codeCategorie.categorieDto = data.categorieDto;
-      // data.active === false ? codeCategorie.active = false : codeCategorie.active = true;
-      // data.saturated === false ? codeCategorie.saturated = false : codeCategorie.saturated = true;
-
-      //  this.codeCategorieService.addOrUpdateCodeCategorie(codeCategorie).then(res => {
-
-      //   this.toastr.success(
-      //     this.translate.instant('TOAST.OK.CODE_CATEGORIE_UPDATE'),
-      //    '',
-      //    Constants.toastOptions
-      //);
-
-
-      /*
-                this.getModelTableStructur(this.selected);
-              }).catch(err => {
-                this.toastr.warning(
-                  this.translate.instant('TOAST.KO.CODE_CATEGORIE_ACTIVE'),
-                  '',
-                  Constants.toastOptions
-                );
-              });
-            }
-            this.getModelTableStructur(this.selected);
-          });
-              
-      */
-
-
-
-      //}
-
-
+  
     });
   }
 
@@ -136,13 +130,12 @@ export class TacheComponent implements OnInit {
   getModelData() {
 
     this.tacheService.getAllTache().then((res) => {
-      let taches: any[] = [];
+      let taches: Tache[] = [];
 
       console.table(res);
       for (let code of res) {
         taches.push({
           idTache: code.idTache,
-          reference : code.reference,
           libelle: code.libelle,
           dateDebut: code.dateDebut,
           dateFin: code.dateFin,
@@ -150,6 +143,9 @@ export class TacheComponent implements OnInit {
           heureFin: code.heureFin,
           commantaire: code.commantaire,
           idChantier: code.idChantier.client,
+          responsable: code.responsable,
+          nomCompletChantier : code.nomCompletChantier,
+          nomCompletResponsable : code.nomCompletResponsable
         });
       }
       this.dataSource.data = taches;

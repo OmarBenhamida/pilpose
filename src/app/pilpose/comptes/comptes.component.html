@@ -1,11 +1,21 @@
 <div>
 	<div class="title">
-		<h3>Gestion des Comptes</h3>
+		<h3>Gestion des Salariés</h3>
 		<mat-divider class="divider"></mat-divider>
 	</div>
 	
-	<button class="btn-rounded" (click)="openNew()" role="button" aria-disabled="false"> <span><i aria-hidden="true" class="fa fa-plus"></i></span> Ajouter un compte</button>
-	<br><br>
+	<button class="btn-rounded" (click)="openNew()" role="button" aria-disabled="false"> <span><i aria-hidden="true" class="fa fa-plus"></i></span> Ajouter un(e) salarié(e)</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+      <button
+        class="btn-rounded-green"
+        (click)="exportData()"
+        role="button"
+        aria-disabled="false"
+      >
+        <span><i aria-hidden="true" class="fa fa-plus"></i></span> Export Excel
+      </button>
+<br><br>
 	<app-avo-datatable [displayedColumns]="displayedColumns" [nameDisplayedColumns]="displayedColumnsName" [dataSource]="dataSource" [size]="size" (sendAction)="actionEvent($event)">
 	</app-avo-datatable>
 	

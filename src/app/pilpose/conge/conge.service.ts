@@ -26,4 +26,9 @@ export class CongeService {
       .get<any>(this.host + urlsConstantsConge.urlConge + idConge)
       .toPromise();
   }
+
+  
+  exportFile(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsConge.urlExport).toPromise();
+  }
 }

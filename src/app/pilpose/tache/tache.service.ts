@@ -16,9 +16,21 @@ export class TacheService {
     return this.http.get(this.host + urlsConstantsTache.urlTache).toPromise();
   }
 
+  getAllCp(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsTache.urlColaborateurCp).toPromise();
+  }
+
   deleteTache(idTache: any): Promise<any> {
     return this.http
-      .delete<any>(this.host + urlsConstantsTache.urlTache + idTache)
+      .get<any>(this.host + urlsConstantsTache.urlTache + idTache)
       .toPromise();
   }
+
+  exportFile(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsTache.urlExport).toPromise();
+  }
+
+
+
+
 }
