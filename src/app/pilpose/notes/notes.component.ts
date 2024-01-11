@@ -9,7 +9,9 @@ import { NoteService } from './note.service';
 import { UpdateNoteComponent } from './update-note/update-note.component';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/shared/utils/utils';
-import * as saveAs from 'file-saver'
+import * as saveAs from 'file-saver';
+import { AddNoteService } from './add-note/addNote.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-notes',
@@ -25,7 +27,9 @@ export class NotesComponent implements OnInit {
   constructor(
     private router: Router,
     public translate: TranslateService,
+    private addNoteService: AddNoteService,
     private dialog: MatDialog,
+    public toastr: ToastrService,
     private dialogRef: MatDialog,
     private noteService: NoteService
   ) {}
@@ -72,9 +76,8 @@ export class NotesComponent implements OnInit {
     this.noteService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
+        console.log('res' + res);
 
-        console.log("res" +res);
-        
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
           Constants.EXCEL_XLS
@@ -85,8 +88,8 @@ export class NotesComponent implements OnInit {
           Constants.EXCEL_CSV
         );
 
-        console.log("excel : " +  res.pilposeXsl);
-        console.log("csv : " +  res.pilposeCsv);
+        console.log('excel : ' + res.pilposeXsl);
+        console.log('csv : ' + res.pilposeCsv);
 
         saveAs(blobExcel, 'NOTE_FRAIS_EXCEL' + '.xlsx');
 
@@ -97,44 +100,37 @@ export class NotesComponent implements OnInit {
 
   openAlterModelPopup(model: any) {
     const dialogRef = this.dialog.open(UpdateNoteComponent, {
-      width: '50vw',
-      height: '50vh',
+      width: '60vw',
+      height: '60vh',
       data: {
-        // codeCategorie: model,
-        //categoriesList: this.categoriesList,
+        note: model,
       },
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((data: any) => {
-      //  if (data) {
-      //  let codeCategorie = new Code();
-      //codeCategorie.id = data.id;
-      //  codeCategorie.code = data.code;
-      // codeCategorie.codeClone = data.codeClone;
-      // codeCategorie.categorieDto = data.categorieDto;
-      // data.active === false ? codeCategorie.active = false : codeCategorie.active = true;
-      // data.saturated === false ? codeCategorie.saturated = false : codeCategorie.saturated = true;
-      //  this.codeCategorieService.addOrUpdateCodeCategorie(codeCategorie).then(res => {
-      //   this.toastr.success(
-      //     this.translate.instant('TOAST.OK.CODE_CATEGORIE_UPDATE'),
-      //    '',
-      //    Constants.toastOptions
-      //);
-      /*
-                this.getModelTableStructur(this.selected);
-              }).catch(err => {
-                this.toastr.warning(
-                  this.translate.instant('TOAST.KO.CODE_CATEGORIE_ACTIVE'),
-                  '',
-                  Constants.toastOptions
-                );
-              });
-            }
-            this.getModelTableStructur(this.selected);
+      if (data) {
+        this.addNoteService
+          .addOrUpdateNote(data)
+          .then((res) => {
+            this.toastr.success(
+              this.translate.instant('Note modifé avec succés'),
+              '',
+              Constants.toastOptions
+            );
+            this.getModelTableStructur();
+          })
+          .catch((err) => {
+            this.toastr.warning(
+              this.translate.instant(
+                'Erreur lors de la modification de la note'
+              ),
+              '',
+              Constants.toastOptions
+            );
           });
-              
-      */
-      //}
+
+        this.getModelTableStructur();
+      }
     });
   }
 
@@ -161,8 +157,8 @@ export class NotesComponent implements OnInit {
             reference: code.reference,
             typeNote: code.typeNote,
             dateNote: code.dateNote,
-            idCollaborateur:
-              code.idCollaborateur.nom + ' ' + code.idCollaborateur.prenom,
+            idCollaborateur: code.idCollaborateur,
+            nomCompletEmploye: code.nomCompletEmploye,
           });
         }
         this.dataSource.data = notes;

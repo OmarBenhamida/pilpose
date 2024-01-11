@@ -42,9 +42,9 @@ this.getList().subscribe((res : Collaborateur) => {
     nom: res.nom,
     prenom: res.prenom,
     email:res.email,
-    cin: res.cin,
+  
     naissance: res.dateNaissance, // Format: YYYY-MM-DD
-    nationalite: res.nationalite };
+     };
   this.collabForm.patchValue(sampleData);
 })
    /* const sampleData = {

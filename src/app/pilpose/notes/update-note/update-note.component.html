@@ -1,1 +1,82 @@
-<p>update-note works!</p>
+<div>
+    <div class="form_wrapper">
+      <div class="form_container">
+        <div class="title_container">
+          <h2>Modifier note de frais</h2>
+        </div>
+        <div class="row clearfix">
+          <div class="">
+            <form  [formGroup]="NoteForm" ngNativeValidate>
+              <div class="row clearfix">
+                <div class="col_half">
+                  <label>Type de Notes :</label>
+  
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  
+                    <select formControlName="typeNote">
+                      <option value="Restaurant">Restaurant</option>
+                      <option value="Achat de matériel">Achat de matériel</option>
+                      <option value="Carburant">Carburant</option>
+                    </select>
+                  </div>
+                </div>
+  
+                <div class="col_half">
+                  <label>Date de note :</label>
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-calendar"></i></span>
+                    <input
+                      matInput
+                      type="date"
+                      formControlName="dateNote"
+                      placeholder="date"
+                    />
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row clearfix">
+                <div class="col_half">
+                  <label>salarié(e) :</label>
+  
+                  
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-cog"></i></span>
+                    <select formControlName="idCollaborateur">
+                      <option *ngFor="let t of comptes"
+                      [value] = "t.idCollaborateur">{{t.nom }} {{t.prenom }}</option>
+  
+                    </select>
+                  </div>
+                </div>
+  
+                <div class="col_half">
+                  <label>Reçu :</label>
+                  <div class="input_field">
+                    <span><i aria-hidden="true" class="fa fa-calendar"></i></span>
+                    <input
+                      type="file"
+                      formControlName="recu"
+                      (change)="onFileSelected($event)" 
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+           
+  
+             
+              <button class="btn-rounded"  aria-disabled="false" type="submit" (click)="onSubmit()">
+                Soumettre
+              </button>
+              &nbsp;
+              <button class="btn-rounded-supp" type="submit" (click)="close()"> &nbsp;Annuler</button>
+             
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

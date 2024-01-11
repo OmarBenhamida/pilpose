@@ -9,6 +9,6 @@ export class NoteFrais {
     public dateNote?: String,
     public recu?: File,
     public idCollaborateur?: Collaborateur,
-    public idChantier?: Chantier
+    public nomCompletEmploye? : String
   ) {}
 }

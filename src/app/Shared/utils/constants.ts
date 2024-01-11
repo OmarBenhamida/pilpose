@@ -192,7 +192,7 @@ export class Constants {
     'reference',
     'typeNote',
     'dateNote',
-    'idCollaborateur',
+    'nomCompletEmploye',
     'ActionChantier',
   ];
   static NOTE_DISPLAY_COLUMNS_NAME: string[] = [

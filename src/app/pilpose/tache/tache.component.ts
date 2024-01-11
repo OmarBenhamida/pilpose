@@ -11,6 +11,8 @@ import { Tache } from 'src/app/model/tache.model';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/shared/utils/utils';
 import * as saveAs from 'file-saver'
+import { AddTachService } from './add-tache/addTache.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tache',
@@ -28,7 +30,9 @@ export class TacheComponent implements OnInit {
 
   constructor(private router: Router,
     public translate: TranslateService,
-     private dialog: MatDialog, private dialogRef: MatDialog,private tacheService: TacheService) { }
+    public toastr: ToastrService,
+     private dialog: MatDialog, private dialogRef: MatDialog,
+     private tacheService: TacheService, private addTacheService : AddTachService) { }
 
   ngOnInit(): void {
     this.getModelTableStructur();
@@ -98,19 +102,41 @@ export class TacheComponent implements OnInit {
   }
 
 
+ 
+
   openAlterModelPopup(model: any) {
     const dialogRef = this.dialog.open(UpdateTacheComponent, {
-      width: '70vw',
-      height: '90vh',
+      width: '60vw',
+      height: '80vh',
       data: {
-        // codeCategorie: model,
-        //categoriesList: this.categoriesList,
+        tache: model,
       },
       disableClose: true,
     });
-    dialogRef.afterClosed().subscribe((data: any) => {
+    dialogRef.afterClosed().subscribe((data: Tache) => {
+      if (data) {
+        this.addTacheService
+          .addOrUpdateTache(data)
+          .then((res) => {
+            this.toastr.success(
+              this.translate.instant('Tache modifé avec succés'),
+              '',
+              Constants.toastOptions
+            );
+            this.getModelTableStructur();
+          })
+          .catch((err) => {
+            this.toastr.warning(
+              this.translate.instant(
+                'Erreur lors de la modification de la tache'
+              ),
+              '',
+              Constants.toastOptions
+            );
+          });
 
-  
+        this.getModelTableStructur();
+      }
     });
   }
 
@@ -142,7 +168,7 @@ export class TacheComponent implements OnInit {
           heureDebut : code.heureDebut,
           heureFin: code.heureFin,
           commantaire: code.commantaire,
-          idChantier: code.idChantier.client,
+          idChantier: code.idChantier,
           responsable: code.responsable,
           nomCompletChantier : code.nomCompletChantier,
           nomCompletResponsable : code.nomCompletResponsable

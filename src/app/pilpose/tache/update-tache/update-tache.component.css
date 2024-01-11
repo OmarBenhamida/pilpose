@@ -80,7 +80,7 @@
 .form_wrapper .textarea_field > span > i {
     padding-top: 10px;
 }
-.form_wrapper input[type="text"],  .form_wrapper input[type="number"],.form_wrapper input[type="date"], .form_wrapper input[type="email"], .form_wrapper input[type="password"] {
+.form_wrapper input[type="text"],.form_wrapper input[type="date"], .form_wrapper input[type="email"], .form_wrapper input[type="password"], .form_wrapper select {
     width: 100%;
     padding: 8px 10px 9px 35px;
     height: 35px;
@@ -92,6 +92,19 @@
     -ms-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+  .form_wrapper input[type="number"]{
+    width: 100%;
+    padding: 8px 10px 9px 35px;
+    height: 35px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    outline: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out
+  }
 .form_wrapper input[type="text"]:hover, .form_wrapper input[type="email"]:hover, .form_wrapper input[type="password"]:hover {
     background: #fafafa;
 }
