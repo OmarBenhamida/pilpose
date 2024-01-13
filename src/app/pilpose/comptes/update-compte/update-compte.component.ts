@@ -56,8 +56,7 @@ export class UpdateCompteComponent implements OnInit {
         Validators.required
       ),
       dateNaissance: new UntypedFormControl(
-        this.CompteToAlter.dateNaissance,
-        Validators.required
+        this.CompteToAlter.dateNaissance
       ),
       email: new UntypedFormControl(
         this.CompteToAlter.email,
@@ -102,7 +101,7 @@ export class UpdateCompteComponent implements OnInit {
 
     compte = new Collaborateur();
 
-    compte.idCollaborateur = this.CompteToAlter.id;
+    compte.idCollaborateur = this.CompteToAlter.idCollaborateur;
     (compte.nom = nom),
       (compte.prenom = prenom),
       (compte.fonction = fonction),

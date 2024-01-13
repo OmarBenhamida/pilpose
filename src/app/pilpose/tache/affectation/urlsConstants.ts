@@ -9,6 +9,7 @@ export const urlsConstantsTache = {
 export const urlsConstantsAffectation = {
     //urlGetLanguages : sirhus_transverse + '/i18n/langues/v0',
     urlAffe : '/affectation/v0/',
+    urlAffectationList : '/affectation/v0/addList',
 
 
 };

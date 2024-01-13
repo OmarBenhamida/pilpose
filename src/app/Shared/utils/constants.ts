@@ -142,7 +142,7 @@ export class Constants {
     'ActionChantier',
   ];
   static AFFECTATION_DISPLAY_COLUMNS_NAME: string[] = [
-    'Collaborateur',
+    'Salarié',
     'Tache',
     'Date de début',
     'Date de fin',

@@ -15,6 +15,9 @@ import { Constants } from 'src/app/Shared/utils/constants';
 import { Chantier } from 'src/app/model/chantier.model';
 import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { TacheService } from '../tache.service';
+import { FormControl } from '@angular/forms';
+import { CompteService } from '../../comptes/compte.service';
+import { AddAffectationService } from '../affectation/add-affectation/addAffectation.service';
 
 @Component({
   selector: 'app-add-tache',
@@ -25,13 +28,19 @@ export class AddTacheComponent implements OnInit {
   salaries: Collaborateur[] = [];
   responsable: Collaborateur;
 
+  salariesAll = new FormControl();
+  salariesList: Collaborateur[] = [];
+  selectedSalaries;
+
   TacheForm: UntypedFormGroup;
   listChantiers: Chantier[] = [];
   constructor(
     private router: Router,
     private addTacheService: AddTachService,
+    private addAffectationService: AddAffectationService,
     public toast: ToastrService,
     public tacheService: TacheService,
+    private compteService: CompteService,
     public translate: TranslateService,
     public formBuilder: UntypedFormBuilder,
     private chantierService: ChantierService
@@ -40,6 +49,7 @@ export class AddTacheComponent implements OnInit {
   ngOnInit(): void {
     this.getAllChantier();
     this.getAllCollabCp();
+    this.getAllCollab();
 
     this.TacheForm = this.formBuilder.group({
       idTache: new UntypedFormControl(''),
@@ -52,6 +62,30 @@ export class AddTacheComponent implements OnInit {
       chantier: new UntypedFormControl('', Validators.required),
       idCollaborateur: new UntypedFormControl('', Validators.required),
     });
+  }
+
+  getAllCollab() {
+    this.compteService
+      .getAllComptes()
+      .then((res: Collaborateur[]) => {
+        for (let compte of res) {
+          this.salariesList.push({
+            idCollaborateur: compte.idCollaborateur,
+            nom: compte.nom,
+            prenom: compte.prenom,
+            fonction: compte.fonction,
+            dateEmbauche: compte.dateEmbauche,
+            email: compte.email,
+            dateNaissance: compte.dateNaissance,
+            adresse: compte.adresse,
+            telephone: compte.telephone,
+            username: compte.username,
+            password: compte.password,
+            role: compte.role,
+          });
+        }
+      })
+      .catch((err) => {});
   }
 
   getAllCollabCp() {
@@ -105,11 +139,11 @@ export class AddTacheComponent implements OnInit {
     let heureFin: String = this.TacheForm.get('heureFin').value;
     let commantaire: String = this.TacheForm.get('commentaire').value;
     let idChantier: number = this.TacheForm.get('chantier').value;
-    let idSalarie : number = this.TacheForm.get('idCollaborateur').value;
+    let idSalarie: number = this.TacheForm.get('idCollaborateur').value;
 
     let tache = new Tache();
     tache.idTache = null;
- 
+
     tache.libelle = libelle;
     tache.dateDebut = dateDebut;
     tache.dateFin = dateFin;
@@ -119,7 +153,10 @@ export class AddTacheComponent implements OnInit {
     tache.idChantier = new Chantier(idChantier);
     tache.responsable = new Collaborateur(idSalarie);
     tache.nomCompletResponsable = null;
-    tache.nomCompletChantier=null
+    tache.nomCompletChantier = null;
+
+    console.log('liste salaries :' + this.selectedSalaries);
+
     this.addTacheService
       .addOrUpdateTache(tache)
       .then((res) => {
@@ -128,6 +165,26 @@ export class AddTacheComponent implements OnInit {
           '',
           Constants.toastOptions
         );
+
+        this.addAffectationService
+          .addOrUpdateAffectationList(this.selectedSalaries)
+          .then((res) => {
+            this.toast.success(
+              this.translate.instant('Affectation  ajoutée avec succés'),
+              '',
+              Constants.toastOptions
+            );
+
+            this.router.navigate(['pilpose/tache']);
+          })
+          .catch((error) => {
+            this.toast.error(
+              this.translate.instant('Erreur lors de l affectation '),
+              '',
+              Constants.toastOptions
+            );
+          });
+
         this.router.navigate(['pilpose/tache']);
       })
       .catch((error) => {

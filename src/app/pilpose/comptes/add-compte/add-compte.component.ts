@@ -35,7 +35,7 @@ export class AddCompteComponent implements OnInit {
       prenom: new UntypedFormControl('', Validators.required),
       username: new UntypedFormControl('', Validators.required),
       dateEmbauche: new UntypedFormControl('', Validators.required),
-      dateNaissance: new UntypedFormControl('', Validators.required),
+      dateNaissance: new UntypedFormControl(''),
       email: new UntypedFormControl('', Validators.required),
       fonction: new UntypedFormControl('', Validators.required),
       role: new UntypedFormControl('', Validators.required),
