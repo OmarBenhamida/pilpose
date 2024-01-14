@@ -15,6 +15,7 @@ import { InfoCollabComponent } from './info-collab/info-collab.component';
 import { AffectationComponent } from './tache/affectation/affectation.component';
 import { AddClientComponent } from './mes-clients/add-client/add-client.component';
 import { MesClientsComponent } from './mes-clients/mes-clients.component';
+import { TempsComponent } from './temps/temps.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: 'info-collab', component: InfoCollabComponent },
       { path: 'affectation', component: AffectationComponent },
       { path: 'all-planning', component: PlannigComponent },
+      { path: 'temps', component: TempsComponent },
       
       
     ],

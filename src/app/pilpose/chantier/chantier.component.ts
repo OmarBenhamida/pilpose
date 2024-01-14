@@ -8,11 +8,12 @@ import { ChantierService } from './chantier.service';
 import { UpdateChantierComponent } from './update-chantier/update-chantier.component';
 import { Router } from '@angular/router';
 import { Chantier } from 'src/app/model/chantier.model';
-import { ToastrService } from 'ngx-toastr';
+
 import { AddChantierService } from './add-chantier/addChantier.service';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/shared/utils/utils';
 import * as saveAs from 'file-saver'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-chantier',

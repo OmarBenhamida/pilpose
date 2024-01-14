@@ -97,4 +97,13 @@ export class PilposeComponent implements OnInit {
   redirectAffectation() {
     this.router.navigate(['pilpose/affectation']);
   }
+
+  redirectToTemps() {
+    this.router.navigate(['pilpose/temps']);
+  }
+
+  redirectChangepWD(){
+    this.router.navigate(['/change-pwd']);
+
+  }
 }

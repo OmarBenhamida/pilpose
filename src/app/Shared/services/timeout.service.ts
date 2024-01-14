@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationComponent } from '../components/sirhus-popups/confirmation/confirmation.component';
 import { Router } from '@angular/router';
+import { ConfirmationComponent } from '../components/sirhus-popups/confirmation/confirmation.component';
 
 @Injectable({
   providedIn: 'root'

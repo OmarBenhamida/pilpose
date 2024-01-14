@@ -10,32 +10,30 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   {
-    path: 'login', component: LoginAdminComponent,
-    
+    path: 'login',
+    component: LoginAdminComponent,
   },
 
   {
     path: 'modules',
     component: AccueilComponent,
-    
   },
 
   {
-    path: 'change-pwd', component: ChangePwdComponent,
-    
+    path: 'change-pwd',
+    component: ChangePwdComponent,
   },
 
   {
-    path: 'pilpose', loadChildren: () => import('./pilpose/pilpose.module').then((m) => m.PilposeModule),
+    path: 'pilpose',
+    loadChildren: () =>
+      import('./pilpose/pilpose.module').then((m) => m.PilposeModule),
   },
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes),
-  ],
+  imports: [CommonModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [HostService],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

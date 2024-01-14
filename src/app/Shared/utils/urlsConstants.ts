@@ -1,11 +1,7 @@
-export const sofapps_backend= "/backend-api";
 export const urlsConstants = {
-    //urlGetLanguages : sirhus_transverse + '/i18n/langues/v0',
-    urlGetInfo : sofapps_backend + '/info/v0/',
-    urlUpdateParametrage : sofapps_backend + '/parametrage/v0/edit',
-    urlGetParametrage : sofapps_backend + '/parametrage/v0/p/',
-    urlGetAllParametrage : sofapps_backend + '/parametrage/v0/p/all',
-    urlUpdatePassword : sofapps_backend + '/change-password/v0/',
-
-
+  urlGetInfo: '/info/v0/',
+  urlUpdateParametrage: '/parametrage/v0/edit',
+  urlGetParametrage: '/parametrage/v0/p/',
+  urlGetAllParametrage: '/parametrage/v0/p/all',
+  urlUpdatePassword: '/password/v0/',
 };

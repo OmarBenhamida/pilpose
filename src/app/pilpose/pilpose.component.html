@@ -14,8 +14,8 @@
         <button mat-menu-item (click)="redirectToComptes()">
             <mat-icon>settings</mat-icon><span>Comptes</span>
         </button>
-        <button mat-menu-item routerLink="#">
-            <mat-icon>help</mat-icon><span>Help</span>
+        <button mat-menu-item (click)="redirectChangepWD()">
+            <mat-icon>help</mat-icon><span>Changer mot de passe</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item routerLink="/login">
@@ -42,6 +42,11 @@
             <mat-nav-list>
                 <a mat-list-item (click)="redirectToAllPlanning()">
                     <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Calendrier</span>
+                </a>
+            </mat-nav-list>
+            <mat-nav-list>
+                <a mat-list-item (click)="redirectToTemps()">
+                    <span> &nbsp;&nbsp; Gestion des feuilles du temps </span>
                 </a>
             </mat-nav-list>
             <mat-expansion-panel>
@@ -127,6 +132,7 @@
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
+       
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

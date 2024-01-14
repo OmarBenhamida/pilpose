@@ -121,7 +121,7 @@ const httpInterceptorProviders = [
     MatSortModule,
     MatPaginatorModule,
     MatDividerModule,
-  
+
     MatNativeDateModule,
     MatTreeModule,
   ],

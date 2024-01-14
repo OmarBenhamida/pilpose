@@ -70,6 +70,7 @@ import { MesClientsComponent } from './mes-clients/mes-clients.component';
 import { AddClientComponent } from './mes-clients/add-client/add-client.component';
 import { UpdateClientComponent } from './mes-clients/update-client/update-client.component';
 import { AddChantierComponent } from './chantier/add-chantier/add-chantier.component';
+import { TempsComponent } from './temps/temps.component';
 
 
 
@@ -102,6 +103,7 @@ export function createTranslateLoader(http: HttpClient) {
     AddClientComponent,
     UpdateClientComponent,
     MesClientsComponent,
+    TempsComponent,
   ],
   imports: [
     CommonModule,

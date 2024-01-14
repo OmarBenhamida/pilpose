@@ -42,7 +42,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { InfoComponent } from './info/info.component';
-import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
@@ -55,7 +55,6 @@ import { LoginAdminService } from './login-admin/login-admin.service';
 import { CalendarModule } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
-
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -125,8 +124,8 @@ export function createTranslateLoader(http: HttpClient) {
     MatMenuModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
-        provide: DateAdapter,
-        useFactory: adapterFactory,
+      provide: DateAdapter,
+      useFactory: adapterFactory,
     }),
   ],
   exports: [
@@ -162,8 +161,9 @@ export function createTranslateLoader(http: HttpClient) {
     MatNativeDateModule,
     MatTreeModule,
   ],
-  providers: [LoginAdminService
-    ,HttpClientRequest,
+  providers: [
+    LoginAdminService,
+    HttpClientRequest,
     { provide: MatDialogRef, useValue: {} },
   ],
   bootstrap: [AppComponent],

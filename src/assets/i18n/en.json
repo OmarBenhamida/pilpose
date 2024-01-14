@@ -2,7 +2,7 @@
   "SOFPASS.OLD_MDP": "Old password",
   "SOFPASS.NEW_MDP": "New password",
   "SOFPASS.CONFIRM_MDP": "Confirm password",
-  "SOFPASS.GMDP.P1": "When you do not have a computer connected to the Sofrecom network, this tool allows you to change the Sofrecom password.",
+  "SOFPASS.GMDP.P1": " this tool allows you to change the pilpose password.",
   "SOFPASS.GMDP.P2": "Please enter your new password :",
   "SOFPASS.GMDP.P3": "The password of an account must respect the following rules :",
   "SOFPASS.GMDP.P4": "To help you :",

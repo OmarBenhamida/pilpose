@@ -5,5 +5,8 @@
 export const authUrlsConstants = {
     urlAuthentication: '/auth/v0',
     /** url gateway controller maintenance mode */
-    urlIsMaintenance: '/v0/maintenance'
+    urlIsMaintenance: '/v0/maintenance',
+
+
+    urlForgotPwd: '/forgotpwd/v0/',
 }

@@ -8,17 +8,17 @@
 <h2> Merci de renseigner votre adresse e-mail afin de recevoir le mail de réinitialisation de votre mot de passe </h2>
     </div>
 
-    <form  class="login-form" >
+    <form [formGroup]="myForm" class="login-form" >
 
         <mat-form-field appearance="outline" class="input-container">
             <mat-label>Email *</mat-label>
-            <input type="text" matInput formControlName="username"/>
+            <input type="text" matInput formControlName="mail"/>
             <div *ngIf="" class="invalid-feedback">
                 <div *ngIf="">{{ 'LOGIN.TEXT.IS' | translate }}</div>
             </div>
         </mat-form-field>
 
-        <button class="btn-rounded"  role="button" aria-disabled="false">Réinitialiser</button>
+        <button class="btn-rounded" (click)="onSubmit()" role="button" aria-disabled="false">Réinitialiser</button>
     </form>
 </div>
 
