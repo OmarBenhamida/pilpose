@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -13,8 +14,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Chantier } from 'src/app/model/chantier.model';
 import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { NoteFrais } from 'src/app/model/note-frais.model';
+import { environment } from 'src/environments/environment';
 import { ChantierService } from '../../chantier/chantier.service';
 import { CompteService } from '../../comptes/compte.service';
+import { AddNoteService } from '../add-note/addNote.service';
 
 @Component({
   selector: 'app-update-note',
@@ -29,6 +32,9 @@ export class UpdateNoteComponent implements OnInit {
   selectedFile: File | null = null;
   listChantiers: Chantier[] = [];
   idChantier: Chantier;
+  private baseUrl =  environment.pilposeHost+"/note/consult/";
+idNote: number;
+ref:string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -38,12 +44,16 @@ export class UpdateNoteComponent implements OnInit {
     private chantierService: ChantierService,
     public toastr: ToastrService,
     public translate: TranslateService,
-    public formBuilder: UntypedFormBuilder
+    public formBuilder: UntypedFormBuilder,
+    private http: HttpClient,
+    private noteService: AddNoteService,
   ) {
     this.NoteFormToAlter = this.data.note;
   }
 
   ngOnInit(): void {
+    this.idNote= this.NoteFormToAlter.idNoteFrais;
+    this.ref =  this.NoteFormToAlter.reference;
     this.getAllCollab();
     this.getAllChantier();
     console.log('++++++s++++++', this.NoteFormToAlter);
@@ -119,19 +129,19 @@ export class UpdateNoteComponent implements OnInit {
   onSubmit() {
     let note;
     let typeNote: String = this.NoteForm.get('typeNote').value;
-    let dateNote: String = this.NoteForm.get('date').value;
+    let dateNote: String = this.NoteForm.get('dateNote').value;
     let idCollaborateur: number = this.NoteForm.get('idCollaborateur').value;
    //let idChantier: number = this.NoteForm.get('idChantier').value;
     let recu: File = this.NoteForm.get('recu').value;
 
     note = new NoteFrais();
 
-    note.idNoteFrais = this.NoteFormToAlter.idChantier;
+    note.idNoteFrais = this.NoteFormToAlter.idNoteFrais;
     note.reference = this.NoteFormToAlter.reference;
 
     note.typeNote = typeNote;
     note.dateNote = dateNote;
-    note.recu = recu;
+    note.recu = null;
 
     let Collaborateur: Collaborateur = {
       idCollaborateur: idCollaborateur,
@@ -142,7 +152,7 @@ export class UpdateNoteComponent implements OnInit {
      // idChantier: idChantier,
     //};
     //note.idChantier = chantier;
-
+    this.onUpload(this.idNote);
     this.router.navigate(['pilpose/note']);
     console.log('log to alter ', note);
 
@@ -157,5 +167,39 @@ export class UpdateNoteComponent implements OnInit {
   }
   close() {
     this.dialogRef.close();
+  }
+
+  downloadFile1(fileName: number) {
+    return this.http.get(this.baseUrl + fileName, { responseType: 'blob' });
+  }
+  downloadFile() {
+    const fileName = this.ref+"_note.jpeg"; // Replace with your file name
+
+    this.downloadFile1(this.idNote).subscribe((data: Blob) => {
+      const url = window.URL.createObjectURL(data);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.style.display = 'none';
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
+
+
+  onUpload(id: number): void {
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+    this.http.post('http://localhost:8888/note/recu/' + id, formData).subscribe(
+      () => {
+        console.log('File uploaded successfully');
+        // Handle success
+      },
+      (error) => {
+        console.error('Error uploading file:', error);
+        // Handle error
+      }
+    );
   }
 }

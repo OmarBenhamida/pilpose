@@ -11,6 +11,7 @@ import { AddCompteComponent } from './comptes/add-compte/add-compte.component';
 export class PilposeComponent implements OnInit {
   imageUrl: string = 'assets/img/pilposepic.jpeg';
   firstname: string;
+  admin : boolean;
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -18,12 +19,24 @@ export class PilposeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    if(localStorage.getItem('currentUser') == null){
+
+      this.redirectToLogin()
+    
+    }
+
     if (
       localStorage.getItem('nom') != null &&
-      localStorage.getItem('prenom') != null
+      localStorage.getItem('prenom') != null && localStorage.getItem('admin') != null
     ) {
-      this.firstname =
-        localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
+      this.firstname = localStorage.getItem('nom') + ' ' + localStorage.getItem('prenom');
+      const adminString: string | null = localStorage.getItem('admin');
+
+      if (adminString !== null) {
+        this.admin = JSON.parse(adminString);
+    }
+
     }
   }
 
@@ -46,6 +59,11 @@ export class PilposeComponent implements OnInit {
   redirectToComptes() {
     this.router.navigate(['pilpose/comptes']);
   }
+
+  redirectToLogin() {
+    this.router.navigate(['/login']);
+  }
+
 
   redirectToClients() {
     this.router.navigate(['pilpose/clients']);
@@ -106,4 +124,19 @@ export class PilposeComponent implements OnInit {
     this.router.navigate(['/change-pwd']);
 
   }
+
+  logout(){
+
+    localStorage.removeItem('nom');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('idUser');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('fonction');
+    localStorage.removeItem('admin');
+    this.router.navigate(['/login']);
+
+  }
+
+
+
 }

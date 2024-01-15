@@ -11,14 +11,11 @@
         <button mat-menu-item (click)="redirectInfoCollab()">
             <mat-icon>person</mat-icon><span>My Account</span>
         </button>
-        <button mat-menu-item (click)="redirectToComptes()">
-            <mat-icon>settings</mat-icon><span>Comptes</span>
-        </button>
         <button mat-menu-item (click)="redirectChangepWD()">
             <mat-icon>help</mat-icon><span>Changer mot de passe</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="/login">
+        <button mat-menu-item (click)="logout()">
             <mat-icon>exit_to_app</mat-icon>Logout
         </button>
     </mat-menu>
@@ -105,7 +102,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [class.mat-elevation-z0]="true">
+            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="admin">
                 <mat-expansion-panel-header>
                     <p class="nav-list"> Gestion des salariés </p>
                 </mat-expansion-panel-header>
@@ -119,7 +116,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [class.mat-elevation-z0]="true">
+            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="admin">
                 <mat-expansion-panel-header>
                     <p class="nav-list"> Gestion des clients </p>
                 </mat-expansion-panel-header>

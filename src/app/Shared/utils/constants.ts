@@ -10,9 +10,8 @@ export class Constants {
     extendedTimeOut: 700,
   };
 
-
- public static EXCEL_XLS : string ='application/vnd.ms-excel';
- public static EXCEL_CSV : string ='text/csv';
+  public static EXCEL_XLS: string = 'application/vnd.ms-excel';
+  public static EXCEL_CSV: string = 'text/csv';
 
   public static toastOptionsUpload: Partial<IndividualConfig> = {
     closeButton: true,
@@ -54,7 +53,7 @@ export class Constants {
     'Actions',
   ];
 
-   /**
+  /**
    * client Data Tables Structures
    */
   /* table Chantier */
@@ -98,6 +97,30 @@ export class Constants {
     'Résponsable',
     'Commantaire',
     'Actions',
+  ];
+
+  static CHANTIER_RECAP_DISPLAY_COLUMNS: string[] = [
+    'reference',
+    'nomChantier',
+    'ville',
+    'etat',
+    'totalHeuresTravaille',
+  ];
+  static CHANTIER_RECAP_DISPLAY_COLUMNS_NAME: string[] = [
+    'Référence',
+    'Chantier',
+    'Localisation',
+    'etat',
+    'Total Nombre d heures',
+  ];
+
+  static SALARIE_RECAP_DISPLAY_COLUMNS: string[] = [
+    'nomCompletResponsable',
+    'totalHeuresTravaille',
+  ];
+  static SALARIE_RECAP_DISPLAY_COLUMNS_NAME: string[] = [
+    'Salarié',
+    'Total Nombre d heures',
   ];
 
   /**

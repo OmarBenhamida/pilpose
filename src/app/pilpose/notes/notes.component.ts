@@ -12,6 +12,8 @@ import { Utils } from 'src/app/shared/utils/utils';
 import * as saveAs from 'file-saver';
 import { AddNoteService } from './add-note/addNote.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-notes',
@@ -19,10 +21,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./notes.component.css'],
 })
 export class NotesComponent implements OnInit {
+
+  private baseUrl =  environment.pilposeHost+"/note/";
   displayedColumns: string[] = [];
   displayedColumnsName: string[] = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   size: number = 0;
+  id: number;
 
   constructor(
     private router: Router,
@@ -31,7 +36,8 @@ export class NotesComponent implements OnInit {
     private dialog: MatDialog,
     public toastr: ToastrService,
     private dialogRef: MatDialog,
-    private noteService: NoteService
+    private noteService: NoteService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +68,7 @@ export class NotesComponent implements OnInit {
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
           this.noteService
-            .deleteNote(model.id)
+            .deleteNote(model.idNoteFrais)
             .then((res) => {
               this.getModelTableStructur();
             })
@@ -166,4 +172,7 @@ export class NotesComponent implements OnInit {
       })
       .catch((err) => {});
   }
+
+  
+
 }

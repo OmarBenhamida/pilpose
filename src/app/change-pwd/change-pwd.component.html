@@ -1,9 +1,12 @@
 
-  
-
-      <div class="example-container">
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Changement du mot de passe</h2>
+      </div>
+      <div class="row clearfix">
         <form [formGroup]="myForm" *ngIf="myForm" novalidate>
-          <p class="titre1">{{ "SOFPASS.GMDP.P7" | translate }}</p>
+         
           <br />
           <p class="headap">
             {{ "SOFPASS.GMDP.P1" | translate }}
@@ -85,9 +88,10 @@
       
           <button
             mat-raised-button
+            class="btn-rounded"
             [disabled]="!myForm.valid"
             (click)="onSubmit()"
-            color="primary"
+          
           >
             {{ "BOUTTON.SAVE" | translate }}
           </button>
@@ -254,5 +258,11 @@
             <br />
           </p>
         </form>
+      </div>
+    </div>
+  </div>
+
+      <div class="example-container">
+       
       </div>
       

@@ -1,10 +1,30 @@
 <div>
-    <div class="title">
-      <h3>Gestion des feuilles du temps </h3>
-      <mat-divider class="divider"></mat-divider>
-    </div>
-    <div>
+  <div class="title">
+    <h3>Synthése globale des heures travaillé par chantier</h3>
+    <mat-divider class="divider"></mat-divider>
+  </div>
 
-    </div>
+  <br /><br />
+  <app-avo-datatable
+    [displayedColumns]="displayedColumns"
+    [nameDisplayedColumns]="displayedColumnsName"
+    [dataSource]="dataSource"
+    [size]="size"
+  >
+  </app-avo-datatable>
+</div>
+<div>
+  <div class="title">
+    <h3>Synthése globale des heures travaillé par salarié</h3>
+    <mat-divider class="divider"></mat-divider>
+  </div>
 
+  <br /><br />
+  <app-avo-datatable
+    [displayedColumns]="displayedColumnsSalarie"
+    [nameDisplayedColumns]="displayedColumnsNameSalarie"
+    [dataSource]="dataSourceSalarie"
+    [size]="size"
+  >
+  </app-avo-datatable>
 </div>
