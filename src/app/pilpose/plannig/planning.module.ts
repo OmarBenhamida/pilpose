@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlannigComponent } from './plannig.component';
+import {  ScheduleAllModule
+  } from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
     declarations: [
@@ -19,6 +21,7 @@ import { PlannigComponent } from './plannig.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        ScheduleAllModule,
         RouterModule.forChild([
             { path: '', component: PlannigComponent, },
         ]),

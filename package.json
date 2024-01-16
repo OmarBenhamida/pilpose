@@ -34,6 +34,8 @@
     "material-design-icons": "^3.0.1",
     "ngx-toastr": "^14.1.4",
     "open-iconic": "^1.1.1",
+    "@syncfusion/ej2-schedule": "24.1.41",
+    "@syncfusion/ej2-angular-schedule": "24.1.41",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

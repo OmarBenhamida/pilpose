@@ -1,89 +1,134 @@
-import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, inject, OnInit, } from '@angular/core';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours, } from 'date-fns';
-import { Subject, map } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView, } from 'angular-calendar';
-import { EventColor } from 'calendar-utils';
+import {
+  Component,
+  ViewEncapsulation,
+  Inject,
+  ViewChild,
+  inject,
+} from '@angular/core';
+import { extend } from '@syncfusion/ej2-base';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import {
+  EventSettingsModel,
+  View,
+  GroupModel,
+  TimelineViewsService,
+  TimelineMonthService,
+  DayService,
+  ResizeService,
+  DragAndDropService,
+  ResourceDetails,
+  ScheduleComponent,
+  ScheduleAllModule,
+} from '@syncfusion/ej2-angular-schedule';
 import { CalendarService } from './calendar.service';
+import { map, tap } from 'rxjs';
 import { PlanningDto } from 'src/app/model/planning.model';
 
-
-const colors: Record<string, EventColor> = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
-};
 @Component({
   selector: 'app-plannig',
   templateUrl: './plannig.component.html',
-  styleUrls: ['./plannig.component.css']
+  styleUrls: ['./plannig.component.css'],
+  encapsulation: ViewEncapsulation.None,
+  providers: [
+    DayService,
+    TimelineViewsService,
+    TimelineMonthService,
+    ResizeService,
+    DragAndDropService,
+  ],
 })
-export class PlannigComponent  {
+export class PlannigComponent {
+  @ViewChild('scheduleObj')
+  public scheduleObj!: ScheduleComponent;
 
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
   readonly service = inject(CalendarService);
 
-  readonly plainning$ = this.service.getList().pipe(
-    map(list => {
-      const _list = list.map(e => ({
-        start: new Date(e.idTache.dateDebut as any),
-        end: new Date(e.idTache.dateFin as any),
-        title: e.idTache.libelle,
-        color: { ...colors.yellow },
-        ...e,
-      }));
+  public data: Record<string, any>[] = extend(
+    [],
+    [],
+    undefined,
+    true
+  ) as Record<string, any>[];
+  public selectedDate: Date = new Date();
+  public currentView: View = 'TimelineDay';
+  public employeeDataSource: Record<string, any>[] = [
 
-      console.warn(_list)
+  ];
+  public group: GroupModel = {
+    enableCompactView: false,
+    resources: ['Employee'],
+  };
+  public allowMultiple = false;
+  public eventSettings: EventSettingsModel = { dataSource: this.data };
 
-      return _list as (CalendarEvent & PlanningDto)[];
-    })
-  );
+  constructor() {
+    this.service
+      .getList()
+      .pipe(
+        tap((list) => {
+          const _list = list.map((e, i) => ({
+            Id: i + 1,
+            Subject: e.idTache.libelle,
+            StartTime: new Date(e.idTache.dateDebut as any),
+            EndTime: new Date(e.idTache.dateFin as any),
+            IsAllDay: false,
+            IsBlock: false,
+            EmployeeId: e.idCollaborateur.idCollaborateur,
+            // ...e,
+          }));
 
-  view: CalendarView = CalendarView.Month;
+          this.data = extend([], _list, undefined, true) as any;
 
-  CalendarView = CalendarView;
+          this.eventSettings = { dataSource: this.data };
 
-  viewDate: Date = new Date();
+          let grouped = list.reduce((grouped, planningDto) => {
+            let key = planningDto.idCollaborateur.idCollaborateur; // Assuming idCollaborateur has an id property
+            if (!grouped[key]) {
+              grouped[key] = [];
+            }
+            grouped[key].push(planningDto);
+            return grouped;
+          }, {});
 
-  modalData: CalendarEvent & PlanningDto;
+          this.employeeDataSource = Object.entries(grouped)
+            .map(([k, v]) => v as PlanningDto[])
+            .filter((list) => list.length)
+            .map((list) => list[0])
+            .map((e, i) => ({
+              Text: e.idCollaborateur.nom + " " + e.idCollaborateur.prenom,
+              Id: e.idCollaborateur.idCollaborateur,
+              GroupId: i + 1,
+              Color: '#bbdc00',
+              Designation: '',
+            }));
 
-  refresh = new Subject<void>();
+          // console.table(_list)
+          // console.table(this.employeeDataSource)
 
-  activeDayIsOpen: boolean = true;
-
-  constructor(private modal: NgbModal) { }
-
-
-  handleEvent(action: string, event: CalendarEvent & PlanningDto): void {
-    this.modalData = event;
-    this.modal.open(this.modalContent, { size: 'lg' });
+          // return _list as (CalendarEvent & PlanningDto)[];
+        }),
+        tap((e) => {
+         
+        })
+      )
+      .subscribe();
   }
 
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
+  public getEmployeeName(value: ResourceDetails): string {
+    return (value as ResourceDetails).resourceData[
+      (value as ResourceDetails).resource.textField!
+    ] as string;
   }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
-    }
+  public getEmployeeDesignation(value: ResourceDetails): string {
+    const resourceName: string = (value as ResourceDetails).resourceData[
+      (value as ResourceDetails).resource.textField!
+    ] as string;
+    return (value as ResourceDetails).resourceData['Designation'] as string;
   }
 
+  public getEmployeeImageName(value: ResourceDetails): string {
+    return this.getEmployeeName(value).toLowerCase();
+  }
 }
