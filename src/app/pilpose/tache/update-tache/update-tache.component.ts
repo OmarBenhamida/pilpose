@@ -1,5 +1,6 @@
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+
 import {
   UntypedFormBuilder,
   UntypedFormControl,
@@ -13,9 +14,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Chantier } from 'src/app/model/chantier.model';
 import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { Tache } from 'src/app/model/tache.model';
+import { UpdateTacheAffectation } from 'src/app/model/updateTache.model';
 import { ChantierService } from '../../chantier/chantier.service';
 import { CompteService } from '../../comptes/compte.service';
-import { AddTachService } from '../add-tache/addTache.service';
+
 import { TacheService } from '../tache.service';
 
 @Component({
@@ -28,16 +30,22 @@ export class UpdateTacheComponent implements OnInit {
   TacheToAlter: any;
   salaries: Collaborateur[] = [];
   responsable: Collaborateur;
-
+  salariesConcerne: Collaborateur[] = [];
   listChantiers: Chantier[] = [];
   idChantier: Chantier;
+
+  salariesList: Collaborateur[] = [];
+  selectedSalaries;
+  idsCollab: number[] = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router,
     public dialogRef: MatDialogRef<UpdateTacheComponent>,
     private villeChantierService: ChantierService,
+
     public tacheService: TacheService,
+    private compteService: CompteService,
     public toastr: ToastrService,
     public translate: TranslateService,
     public formBuilder: UntypedFormBuilder
@@ -46,9 +54,14 @@ export class UpdateTacheComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('idTache   ' + this.TacheToAlter.idTache);
+
+    this.getAllSalarieConcerne(this.TacheToAlter.idTache);
+
     this.getAllChantiers();
     this.getAllCollabCp();
-    console.log('++++++s++++++', this.TacheToAlter);
+    this.getAllCollab();
+
     this.TacheForm = this.formBuilder.group({
       idTache: new UntypedFormControl(this.TacheToAlter.idTache),
       intitule: new UntypedFormControl(
@@ -83,18 +96,69 @@ export class UpdateTacheComponent implements OnInit {
         this.TacheToAlter.responsable.idCollaborateur,
         Validators.required
       ),
+      salariesAll: new UntypedFormControl(this.idsCollab, Validators.required),
     });
+
+    this.TacheForm.get('salariesAll').setValue(this.idsCollab);
+  }
+
+  getAllCollab() {
+    this.compteService
+      .getAllComptes()
+      .then((res: Collaborateur[]) => {
+        for (let compte of res) {
+          this.salariesList.push({
+            idCollaborateur: compte.idCollaborateur,
+            nom: compte.nom,
+            prenom: compte.prenom,
+            fonction: compte.fonction,
+            dateEmbauche: compte.dateEmbauche,
+            email: compte.email,
+            dateNaissance: compte.dateNaissance,
+            adresse: compte.adresse,
+            telephone: compte.telephone,
+            username: compte.username,
+            password: compte.password,
+            role: compte.role,
+          });
+        }
+      })
+      .catch((err) => {});
+  }
+
+  getAllSalarieConcerne(idTache: number) {
+    this.tacheService
+      .getAllSalarieConcerne(idTache)
+      .then((res: any[]) => {
+        for (let compte of res) {
+          let collaborateur = new Collaborateur();
+          collaborateur.idCollaborateur = compte.idCollaborateur;
+          collaborateur.nom = compte.nom;
+          collaborateur.prenom = compte.prenom;
+          collaborateur.fonction = compte.fonction;
+          collaborateur.dateEmbauche = compte.dateEmbauche;
+          collaborateur.email = compte.email;
+          collaborateur.dateNaissance = compte.dateNaissance;
+          collaborateur.adresse = compte.adresse;
+          collaborateur.telephone = compte.telephone;
+          collaborateur.username = compte.username;
+          collaborateur.password = compte.password;
+          collaborateur.role = compte.role;
+
+          this.salariesConcerne.push(collaborateur);
+          this.idsCollab.push(compte.idCollaborateur);
+        }
+        console.log('table : ');
+        console.table(this.salariesConcerne);
+      })
+      .catch((err) => {});
   }
 
   getAllCollabCp() {
     this.tacheService
       .getAllCp()
       .then((res: Collaborateur[]) => {
-        console.log(res);
-
         for (let compte of res) {
-          console.log(compte);
-
           this.salaries.push({
             idCollaborateur: compte.idCollaborateur,
             nom: compte.nom,
@@ -118,9 +182,6 @@ export class UpdateTacheComponent implements OnInit {
     this.villeChantierService
       .getAllChantier()
       .then((res) => {
-    
-
-        console.table(res);
         for (let code of res) {
           this.listChantiers.push({
             idChantier: code.idChantier,
@@ -169,13 +230,18 @@ export class UpdateTacheComponent implements OnInit {
     tache.nomCompletResponsable = null;
     tache.nomCompletChantier = null;
 
-    this.router.navigate(['pilpose/tache']);
-    console.log('log to alter ', tache);
+    console.log('Liste salarié modifié' + this.selectedSalaries);
 
-    this.sendDataToUpdate(tache);
+    this.router.navigate(['pilpose/tache']);
+
+    let data = new UpdateTacheAffectation();
+
+    data.listIdsCollab = this.selectedSalaries;
+    data.tache = tache;
+    this.sendDataToUpdate(data);
   }
 
-  sendDataToUpdate(data: Tache) {
+  sendDataToUpdate(data: UpdateTacheAffectation) {
     this.dialogRef.close(data);
   }
 }

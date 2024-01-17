@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { HostService } from 'src/app/service/host.service';
-import { urlsConstantsTache } from '../tache/urlsConstants';
+import { urlsConstantsAffectation, urlsConstantsTache } from '../tache/urlsConstants';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -18,6 +18,10 @@ export class TacheService {
 
   getAllCp(): Promise<any> {
     return this.http.get(this.host + urlsConstantsTache.urlColaborateurCp).toPromise();
+  }
+
+  getAllSalarieConcerne(idTache: any): Promise<any> {
+    return this.http.get(this.host + urlsConstantsAffectation.urlSalarieConcerne +idTache ).toPromise();
   }
 
   deleteTache(idTache: any): Promise<any> {

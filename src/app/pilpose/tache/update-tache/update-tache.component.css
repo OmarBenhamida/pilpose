@@ -219,6 +219,56 @@
     background-color: #000;
     border-color: #000;
 }
+
+ /* Style for the mat-select container */
+ .mat-select {
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    padding: 0 15px;
+    cursor: pointer;
+    color: #7b7b7b;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  
+  /* Hide the default arrow in IE */
+  .mat-select::-ms-expand {
+    display: none;
+  }
+  
+  /* Hover and focus styles for mat-select */
+  .mat-select:hover,
+  .mat-select:focus {
+    color: #000;
+    background: #fafafa;
+    border-color: #000;
+    outline: none;
+  }
+  
+  /* Style for the arrow indicator */
+  .mat-select-arrow {
+    position: absolute;
+    top: calc(50% - 4px);
+    right: 25px;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-width: 8px 5px 0 5px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+  }
+
+  
+  /* Change arrow color on hover and focus */
+  .mat-select:hover + .mat-select-arrow,
+  .mat-select:focus + .mat-select-arrow {
+    border-top-color: #000;
+  }
+
+  
 .select_option {
     position: relative;
     width: 100%;

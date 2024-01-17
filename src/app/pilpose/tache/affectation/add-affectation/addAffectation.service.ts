@@ -5,6 +5,7 @@ import { HostService } from 'src/app/service/host.service';
 import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
 import { urlsConstantsAffectation } from '../urlsConstants';
 import { Affectation } from 'src/app/model/affectation.model';
+import { UpdateTacheAffectation } from 'src/app/model/updateTache.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,15 @@ export class AddAffectationService {
       .postObject<any>(
         ids,
         this.host + urlsConstantsAffectation.urlAffectationList
+      )
+      .toPromise();
+  }
+
+  updateAffectationList(obj: UpdateTacheAffectation): Promise<any> {
+    return this.http
+      .postObject<any>(
+        obj,
+        this.host + urlsConstantsAffectation.updateListAffectation
       )
       .toPromise();
   }

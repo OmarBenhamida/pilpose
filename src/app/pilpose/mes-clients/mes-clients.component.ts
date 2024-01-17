@@ -12,11 +12,12 @@ import { UpdateClientComponent } from './update-client/update-client.component';
 import * as saveAs from 'file-saver';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/shared/utils/utils';
+import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
 
 @Component({
   selector: 'app-mes-clients',
   templateUrl: './mes-clients.component.html',
-  styleUrls: ['./mes-clients.component.css']
+  styleUrls: ['./mes-clients.component.css'],
 })
 export class MesClientsComponent implements OnInit {
   displayedColumns: string[] = [];
@@ -28,6 +29,7 @@ export class MesClientsComponent implements OnInit {
     public translate: TranslateService,
     public toastr: ToastrService,
     private clientService: ClientService,
+    private snackBarNotifService: SnackBarNotifService,
     private dialog: MatDialog,
     private dialogRef: MatDialog
   ) {}
@@ -72,14 +74,13 @@ export class MesClientsComponent implements OnInit {
       this.openDeleteModelPopup(event[0]);
     }
   }
- 
+
   exportData() {
     this.clientService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
+        console.log('res' + res);
 
-        console.log("res" +res);
-        
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
           Constants.EXCEL_XLS
@@ -90,8 +91,8 @@ export class MesClientsComponent implements OnInit {
           Constants.EXCEL_CSV
         );
 
-        console.log("excel : " +  res.pilposeXsl);
-        console.log("csv : " +  res.pilposeCsv);
+        console.log('excel : ' + res.pilposeXsl);
+        console.log('csv : ' + res.pilposeCsv);
 
         saveAs(blobExcel, 'CLIENT_EXCEL' + '.xlsx');
 
@@ -120,7 +121,21 @@ export class MesClientsComponent implements OnInit {
             .then((res) => {
               this.getModelTableStructur();
             })
-            .catch((err) => {});
+            .catch((err) => {
+              if (err.status == 409) {
+                this.snackBarNotifService.openSnackBarFailure(
+                  'Le client à un ou plusieurs chantier en cours',
+
+                  this.translate.instant('Fermer')
+                );
+              } else {
+                this.snackBarNotifService.openSnackBarFailure(
+                  'Erreur lors de la suppression du client',
+
+                  this.translate.instant('Fermer')
+                );
+              }
+            });
         }
       });
     }

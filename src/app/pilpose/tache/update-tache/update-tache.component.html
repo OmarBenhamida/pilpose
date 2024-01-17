@@ -205,6 +205,26 @@
             </div>
             </div>
 
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Salariés:</label>
+                <div class="input_field">
+                  <mat-select
+                    formControlName="salariesAll"
+                    [(value)]="selectedSalaries"
+                    multiple
+                  >
+                    <mat-option
+                      *ngFor="let item of salariesList"
+                      [value]="item.idCollaborateur"
+                    >
+                      {{ item.nom }}&nbsp;{{ item.prenom }}</mat-option
+                    >
+                  </mat-select>
+                </div>
+              </div>
+            </div>
+
             <button class="btn-rounded"  aria-disabled="false" type="submit" (click)="onSubmit()">
               Soumettre
             </button>

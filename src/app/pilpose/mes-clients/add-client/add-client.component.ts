@@ -32,8 +32,8 @@ export class AddClientComponent implements OnInit {
       idClient: new UntypedFormControl(''),
       nom: new UntypedFormControl('', Validators.required),
       prenom: new UntypedFormControl('', Validators.required),
-      adresse: new UntypedFormControl('', Validators.required),
-      telephone: new UntypedFormControl('', Validators.required),
+      adresse: new UntypedFormControl('',),
+      telephone: new UntypedFormControl('',),
     });
   }
 

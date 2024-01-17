@@ -10,5 +10,7 @@ export const urlsConstantsTache = {
 export const urlsConstantsAffectation = {
   //urlGetLanguages : sirhus_transverse + '/i18n/langues/v0',
   urlTache: '/tache/v0/',
+  urlSalarieConcerne: '/affectation/v0/getByIdTache/',
+
  
 };

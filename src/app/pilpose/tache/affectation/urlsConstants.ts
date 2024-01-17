@@ -11,5 +11,7 @@ export const urlsConstantsAffectation = {
     urlAffe : '/affectation/v0/',
     urlAffectationList : '/affectation/v0/addList',
 
+    updateListAffectation : '/affectation/v0/updateList',
+
 
 };
