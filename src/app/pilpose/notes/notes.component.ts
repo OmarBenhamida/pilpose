@@ -21,8 +21,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./notes.component.css'],
 })
 export class NotesComponent implements OnInit {
-
-  private baseUrl =  environment.pilposeHost+"/note/";
+  private baseUrl = environment.pilposeHost + '/note/';
   displayedColumns: string[] = [];
   displayedColumnsName: string[] = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
@@ -82,22 +81,24 @@ export class NotesComponent implements OnInit {
     this.noteService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        console.log('res' + res);
-
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
           Constants.EXCEL_XLS
         );
 
+        saveAs(blobExcel, 'NOTE_FRAIS_EXCEL' + '.xlsx');
+      })
+      .catch((err) => {});
+  }
+
+  exportDataCsv() {
+    this.noteService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,
           Constants.EXCEL_CSV
         );
-
-        console.log('excel : ' + res.pilposeXsl);
-        console.log('csv : ' + res.pilposeCsv);
-
-        saveAs(blobExcel, 'NOTE_FRAIS_EXCEL' + '.xlsx');
 
         saveAs(blobChantierCsv, 'NOTE_FRAIS_CSV' + '.csv');
       })
@@ -164,6 +165,7 @@ export class NotesComponent implements OnInit {
             typeNote: code.typeNote,
             dateNote: code.dateNote,
             idCollaborateur: code.idCollaborateur,
+            statut : code.statut,
             nomCompletEmploye: code.nomCompletEmploye,
           });
         }
@@ -172,7 +174,4 @@ export class NotesComponent implements OnInit {
       })
       .catch((err) => {});
   }
-
-  
-
 }

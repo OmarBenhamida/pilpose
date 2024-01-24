@@ -4,7 +4,7 @@
 		<mat-divider class="divider"></mat-divider>
 	</div>
 	
-	<button class="btn-rounded" (click)="redirectAddNote()"  role="button" aria-disabled="false"> <span><i aria-hidden="true" class="fa fa-plus"></i></span> Nouvelle note</button>
+	<button class="btn-rounded" (click)="redirectAddNote()"  role="button" aria-disabled="false"> <span><i aria-hidden="true" class="fa fa-plus"></i></span> Nouvelle note de frais</button>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      
       <button
@@ -13,8 +13,19 @@
         role="button"
         aria-disabled="false"
       >
-        <span><i aria-hidden="true" class="fa fa-plus"></i></span> Export Excel
+        <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp; Export Excel
       </button>
+
+	  &nbsp;&nbsp;&nbsp;
+
+      <button
+      class="btn-rounded-green"
+      (click)="exportDataCsv()"
+      role="button"
+      aria-disabled="false"
+    >
+      <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp; Export CSV
+    </button>
 <br><br>
 	<app-avo-datatable [displayedColumns]="displayedColumns" [nameDisplayedColumns]="displayedColumnsName" [dataSource]="dataSource" [size]="size" (sendAction)="actionEvent($event)">
 	</app-avo-datatable>

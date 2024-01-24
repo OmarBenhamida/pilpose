@@ -1,6 +1,6 @@
 <div>
 	<div class="title">
-		<h3>Gestion des Salariés</h3>
+		<h3>Gestion des salariés</h3>
 		<mat-divider class="divider"></mat-divider>
 	</div>
 	
@@ -13,8 +13,19 @@
         role="button"
         aria-disabled="false"
       >
-        <span><i aria-hidden="true" class="fa fa-plus"></i></span> Export Excel
+        <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp; Export Excel
       </button>
+
+	  &nbsp;&nbsp;&nbsp;
+
+	  <button
+	  class="btn-rounded-green"
+	  (click)="exportDataCsv()"
+	  role="button"
+	  aria-disabled="false"
+	>
+	  <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp; Export CSV
+	</button>
 <br><br>
 	<app-avo-datatable [displayedColumns]="displayedColumns" [nameDisplayedColumns]="displayedColumnsName" [dataSource]="dataSource" [size]="size" (sendAction)="actionEvent($event)">
 	</app-avo-datatable>

@@ -72,6 +72,7 @@ export class AddNoteComponent implements OnInit {
     note.typeNote = typenote;
     note.dateNote = date;
     note.recu = null;
+    note.statut=null;
 
     this.noteService
       .addOrUpdateNote(note)

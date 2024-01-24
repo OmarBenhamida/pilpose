@@ -9,8 +9,9 @@ border-top: 2px solid #8c8b8b;
 .divider{
     margin-right: 50px;
 }
+
 .btn-rounded {
-    margin-left: 4%;
+    margin-left: 1%;
     border: none;
     background-color: #FB0104;
     color: white;
@@ -35,10 +36,10 @@ border-top: 2px solid #8c8b8b;
     margin-top: 1.1rem;
   }
 
-  .btn-rounded-green {
+  .btn-rounded-blue {
     margin-left: 1%;
     border: none;
-    background-color:green;
+    background-color:blue;
     color: white;
     width: 15%;
     padding: 0.75rem 1rem;
@@ -47,3 +48,32 @@ border-top: 2px solid #8c8b8b;
     border-radius: 15px;
     margin-top: 1.1rem;
   }
+  .excelimport{
+    margin-left: 2%;
+    border: none;
+
+    color: black;
+    width: 15%;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 15px;
+    margin-top: 1.1rem;
+  }
+
+
+  
+.form-inline {
+  display: flex;
+  align-items: center;
+}
+
+/* Optional: Add spacing between buttons */
+.form-inline button {
+  margin-right: 10px;
+}
+
+/* Optional: Style the file input */
+.excelimport {
+  margin-right: 10px;
+}

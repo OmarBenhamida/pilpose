@@ -14,8 +14,7 @@ import { AddCompteComponent } from './add-compte/add-compte.component';
 import { AddCompteService } from './add-compte/addCompte.service';
 import { CompteService } from './compte.service';
 import { UpdateCompteComponent } from './update-compte/update-compte.component';
-import * as saveAs from 'file-saver'
-
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-comptes',
@@ -70,7 +69,7 @@ export class ComptesComponent implements OnInit {
             telephone: compte.telephone,
             username: compte.username,
             password: compte.password,
-            role: compte.role
+            role: compte.role,
           });
         }
         console.table(comptes);
@@ -172,23 +171,26 @@ export class ComptesComponent implements OnInit {
     this.compteService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
+        console.log('res' + res);
 
-        console.log("res" +res);
-        
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
           Constants.EXCEL_XLS
         );
 
+        saveAs(blobExcel, 'SALARIES_EXCEL' + '.xlsx');
+      })
+      .catch((err) => {});
+  }
+
+  exportDataCsv() {
+    this.compteService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,
           Constants.EXCEL_CSV
         );
-
-        console.log("excel : " +  res.pilposeXsl);
-        console.log("csv : " +  res.pilposeCsv);
-
-        saveAs(blobExcel, 'SALARIES_EXCEL' + '.xlsx');
 
         saveAs(blobChantierCsv, 'SALARIES_CSV' + '.csv');
       })

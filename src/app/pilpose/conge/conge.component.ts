@@ -14,7 +14,7 @@ import { AddCongeService } from './add-conge/addConge.service';
 import { ToastrService } from 'ngx-toastr';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/shared/utils/utils';
-import * as saveAs from 'file-saver'
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-conge',
@@ -102,23 +102,24 @@ export class CongeComponent implements OnInit {
     this.congeService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-
-        console.log("res" +res);
-        
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
           Constants.EXCEL_XLS
         );
 
+        saveAs(blobExcel, 'CONGE_EXCEL' + '.xlsx');
+      })
+      .catch((err) => {});
+  }
+
+  exportDataCsv() {
+    this.congeService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,
           Constants.EXCEL_CSV
         );
-
-        console.log("excel : " +  res.pilposeXsl);
-        console.log("csv : " +  res.pilposeCsv);
-
-        saveAs(blobExcel, 'CONGE_EXCEL' + '.xlsx');
 
         saveAs(blobChantierCsv, 'CONGE_CSV' + '.csv');
       })
@@ -199,8 +200,8 @@ export class CongeComponent implements OnInit {
             heureDebut: code.heureDebut,
             heureFin: code.heureFin,
             typeConge: code.typeConge,
-            nomCompletEmploye : code.nomCompletEmploye,
-            idCollaborateur:code.idCollaborateur,
+            nomCompletEmploye: code.nomCompletEmploye,
+            idCollaborateur: code.idCollaborateur,
           });
         }
         this.dataSource.data = conges;

@@ -7,10 +7,19 @@ export class FeuilleTemps {
     public reference?: String,
     public typeTravaux?: String,
     public jourSemaine?: String,
-    public heureTravaille?: String,
-    public panier?: File,
+    public heureTravaille?: number,
     public vehicule?: String,
+    public vehiculeSuite?: String,
+    public km?: number,
+    public commantaire?: String,
     public idCollaborateur?: Collaborateur,
+    public responsable?: Collaborateur,
+    public nomCompletResponsable?: String,
+    public nomCompletChantier?: String,
+    public nomCompletSalarie?: String,
+    public nomCompletClient?: String,
+    public statut?: String,
+    public ville?: String,
     public idChantier?: Chantier
   ) {}
 }

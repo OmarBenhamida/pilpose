@@ -12,7 +12,7 @@ import { Chantier } from 'src/app/model/chantier.model';
 import { AddChantierService } from './add-chantier/addChantier.service';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/shared/utils/utils';
-import * as saveAs from 'file-saver'
+import * as saveAs from 'file-saver';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -20,8 +20,6 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './chantier.component.html',
   styleUrls: ['./chantier.component.css'],
 })
-
-
 export class ChantierComponent implements OnInit {
   displayedColumns: string[] = [];
   displayedColumnsName: string[] = [];
@@ -67,8 +65,6 @@ export class ChantierComponent implements OnInit {
             ville: code.ville,
           });
         }
-
-     
 
         this.dataSource.data = chantiers;
         this.size = this.dataSource.data.length;
@@ -150,23 +146,28 @@ export class ChantierComponent implements OnInit {
     this.chantierService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
+        console.log('res' + res);
 
-        console.log("res" +res);
-        
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
           Constants.EXCEL_XLS
         );
 
+        saveAs(blobExcel, 'CHANTIERS_EXCEL' + '.xlsx');
+      })
+      .catch((err) => {});
+  }
+
+  exportDataCsv() {
+    this.chantierService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
+        console.log('res' + res);
+
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,
           Constants.EXCEL_CSV
         );
-
-        console.log("excel : " +  res.pilposeXsl);
-        console.log("csv : " +  res.pilposeCsv);
-
-        saveAs(blobExcel, 'CHANTIERS_EXCEL' + '.xlsx');
 
         saveAs(blobChantierCsv, 'CHANTIERS_CSV' + '.csv');
       })
@@ -177,6 +178,3 @@ export class ChantierComponent implements OnInit {
     this.router.navigate(['pilpose/add-chantier']);
   }
 }
-
-
-

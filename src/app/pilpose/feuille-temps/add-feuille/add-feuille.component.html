@@ -1,0 +1,182 @@
+<div>
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Nouvelle feuille de temps</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form [formGroup]="FeuilleForm" ngNativeValidate>
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Type de travaux :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-clock"></i></span>
+
+                  <select formControlName="typeTravaux">
+                    <option>-- Type de travaux</option>
+                    <option value="Chauffage">Chauffage</option>
+                    <option value="SAV – Entretien – Dépannage 7j/7">
+                      SAV – Entretien – Dépannage 7j/7
+                    </option>
+                    <option value="Climatisation">Climatisation</option>
+                    <option value="Électricité">Électricité</option>
+                    <option value="Sanitaire – Plomberie">
+                      Sanitaire – Plomberie
+                    </option>
+                    <option value="Conception et Réalisation">
+                      Conception et Réalisation
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Chantier :</label>
+
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-cog"></i></span>
+                  <!-- <input type="text" formControlName="etat" placeholder="Etat" />-->
+                  <select formControlName="chantier">
+                    <option
+                      *ngFor="let chantier of listChantiers"
+                      [value]="chantier.idChantier"
+                    >
+                      {{ chantier.reference }} - {{ chantier.nomChantier }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Jour de la semaine :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-calendar"></i></span>
+                  <input
+                    matInput
+                    type="date"
+                    formControlName="jourSemaine"
+                    placeholder="jourSemaine"
+                  />
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Nombre heure travaillé :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-brush"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="heureTravaille"
+                    placeholder="Nombre heure travaillé"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Véhicule :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-clock"></i></span>
+
+                  <select formControlName="vehicule">
+                    <option>-- Véhicule</option>
+                    <option
+                      value="Je vais au chantier avec mon véhicule personnel"
+                    >
+                      Je vais au chantier avec mon véhicule personnel
+                    </option>
+                    <option value="Je rejoins une camionnette au dépôt">
+                      Je rejoins une camionnette au dépôt
+                    </option>
+                    <option
+                      value="Je rejoins une camionnette dans la commune de :"
+                    >
+                      Je rejoins une camionnette dans la commune de :
+                    </option>
+                  </select>
+                </div>
+              </div>
+   
+              <div class="col_half">
+                <label>Commune de:</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-pen"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="vehiculeSuite"
+                    placeholder="Je rejoins une camionnette dans la commune de :"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Commentaire:</label>
+                <div class="input_field">
+            
+          
+                  <textarea matInput formControlName="commentaire" rows="2" cols="78"  placeholder="Saisissez votre commantaire"></textarea>
+                </div>
+              </div>
+
+              <div class="col_half">
+                <label>Kilométrage:</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-pen"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="km"
+                    placeholder="Kilométrage"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Salariés:</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <select formControlName="idCollaborateur" required>
+                    <option
+                      *ngFor="let item of salaries"
+                      [value]="item.idCollaborateur"
+                    >
+                      {{ item.nom }}&nbsp;{{ item.prenom }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Chef d'équipe:</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <select formControlName="responsable" required>
+                    <option
+                      *ngFor="let item of salariesCp"
+                      [value]="item.idCollaborateur"
+                    >
+                      {{ item.nom }}&nbsp;{{ item.prenom }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="btn-rounded"
+              aria-disabled="false"
+              type="submit"
+              (click)="onSubmit()"
+            >
+              Soumettre
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

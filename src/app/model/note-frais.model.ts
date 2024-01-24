@@ -8,6 +8,7 @@ export class NoteFrais {
     public typeNote?: String,
     public dateNote?: String,
     public recu?: File,
+    public statut?: String,
     public idCollaborateur?: Collaborateur,
     public nomCompletEmploye? : String
   ) {}

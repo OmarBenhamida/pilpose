@@ -3,8 +3,8 @@
     <h3>Gestion des congés</h3>
     <mat-divider class="divider"></mat-divider>
   </div>
-  <div>
-    <form [formGroup]="CongeForm">
+  <div >
+    <form [formGroup]="CongeForm" class="form-inline">
       <button
         class="btn-rounded"
         (click)="redirectAddConge()"
@@ -12,22 +12,6 @@
         aria-disabled="false"
       >
         <span><i aria-hidden="true" class="fa fa-plus"></i></span> Nouveau conge
-      </button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input
-        type="file"
-        formControlName="excel"
-        (change)="onFileSelected($event)"
-      />
-      <button
-        class="btn-rounded-green"
-        (click)="onUpload()"
-        role="button"
-        aria-disabled="false"
-      >
-        <span><i aria-hidden="true" class="fa fa-plus"></i></span> Import Excel
       </button>
 
       &nbsp;&nbsp;&nbsp;
@@ -37,9 +21,36 @@
         role="button"
         aria-disabled="false"
       >
-        <span><i aria-hidden="true" class="fa fa-plus"></i></span> Export Excel
+        <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp;
+        Export Excel
       </button>
-      <br /><br />
+
+      &nbsp;&nbsp;&nbsp;
+
+      <button
+        class="btn-rounded-green"
+        (click)="exportDataCsv()"
+        role="button"
+        aria-disabled="false"
+      >
+        <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp;
+        Export CSV
+      </button>
+      <button
+        class="btn-rounded-blue"
+        (click)="onUpload()"
+        role="button"
+        aria-disabled="false"
+      >
+        <span><i aria-hidden="true" class="fa fa-plus"></i></span> Import Excel
+      </button>
+      <input
+      class="excelimport"
+      type="file"
+      formControlName="excel"
+      (change)="onFileSelected($event)"
+    />
+      
     </form>
   </div>
 

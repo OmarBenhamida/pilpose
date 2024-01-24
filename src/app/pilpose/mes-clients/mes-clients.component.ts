@@ -79,22 +79,24 @@ export class MesClientsComponent implements OnInit {
     this.clientService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        console.log('res' + res);
-
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
           Constants.EXCEL_XLS
         );
 
+        saveAs(blobExcel, 'CLIENT_EXCEL' + '.xlsx');
+      })
+      .catch((err) => {});
+  }
+
+  exportDataCsv() {
+    this.clientService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,
           Constants.EXCEL_CSV
         );
-
-        console.log('excel : ' + res.pilposeXsl);
-        console.log('csv : ' + res.pilposeCsv);
-
-        saveAs(blobExcel, 'CLIENT_EXCEL' + '.xlsx');
 
         saveAs(blobChantierCsv, 'CLIENT_CSV' + '.csv');
       })

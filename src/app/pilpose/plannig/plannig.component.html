@@ -15,12 +15,15 @@
               </e-resource>
             </e-resources>
             <ng-template #resourceHeaderTemplate let-data>
+              
               <div class="template-wrap">
+
                 <div class="employee-category">
                   <div>
                    <!-- <img src="https://ej2.syncfusion.com/angular/demos/assets/schedule/images/{{getEmployeeImageName(data)}}.png" class="employee-image" />-->
                   </div>
-                  <div class="employee-name">{{getEmployeeName(data)}}</div>
+                  <div class="employee-name">{{getEmployeeName(data)}}  </div>
+                  <div class="employee-name" style="color: red;" *ngIf="getEmployeeFunction(data)===roleChef"> {{getEmployeeFunction(data)}}</div>
                   <div class="employee-designation">{{getEmployeeDesignation(data)}}</div>
                 </div>
               </div>

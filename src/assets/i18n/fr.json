@@ -41,7 +41,7 @@
   "TABLES": {
     "CHANTIER": {
       "REFERENCE": "Réference",
-      "CLIENT": "Nom Complet Client",
+      "CLIENT": "Nom complet du client",
       "LOCALISATION": "Localisation",
       "ETAT": "Etat"
     }

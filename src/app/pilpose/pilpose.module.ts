@@ -71,6 +71,9 @@ import { AddClientComponent } from './mes-clients/add-client/add-client.componen
 import { UpdateClientComponent } from './mes-clients/update-client/update-client.component';
 import { AddChantierComponent } from './chantier/add-chantier/add-chantier.component';
 import { TempsComponent } from './temps/temps.component';
+import { FeuilleTempsComponent } from './feuille-temps/feuille-temps.component';
+import { AddFeuilleComponent } from './feuille-temps/add-feuille/add-feuille.component';
+import { UpdateFeuileComponent } from './feuille-temps/update-feuile/update-feuile.component';
 
 
 
@@ -104,6 +107,9 @@ export function createTranslateLoader(http: HttpClient) {
     UpdateClientComponent,
     MesClientsComponent,
     TempsComponent,
+    FeuilleTempsComponent,
+    AddFeuilleComponent,
+    UpdateFeuileComponent,
   ],
   imports: [
     CommonModule,

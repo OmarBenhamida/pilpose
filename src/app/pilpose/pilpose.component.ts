@@ -73,6 +73,14 @@ export class PilposeComponent implements OnInit {
     this.router.navigate(['pilpose/add-chantier']);
   }
 
+  redirectToListFeuille() {
+    this.router.navigate(['pilpose/feuilles']);
+  }
+
+  redirectToNewFeuille() {
+    this.router.navigate(['pilpose/add-feuille']);
+  }
+
   redirectToNewClient() {
     this.router.navigate(['pilpose/add-client']);
   }

@@ -119,15 +119,19 @@ export class TacheComponent implements OnInit {
           Constants.EXCEL_XLS
         );
 
+        saveAs(blobExcel, 'TACHE_EXCEL' + '.xlsx');
+      })
+      .catch((err) => {});
+  }
+
+  exportDataCsv() {
+    this.tacheService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,
           Constants.EXCEL_CSV
         );
-
-        console.log('excel : ' + res.pilposeXsl);
-        console.log('csv : ' + res.pilposeCsv);
-
-        saveAs(blobExcel, 'TACHE_EXCEL' + '.xlsx');
 
         saveAs(blobChantierCsv, 'TACHE_CSV' + '.csv');
       })
@@ -220,6 +224,8 @@ export class TacheComponent implements OnInit {
             responsable: code.responsable,
             nomCompletChantier: code.nomCompletChantier,
             nomCompletResponsable: code.nomCompletResponsable,
+            nomCompletClient: code.nomCompletClient,
+            ville: code.ville
           });
         }
         this.dataSource.data = taches;

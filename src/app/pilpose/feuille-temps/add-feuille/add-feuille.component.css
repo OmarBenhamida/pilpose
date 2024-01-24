@@ -80,7 +80,7 @@
 .form_wrapper .textarea_field > span > i {
     padding-top: 10px;
 }
-.form_wrapper input[type="text"],  .form_wrapper input[type="number"],.form_wrapper input[type="File"],.form_wrapper input[type="date"], .form_wrapper input[type="email"], .form_wrapper input[type="password"], .form_wrapper select {
+.form_wrapper input[type="text"],.form_wrapper input[type="date"], .form_wrapper input[type="email"], .form_wrapper input[type="password"], .form_wrapper select {
     width: 100%;
     padding: 8px 10px 9px 35px;
     height: 35px;
@@ -92,6 +92,19 @@
     -ms-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+  .form_wrapper input[type="number"]{
+    width: 100%;
+    padding: 8px 10px 9px 35px;
+    height: 35px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    outline: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out
+  }
 .form_wrapper input[type="text"]:hover, .form_wrapper input[type="email"]:hover, .form_wrapper input[type="password"]:hover {
     background: #fafafa;
 }
@@ -210,6 +223,56 @@
     position: relative;
     width: 100%;
 }
+
+
+ /* Style for the mat-select container */
+.mat-select {
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    padding: 0 15px;
+    cursor: pointer;
+    color: #7b7b7b;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  
+  /* Hide the default arrow in IE */
+  .mat-select::-ms-expand {
+    display: none;
+  }
+  
+  /* Hover and focus styles for mat-select */
+  .mat-select:hover,
+  .mat-select:focus {
+    color: #000;
+    background: #fafafa;
+    border-color: #000;
+    outline: none;
+  }
+  
+  /* Style for the arrow indicator */
+  .mat-select-arrow {
+    position: absolute;
+    top: calc(50% - 4px);
+    right: 25px;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-width: 8px 5px 0 5px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+  }
+
+  
+  /* Change arrow color on hover and focus */
+  .mat-select:hover + .mat-select-arrow,
+  .mat-select:focus + .mat-select-arrow {
+    border-top-color: #000;
+  }
+  
 .select_option select {
     display: inline-block;
     width: 100%;
@@ -243,7 +306,7 @@
     pointer-events: none;
     border-width: 8px 5px 0 5px;
     border-style: solid;
-    border-color: #7b7b7b transparent transparent transparent;
+    border-color: #000000 transparent transparent transparent;
 }
 .select_option select:hover + .select_arrow, .select_option select:focus + .select_arrow {
     border-top-color: #000;
@@ -398,36 +461,10 @@
     border: none;
     background-color: #FB0104;
     color: white;
-    width: 45%;
+    width: 100%;
     padding: 0.75rem 1rem;
     cursor: pointer;
     font-weight: bold;
     border-radius: 15px;
     margin-top: 1.1rem;
-  }
-
-  .btn-rounded-supp {
-    border: none;
-    background-color: grey;
-    color: white;
-    width: 45%;
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 15px;
-    margin-top: 1.1rem;
-  }
-
-  .btn-rounded-consult {
-    margin-left: 4rem;
-
-    border: none;
-    background-color: green;
-    color: white;
-    width: 80%;
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 15px;
-    margin-top: 1.5rem;
   }

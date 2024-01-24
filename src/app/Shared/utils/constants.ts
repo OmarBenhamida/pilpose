@@ -84,7 +84,9 @@ export class Constants {
     'heureFin',
     'nomCompletChantier',
     'nomCompletResponsable',
-    'commantaire',
+    'nomCompletClient',
+    'ville',
+   
     'ActionChantier',
   ];
   static TACHE_DISPLAY_COLUMNS_NAME: string[] = [
@@ -95,7 +97,9 @@ export class Constants {
     'Heure de fin',
     'Chantier',
     'Résponsable',
-    'Commantaire',
+    'Client',
+    'Ville',
+  
     'Actions',
   ];
 
@@ -110,7 +114,7 @@ export class Constants {
     'Référence',
     'Chantier',
     'Localisation',
-    'etat',
+    'Etat',
     'Total Nombre d heures',
   ];
 
@@ -128,23 +132,33 @@ export class Constants {
    */
 
   static FEUILLE_DISPLAY_COLUMNS: string[] = [
-    'reference',
+
     'typeTravaux',
     'jourSemaine',
     'heureTravaille',
     'vehicule',
-    'idCollaborateur',
-    'idChantier',
+    'km',
+   
+    'nomCompletResponsable',
+    'nomCompletChantier',
+    'nomCompletSalarie',
+    'nomCompletClient',
+    'ville',
     'ActionChantier',
   ];
   static FEUILLE_DISPLAY_COLUMNS_NAME: string[] = [
-    'Réference',
+
     'Type Travaux',
     'Date',
     'Nombre Heure Travaillé',
     'Véhicule',
-    'Collaborateur',
+    'Kilométrage',
+  
+    'Responsable',
     'Chantier',
+    'Salarié',
+    'Client',
+    'Ville',
     'Actions',
   ];
 
@@ -165,7 +179,7 @@ export class Constants {
     'ActionChantier',
   ];
   static AFFECTATION_DISPLAY_COLUMNS_NAME: string[] = [
-    'Salarié',
+    'Salarié(e)',
     'Tache',
     'Date de début',
     'Date de fin',
@@ -216,13 +230,15 @@ export class Constants {
     'typeNote',
     'dateNote',
     'nomCompletEmploye',
+    'statut',
     'ActionChantier',
   ];
   static NOTE_DISPLAY_COLUMNS_NAME: string[] = [
     'Réference',
-    'Type Note de frais',
-    'Date Note',
-    'Collaborateur',
+    'Type note de frais',
+    'Date de la note',
+    'Salarié(e)',
+    'Statut',
     'Actions',
   ];
 
@@ -245,7 +261,7 @@ export class Constants {
   ];
   static COLLABORATEUR_DISPLAY_COLUMNS_NAME: string[] = [
     'Nom',
-    'Prenom',
+    'Prénom',
     'Fonction',
     'Date Embauche',
     'Email',
@@ -253,7 +269,7 @@ export class Constants {
     'Adresse',
     'Téléphone',
     'Username',
-    'Role',
+    'Rôle',
     'Actions',
   ];
 }

@@ -39,6 +39,9 @@ import { PlanningDto } from 'src/app/model/planning.model';
   ],
 })
 export class PlannigComponent {
+
+  roleChef : string="Chef d'equipe";
+
   @ViewChild('scheduleObj')
   public scheduleObj!: ScheduleComponent;
 
@@ -61,6 +64,7 @@ export class PlannigComponent {
   };
   public allowMultiple = false;
   public eventSettings: EventSettingsModel = { dataSource: this.data };
+// Chef d'equipe
 
   constructor() {
     this.service
@@ -99,12 +103,14 @@ export class PlannigComponent {
               Text: e.idCollaborateur.nom + " " + e.idCollaborateur.prenom,
               Id: e.idCollaborateur.idCollaborateur,
               GroupId: i + 1,
-              Color: '#bbdc00',
+              Color: e.idCollaborateur.fonction === this.roleChef ? 'red' : '#bbdc00',
               Designation: '',
+              function: e.idCollaborateur.fonction,
             }));
 
           // console.table(_list)
-          // console.table(this.employeeDataSource)
+         
+           console.table(this.employeeDataSource)
 
           // return _list as (CalendarEvent & PlanningDto)[];
         }),
@@ -115,12 +121,17 @@ export class PlannigComponent {
       .subscribe();
   }
 
-  public getEmployeeName(value: ResourceDetails): string {
+  public getEmployeeName(value: ResourceDetails): string {   
     return (value as ResourceDetails).resourceData[
       (value as ResourceDetails).resource.textField!
     ] as string;
   }
 
+
+  public getEmployeeFunction(value: ResourceDetails): string  {
+    return (value as ResourceDetails).resourceData['function'] as string;
+
+  }
   public getEmployeeDesignation(value: ResourceDetails): string {
     const resourceName: string = (value as ResourceDetails).resourceData[
       (value as ResourceDetails).resource.textField!

@@ -183,18 +183,7 @@
               </div>
             </div>
             <div class="row clearfix">
-              <div class="col_half">
-                <label>Commentaire:</label>
-                <div class="input_field">
-                  <span><i aria-hidden="true" class="fa fa-pen"></i></span>
-                  <input
-                    matInput
-                    type="text"
-                    formControlName="commentaire"
-                    placeholder="Commentaire"
-                  />
-                </div>
-              </div>
+          
 
               <div class="col_half">
                 <label>Chef d'équipe:</label>
@@ -208,6 +197,12 @@
                       {{ item.nom }}&nbsp;{{ item.prenom }}
                     </option>
                   </select>
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Commentaire:</label>
+                <div class="input_field">
+                  <textarea matInput formControlName="commentaire" rows="2" cols="78"  placeholder="Saisissez votre commantaire"></textarea>
                 </div>
               </div>
             </div>

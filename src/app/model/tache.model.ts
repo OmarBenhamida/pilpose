@@ -13,6 +13,8 @@ export class Tache {
     public idChantier?: Chantier,
     public responsable?: Collaborateur,
     public nomCompletResponsable?: String,
-    public nomCompletChantier?: String
+    public nomCompletChantier?: String,
+    public nomCompletClient?: String,
+    public ville?: String
   ) {}
 }

@@ -2,7 +2,7 @@
     <div class="form_wrapper">
       <div class="form_container">
         <div class="title_container">
-          <h2>Modifier note de frais</h2>
+          <h2>Modifier une note de frais</h2>
         </div>
         <div class="row clearfix">
           <div class="">
@@ -63,11 +63,35 @@
                     />
                   </div>
                 </div>
-                
-              <button  class="btn-rounded-consult" aria-disabled="false" type="submit" (click)="downloadFile()">
-                consulter recu
-              </button>
-              </div>
+                  </div>
+
+                  <div class="row clearfix">
+                    <div class="col_half">
+                      <label>Etat :</label>
+      
+                      <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-cog"></i></span>
+      
+                        <select formControlName="statut">
+                          <option value="Validé">Validé</option>
+                          <option value="Refusé">Refusé</option>
+                          <option value="En cours de validation">
+                            En cours de validation
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col_half">
+
+                      <button  class="btn-rounded-consult" aria-disabled="false" type="submit" (click)="downloadFile()">
+                        Consulter le reçu
+                      </button>
+
+                    </div>
+                  </div>
+
+
+            
            
   
              

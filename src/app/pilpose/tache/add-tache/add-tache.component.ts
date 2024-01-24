@@ -155,6 +155,8 @@ export class AddTacheComponent implements OnInit {
     tache.nomCompletResponsable = null;
     tache.nomCompletChantier = null;
 
+    this.selectedSalaries.push(idSalarie);
+
     console.log('liste salaries :' + this.selectedSalaries);
 
     this.addTacheService
