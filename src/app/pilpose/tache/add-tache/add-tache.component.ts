@@ -18,6 +18,7 @@ import { TacheService } from '../tache.service';
 import { FormControl } from '@angular/forms';
 import { CompteService } from '../../comptes/compte.service';
 import { AddAffectationService } from '../affectation/add-affectation/addAffectation.service';
+import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
 
 @Component({
   selector: 'app-add-tache',
@@ -42,6 +43,7 @@ export class AddTacheComponent implements OnInit {
     public tacheService: TacheService,
     private compteService: CompteService,
     public translate: TranslateService,
+    private snackBarNotifService: SnackBarNotifService,
     public formBuilder: UntypedFormBuilder,
     private chantierService: ChantierService
   ) {}
@@ -179,12 +181,20 @@ export class AddTacheComponent implements OnInit {
 
             this.router.navigate(['pilpose/tache']);
           })
-          .catch((error) => {
-            this.toast.error(
-              this.translate.instant('Erreur lors de l affectation '),
-              '',
-              Constants.toastOptions
-            );
+          .catch((err) => {
+            if (err.status == 409) {
+              this.snackBarNotifService.openSnackBarFailure(
+                'Chevauchement lors affectation salarié ',
+
+                this.translate.instant('Fermer')
+              );
+            } else {
+              this.snackBarNotifService.openSnackBarFailure(
+                'Erreur lors de l affectation',
+
+                this.translate.instant('Fermer')
+              );
+            }
           });
 
         this.router.navigate(['pilpose/tache']);

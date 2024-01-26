@@ -37,7 +37,7 @@ export class AffectationComponent implements OnInit {
 
   actionEvent(event: any) {
     if (event[1] == 'update') {
-      this.openAlterModelPopup(event[0]);
+      this.router.navigate(['pilpose/tache']);
     } else if (event[1] == 'Suppression') {
       this.openDeleteModelPopup(event[0]);
     }
@@ -46,7 +46,7 @@ export class AffectationComponent implements OnInit {
   openDeleteModelPopup(model: any) {
     let body = undefined;
 
-    body = 'POP_UP.BODY.DELETE_CHANTIER';
+    body = 'Voulez vous supprimer cette affectation ?';
     if (body) {
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         panelClass: '',
@@ -58,56 +58,17 @@ export class AffectationComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-          /* this.tacheService.deleteTache(model.id).then(res => {
+          console.log(model);
+          
+           this.affectationService.deleteAffecattion(model.idAffectation).then(res => {
             this.getModelTableStructur();
-          }).catch(err => { });*/
+          }).catch(err => { });
         }
       });
     }
   }
 
-  openAlterModelPopup(model: any) {
-    const dialogRef = this.dialog.open(UpdateAffectationComponent, {
-      width: '50vw',
-      height: '50vh',
-      data: {
-        // codeCategorie: model,
-        //categoriesList: this.categoriesList,
-      },
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((data: any) => {
-      //  if (data) {
-      //  let codeCategorie = new Code();
-      //codeCategorie.id = data.id;
-      //  codeCategorie.code = data.code;
-      // codeCategorie.codeClone = data.codeClone;
-      // codeCategorie.categorieDto = data.categorieDto;
-      // data.active === false ? codeCategorie.active = false : codeCategorie.active = true;
-      // data.saturated === false ? codeCategorie.saturated = false : codeCategorie.saturated = true;
-      //  this.codeCategorieService.addOrUpdateCodeCategorie(codeCategorie).then(res => {
-      //   this.toastr.success(
-      //     this.translate.instant('TOAST.OK.CODE_CATEGORIE_UPDATE'),
-      //    '',
-      //    Constants.toastOptions
-      //);
-      /*
-                this.getModelTableStructur(this.selected);
-              }).catch(err => {
-                this.toastr.warning(
-                  this.translate.instant('TOAST.KO.CODE_CATEGORIE_ACTIVE'),
-                  '',
-                  Constants.toastOptions
-                );
-              });
-            }
-            this.getModelTableStructur(this.selected);
-          });
-              
-      */
-      //}
-    });
-  }
+
 
   exportData() {
     this.affectationService
@@ -149,7 +110,7 @@ export class AffectationComponent implements OnInit {
         console.table(res);
         for (let code of res) {
           affectatios.push({
-            idAffecattion: code.idAffecattion,
+            idAffectation: code.idAffectation,
             idCollaborateur:
               code.idCollaborateur.nom + ' ' + code.idCollaborateur.prenom,
             idTache: code.idTache.libelle,
@@ -162,6 +123,8 @@ export class AffectationComponent implements OnInit {
             commantaire: code.idTache.commantaire,
           });
         }
+        console.log(affectatios);
+        
         this.dataSource.data = affectatios;
         this.size = this.dataSource.data.length;
       })

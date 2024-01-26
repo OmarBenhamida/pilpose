@@ -17,6 +17,7 @@ import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { FormControl } from '@angular/forms';
 import { UpdateTacheAffectation } from 'src/app/model/updateTache.model';
 import { AddAffectationService } from './affectation/add-affectation/addAffectation.service';
+import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
 
 @Component({
   selector: 'app-tache',
@@ -37,6 +38,7 @@ export class TacheComponent implements OnInit {
     private router: Router,
     public translate: TranslateService,
     private addAffectationService: AddAffectationService,
+    private snackBarNotifService: SnackBarNotifService,
     public toastr: ToastrService,
     private dialog: MatDialog,
     private dialogRef: MatDialog,
@@ -83,7 +85,7 @@ export class TacheComponent implements OnInit {
   openDeleteModelPopup(model: any) {
     let body = undefined;
 
-    body = 'Voulez-vous supprimer la tache ?';
+    body = 'Voulez-vous supprimer la tâche ?';
     if (body) {
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         panelClass: '',
@@ -169,12 +171,20 @@ export class TacheComponent implements OnInit {
 
                 this.router.navigate(['pilpose/tache']);
               })
-              .catch((error) => {
-                this.toastr.error(
-                  this.translate.instant('Erreur lors de l affectation '),
-                  '',
-                  Constants.toastOptions
-                );
+              .catch((err) => {
+                if (err.status == 409) {
+                  this.snackBarNotifService.openSnackBarFailure(
+                    'Chevauchement lors affectation salarié ',
+    
+                    this.translate.instant('Fermer')
+                  );
+                } else {
+                  this.snackBarNotifService.openSnackBarFailure(
+                    'Erreur lors de l affectation',
+    
+                    this.translate.instant('Fermer')
+                  );
+                }
               });
 
             this.getModelTableStructur();

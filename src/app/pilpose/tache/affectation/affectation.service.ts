@@ -19,9 +19,10 @@ export class AffectationService {
 
   deleteAffecattion(idAffecatation: any): Promise<any> {
     return this.http
-      .delete<any>(this.host + urlsConstantsAffectation.urlAffectation + idAffecatation)
+      .get<any>(this.host + urlsConstantsAffectation.urlAffectation + idAffecatation)
       .toPromise();
   }
+ 
 
   exportFile(): Promise<any> {
     return this.http.get(this.host + urlsConstantsAffectation.urlExport).toPromise();
