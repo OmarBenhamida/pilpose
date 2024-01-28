@@ -10,6 +10,7 @@ export class Tache {
     public heureDebut?: String,
     public heureFin?: String,
     public commantaire?: String,
+    public typeTache?: String,
     public idChantier?: Chantier,
     public responsable?: Collaborateur,
     public nomCompletResponsable?: String,

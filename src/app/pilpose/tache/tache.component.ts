@@ -235,7 +235,8 @@ export class TacheComponent implements OnInit {
             nomCompletChantier: code.nomCompletChantier,
             nomCompletResponsable: code.nomCompletResponsable,
             nomCompletClient: code.nomCompletClient,
-            ville: code.ville
+            ville: code.ville,
+            typeTache : code.typeTache
           });
         }
         this.dataSource.data = taches;

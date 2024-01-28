@@ -54,7 +54,7 @@ export class UpdateTacheComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('idTache   ' + this.TacheToAlter.idTache);
+    
 
     this.getAllSalarieConcerne(this.TacheToAlter.idTache);
 
@@ -64,6 +64,7 @@ export class UpdateTacheComponent implements OnInit {
 
     this.TacheForm = this.formBuilder.group({
       idTache: new UntypedFormControl(this.TacheToAlter.idTache),
+      typeTache: new UntypedFormControl(this.TacheToAlter.typeTache),
       intitule: new UntypedFormControl(
         this.TacheToAlter.libelle,
         Validators.required
@@ -148,8 +149,7 @@ export class UpdateTacheComponent implements OnInit {
           this.salariesConcerne.push(collaborateur);
           this.idsCollab.push(compte.idCollaborateur);
         }
-        console.log('table : ');
-        console.table(this.salariesConcerne);
+
       })
       .catch((err) => {});
   }
@@ -219,6 +219,7 @@ export class UpdateTacheComponent implements OnInit {
     tache = new Tache();
 
     tache.idTache = this.TacheToAlter.idTache;
+    tache.typeTache = this.TacheToAlter.typeTache;
     tache.libelle = libelle;
     tache.dateDebut = dateDebut;
     tache.dateFin = dateFin;
@@ -230,7 +231,7 @@ export class UpdateTacheComponent implements OnInit {
     tache.nomCompletResponsable = null;
     tache.nomCompletChantier = null;
 
-    console.log('Liste salarié modifié' + this.selectedSalaries);
+   
 
     this.router.navigate(['pilpose/tache']);
 

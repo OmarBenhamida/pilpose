@@ -75,7 +75,7 @@ export class CongeComponent implements OnInit {
   openDeleteModelPopup(model: any) {
     let body = undefined;
 
-    body = 'POP_UP.BODY.DELETE_CHANTIER';
+    body = 'POP_UP.BODY.DELETE_CONGE';
     if (body) {
       const dialogRef = this.dialog.open(ConfirmModalComponent, {
         panelClass: '',

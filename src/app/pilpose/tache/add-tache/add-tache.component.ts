@@ -156,6 +156,7 @@ export class AddTacheComponent implements OnInit {
     tache.responsable = new Collaborateur(idSalarie);
     tache.nomCompletResponsable = null;
     tache.nomCompletChantier = null;
+    tache.typeTache = 'tache';
 
     this.selectedSalaries.push(idSalarie);
 
