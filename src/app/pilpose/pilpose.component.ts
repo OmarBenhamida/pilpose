@@ -68,6 +68,12 @@ export class PilposeComponent implements OnInit {
   redirectToClients() {
     this.router.navigate(['pilpose/clients']);
   }
+  redirectToCommunes() {
+    this.router.navigate(['pilpose/communes']);
+  }
+  redirectToNewCommunes() {
+    this.router.navigate(['pilpose/add-commune']);
+  }
 
   redirectToNewChantier() {
     this.router.navigate(['pilpose/add-chantier']);

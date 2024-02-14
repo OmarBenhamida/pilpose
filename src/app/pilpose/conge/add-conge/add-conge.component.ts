@@ -43,7 +43,8 @@ export class AddCongeComponent implements OnInit {
       heureDebut: new UntypedFormControl('', Validators.required),
       heureFin: new UntypedFormControl('', Validators.required),
       typeconge: new UntypedFormControl('', Validators.required),
-      idCollaborateur  : new UntypedFormControl('', Validators.required),
+      idCollaborateur: new UntypedFormControl('', Validators.required),
+      commentaire: new UntypedFormControl('', Validators.required),
     });
   }
 
@@ -82,16 +83,24 @@ export class AddCongeComponent implements OnInit {
     let heureFin: number = this.CongeForm.get('heureFin').value;
     let typeconge: String = this.CongeForm.get('typeconge').value;
     let idSalarie = this.CongeForm.get('idCollaborateur').value;
+    let commantaire: String = this.CongeForm.get('commentaire').value;
     let etat: String = 'En cours';
     let iduser: number = Number(localStorage.getItem('idUser'));
     let conge = new Conge();
     conge.idConge = null;
+
     conge.dateDebut = dateDebut;
     conge.dateFin = dateFin;
     conge.heureDebut = heureDebut;
     conge.heureFin = heureFin;
     conge.typeConge = typeconge;
     conge.statut = etat;
+    conge.commantaire = commantaire;
+
+    conge.validationChefEquipe = false;
+    conge.validationGerant = false;
+    conge.validationResponsableAdministratif = false;
+    conge.validationResponsableTravaux = false;
 
     let idCollaborateur: Collaborateur = {
       idCollaborateur: idSalarie,

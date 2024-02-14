@@ -37,18 +37,18 @@ export class Constants {
    */
   /* table Chantier */
   static CHANTIER_DISPLAY_COLUMNS: string[] = [
+    'ville',
+    'nomChantier',
     'reference',
     'nomCompletClient',
-    'nomChantier',
-    'ville',
     'etat',
     'ActionChantier',
   ];
   static CHANTIER_DISPLAY_COLUMNS_NAME: string[] = [
+    'TABLES.CHANTIER.LOCALISATION',
+    'Nom du chantier',
     'TABLES.CHANTIER.REFERENCE',
     'TABLES.CHANTIER.CLIENT',
-    'Nom du chantier',
-    'TABLES.CHANTIER.LOCALISATION',
     'TABLES.CHANTIER.ETAT',
     'Actions',
   ];
@@ -56,7 +56,7 @@ export class Constants {
   /**
    * client Data Tables Structures
    */
-  /* table Chantier */
+
   static CLIENT_DISPLAY_COLUMNS: string[] = [
     'nom',
     'prenom',
@@ -72,6 +72,23 @@ export class Constants {
     'Actions',
   ];
 
+    /**
+   * Locqlisqtion Data Tables Structures
+   */
+
+     static LOCALISATION_DISPLAY_COLUMNS: string[] = [
+      'ville',
+      'codePostale',
+
+      'ActionChantier',
+    ];
+    static LOCALISATION_DISPLAY_COLUMNS_NAME: string[] = [
+      'Commune',
+      'Code postale',
+
+      'Actions',
+    ];
+
   /**
    * Tache Data Tables Structures
    */
@@ -86,7 +103,7 @@ export class Constants {
     'nomCompletResponsable',
     'nomCompletClient',
     'ville',
-   
+
     'ActionChantier',
   ];
   static TACHE_DISPLAY_COLUMNS_NAME: string[] = [
@@ -99,7 +116,7 @@ export class Constants {
     'Résponsable',
     'Client',
     'Ville',
-  
+
     'Actions',
   ];
 
@@ -132,13 +149,12 @@ export class Constants {
    */
 
   static FEUILLE_DISPLAY_COLUMNS: string[] = [
-
     'typeTravaux',
     'jourSemaine',
     'heureTravaille',
     'vehicule',
     'km',
-   
+
     'nomCompletResponsable',
     'nomCompletChantier',
     'nomCompletSalarie',
@@ -147,13 +163,12 @@ export class Constants {
     'ActionChantier',
   ];
   static FEUILLE_DISPLAY_COLUMNS_NAME: string[] = [
-
     'Type Travaux',
     'Date',
     'Nombre Heure Travaillé',
     'Véhicule',
     'Kilométrage',
-  
+
     'Responsable',
     'Chantier',
     'Salarié',

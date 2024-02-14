@@ -149,6 +149,12 @@ export class CongeComponent implements OnInit {
         conge.reference = data.reference;
         conge.typeConge = data.typeConge;
 
+        conge.validationChefEquipe = data.validationChefEquipe;
+        conge.validationResponsableTravaux = data.validationResponsableTravaux;
+        conge.validationGerant = data.validationGerant;
+        conge.validationResponsableAdministratif =
+          data.validationResponsableAdministratif;
+
         this.addCongeService
           .addOrUpdateConge(conge)
           .then((res) => {
@@ -202,6 +208,11 @@ export class CongeComponent implements OnInit {
             typeConge: code.typeConge,
             nomCompletEmploye: code.nomCompletEmploye,
             idCollaborateur: code.idCollaborateur,
+            validationChefEquipe: code.validationChefEquipe,
+            validationResponsableTravaux: code.validationResponsableTravaux,
+            validationGerant: code.validationGerant,
+            validationResponsableAdministratif:
+              code.validationResponsableAdministratif,
           });
         }
         this.dataSource.data = conges;

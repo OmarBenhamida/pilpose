@@ -15,7 +15,7 @@ import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { Conge } from 'src/app/model/conge.model';
 import { Localisation } from 'src/app/model/localisation.model';
 import { CompteService } from '../../comptes/compte.service';
-import { AddCongeService } from '../add-conge/addConge.service';
+
 
 @Component({
   selector: 'app-update-conge',
@@ -27,6 +27,7 @@ export class UpdateCongeComponent implements OnInit {
   CongeToAlter: any;
   salaries: Collaborateur[] = [];
   idCollaborateur: Collaborateur;
+  fonctionUserConnected: String;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -42,29 +43,86 @@ export class UpdateCongeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCollab();
-    console.log('++++++******++++++', this.CongeToAlter);
+    this.fonctionUserConnected = localStorage.getItem('fonction');
 
     this.CongeForm = this.formBuilder.group({
       idConge: new UntypedFormControl(this.CongeToAlter.idConge),
-      reference: new UntypedFormControl(this.CongeToAlter.reference,Validators.required),
-      statut: new UntypedFormControl(this.CongeToAlter.statut,Validators.required ),
-      dateDebut: new UntypedFormControl(this.CongeToAlter.dateDebut,Validators.required),
-      dateFin: new UntypedFormControl(this.CongeToAlter.dateFin,Validators.required),
-      heureDebut: new UntypedFormControl(this.CongeToAlter.heureDebut,Validators.required),
-      heureFin: new UntypedFormControl(this.CongeToAlter.heureFin,Validators.required),
-      typeConge: new UntypedFormControl(this.CongeToAlter.typeConge,Validators.required),
-      idCollaborateur: new UntypedFormControl(this.CongeToAlter.idCollaborateur.idCollaborateur,Validators.required ),
+      reference: new UntypedFormControl(
+        this.CongeToAlter.reference,
+        Validators.required
+      ),
+      statut: new UntypedFormControl(
+        this.CongeToAlter.statut,
+        Validators.required
+      ),
+      dateDebut: new UntypedFormControl(
+        this.CongeToAlter.dateDebut,
+        Validators.required
+      ),
+      dateFin: new UntypedFormControl(
+        this.CongeToAlter.dateFin,
+        Validators.required
+      ),
+      heureDebut: new UntypedFormControl(
+        this.CongeToAlter.heureDebut,
+        Validators.required
+      ),
+      heureFin: new UntypedFormControl(
+        this.CongeToAlter.heureFin,
+        Validators.required
+      ),
+      typeConge: new UntypedFormControl(
+        this.CongeToAlter.typeConge,
+        Validators.required
+      ),
+      idCollaborateur: new UntypedFormControl(
+        this.CongeToAlter.idCollaborateur.idCollaborateur,
+        Validators.required
+      ),
+
+      validationChefEquipe: new UntypedFormControl(
+        this.CongeToAlter.validationChefEquipe,
+        Validators.required
+      ),
+
+      validationResponsableTravaux: new UntypedFormControl(
+        this.CongeToAlter.validationResponsableTravaux,
+        Validators.required
+      ),
+
+      validationGerant: new UntypedFormControl(
+        this.CongeToAlter.validationGerant,
+        Validators.required
+      ),
+
+      validationResponsableAdministratif: new UntypedFormControl(
+        this.CongeToAlter.validationResponsableAdministratif,
+        Validators.required
+      ),
     });
   }
+
+  isCE(): boolean {
+    return this.fonctionUserConnected === "Chef d'equipe";
+  }
+
+  isGerant(): boolean {
+    return this.fonctionUserConnected === 'Gérant';
+  }
+
+  isRT(): boolean {
+    return this.fonctionUserConnected === 'Responsable de travaux';
+  }
+
+  isRA(): boolean {
+    return this.fonctionUserConnected === 'Responsable administratif';
+  }
+
   getAllCollab() {
     this.compteService
       .getAllComptes()
       .then((res: Collaborateur[]) => {
-     
-
         for (let compte of res) {
-         
-
           this.salaries.push({
             idCollaborateur: compte.idCollaborateur,
             nom: compte.nom,
@@ -99,10 +157,19 @@ export class UpdateCongeComponent implements OnInit {
     let typeConge = this.CongeForm.get('typeConge').value;
     let idCollaborateur = this.CongeForm.get('idCollaborateur').value;
 
+    let validationChefEquipe = this.CongeForm.get('validationChefEquipe').value;
+    let validationResponsableTravaux = this.CongeForm.get(
+      'validationResponsableTravaux'
+    ).value;
+    let validationGerant = this.CongeForm.get('validationGerant').value;
+    let validationResponsableAdministratif = this.CongeForm.get(
+      'validationResponsableAdministratif'
+    ).value;
+
     conge = new Conge();
 
     conge.idConge = this.CongeToAlter.idConge;
-    conge.reference = null;
+    conge.reference = this.CongeToAlter.reference;
     conge.statut = statut;
     conge.dateDebut = dateDebut;
     conge.dateFin = dateFin;
@@ -110,6 +177,11 @@ export class UpdateCongeComponent implements OnInit {
     conge.heureDebut = heureDebut;
     conge.heureFin = heureFin;
     conge.typeConge = typeConge;
+    conge.validationChefEquipe = validationChefEquipe;
+    conge.validationResponsableTravaux = validationResponsableTravaux;
+    conge.validationGerant = validationGerant;
+    conge.validationResponsableAdministratif =
+      validationResponsableAdministratif;
 
     let collab: Collaborateur = {
       idCollaborateur: idCollaborateur,
@@ -117,7 +189,6 @@ export class UpdateCongeComponent implements OnInit {
     conge.idCollaborateur = collab;
 
     this.router.navigate(['pilpose/conge']);
-    console.log('log to alter ', conge);
 
     this.sendDataToUpdate(conge);
   }

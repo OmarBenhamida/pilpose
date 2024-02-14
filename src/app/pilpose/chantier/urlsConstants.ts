@@ -9,6 +9,12 @@ export const urlsConstantsClient = {
   urlExport: '/client/v0/export',
 };
 
+export const urlsConstantslocalisation = {
+  urlLocalisation: '/localisation/v0/',
+  urlExport: '/localisation/v0/export',
+};
+
+
 export const urlsConstantsCompte = {
   urlCompte: '/collaborateur/v0/',
   urlExport: '/collaborateur/v0/export',

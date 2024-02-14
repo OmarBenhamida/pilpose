@@ -74,6 +74,9 @@ import { TempsComponent } from './temps/temps.component';
 import { FeuilleTempsComponent } from './feuille-temps/feuille-temps.component';
 import { AddFeuilleComponent } from './feuille-temps/add-feuille/add-feuille.component';
 import { UpdateFeuileComponent } from './feuille-temps/update-feuile/update-feuile.component';
+import { LocalisationComponent } from './localisation/localisation.component';
+import { AddLocalisationComponent } from './localisation/add-localisation/add-localisation.component';
+import { UpdateLocalisationComponent } from './localisation/update-localisation/update-localisation.component';
 
 
 
@@ -110,6 +113,9 @@ export function createTranslateLoader(http: HttpClient) {
     FeuilleTempsComponent,
     AddFeuilleComponent,
     UpdateFeuileComponent,
+    LocalisationComponent,
+    AddLocalisationComponent,
+    UpdateLocalisationComponent,
   ],
   imports: [
     CommonModule,

@@ -192,11 +192,25 @@
               <span><i aria-hidden="true" class="fa fa-cog"></i></span>
            
               <select formControlName="statut">
-                <option value="Validé">Validé</option>
+                <option value="Validé" hidden>Validé</option>
                 <option value="Refusé">Refusé</option>
                 <option value="En cours">En cours</option>
                 <option value="Cloturer">Cloturer</option>
               </select>
+            </div>
+          </div>
+
+          <div class="col_half">
+            <label>Validations :</label>
+
+            <div class="input_field">
+              <section class="example-section">
+                <mat-checkbox *ngIf="isCE()"  formControlName="validationChefEquipe" class="example-margin">Validation chef d'équipe</mat-checkbox>
+                <mat-checkbox *ngIf="isGerant()"  formControlName="validationGerant" class="example-margin">Validation gérant</mat-checkbox>
+                <mat-checkbox *ngIf="isRT()"  formControlName="validationResponsableTravaux" class="example-margin">Validation responsable de travaux</mat-checkbox>
+                <mat-checkbox *ngIf="isRA()"  formControlName="validationResponsableAdministratif" class="example-margin">Validation responsable de administratif</mat-checkbox>
+              
+              </section>
             </div>
           </div>
         </div>

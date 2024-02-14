@@ -1,0 +1,47 @@
+<div>
+    <div class="title">
+      <h3>Gestion des communes</h3>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+  
+    <button
+      class="btn-rounded"
+      (click)="redirect()"
+      role="button"
+      aria-disabled="false"
+    >
+      <span><i aria-hidden="true" class="fa fa-plus"></i></span> Ajouter une commune
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+    <button
+      class="btn-rounded-green"
+      (click)="exportData()"
+      role="button"
+      aria-disabled="false"
+    >
+      <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp; Export Excel
+    </button>
+  
+    
+    &nbsp;&nbsp;&nbsp;
+  
+    <button
+    class="btn-rounded-green"
+    (click)="exportDataCsv()"
+    role="button"
+    aria-disabled="false"
+  >
+    <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp; Export CSV
+  </button>
+    <br /><br />
+    <app-avo-datatable
+      [displayedColumns]="displayedColumns"
+      [nameDisplayedColumns]="displayedColumnsName"
+      [dataSource]="dataSource"
+      [size]="size"
+      (sendAction)="actionEvent($event)"
+    >
+    </app-avo-datatable>
+  </div>
+  
