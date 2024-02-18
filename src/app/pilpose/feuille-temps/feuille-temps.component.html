@@ -7,7 +7,23 @@
 	<button class="btn-rounded" (click)="redirectAddFeuille()"  role="button" aria-disabled="false"> <span><i aria-hidden="true" class="fa fa-plus"></i></span> Nouvelle feuille de temps</button>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      
-    
+      <button
+        class="btn-rounded-green"
+        (click)="exportData()"
+        role="button"
+        aria-disabled="false"
+      >
+        <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp; Export Excel
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <button
+      class="btn-rounded-green"
+      (click)="exportDataCsv()"
+      role="button"
+      aria-disabled="false"
+    >
+      <span><i aria-hidden="true" class="fa fa-file-excel"></i></span>&nbsp; Export CSV
+    </button>
 <br><br>
 	<app-avo-datatable [displayedColumns]="displayedColumns" [nameDisplayedColumns]="displayedColumnsName" [dataSource]="dataSource" [size]="size" (sendAction)="actionEvent($event)">
 	</app-avo-datatable>

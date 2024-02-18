@@ -41,7 +41,7 @@ export class UpdateClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('++++++s++++++', this.ClientToAlter);
+
 
     this.ClientForm = this.formBuilder.group({
       idClient: new UntypedFormControl(this.ClientToAlter.idClient),
@@ -84,7 +84,7 @@ export class UpdateClientComponent implements OnInit {
     client.telephone = telephone;
 
     this.router.navigate(['pilpose/clients']);
-    console.log('log to alter ', client);
+    
 
     this.sendDataToUpdate(client);
   }

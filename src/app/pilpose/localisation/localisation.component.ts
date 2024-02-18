@@ -50,7 +50,7 @@ export class LocalisationComponent implements OnInit {
       .then((res) => {
         let communes: Localisation[] = [];
 
-        console.table(res);
+       
         for (let code of res) {
           communes.push({
             idLocalisation: code.idLocalisation,

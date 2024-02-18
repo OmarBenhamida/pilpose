@@ -22,7 +22,7 @@ import { urlsConstantsTache } from "../urlsConstants";
 
     addOrUpdateTache(tache : Tache): Promise<any> {
       
-        console.log("tache: ", tache);
+     
         
         return this.http
           .postObject<any>(

@@ -16,7 +16,6 @@ import { Conge } from 'src/app/model/conge.model';
 import { Localisation } from 'src/app/model/localisation.model';
 import { CompteService } from '../../comptes/compte.service';
 
-
 @Component({
   selector: 'app-update-conge',
   templateUrl: './update-conge.component.html',
@@ -99,6 +98,11 @@ export class UpdateCongeComponent implements OnInit {
         this.CongeToAlter.validationResponsableAdministratif,
         Validators.required
       ),
+
+      commentaire: new UntypedFormControl(
+        this.CongeToAlter.commantaire,
+        Validators.required
+      ),
     });
   }
 
@@ -107,15 +111,27 @@ export class UpdateCongeComponent implements OnInit {
   }
 
   isGerant(): boolean {
-    return this.fonctionUserConnected === 'Gérant';
+    return (
+      this.fonctionUserConnected === 'Gérant' &&
+      this.CongeToAlter.validationChefEquipe &&
+      this.CongeToAlter.validationResponsableTravaux
+    );
   }
 
   isRT(): boolean {
-    return this.fonctionUserConnected === 'Responsable de travaux';
+    return (
+      this.fonctionUserConnected === 'Responsable de travaux' &&
+      this.CongeToAlter.validationChefEquipe
+    );
   }
 
   isRA(): boolean {
-    return this.fonctionUserConnected === 'Responsable administratif';
+    return (
+      this.fonctionUserConnected === 'Responsable administratif' &&
+      this.CongeToAlter.validationChefEquipe &&
+      this.CongeToAlter.validationResponsableTravaux &&
+      this.CongeToAlter.validationGerant
+    );
   }
 
   getAllCollab() {
@@ -156,7 +172,7 @@ export class UpdateCongeComponent implements OnInit {
     let heureFin = this.CongeForm.get('heureFin').value;
     let typeConge = this.CongeForm.get('typeConge').value;
     let idCollaborateur = this.CongeForm.get('idCollaborateur').value;
-
+    let commantaire: String = this.CongeForm.get('commentaire').value;
     let validationChefEquipe = this.CongeForm.get('validationChefEquipe').value;
     let validationResponsableTravaux = this.CongeForm.get(
       'validationResponsableTravaux'
@@ -175,6 +191,7 @@ export class UpdateCongeComponent implements OnInit {
     conge.dateFin = dateFin;
     conge.dateDepot = this.CongeToAlter.dateDepot;
     conge.heureDebut = heureDebut;
+    conge.commantaire = commantaire;
     conge.heureFin = heureFin;
     conge.typeConge = typeConge;
     conge.validationChefEquipe = validationChefEquipe;

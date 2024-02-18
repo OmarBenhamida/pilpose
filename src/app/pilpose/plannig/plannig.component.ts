@@ -108,11 +108,8 @@ export class PlannigComponent {
               function: e.idCollaborateur.fonction,
             }));
 
-          // console.table(_list)
          
-           console.table(this.employeeDataSource)
 
-          // return _list as (CalendarEvent & PlanningDto)[];
         }),
         tap((e) => {
          

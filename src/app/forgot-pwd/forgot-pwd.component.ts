@@ -33,7 +33,7 @@ export class ForgotPwdComponent implements OnInit {
       mail: this.myForm.get('mail').value,
     };
 
-    console.log(user);
+    
     this.forgotPwdService
       .forgotPwd(user)
       .then((res) => {

@@ -22,7 +22,7 @@ import { NoteFrais } from "src/app/model/note-frais.model";
 
 
     addOrUpdateNote(note : NoteFrais): Promise<any> {
-    console.log(note);
+    
     
         
         return this.http

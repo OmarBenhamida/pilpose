@@ -102,7 +102,7 @@ export class AddNoteComponent implements OnInit {
       .getAllComptes()
       .then((res: any[]) => {
         for (let compte of res) {
-          console.log(compte);
+       
 
           this.comptes.push({
             idCollaborateur: compte.idCollaborateur,

@@ -55,21 +55,20 @@ export class LoginAdminComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      // Handle any result or action after the dialog is closed
+
     });
   }
 
   onSubmit() {
     this.submitted = true;
-    console.log('entry');
+  
 
     console.warn(this.loginForm.invalid);
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       // return;
     } else {
-      console.log('valid form');
+    
 
       let user: UserModel = {
         username: this.f.username.value,
@@ -79,7 +78,7 @@ export class LoginAdminComponent implements OnInit {
       };
 
       this.loginService.authUser(user).subscribe((res : any) => {
-        console.log(res);
+       
         localStorage.setItem('nom',res.nom );
         localStorage.setItem('prenom',res.prenom );
         localStorage.setItem('idUser',res.idUser );

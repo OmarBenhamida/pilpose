@@ -30,7 +30,7 @@ export class ClientService {
   }
 
   addOrUpdateClient(chantier: Client): Promise<any> {
-    console.log('chantier: ', chantier);
+    
 
     return this.https
       .postObject<any>(chantier, this.host + urlsConstantsClient.urlClient)

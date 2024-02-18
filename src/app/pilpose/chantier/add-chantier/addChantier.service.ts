@@ -21,7 +21,7 @@ export class AddChantierService {
   }
 
   addOrUpdateChantier(chantier: Chantier): Promise<any> {
-    console.log('chantier: ', chantier);
+ 
 
     return this.http
       .postObject<any>(chantier, this.host + urlsConstantsChantier.urlChantier)

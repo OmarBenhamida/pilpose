@@ -36,7 +36,7 @@ export class InfoCollabComponent implements OnInit {
 
   ngOnInit(): void {
 this.getList().subscribe((res : Collaborateur) => {
-  console.log(res);
+  
   
   const sampleData = {
     nom: res.nom,
@@ -47,50 +47,11 @@ this.getList().subscribe((res : Collaborateur) => {
      };
   this.collabForm.patchValue(sampleData);
 })
-   /* const sampleData = {
-      nom: 'John',
-      prenom: 'Doe',
-      email: 'johndoe@example.com',
-      cin: '1234567890',
-      naissance: '1990-01-01', // Format: YYYY-MM-DD
-      nationalite: 'Country' 
-    };*/
-
-    
-
 
   }
 
   onSubmit() {
-/*
-    let reference: String = this.ChantierForm.get('reference').value;
-    let client: String = this.ChantierForm.get('client').value;
-    let localisationDto: String = this.ChantierForm.get('localisationDto').value;
-    let etat: String = "En cours";
 
-    let chantier1 = new Chantier();
-    chantier1.idChantier = null;
-    chantier1.reference = reference;
-    chantier1.client = client;
-    chantier1.etat = etat;
-    chantier1.localisationDto = localisationDto;
-    console.log(chantier1);
-
-    this.chantierService.addOrUpdateChantier(chantier1).then(res => {
-
-      
-      
-      this.toast.success(this.translate.instant('Chantier ajouté avec succés'), '', Constants.toastOptions);
-      this.router.navigate(['pilpose/chantier']);
-
-    }).catch(error => {
-
-      this.toast.error(this.translate.instant('Erreur lors de la création d un chantier'), '', Constants.toastOptions);
-
-
-    });
-
-*/
   }
 
   getList() {

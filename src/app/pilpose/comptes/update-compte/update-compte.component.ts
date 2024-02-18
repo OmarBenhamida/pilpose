@@ -35,7 +35,7 @@ export class UpdateCompteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('++++++s++++++', this.CompteToAlter);
+   
     this.CompteForm = this.formBuilder.group({
       idCollaborateur: new UntypedFormControl(this.CompteToAlter.idChantier),
       nom: new UntypedFormControl(this.CompteToAlter.nom, Validators.required),

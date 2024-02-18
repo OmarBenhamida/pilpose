@@ -94,11 +94,10 @@ export class AddTacheComponent implements OnInit {
     this.tacheService
       .getAllCp()
       .then((res: Collaborateur[]) => {
-        console.log(res);
+    
 
         for (let compte of res) {
-          console.log(compte);
-
+       
           this.salaries.push({
             idCollaborateur: compte.idCollaborateur,
             nom: compte.nom,
@@ -160,7 +159,7 @@ export class AddTacheComponent implements OnInit {
 
     this.selectedSalaries.push(idSalarie);
 
-    console.log('liste salaries :' + this.selectedSalaries);
+    
 
     this.addTacheService
       .addOrUpdateTache(tache)

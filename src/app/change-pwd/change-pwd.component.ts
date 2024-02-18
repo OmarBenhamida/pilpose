@@ -71,12 +71,12 @@ export class ChangePwdComponent implements OnInit {
       JSON.stringify(this.PasswordValidatorArr)
     );
 
-    console.log(this.PasswordValidatorArr);
+  
 
     this.maj = this.PasswordValidatorArr.filter(
       (v) => v.code === 'MAJ'
     )[0]?.valeur;
-    console.log(this.maj);
+  
     this.chifre = this.PasswordValidatorArr.filter(
       (v) => v.code === 'C'
     )[0]?.valeur;
@@ -150,7 +150,7 @@ export class ChangePwdComponent implements OnInit {
           this.translate.instant("Fermer")
         );
 
-        console.log(res);
+      
         
         this.dialogRef.close(res);
       },
@@ -211,7 +211,7 @@ export class ChangePwdComponent implements OnInit {
     let passVal: any[] = JSON.parse(localStorage.getItem('passworVal'));
     var thenum = c.value.toString().replace(/\D/g, '')
     passVal = passVal?.filter((v) => v.code === 'C');
-    console.log(thenum);
+ 
 
     if (thenum.length >= passVal[0]?.valeur) {
       return null;

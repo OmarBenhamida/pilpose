@@ -20,6 +20,12 @@ export class FeuilleTemps {
     public nomCompletClient?: String,
     public statut?: String,
     public ville?: String,
-    public idChantier?: Chantier
+    public idChantier?: Chantier,
+    public validationChefEquipe?: boolean,
+    public validationResponsableTravaux?: boolean,
+    public validationGerant?: boolean,
+    public validationResponsableAdministratif?: boolean,
+    public metier?: String,
+    public indemnite?: String,
   ) {}
 }

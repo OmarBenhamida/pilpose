@@ -58,7 +58,7 @@ export class AffectationComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-          console.log(model);
+         
           
            this.affectationService.deleteAffecattion(model.idAffectation).then(res => {
             this.getModelTableStructur();
@@ -74,7 +74,7 @@ export class AffectationComponent implements OnInit {
     this.affectationService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        console.log('res' + res);
+      
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
@@ -86,8 +86,7 @@ export class AffectationComponent implements OnInit {
           Constants.EXCEL_CSV
         );
 
-        console.log('excel : ' + res.pilposeXsl);
-        console.log('csv : ' + res.pilposeCsv);
+  
 
         saveAs(blobExcel, 'AFFECTATION_EXCEL' + '.xlsx');
 
@@ -107,7 +106,7 @@ export class AffectationComponent implements OnInit {
       .then((res) => {
         let affectatios: any[] = [];
 
-        console.table(res);
+        
         for (let code of res) {
           affectatios.push({
             idAffectation: code.idAffectation,
@@ -123,7 +122,7 @@ export class AffectationComponent implements OnInit {
             commantaire: code.idTache.commantaire,
           });
         }
-        console.log(affectatios);
+        
         
         this.dataSource.data = affectatios;
         this.size = this.dataSource.data.length;

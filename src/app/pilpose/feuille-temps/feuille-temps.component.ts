@@ -10,7 +10,9 @@ import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component'
 import { AddFeuilletempsService } from './add-feuille/add-feuilletemps.service';
 import { FeuilleTempsService } from './feuille-temps.service';
 import { UpdateFeuileComponent } from './update-feuile/update-feuile.component';
-
+import * as saveAs from 'file-saver';
+import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
+import { Utils } from 'src/app/shared/utils/utils';
 @Component({
   selector: 'app-feuille-temps',
   templateUrl: './feuille-temps.component.html',
@@ -61,7 +63,7 @@ export class FeuilleTempsComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-          console.log(data);
+         
 
           this.feuilleService
             .deleteTache(model.idFeuilleTemps)
@@ -120,13 +122,45 @@ export class FeuilleTempsComponent implements OnInit {
     this.getModelData();
   }
 
+  exportData() {
+    this.feuilleService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
+        
+
+        var blobExcel = Utils.contentToBlob(
+          res.pilposeXsl,
+          Constants.EXCEL_XLS
+        );
+
+        saveAs(blobExcel, 'FEUILLE_TEMPS_EXCEL' + '.xlsx');
+      })
+      .catch((err) => {});
+  }
+
+  exportDataCsv() {
+    this.feuilleService
+      .exportFile()
+      .then((res: PilposeLoaderResponseDto) => {
+       
+
+        var blobChantierCsv = Utils.contentToBlob(
+          res.pilposeCsv,
+          Constants.EXCEL_CSV
+        );
+
+        saveAs(blobChantierCsv, 'FEUILLE_TEMPS_CSV' + '.csv');
+      })
+      .catch((err) => {});
+  }
+
   getModelData() {
     this.feuilleService
       .getAllFeuille()
       .then((res) => {
         let feuilles: FeuilleTemps[] = [];
 
-        console.table(res);
+        
         for (let code of res) {
           feuilles.push({
             idFeuilleTemps: code.idFeuilleTemps,
@@ -147,6 +181,13 @@ export class FeuilleTempsComponent implements OnInit {
             nomCompletSalarie: code.nomCompletSalarie,
             statut : code.statut,
             ville: code.ville,
+            metier : code.metier,
+            indemnite : code.indemnite,
+            validationChefEquipe: code.validationChefEquipe,
+            validationResponsableTravaux: code.validationResponsableTravaux,
+            validationGerant: code.validationGerant,
+            validationResponsableAdministratif:
+              code.validationResponsableAdministratif,
           });
         }
         this.dataSource.data = feuilles;

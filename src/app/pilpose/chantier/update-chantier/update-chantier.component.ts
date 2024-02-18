@@ -11,8 +11,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Chantier } from 'src/app/model/chantier.model';
 import { Client } from 'src/app/model/client.model';
+import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { Localisation } from 'src/app/model/localisation.model';
 import { Constants } from 'src/app/Shared/utils/constants';
+import { CompteService } from '../../comptes/compte.service';
 import { ClientService } from '../../mes-clients/client.service';
 import { AddChantierService } from '../add-chantier/addChantier.service';
 import { ChantierService } from '../chantier.service';
@@ -31,6 +33,9 @@ export class UpdateChantierComponent implements OnInit {
   clients: Client[] = [];
   clientDto: Client;
 
+  salarie: Collaborateur;
+  salariesRt: Collaborateur[] = [];
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router,
@@ -39,6 +44,7 @@ export class UpdateChantierComponent implements OnInit {
     private clientService: ClientService,
     private villeChantierService: ChantierService,
     public toastr: ToastrService,
+    private compteService: CompteService,
     public translate: TranslateService,
     public formBuilder: UntypedFormBuilder
   ) {
@@ -48,7 +54,10 @@ export class UpdateChantierComponent implements OnInit {
   ngOnInit(): void {
     this.getAllLocalisation();
     this.getAllClient();
-    console.log('++++++s++++++', this.ChantierToAlter);
+
+    this.getAllCollabRt();
+
+   
     this.ChantierForm = this.formBuilder.group({
       idChantier: new UntypedFormControl(this.ChantierToAlter.idChantier),
       reference: new UntypedFormControl(
@@ -56,7 +65,7 @@ export class UpdateChantierComponent implements OnInit {
         Validators.required
       ),
       clientDto: new UntypedFormControl(
-        this.ChantierToAlter.clientDto.idClient,
+        this.ChantierToAlter.clientDto.idCollaborateur,
         Validators.required
       ),
       etat: new UntypedFormControl(
@@ -79,7 +88,7 @@ export class UpdateChantierComponent implements OnInit {
     this.clientService
       .getAllClient()
       .then((res) => {
-        console.table(res);
+        
         for (let code of res) {
           this.clients.push({
             idClient: code.idClient,
@@ -93,11 +102,40 @@ export class UpdateChantierComponent implements OnInit {
       .catch((err) => {});
   }
 
+  
+  getAllCollabRt() {
+    this.compteService
+      .getAllRt()
+      .then((res: Collaborateur[]) => {
+   
+
+        for (let compte of res) {
+         
+
+          this.salariesRt.push({
+            idCollaborateur: compte.idCollaborateur,
+            nom: compte.nom,
+            prenom: compte.prenom,
+            fonction: compte.fonction,
+            dateEmbauche: compte.dateEmbauche,
+            email: compte.email,
+            dateNaissance: compte.dateNaissance,
+            adresse: compte.adresse,
+            telephone: compte.telephone,
+            username: compte.username,
+            password: compte.password,
+            role: compte.role,
+          });
+        }
+      })
+      .catch((err) => {});
+  }
+
   getAllLocalisation() {
     this.villeChantierService
       .getAllVille()
       .then((res) => {
-        console.table(res);
+       
         for (let code of res) {
           this.localisations.push({
             idLocalisation: code.idLocalisation,
@@ -137,13 +175,13 @@ export class UpdateChantierComponent implements OnInit {
     };
     chantier.localisationDto = ville;
 
-    let client: Client = {
-      idClient: idClientDto,
+    let client: Collaborateur = {
+      idCollaborateur: idClientDto,
     };
     chantier.clientDto = client;
 
     this.router.navigate(['pilpose/chantier']);
-    console.log('log to alter ', chantier);
+    
 
     this.sendDataToUpdate(chantier);
   }

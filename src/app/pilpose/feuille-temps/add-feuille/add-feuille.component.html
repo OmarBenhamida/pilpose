@@ -78,7 +78,7 @@
               <div class="col_half">
                 <label>Véhicule :</label>
                 <div class="input_field">
-                  <span><i aria-hidden="true" class="fa fa-clock"></i></span>
+                  <span><i aria-hidden="true" class="fa fa-car"></i></span>
 
                   <select formControlName="vehicule">
                     <option>-- Véhicule</option>
@@ -98,7 +98,7 @@
                   </select>
                 </div>
               </div>
-   
+
               <div class="col_half">
                 <label>Commune de:</label>
                 <div class="input_field">
@@ -116,21 +116,34 @@
               <div class="col_half">
                 <label>Commentaire:</label>
                 <div class="input_field">
-            
-          
-                  <textarea matInput formControlName="commentaire" rows="2" cols="78"  placeholder="Saisissez votre commantaire"></textarea>
+                  <textarea
+                    matInput
+                    formControlName="commentaire"
+                    rows="2"
+                    cols="78"
+                    placeholder="Saisissez votre commantaire"
+                  ></textarea>
                 </div>
               </div>
 
-              <div class="col_half">
+              <div
+                class="col_half"
+                [hidden]="
+                  FeuilleForm.get('vehicule').value ===
+                    'Je rejoins une camionnette au dépôt' ||
+                  FeuilleForm.get('vehicule').value ===
+                    'Je rejoins une camionnette dans la commune de :'
+                "
+              >
                 <label>Kilométrage:</label>
                 <div class="input_field">
-                  <span><i aria-hidden="true" class="fa fa-pen"></i></span>
+                  <span><i aria-hidden="true" class="fa fa-flag"></i></span>
                   <input
                     matInput
                     type="text"
                     formControlName="km"
                     placeholder="Kilométrage"
+                    
                   />
                 </div>
               </div>
@@ -161,6 +174,41 @@
                     >
                       {{ item.nom }}&nbsp;{{ item.prenom }}
                     </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Indimnité:</label>
+                <div class="input_field">
+                  <span><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="indemnite"
+                    placeholder="Indemnité"
+                   
+                  />
+                </div>
+              </div>
+
+              <div class="col_half">
+                <label>Métier :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-cubes"></i></span>
+
+                  <select formControlName="metier">
+                    <option>-- Métiers</option>       
+                    <option value="Chauffage / sanitaire">Chauffage / sanitaire</option>
+                    <option value="Climatisation">Climatisation</option>
+                    <option value="Électricité">Électricité</option>
+                    <option value="Menuiserie intérieure">Menuiserie intérieure</option>
+                    <option value="Platerie">Platerie</option>
+                    <option value="Autre">Autre</option>
+
+
                   </select>
                 </div>
               </div>

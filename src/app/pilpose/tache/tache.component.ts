@@ -97,7 +97,7 @@ export class TacheComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-          console.log(data);
+        
 
           this.tacheService
             .deleteTache(model.idTache)
@@ -114,7 +114,7 @@ export class TacheComponent implements OnInit {
     this.tacheService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        console.log('res' + res);
+        
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
@@ -220,7 +220,7 @@ export class TacheComponent implements OnInit {
       .then((res) => {
         let taches: Tache[] = [];
 
-        console.table(res);
+       
         for (let code of res) {
           taches.push({
             idTache: code.idTache,

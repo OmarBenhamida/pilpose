@@ -62,6 +62,9 @@ export class AddFeuilleComponent implements OnInit {
       chantier: new UntypedFormControl('', Validators.required),
       idCollaborateur: new UntypedFormControl('', Validators.required),
       responsable: new UntypedFormControl('', Validators.required),
+      metier: new UntypedFormControl('', Validators.required),
+      indemnite: new UntypedFormControl('', Validators.required),
+
     });
   }
 
@@ -93,10 +96,10 @@ export class AddFeuilleComponent implements OnInit {
     this.tacheService
       .getAllCp()
       .then((res: Collaborateur[]) => {
-        console.log(res);
+       
 
         for (let compte of res) {
-          console.log(compte);
+         
 
           this.salariesCp.push({
             idCollaborateur: compte.idCollaborateur,
@@ -143,6 +146,8 @@ export class AddFeuilleComponent implements OnInit {
     let idChantier: number = this.FeuilleForm.get('chantier').value;
     let idSalarie: number = this.FeuilleForm.get('idCollaborateur').value;
     let idResponsable: number = this.FeuilleForm.get('responsable').value;
+   let  indemnite :String = this.FeuilleForm.get('indemnite').value;
+    let metier :  String = this.FeuilleForm.get('metier').value;
 
     let feuille = new FeuilleTemps();
     feuille.idFeuilleTemps = null;
@@ -163,6 +168,8 @@ export class AddFeuilleComponent implements OnInit {
     feuille.ville = null;
     feuille.reference =null;
     feuille.statut = null;
+    feuille.metier = metier;
+    feuille.indemnite = indemnite;
 
     this.addFeuilleService
       .addOrUpdateFeuille(feuille)

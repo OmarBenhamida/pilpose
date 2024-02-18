@@ -23,7 +23,7 @@
               <div class="input_field">
                 <span><i aria-hidden="true" class="fa fa-user"></i></span>
                 <select formControlName="clientDto" required>
-                  <option *ngFor="let item of clients" [value]="item.idClient">
+                  <option *ngFor="let item of salariesRt" [value]="item.idCollaborateur">
                     {{ item.nom }}&nbsp;{{ item.prenom }}
                   </option>
                 </select>

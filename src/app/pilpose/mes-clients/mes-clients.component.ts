@@ -50,7 +50,7 @@ export class MesClientsComponent implements OnInit {
       .then((res) => {
         let clients: Client[] = [];
 
-        console.table(res);
+       
         for (let code of res) {
           clients.push({
             idClient: code.idClient,
@@ -60,7 +60,7 @@ export class MesClientsComponent implements OnInit {
             telephone: code.telephone,
           });
         }
-        console.table(clients);
+        
         this.dataSource.data = clients;
         this.size = this.dataSource.data.length;
       })

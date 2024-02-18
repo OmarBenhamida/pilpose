@@ -56,7 +56,7 @@ ref:string;
     this.ref =  this.NoteFormToAlter.reference;
     this.getAllCollab();
     this.getAllChantier();
-    console.log('++++++s++++++', this.NoteFormToAlter);
+ 
     this.NoteForm = this.formBuilder.group({
       idNoteFrais: new UntypedFormControl(this.NoteFormToAlter.idNoteFrais),
       reference: new UntypedFormControl(this.NoteFormToAlter.reference),
@@ -88,7 +88,7 @@ ref:string;
       .getAllComptes()
       .then((res: any[]) => {
         for (let compte of res) {
-          console.log(compte);
+          
 
           this.comptes.push({
             idCollaborateur: compte.idCollaborateur,
@@ -157,7 +157,7 @@ ref:string;
     //note.idChantier = chantier;
     this.onUpload(this.idNote);
     this.router.navigate(['pilpose/note']);
-    console.log('log to alter ', note);
+   
 
     this.sendDataToUpdate(note);
   }

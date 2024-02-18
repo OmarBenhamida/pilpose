@@ -18,6 +18,8 @@ export const urlsConstantslocalisation = {
 export const urlsConstantsCompte = {
   urlCompte: '/collaborateur/v0/',
   urlExport: '/collaborateur/v0/export',
+  urlColaborateurCp: '/collaborateur/v0/cp',
+  urlColaborateurRt: '/collaborateur/v0/rt',
 };
 
 export const urlsConstantsTache = {

@@ -25,7 +25,7 @@ export class UpdateFeuileComponent implements OnInit {
   salariesCp: Collaborateur[] = [];
   listChantiers: Chantier[] = [];
   idChantier: Chantier;
-
+  fonctionUserConnected: String;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router,
@@ -47,7 +47,7 @@ export class UpdateFeuileComponent implements OnInit {
     this.getAllChantiers();
     this.getAllCollabCp();
     this.getAllCollab();
-
+    this.fonctionUserConnected = localStorage.getItem('fonction');
     this.FeuilleForm = this.formBuilder.group({
       idFeuilleTemps: new UntypedFormControl(this.FeuilleToAlter.idFeuilleTemps),
       reference: new UntypedFormControl(this.FeuilleToAlter.reference),
@@ -62,7 +62,27 @@ export class UpdateFeuileComponent implements OnInit {
       responsable: new UntypedFormControl(this.FeuilleToAlter.responsable.idCollaborateur,Validators.required ),
       idCollaborateur: new UntypedFormControl(this.FeuilleToAlter.idCollaborateur.idCollaborateur,Validators.required ),
       statut: new UntypedFormControl(this.FeuilleToAlter.statut,Validators.required ),
+      metier: new UntypedFormControl(this.FeuilleToAlter.metier,Validators.required ),
+      indemnite: new UntypedFormControl(this.FeuilleToAlter.indemnite,Validators.required ),
+      validationChefEquipe: new UntypedFormControl(
+        this.FeuilleToAlter.validationChefEquipe,
+        Validators.required
+      ),
 
+      validationResponsableTravaux: new UntypedFormControl(
+        this.FeuilleToAlter.validationResponsableTravaux,
+        Validators.required
+      ),
+
+      validationGerant: new UntypedFormControl(
+        this.FeuilleToAlter.validationGerant,
+        Validators.required
+      ),
+
+      validationResponsableAdministratif: new UntypedFormControl(
+        this.FeuilleToAlter.validationResponsableAdministratif,
+        Validators.required
+      ),
 
    
     });
@@ -147,6 +167,36 @@ export class UpdateFeuileComponent implements OnInit {
     this.dialogRef.close();
   }
 
+
+  isCE(): boolean {
+    return this.fonctionUserConnected === "Chef d'equipe";
+  }
+
+  isGerant(): boolean {
+    return (
+      this.fonctionUserConnected === 'Gérant' &&
+      this.FeuilleToAlter.validationChefEquipe &&
+      this.FeuilleToAlter.validationResponsableTravaux
+    );
+  }
+
+  isRT(): boolean {
+    return (
+      this.fonctionUserConnected === 'Responsable de travaux' &&
+      this.FeuilleToAlter.validationChefEquipe
+    );
+  }
+
+  isRA(): boolean {
+    return (
+      this.fonctionUserConnected === 'Responsable administratif' &&
+      this.FeuilleToAlter.validationChefEquipe &&
+      this.FeuilleToAlter.validationResponsableTravaux &&
+      this.FeuilleToAlter.validationGerant
+    );
+  }
+
+
   onSubmit() {
    
 
@@ -161,6 +211,18 @@ export class UpdateFeuileComponent implements OnInit {
     let idSalarie: number = this.FeuilleForm.get('idCollaborateur').value;
     let idResponsable: number = this.FeuilleForm.get('responsable').value;
     let statut: String = this.FeuilleForm.get('statut').value;
+
+    let indemnite: String = this.FeuilleForm.get('indemnite').value;
+    let metier: String = this.FeuilleForm.get('metier').value;
+
+    let validationChefEquipe = this.FeuilleForm.get('validationChefEquipe').value;
+    let validationResponsableTravaux = this.FeuilleForm.get(
+      'validationResponsableTravaux'
+    ).value;
+    let validationGerant = this.FeuilleForm.get('validationGerant').value;
+    let validationResponsableAdministratif = this.FeuilleForm.get(
+      'validationResponsableAdministratif'
+    ).value;
 
     let feuille = new FeuilleTemps();
 
@@ -182,7 +244,14 @@ export class UpdateFeuileComponent implements OnInit {
     feuille.nomCompletSalarie = null;
     feuille.nomCompletSalarie = null;
     feuille.ville = null;
- 
+    feuille.validationChefEquipe = validationChefEquipe;
+    feuille.validationResponsableTravaux = validationResponsableTravaux;
+    feuille.validationGerant = validationGerant;
+    feuille.validationResponsableAdministratif =
+      validationResponsableAdministratif;
+
+    feuille.indemnite= indemnite;
+    feuille.metier= metier;
 
 
     this.router.navigate(['pilpose/feuilles']);

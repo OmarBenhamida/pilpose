@@ -29,7 +29,7 @@ export class AddCongeService {
 
     addOrUpdateConge(conger : Conge): Promise<any> {
       
-      console.log("conger: ", conger);
+     
       
       return this.http
         .postObject<any>(

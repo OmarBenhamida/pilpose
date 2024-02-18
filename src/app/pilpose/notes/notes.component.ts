@@ -157,7 +157,7 @@ export class NotesComponent implements OnInit {
       .then((res) => {
         let notes: any[] = [];
 
-        console.table(res);
+       
         for (let code of res) {
           notes.push({
             idNoteFrais: code.idNoteFrais,

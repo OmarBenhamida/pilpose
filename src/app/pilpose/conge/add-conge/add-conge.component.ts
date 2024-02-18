@@ -52,10 +52,10 @@ export class AddCongeComponent implements OnInit {
     this.compteService
       .getAllComptes()
       .then((res: Collaborateur[]) => {
-        console.log(res);
+    
 
         for (let compte of res) {
-          console.log(compte);
+     
 
           this.salaries.push({
             idCollaborateur: compte.idCollaborateur,

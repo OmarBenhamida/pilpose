@@ -56,7 +56,7 @@ export class TempsComponent implements OnInit {
       .then((res) => {
         let chanrtiersRecap: ChantierRecap[] = [];
 
-        console.table(res);
+      
         for (let code of res) {
           chanrtiersRecap.push({
             reference: code.idChantier.reference,
@@ -79,7 +79,7 @@ export class TempsComponent implements OnInit {
       .then((res) => {
         let salariessRecap: CollaborateurRecap[] = [];
 
-        console.table(res);
+        
         for (let code of res) {
           salariessRecap.push({
             totalHeuresTravaille: code.totalHeuresTravaille,

@@ -10,8 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Chantier } from 'src/app/model/chantier.model';
 import { Client } from 'src/app/model/client.model';
+import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { Localisation } from 'src/app/model/localisation.model';
 import { Constants } from 'src/app/Shared/utils/constants';
+import { CompteService } from '../../comptes/compte.service';
 import { ClientService } from '../../mes-clients/client.service';
 import { ChantierService } from '../chantier.service';
 import { AddChantierService } from './addChantier.service';
@@ -27,6 +29,8 @@ export class AddChantierComponent implements OnInit {
 
   clients: Client[] = [];
   clientDto: Client;
+  salarie: Collaborateur;
+  salariesRt: Collaborateur[] = [];
 
   ChantierForm: UntypedFormGroup;
   constructor(
@@ -35,6 +39,7 @@ export class AddChantierComponent implements OnInit {
     private villeChantierService: ChantierService,
     private clientService: ClientService,
     public toast: ToastrService,
+    private compteService: CompteService,
     public translate: TranslateService,
     public formBuilder: UntypedFormBuilder
   ) {}
@@ -42,6 +47,7 @@ export class AddChantierComponent implements OnInit {
   ngOnInit(): void {
     this.getAllLocalisation();
     this.getAllClient();
+    this.getAllCollabRt();
 
     this.ChantierForm = this.formBuilder.group({
       idChantier: new UntypedFormControl(''),
@@ -50,16 +56,13 @@ export class AddChantierComponent implements OnInit {
       clientDto: new UntypedFormControl('', Validators.required),
       localisationDto: new UntypedFormControl('', Validators.required),
     });
-
-    console.table(this.localisations);
-    console.table(this.clients);
   }
 
   getAllLocalisation() {
     this.villeChantierService
       .getAllVille()
       .then((res) => {
-        console.table(res);
+       
         for (let code of res) {
           this.localisations.push({
             idLocalisation: code.idLocalisation,
@@ -74,7 +77,7 @@ export class AddChantierComponent implements OnInit {
     this.clientService
       .getAllClient()
       .then((res) => {
-        console.table(res);
+       
         for (let code of res) {
           this.clients.push({
             idClient: code.idClient,
@@ -82,6 +85,34 @@ export class AddChantierComponent implements OnInit {
             prenom: code.prenom,
             adresse: code.adresse,
             telephone: code.telephone,
+          });
+        }
+      })
+      .catch((err) => {});
+  }
+
+  getAllCollabRt() {
+    this.compteService
+      .getAllRt()
+      .then((res: Collaborateur[]) => {
+    
+
+        for (let compte of res) {
+         
+
+          this.salariesRt.push({
+            idCollaborateur: compte.idCollaborateur,
+            nom: compte.nom,
+            prenom: compte.prenom,
+            fonction: compte.fonction,
+            dateEmbauche: compte.dateEmbauche,
+            email: compte.email,
+            dateNaissance: compte.dateNaissance,
+            adresse: compte.adresse,
+            telephone: compte.telephone,
+            username: compte.username,
+            password: compte.password,
+            role: compte.role,
           });
         }
       })
@@ -108,15 +139,14 @@ export class AddChantierComponent implements OnInit {
       idLocalisation: idVille,
     };
 
-    let clientDto: Client = {
-      idClient: idClient,
+    let clientDto: Collaborateur = {
+      idCollaborateur: idClient,
     };
 
     chantier1.clientDto = clientDto;
 
     chantier1.localisationDto = ville;
-    console.log(chantier1);
-
+ 
     this.chantierService
       .addOrUpdateChantier(chantier1)
       .then((res) => {

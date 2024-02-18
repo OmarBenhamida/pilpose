@@ -38,6 +38,14 @@ export class CompteService {
     exportFile(): Promise<any> {
       return this.http.get(this.host + urlsConstantsCompte.urlExport).toPromise();
     }
+
+    getAllCp(): Promise<any> {
+      return this.http.get(this.host + urlsConstantsCompte.urlColaborateurCp).toPromise();
+    }
+
+    getAllRt(): Promise<any> {
+      return this.http.get(this.host + urlsConstantsCompte.urlColaborateurRt).toPromise();
+    }
   
   
 

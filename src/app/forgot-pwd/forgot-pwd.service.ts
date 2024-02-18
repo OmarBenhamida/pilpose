@@ -29,9 +29,7 @@ import { forgotPwdModel } from "./forgotPwd.model";
 
 
       forgotPwd(user: forgotPwdModel) {
-     console.log("dddddddd");
-     console.log(user);
-     
+
      
        return this.httpClient
        .postObject<any>(

@@ -1,9 +1,52 @@
 <style>
     .control-section{
-        margin-top: 100px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        margin-right: 10px;
+        size: 1000px;
     }
     
     </style>
+
+<div class="control-section">
+  <div class="drag-sample-wrapper">
+    <div class="schedule-container">
+      <ejs-schedule #scheduleObj cssClass='schedule-block-events' width='100%' height='650px' [group]="group"
+        [currentView]="currentView" [selectedDate]="selectedDate" [eventSettings]="eventSettings">
+        <e-resources>
+          <e-resource field='EmployeeId' title='Employees' name='Employee' [dataSource]='employeeDataSource'
+            [allowMultiple]='allowMultiple' textField='Text' idField='Id' groupIDField="GroupId" colorField='Color'>
+          </e-resource>
+        </e-resources>
+        <ng-template #resourceHeaderTemplate let-data>
+          <div class="template-wrap">
+            <div class="employee-category">
+              <div>
+               <!-- <img src="./assets/schedule/images/{{getEmployeeImageName(data)}}.png" class="employee-image" />-->
+              </div>
+              <div class="employee-name">{{getEmployeeName(data)}}</div>
+              <div class="employee-name" style="color: red;" *ngIf="getEmployeeFunction(data)===roleChef"> {{getEmployeeFunction(data)}}</div>
+              <div class="employee-designation">{{getEmployeeDesignation(data)}}</div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #eventSettingsTemplate let-data>
+          <div class='template-wrap'>
+            <div class="subject">{{data.Subject}}</div>
+          </div>
+        </ng-template>
+        <e-views>
+          <e-view option="Day"></e-view>
+          <e-view option="TimelineDay"></e-view>
+          <e-view option="TimelineMonth"></e-view>
+        </e-views>
+      </ejs-schedule>
+    </div>
+  </div>
+</div>
+
+
+    <!--
     <div class="control-section">
       <div class="drag-sample-wrapper">
         <div class="schedule-container">
@@ -20,7 +63,7 @@
 
                 <div class="employee-category">
                   <div>
-                   <!-- <img src="https://ej2.syncfusion.com/angular/demos/assets/schedule/images/{{getEmployeeImageName(data)}}.png" class="employee-image" />-->
+                   <img src="https://ej2.syncfusion.com/angular/demos/assets/schedule/images/{{getEmployeeImageName(data)}}.png" class="employee-image" />
                   </div>
                   <div class="employee-name">{{getEmployeeName(data)}}  </div>
                   <div class="employee-name" style="color: red;" *ngIf="getEmployeeFunction(data)===roleChef"> {{getEmployeeFunction(data)}}</div>
@@ -43,4 +86,4 @@
       </div>
     </div>
     
-    
+  -->

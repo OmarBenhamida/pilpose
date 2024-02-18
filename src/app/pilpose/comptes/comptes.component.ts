@@ -52,10 +52,10 @@ export class ComptesComponent implements OnInit {
       .getAllComptes()
       .then((res: Collaborateur[]) => {
         let comptes: Collaborateur[] = [];
-        console.log(res);
+      
 
         for (let compte of res) {
-          console.log(compte);
+        
 
           comptes.push({
             idCollaborateur: compte.idCollaborateur,
@@ -72,7 +72,7 @@ export class ComptesComponent implements OnInit {
             role: compte.role,
           });
         }
-        console.table(comptes);
+        
 
         this.dataSource.data = comptes;
         this.size = this.dataSource.data.length;
@@ -171,7 +171,7 @@ export class ComptesComponent implements OnInit {
     this.compteService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        console.log('res' + res);
+       
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,

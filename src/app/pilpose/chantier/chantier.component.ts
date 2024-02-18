@@ -52,7 +52,7 @@ export class ChantierComponent implements OnInit {
       .then((res) => {
         let chantiers: Chantier[] = [];
 
-        console.table(res);
+       
         for (let code of res) {
           chantiers.push({
             idChantier: code.idChantier,
@@ -146,7 +146,7 @@ export class ChantierComponent implements OnInit {
     this.chantierService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        console.log('res' + res);
+       
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
@@ -162,7 +162,7 @@ export class ChantierComponent implements OnInit {
     this.chantierService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        console.log('res' + res);
+      
 
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,

@@ -129,7 +129,7 @@ export class CongeComponent implements OnInit {
   openAlterModelPopup(model: any) {
     const dialogRef = this.dialog.open(UpdateCongeComponent, {
       width: '60vw',
-      height: '70vh',
+      height: '80vh',
       data: {
         conge: model,
       },
@@ -148,7 +148,7 @@ export class CongeComponent implements OnInit {
         conge.statut = data.statut;
         conge.reference = data.reference;
         conge.typeConge = data.typeConge;
-
+        conge.commantaire = data.commantaire;
         conge.validationChefEquipe = data.validationChefEquipe;
         conge.validationResponsableTravaux = data.validationResponsableTravaux;
         conge.validationGerant = data.validationGerant;
@@ -194,7 +194,7 @@ export class CongeComponent implements OnInit {
       .then((res) => {
         let conges: any[] = [];
 
-        console.table(res);
+       
         for (let code of res) {
           conges.push({
             idConge: code.idConge,
@@ -204,6 +204,7 @@ export class CongeComponent implements OnInit {
             dateFin: code.dateFin,
             dateDepot: code.dateDepot,
             heureDebut: code.heureDebut,
+            commantaire : code.commantaire,
             heureFin: code.heureFin,
             typeConge: code.typeConge,
             nomCompletEmploye: code.nomCompletEmploye,
