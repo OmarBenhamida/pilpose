@@ -172,16 +172,13 @@
             
             <div class="row clearfix">
               <div class="col_half">
-                <label>Indimnité:</label>
+                <label>Indimnité :</label>
+    
                 <div class="input_field">
-                  <span><i class="fa fa-credit-card" aria-hidden="true"></i></span>
-                  <input
-                    matInput
-                    type="text"
-                    formControlName="indemnite"
-                    placeholder="Indemnité"
+                  <section class="example-section">
+                    <mat-checkbox formControlName="indemnite" class="example-margin">Indimnité</mat-checkbox>
                    
-                  />
+                  </section>
                 </div>
               </div>
 
@@ -229,7 +226,7 @@
                     <mat-checkbox *ngIf="isCE()"  formControlName="validationChefEquipe" class="example-margin">Validation chef d'équipe</mat-checkbox>
                     <mat-checkbox *ngIf="isGerant()"  formControlName="validationGerant" class="example-margin">Validation gérant</mat-checkbox>
                     <mat-checkbox *ngIf="isRT()"  formControlName="validationResponsableTravaux" class="example-margin">Validation responsable de travaux</mat-checkbox>
-                    <mat-checkbox *ngIf="isRA()"  formControlName="validationResponsableAdministratif" class="example-margin">Validation responsable de administratif</mat-checkbox>
+                    <mat-checkbox *ngIf="isRA()"  formControlName="validationResponsableAdministratif" class="example-margin">Validation responsable administratif</mat-checkbox>
                   
                   </section>
                 </div>

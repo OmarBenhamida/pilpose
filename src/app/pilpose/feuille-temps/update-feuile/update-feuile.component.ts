@@ -212,7 +212,7 @@ export class UpdateFeuileComponent implements OnInit {
     let idResponsable: number = this.FeuilleForm.get('responsable').value;
     let statut: String = this.FeuilleForm.get('statut').value;
 
-    let indemnite: String = this.FeuilleForm.get('indemnite').value;
+    let indemnite: boolean = this.FeuilleForm.get('indemnite').value;
     let metier: String = this.FeuilleForm.get('metier').value;
 
     let validationChefEquipe = this.FeuilleForm.get('validationChefEquipe').value;

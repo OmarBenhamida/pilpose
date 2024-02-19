@@ -146,7 +146,7 @@ export class AddFeuilleComponent implements OnInit {
     let idChantier: number = this.FeuilleForm.get('chantier').value;
     let idSalarie: number = this.FeuilleForm.get('idCollaborateur').value;
     let idResponsable: number = this.FeuilleForm.get('responsable').value;
-   let  indemnite :String = this.FeuilleForm.get('indemnite').value;
+   let  indemnite :boolean = this.FeuilleForm.get('indemnite').value;
     let metier :  String = this.FeuilleForm.get('metier').value;
 
     let feuille = new FeuilleTemps();
