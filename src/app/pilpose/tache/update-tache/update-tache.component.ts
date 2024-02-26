@@ -54,8 +54,6 @@ export class UpdateTacheComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-
     this.getAllSalarieConcerne(this.TacheToAlter.idTache);
 
     this.getAllChantiers();
@@ -69,6 +67,11 @@ export class UpdateTacheComponent implements OnInit {
         this.TacheToAlter.libelle,
         Validators.required
       ),
+      typeTravaux: new UntypedFormControl(
+        this.TacheToAlter.typeTravaux,
+        Validators.required
+      ),
+
       dateDebut: new UntypedFormControl(
         this.TacheToAlter.dateDebut,
         Validators.required
@@ -149,7 +152,6 @@ export class UpdateTacheComponent implements OnInit {
           this.salariesConcerne.push(collaborateur);
           this.idsCollab.push(compte.idCollaborateur);
         }
-
       })
       .catch((err) => {});
   }
@@ -209,6 +211,7 @@ export class UpdateTacheComponent implements OnInit {
     let tache;
 
     let libelle: String = this.TacheForm.get('intitule').value;
+    let typeTravaux: String = this.TacheForm.get('typeTravaux').value;
     let dateDebut: String = this.TacheForm.get('dateDebut').value;
     let dateFin: String = this.TacheForm.get('dateFin').value;
     let heureDebut: String = this.TacheForm.get('heureDebut').value;
@@ -230,8 +233,7 @@ export class UpdateTacheComponent implements OnInit {
     tache.responsable = new Collaborateur(idSalarie);
     tache.nomCompletResponsable = null;
     tache.nomCompletChantier = null;
-
-   
+    tache.typeTravaux = typeTravaux;
 
     this.router.navigate(['pilpose/tache']);
 

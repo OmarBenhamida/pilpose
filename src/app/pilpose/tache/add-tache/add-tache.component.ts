@@ -56,6 +56,7 @@ export class AddTacheComponent implements OnInit {
     this.TacheForm = this.formBuilder.group({
       idTache: new UntypedFormControl(''),
       intitule: new UntypedFormControl('', Validators.required),
+      typeTravaux: new UntypedFormControl('', Validators.required),
       dateDebut: new UntypedFormControl('', Validators.required),
       dateFin: new UntypedFormControl('', Validators.required),
       heureDebut: new UntypedFormControl('', Validators.required),
@@ -141,10 +142,10 @@ export class AddTacheComponent implements OnInit {
     let commantaire: String = this.TacheForm.get('commentaire').value;
     let idChantier: number = this.TacheForm.get('chantier').value;
     let idSalarie: number = this.TacheForm.get('idCollaborateur').value;
-
+    let typeTravaux: String = this.TacheForm.get('typeTravaux').value;
     let tache = new Tache();
     tache.idTache = null;
-
+    tache.typeTravaux = typeTravaux;
     tache.libelle = libelle;
     tache.dateDebut = dateDebut;
     tache.dateFin = dateFin;

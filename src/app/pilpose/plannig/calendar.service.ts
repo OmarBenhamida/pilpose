@@ -9,13 +9,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CalendarService {
-  urlAffectation: string = '/planning/v0/';
+  urlAffectation: string = '/planning/v0';
 
   constructor(private http: HttpClient) { }
 
   getList() {
-   const user  : number = Number(localStorage.getItem('idUser'));
-    return this.http.get<PlanningDto[]>(environment.pilposeHost + this.urlAffectation+user);
+   //const user  : number = Number(localStorage.getItem('idUser'));
+    return this.http.get<PlanningDto[]>(environment.pilposeHost + this.urlAffectation);
   }
 
 /*  getList() {

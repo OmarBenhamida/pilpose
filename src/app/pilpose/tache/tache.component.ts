@@ -224,6 +224,7 @@ export class TacheComponent implements OnInit {
         for (let code of res) {
           taches.push({
             idTache: code.idTache,
+            typeTravaux: code.typeTravaux,
             libelle: code.libelle,
             dateDebut: code.dateDebut,
             dateFin: code.dateFin,

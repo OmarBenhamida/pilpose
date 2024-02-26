@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { extend } from '@syncfusion/ej2-base';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import {
   EventSettingsModel,
   View,
@@ -66,7 +66,7 @@ export class PlannigComponent {
   public eventSettings: EventSettingsModel = { dataSource: this.data };
 // Chef d'equipe
 
-  constructor() {
+  constructor(private router: Router,) {
     this.service
       .getList()
       .pipe(
@@ -103,7 +103,7 @@ export class PlannigComponent {
               Text: e.idCollaborateur.nom + " " + e.idCollaborateur.prenom,
               Id: e.idCollaborateur.idCollaborateur,
               GroupId: i + 1,
-              Color: e.idCollaborateur.fonction === this.roleChef ? 'red' : '#bbdc00',
+              Color: e.idTache.typeTache === "conge" ? 'bleu' :  e.idCollaborateur.fonction === this.roleChef ? 'red' : '#bbdc00',
               Designation: '',
               function: e.idCollaborateur.fonction,
             }));
@@ -124,6 +124,32 @@ export class PlannigComponent {
     ] as string;
   }
 
+  redirectAddTache() {
+    this.router.navigate(['pilpose/add-tache']);
+  }
+
+  public onPopupOpen(): void {
+    console.log("popup");
+   
+  }
+
+  public onCellClick(): void {
+    console.log("cellclick");
+  }
+
+  onActionComplete(args: any): void {
+    if (args.requestType === 'eventCreated' || args.requestType === 'eventChanged') {
+      const eventData = args.data[0]; // Assuming single event creation or change
+      // Now you can access properties of the eventData
+      console.log('Inserted/Updated Event Data:', eventData);
+      
+      // Example: Accessing subject of the event
+      const eventSubject = eventData.Subject;
+      console.log('Event Subject:', eventSubject);
+  
+      // Add your logic to handle the inserted/updated data here
+    }
+  }
 
   public getEmployeeFunction(value: ResourceDetails): string  {
     return (value as ResourceDetails).resourceData['function'] as string;

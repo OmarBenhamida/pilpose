@@ -94,7 +94,9 @@ export class Constants {
    */
 
   static TACHE_DISPLAY_COLUMNS: string[] = [
+   
     'libelle',
+    'typeTravaux',
     'dateDebut',
     'dateFin',
     'heureDebut',
@@ -108,6 +110,7 @@ export class Constants {
   ];
   static TACHE_DISPLAY_COLUMNS_NAME: string[] = [
     'Libellé',
+    'Type Travaux',
     'Date de début',
     'Date de fin',
     'Heure de debut',
