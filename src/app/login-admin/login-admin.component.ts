@@ -8,6 +8,7 @@ import { Constants } from './utils/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { ForgotPwdComponent } from '../forgot-pwd/forgot-pwd.component';
 import { UserModel } from './model/user.model';
+import { SnackBarNotifService } from '../service/snack-bar-notif.service';
 
 @Component({
   selector: 'app-login-admin',
@@ -31,6 +32,7 @@ export class LoginAdminComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private loginService: LoginAdminService,
+    private snackBarNotifService: SnackBarNotifService,
     private translate: TranslateService,
     public dialog: MatDialog
   ) {}
@@ -77,7 +79,7 @@ export class LoginAdminComponent implements OnInit {
         dateCreation: '',
       };
 
-      this.loginService.authUser(user).subscribe((res : any) => {
+      this.loginService.authUser(user).then((res) => {
        
         localStorage.setItem('nom',res.nom );
         localStorage.setItem('prenom',res.prenom );
@@ -88,7 +90,24 @@ export class LoginAdminComponent implements OnInit {
         this.router.navigate(['/modules']).then(() => {});
         this.show = true;
         localStorage.setItem('showwelcomemsg', '1');
+      }).catch((err) => {
+        if (err.status == 404) {
+          this.snackBarNotifService.openSnackBarFailure(
+            'Nom d utilisateur ou mot de passe incorect',
+
+            this.translate.instant('Fermer')
+          );
+        } else {
+          this.snackBarNotifService.openSnackBarFailure(
+            'Erreur lors de l authentification',
+
+            this.translate.instant('Fermer')
+          );
+        }
       });
+      
+      
+      ;
     }
   }
 

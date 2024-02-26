@@ -23,8 +23,6 @@ export class LoginAdminService {
    */
   private readonly host;
 
-
-
   /**
    *
    * @param http
@@ -36,11 +34,9 @@ export class LoginAdminService {
   constructor(
     private http: HttpClient,
     private hostService: HostService,
-  
+
     private router: Router,
-    private httpClient: HttpClientRequest,
-
-
+    private httpClient: HttpClientRequest
   ) {
     this.host = this.hostService.getPilposeHost;
   }
@@ -51,8 +47,13 @@ export class LoginAdminService {
    * @param username
    * @param password
    */
-  authUser(user: UserModel) {
-    return this.http.post(this.hostService.getPilposeHost() + authUrlsConstants.urlAuthentication, user );
+  authUser(user: UserModel): Promise<any> {
+    return this.http
+      .post(
+        this.hostService.getPilposeHost() + authUrlsConstants.urlAuthentication,
+        user
+      )
+      .toPromise();
   }
 
   isLogged() {
@@ -80,5 +81,4 @@ export class LoginAdminService {
   /**
    * initialize vars of token timeout
    */
-
 }
