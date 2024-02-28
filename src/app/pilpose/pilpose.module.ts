@@ -80,6 +80,7 @@ import { UpdateLocalisationComponent } from './localisation/update-localisation/
 
 
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

@@ -108,6 +108,7 @@ export class UpdateCongeComponent implements OnInit {
 
   isCE(): boolean {
     return this.fonctionUserConnected === "Chef d'equipe";
+  
   }
 
   isGerant(): boolean {

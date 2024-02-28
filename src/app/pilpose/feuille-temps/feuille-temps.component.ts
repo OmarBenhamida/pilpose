@@ -78,8 +78,8 @@ export class FeuilleTempsComponent implements OnInit {
 
   openAlterModelPopup(model: any) {
     const dialogRef = this.dialog.open(UpdateFeuileComponent, {
-      width: '100vw',
-      height: '90vh',
+      width: '105vw',
+      height: '95vh',
       data: {
         feuille: model,
       },

@@ -9,6 +9,7 @@ import { extend } from '@syncfusion/ej2-base';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import {
+  EventRenderedArgs,
   EventSettingsModel,
   View,
   GroupModel,
@@ -20,10 +21,17 @@ import {
   ResourceDetails,
   ScheduleComponent,
   ScheduleAllModule,
+  ActionEventArgs
 } from '@syncfusion/ej2-angular-schedule';
 import { CalendarService } from './calendar.service';
 import { map, tap } from 'rxjs';
 import { PlanningDto } from 'src/app/model/planning.model';
+import { CompteService } from '../comptes/compte.service';
+import { TacheService } from '../tache/tache.service';
+import { ChantierService } from '../chantier/chantier.service';
+import { Collaborateur } from 'src/app/model/collaborateur.model';
+import { FormControl, UntypedFormGroup } from '@angular/forms';
+import { Chantier } from 'src/app/model/chantier.model';
 
 @Component({
   selector: 'app-plannig',
@@ -40,12 +48,27 @@ import { PlanningDto } from 'src/app/model/planning.model';
 })
 export class PlannigComponent {
 
+  salaries: Collaborateur[] = [];
+  responsable: Collaborateur;
+
+  salariesAll = new FormControl();
+  salariesList: Collaborateur[] = [];
+  selectedSalaries : string[] = [];
+
+  TacheForm: UntypedFormGroup;
+  listChantiers: Chantier[] = [];
+
+
   roleChef : string="Chef d'equipe";
 
   @ViewChild('scheduleObj')
   public scheduleObj!: ScheduleComponent;
 
   readonly service = inject(CalendarService);
+
+  public startDate: Date;
+  public endDate: Date;
+  public showQuickInfo = false;
 
   public data: Record<string, any>[] = extend(
     [],
@@ -66,7 +89,8 @@ export class PlannigComponent {
   public eventSettings: EventSettingsModel = { dataSource: this.data };
 // Chef d'equipe
 
-  constructor(private router: Router,) {
+  constructor(private router: Router,
+    private compteService: CompteService,public tacheService: TacheService,private chantierService: ChantierService) {
     this.service
       .getList()
       .pipe(
@@ -128,27 +152,72 @@ export class PlannigComponent {
     this.router.navigate(['pilpose/add-tache']);
   }
 
-  public onPopupOpen(): void {
-    console.log("popup");
-   
+
+
+  getAllCollab() {
+    this.compteService
+      .getAllComptes()
+      .then((res: Collaborateur[]) => {
+        for (let compte of res) {
+          this.salariesList.push({
+            idCollaborateur: compte.idCollaborateur,
+            nom: compte.nom,
+            prenom: compte.prenom,
+            fonction: compte.fonction,
+            dateEmbauche: compte.dateEmbauche,
+            email: compte.email,
+            dateNaissance: compte.dateNaissance,
+            adresse: compte.adresse,
+            telephone: compte.telephone,
+            username: compte.username,
+            password: compte.password,
+            role: compte.role,
+          });
+        }
+      })
+      .catch((err) => {});
   }
 
-  public onCellClick(): void {
-    console.log("cellclick");
+  getAllCollabCp() {
+    this.tacheService
+      .getAllCp()
+      .then((res: Collaborateur[]) => {
+    
+
+        for (let compte of res) {
+       
+          this.salaries.push({
+            idCollaborateur: compte.idCollaborateur,
+            nom: compte.nom,
+            prenom: compte.prenom,
+            fonction: compte.fonction,
+            dateEmbauche: compte.dateEmbauche,
+            email: compte.email,
+            dateNaissance: compte.dateNaissance,
+            adresse: compte.adresse,
+            telephone: compte.telephone,
+            username: compte.username,
+            password: compte.password,
+            role: compte.role,
+          });
+        }
+      })
+      .catch((err) => {});
   }
 
-  onActionComplete(args: any): void {
-    if (args.requestType === 'eventCreated' || args.requestType === 'eventChanged') {
-      const eventData = args.data[0]; // Assuming single event creation or change
-      // Now you can access properties of the eventData
-      console.log('Inserted/Updated Event Data:', eventData);
-      
-      // Example: Accessing subject of the event
-      const eventSubject = eventData.Subject;
-      console.log('Event Subject:', eventSubject);
-  
-      // Add your logic to handle the inserted/updated data here
-    }
+  getAllChantier() {
+    this.chantierService
+      .getAllChantier()
+      .then((res) => {
+        for (let ref of res) {
+          this.listChantiers.push({
+            idChantier: ref.idChantier,
+            reference: ref.reference,
+            nomChantier: ref.nomChantier,
+          });
+        }
+      })
+      .catch((err) => {});
   }
 
   public getEmployeeFunction(value: ResourceDetails): string  {
@@ -165,4 +234,47 @@ export class PlannigComponent {
   public getEmployeeImageName(value: ResourceDetails): string {
     return this.getEmployeeName(value).toLowerCase();
   }
+
+
+
+
+  ngOnInit(): void {
+    this.getAllChantier();
+    this.getAllCollabCp();
+    this.getAllCollab();
+  }
+
+
+
+  public onPopupClose() {
+    this.startDate = null;
+    this.endDate = null;
+
+  }
+
+  public onEventRendered(args: EventRenderedArgs): void {
+    switch (args.data.EventType) {
+      case 'Requested':
+        (args.element as HTMLElement).style.backgroundColor = '#F57F17';
+        break;
+      case 'Confirmed':
+        (args.element as HTMLElement).style.backgroundColor = '#7fa900';
+        break;
+      case 'New':
+        (args.element as HTMLElement).style.backgroundColor = '#8e24aa';
+        break;
+    }
+  }
+
+  public onActionBegin(args: ActionEventArgs): void {
+    if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
+      const data: Record<string, any> = args.data instanceof Array ? args.data[0] : args.data;
+      if (!this.scheduleObj.isSlotAvailable(data.StartTime as Date, data.EndTime as Date)) {
+        args.cancel = true;
+      }
+    }
+  }
+
+
+
 }

@@ -2,6 +2,13 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~open-iconic/font/css/open-iconic-bootstrap.css";
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-dropdowns/styles/material.css';
 
 * {
   box-sizing: border-box;

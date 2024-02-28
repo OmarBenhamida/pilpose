@@ -26,6 +26,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@rxweb/reactive-form-validators": "^2.1.7",
+    "@syncfusion/ej2-angular-dropdowns": "^24.2.8",
     "@syncfusion/ej2-angular-grids": "^24.2.5",
     "@syncfusion/ej2-angular-schedule": "24.1.41",
     "@syncfusion/ej2-schedule": "24.1.41",
