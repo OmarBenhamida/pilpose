@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlannigComponent } from './plannig.component';
 import {  ScheduleAllModule
   } from '@syncfusion/ej2-angular-schedule';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,8 @@ import {  ScheduleAllModule
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        MatSelectModule,
+
         ScheduleAllModule,
         RouterModule.forChild([
             { path: '', component: PlannigComponent, },

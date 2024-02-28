@@ -21,7 +21,8 @@ import {
   ResourceDetails,
   ScheduleComponent,
   ScheduleAllModule,
-  ActionEventArgs
+  ActionEventArgs,
+  PopupOpenEventArgs
 } from '@syncfusion/ej2-angular-schedule';
 import { CalendarService } from './calendar.service';
 import { map, tap } from 'rxjs';
@@ -30,8 +31,51 @@ import { CompteService } from '../comptes/compte.service';
 import { TacheService } from '../tache/tache.service';
 import { ChantierService } from '../chantier/chantier.service';
 import { Collaborateur } from 'src/app/model/collaborateur.model';
-import { FormControl, UntypedFormGroup } from '@angular/forms';
 import { Chantier } from 'src/app/model/chantier.model';
+import {
+  FormControl,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+
+
+import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
+import { AddAffectationService } from '../tache/affectation/add-affectation/addAffectation.service';
+import { Constants } from 'src/app/Shared/utils/constants';
+import { AddTachService } from '../tache/add-tache/addTache.service';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { Tache } from 'src/app/model/tache.model';
+import { AddTacheComponent } from '../tache/add-tache/add-tache.component';
+import { MatDialog } from '@angular/material/dialog';
+
+
+import {  setCulture } from '@syncfusion/ej2-base';
+
+import { loadCldr, L10n } from '@syncfusion/ej2-base';
+import * as numberingSystems from 'cldr-data/supplemental/numberingSystems.json';
+import * as gregorian from 'cldr-data/main/fr/ca-gregorian.json';
+import * as numbers from 'cldr-data/main/fr/numbers.json';
+import * as timeZoneNames from 'cldr-data/main/fr/timeZoneNames.json';
+
+loadCldr(numberingSystems['default'], gregorian['default'], numbers['default'], timeZoneNames['default']);
+L10n.load({
+  'fr': {
+      'schedule': {
+          'day': 'journée',
+          'week': 'la semaine',
+          'workWeek': 'Semaine de travail',
+          'month': 'Mois',
+          'today': 'Aujourd\'hui',
+          'noEvents': 'Pas d\'événements',
+          'timelineDay': 'Vue journalière',
+         'timelineMonth': 'Vue mensuelle',
+          // Add other translations as needed
+      }
+  }
+});
 
 @Component({
   selector: 'app-plannig',
@@ -53,7 +97,7 @@ export class PlannigComponent {
 
   salariesAll = new FormControl();
   salariesList: Collaborateur[] = [];
-  selectedSalaries : string[] = [];
+  selectedSalaries : any[] = [];
 
   TacheForm: UntypedFormGroup;
   listChantiers: Chantier[] = [];
@@ -89,8 +133,15 @@ export class PlannigComponent {
   public eventSettings: EventSettingsModel = { dataSource: this.data };
 // Chef d'equipe
 
-  constructor(private router: Router,
+  constructor(private router: Router,public formBuilder: UntypedFormBuilder, 
+    private dialog: MatDialog,private addTacheService: AddTachService,
+    private addAffectationService: AddAffectationService,private snackBarNotifService: SnackBarNotifService,    public translate: TranslateService, public toast: ToastrService,
     private compteService: CompteService,public tacheService: TacheService,private chantierService: ChantierService) {
+
+
+
+
+
     this.service
       .getList()
       .pipe(
@@ -152,8 +203,6 @@ export class PlannigComponent {
     this.router.navigate(['pilpose/add-tache']);
   }
 
-
-
   getAllCollab() {
     this.compteService
       .getAllComptes()
@@ -205,6 +254,26 @@ export class PlannigComponent {
       .catch((err) => {});
   }
 
+  onPopupOpen(args: PopupOpenEventArgs): void {
+    if (args.type === 'Editor' || args.type === 'QuickInfo')  {
+        args.cancel = true;
+    }
+}
+
+
+  openpopUp = () => {
+
+    const dialogRef = this.dialog.open(AddTacheComponent, {
+      width: '60vw',
+      height: '80vh',
+
+  
+    });
+    
+  }
+
+
+
   getAllChantier() {
     this.chantierService
       .getAllChantier()
@@ -238,11 +307,6 @@ export class PlannigComponent {
 
 
 
-  ngOnInit(): void {
-    this.getAllChantier();
-    this.getAllCollabCp();
-    this.getAllCollab();
-  }
 
 
 
@@ -253,6 +317,8 @@ export class PlannigComponent {
   }
 
   public onEventRendered(args: EventRenderedArgs): void {
+
+
     switch (args.data.EventType) {
       case 'Requested':
         (args.element as HTMLElement).style.backgroundColor = '#F57F17';
@@ -267,12 +333,95 @@ export class PlannigComponent {
   }
 
   public onActionBegin(args: ActionEventArgs): void {
-    if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
+
+  
+    
+    /*if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
       const data: Record<string, any> = args.data instanceof Array ? args.data[0] : args.data;
       if (!this.scheduleObj.isSlotAvailable(data.StartTime as Date, data.EndTime as Date)) {
         args.cancel = true;
       }
-    }
+    }*/
+
+
+    let libelle: String = this.TacheForm.get('intitule').value;
+    let dateDebut: String = this.TacheForm.get('dateDebut').value;
+    let dateFin: String = this.TacheForm.get('dateFin').value;
+    let heureDebut: String = this.TacheForm.get('heureDebut').value;
+    let heureFin: String = this.TacheForm.get('heureFin').value;
+    let commantaire: String = this.TacheForm.get('commentaire').value;
+    let idChantier: number = this.TacheForm.get('chantier').value;
+    let idSalarie: number = this.TacheForm.get('idCollaborateur').value;
+    let typeTravaux: String = this.TacheForm.get('typeTravaux').value;
+    let tache = new Tache();
+    tache.idTache = null;
+    tache.typeTravaux = typeTravaux;
+    tache.libelle = libelle;
+    tache.dateDebut = dateDebut;
+    tache.dateFin = dateFin;
+    tache.heureDebut = heureDebut;
+    tache.heureFin = heureFin;
+    tache.commantaire = commantaire;
+    tache.idChantier = new Chantier(idChantier);
+    tache.responsable = new Collaborateur(idSalarie);
+    tache.nomCompletResponsable = null;
+    tache.nomCompletChantier = null;
+    tache.typeTache = 'tache';
+
+    this.selectedSalaries.push(idSalarie);
+
+    console.log("fffff");
+    
+    console.log(this.selectedSalaries);
+    console.log("ggg");
+
+    this.addTacheService
+      .addOrUpdateTache(tache)
+      .then((res) => {
+        this.toast.success(
+          this.translate.instant('Tache ajoutée avec succés'),
+          '',
+          Constants.toastOptions
+        );
+
+        this.addAffectationService
+          .addOrUpdateAffectationList(this.selectedSalaries)
+          .then((res) => {
+            this.toast.success(
+              this.translate.instant('Affectation  ajoutée avec succés'),
+              '',
+              Constants.toastOptions
+            );
+
+            this.router.navigate(['pilpose/tache']);
+          })
+          .catch((err) => {
+            if (err.status == 409) {
+              this.snackBarNotifService.openSnackBarFailure(
+                'Chevauchement lors affectation salarié ',
+
+                this.translate.instant('Fermer')
+              );
+            } else {
+              this.snackBarNotifService.openSnackBarFailure(
+                'Erreur lors de l affectation',
+
+                this.translate.instant('Fermer')
+              );
+            }
+          });
+
+        this.router.navigate(['pilpose/tache']);
+      })
+      .catch((error) => {
+        this.toast.error(
+          this.translate.instant('Erreur lors de la création d une tache'),
+          '',
+          Constants.toastOptions
+        );
+      });
+
+
   }
 
 
