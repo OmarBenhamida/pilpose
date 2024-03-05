@@ -32,6 +32,7 @@ import { TacheService } from '../tache/tache.service';
 import { ChantierService } from '../chantier/chantier.service';
 import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { Chantier } from 'src/app/model/chantier.model';
+import { createElement } from '@syncfusion/ej2-base';
 import {
   FormControl,
   UntypedFormBuilder,
@@ -60,18 +61,42 @@ import * as gregorian from 'cldr-data/main/fr/ca-gregorian.json';
 import * as numbers from 'cldr-data/main/fr/numbers.json';
 import * as timeZoneNames from 'cldr-data/main/fr/timeZoneNames.json';
 
+
+import {  ElementRef } from '@angular/core';
+import {  isNullOrUndefined } from '@syncfusion/ej2-base';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { DateTimePicker } from '@syncfusion/ej2-calendars';
+import { ChangeEventArgs } from '@syncfusion/ej2-calendars';
+import {  WeekService, WorkWeekService, MonthService } from '@syncfusion/ej2-angular-schedule';
+
+
 loadCldr(numberingSystems['default'], gregorian['default'], numbers['default'], timeZoneNames['default']);
 L10n.load({
   'fr': {
       'schedule': {
           'day': 'journée',
+          'title':'libelle',
+          'addTitle':'Ajouter une tache',
+          'moreDetails':'Plus d`info',
           'week': 'la semaine',
           'workWeek': 'Semaine de travail',
           'month': 'Mois',
           'today': 'Aujourd\'hui',
           'noEvents': 'Pas d\'événements',
           'timelineDay': 'Vue journalière',
-         'timelineMonth': 'Vue mensuelle',
+          'timelineMonth': 'Vue mensuelle',
+          'newEvent': 'Nouvelle Affectation',
+          'location': 'Localisation',
+          'start' : 'Date début',
+          'end':'Date fin',
+          'saveEvent  ' : 'Soumettre',
+          'cancel' : 'annuler',
+          'saveButton': 'Soumettre',
+          'cancelButton': 'Fermer',
+          'owner' : 'salariés',
+          'repeat': 'reproduire',
+          'description':'commentaire',
+
           // Add other translations as needed
       }
   }
@@ -102,6 +127,7 @@ export class PlannigComponent {
   TacheForm: UntypedFormGroup;
   listChantiers: Chantier[] = [];
 
+  public allowMultipleOwner: Boolean = true;
 
   roleChef : string="Chef d'equipe";
 
@@ -130,18 +156,16 @@ export class PlannigComponent {
     resources: ['Employee'],
   };
   public allowMultiple = false;
-  public eventSettings: EventSettingsModel = { dataSource: this.data };
+  public eventSettings: EventSettingsModel = { dataSource: this.data};
+
+
+  
 // Chef d'equipe
 
   constructor(private router: Router,public formBuilder: UntypedFormBuilder, 
     private dialog: MatDialog,private addTacheService: AddTachService,
     private addAffectationService: AddAffectationService,private snackBarNotifService: SnackBarNotifService,    public translate: TranslateService, public toast: ToastrService,
     private compteService: CompteService,public tacheService: TacheService,private chantierService: ChantierService) {
-
-
-
-
-
     this.service
       .getList()
       .pipe(
@@ -197,6 +221,12 @@ export class PlannigComponent {
     return (value as ResourceDetails).resourceData[
       (value as ResourceDetails).resource.textField!
     ] as string;
+  }
+
+  ngOnInit(): void {
+    this.getAllChantier();
+    this.getAllCollabCp();
+    this.getAllCollab();
   }
 
   redirectAddTache() {
@@ -255,9 +285,58 @@ export class PlannigComponent {
   }
 
   onPopupOpen(args: PopupOpenEventArgs): void {
-    if (args.type === 'Editor' || args.type === 'QuickInfo')  {
-        args.cancel = true;
+    if (args.type === 'Editor') {
+      if (!args.element.querySelector('.custom-field-row')) {  // Create required custom elements in initial time
+        const row: HTMLElement = createElement('div', { className: 'custom-field-row' });
+        const formElement: HTMLElement = args.element.querySelector('.e-schedule-form') as HTMLElement;
+        formElement.firstChild.insertBefore(row, args.element.querySelector('.e-title-location-row'));
+        const container: HTMLElement = createElement('div', { className: 'custom-field-container' });
+        const inputEle: HTMLElement = createElement('input', { className: 'e-field', attrs: { name: 'typetache' } });
+        container.appendChild(inputEle);
+        row.appendChild(container);
+        const dropDownList: DropDownList = new DropDownList({
+          dataSource: [
+            { text: 'Chauffage', value: 'Chauffage' },
+            { text: 'SAV – Entretien – Dépannage 7j/7', value: 'SAV – Entretien – Dépannage 7j/7' },
+            { text: 'Climatisation', value: 'Climatisation' },
+            { text: 'Électricité', value: 'Électricité' },
+            { text: 'Sanitaire – Plomberie', value: 'Sanitaire – Plomberie' },
+            { text: 'Conception et Réalisation', value: 'Conception et Réalisation' }
+          ],
+          fields: { text: 'text', value: 'value' },
+          value: (args.data as Record<string, any>).EventType as string,
+          floatLabelType: 'Always', placeholder: 'Type Tache'
+        });
+        dropDownList.appendTo(inputEle);
+        inputEle.setAttribute('name', 'typetache');
+        /** 
+        * 
+        */
+        const row2: HTMLElement = createElement('div', { className: 'custom-field-row' });
+        const formElement2: HTMLElement = args.element.querySelector('.e-schedule-form') as HTMLElement;
+        formElement2.firstChild.insertBefore(row2, args.element.querySelector('.e-start-end-row'));
+        const container2: HTMLElement = createElement('div', { className: 'custom-field-container' });
+        const inputEle2: HTMLElement = createElement('input', { className: 'e-field', attrs: { name: 'chefequipe' } });
+        container2.appendChild(inputEle2);
+        row2.appendChild(container2);
+        const dataSource2: { text: string, value: string }[] = [];
+
+        this.salaries.forEach((salarie) => {
+          dataSource2.push({ text: salarie.nom.toString(), value: salarie.idCollaborateur.toString() });
+        });
+        const dropDownList2: DropDownList = new DropDownList({
+          dataSource:dataSource2 ,
+          fields: { text: 'text', value: 'value' },
+          value: (args.data as Record<string, any>).EventType as string,
+          floatLabelType: 'Always', placeholder: 'chef d`équipe'
+        });
+        dropDownList2.appendTo(inputEle2);
+        inputEle2.setAttribute('name', 'chefequipe');
+      }
     }
+    /*if (args.type === 'Editor' || args.type === 'QuickInfo')  {
+        args.cancel = true;
+    }*/
 }
 
 
@@ -331,6 +410,9 @@ export class PlannigComponent {
         break;
     }
   }
+
+
+
 
   public onActionBegin(args: ActionEventArgs): void {
 
@@ -423,6 +505,11 @@ export class PlannigComponent {
 
 
   }
+
+
+
+
+
 
 
 

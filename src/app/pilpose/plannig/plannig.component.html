@@ -13,11 +13,11 @@
   <div class="drag-sample-wrapper">
     <div class="schedule-container">
       <ejs-schedule #scheduleObj cssClass='schedule-block-events'  locale='fr' width='100%' height='650px' [group]="group"
-        [currentView]="currentView" [selectedDate]="selectedDate"  (cellDoubleClick)="openpopUp()" (popupOpen)='onPopupOpen($event)' [eventSettings]="eventSettings" (actionBegin)="onActionBegin($event)" (eventRendered)="onEventRendered($event)" (popupClose)="onPopupClose()"
-        [showQuickInfo]="showQuickInfo"  >
+        [currentView]="currentView" [selectedDate]="selectedDate"   (popupOpen)='onPopupOpen($event)' [eventSettings]="eventSettings" (actionBegin)="onActionBegin($event)" (eventRendered)="onEventRendered($event)" (popupClose)="onPopupClose()"
+         >
         <e-resources>
-          <e-resource field='EmployeeId' title='Employees' name='Employee' [dataSource]='employeeDataSource'
-            [allowMultiple]='allowMultiple' textField='Text' idField='Id' groupIDField="GroupId" colorField='Color'>
+          <e-resource field='EmployeeId' title='Salaries' name='Employee' [dataSource]='employeeDataSource'
+            [allowMultiple]='allowMultipleOwner' textField='Text' idField='Id' groupIDField="GroupId" colorField='Color'>
           </e-resource>
         </e-resources>
         <ng-template #resourceHeaderTemplate let-data>
@@ -37,10 +37,15 @@
             <div class="subject">{{data.Subject}}</div>
           </div>
         </ng-template>
+   
+
+
+
+
 
 
         <e-views>
-          <e-view option="Day">ggg</e-view>
+          <e-view option="Day"></e-view>
           <e-view option="TimelineDay"></e-view>
           <e-view option="TimelineMonth"></e-view>
         </e-views>
