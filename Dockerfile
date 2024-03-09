@@ -6,14 +6,16 @@ COPY package*.json ./
 
 RUN npm i --force
 
-COPY src src
-COPY .editorconfig .
-COPY .eslintrc.json .
-COPY angular.json .
-# COPY server.ts .
-COPY transloco.config.js .
-COPY tailwind.config.js .
-COPY tsconfig*.json ./
+# COPY src src
+# COPY .editorconfig .
+# COPY .eslintrc.json .
+# COPY angular.json .
+# # COPY server.ts .
+# COPY transloco.config.js .
+# COPY tailwind.config.js .
+# COPY tsconfig*.json ./
+
+COPY . .
 
 RUN npm run prod
 # RUN ls -al
