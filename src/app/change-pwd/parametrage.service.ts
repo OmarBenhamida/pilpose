@@ -6,7 +6,7 @@ import { HostService } from 'src/app/service/host.service';
 import { urlsConstants } from 'src/app/Shared/utils/urlsConstants';
 import { ParametrageModel } from 'src/app/model/ParametrageModel';
 import { PasswordModel } from '../model/PasswordModel';
-import { HttpClientRequest } from '../shared/services/common/http-request.service';
+import { HttpClientRequest } from '../Shared/services/common/http-request.service';
 
 @Injectable({
   providedIn: 'root',

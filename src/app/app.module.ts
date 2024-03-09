@@ -49,7 +49,7 @@ import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { PilposeComponent } from './pilpose/pilpose.component';
 import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientRequest } from './shared/services/common/http-request.service';
+import { HttpClientRequest } from './Shared/services/common/http-request.service';
 import { PilposeModule } from './pilpose/pilpose.module';
 import { LoginAdminService } from './login-admin/login-admin.service';
 import { CalendarModule } from 'angular-calendar';

@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { authUrlsConstants } from "../login-admin/utils/urls-constants";
 import { HostService } from "../service/host.service";
-import { HttpClientRequest } from "../shared/services/common/http-request.service";
+import { HttpClientRequest } from "../Shared/services/common/http-request.service";
 import { forgotPwdModel } from "./forgotPwd.model";
 
 /**

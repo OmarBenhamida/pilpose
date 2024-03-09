@@ -5,7 +5,7 @@ import 'rxjs';
 import { throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HostService } from '../service/host.service';
-import { HttpClientRequest } from '../shared/services/common/http-request.service';
+import { HttpClientRequest } from '../Shared/services/common/http-request.service';
 
 import { UserModel } from './model/user.model';
 

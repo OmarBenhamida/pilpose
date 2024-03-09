@@ -4,7 +4,7 @@ import { ChantierModel } from 'src/app/model/chantierModel';
 import { Chantier } from 'src/app/model/chantier.model';
 import { HostService } from 'src/app/service/host.service';
 
-import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
+import { HttpClientRequest } from 'src/app/Shared/services/common/http-request.service';
 import { urlsConstantsConge } from './urlsConstants';
 
 @Injectable({

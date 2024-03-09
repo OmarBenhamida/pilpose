@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Tache } from "src/app/model/tache.model";
 import { HostService } from 'src/app/service/host.service';
 
-import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
+import { HttpClientRequest } from 'src/app/Shared/services/common/http-request.service';
 import { urlsConstantsTache } from "../urlsConstants";
 
 @Injectable({

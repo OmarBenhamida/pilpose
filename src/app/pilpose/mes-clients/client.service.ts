@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Client } from 'src/app/model/client.model';
 import { HostService } from 'src/app/service/host.service';
-import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
+import { HttpClientRequest } from 'src/app/Shared/services/common/http-request.service';
 import { urlsConstantsClient } from '../chantier/urlsConstants';
 
 @Injectable({

@@ -49,7 +49,7 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { AddTacheComponent } from './tache/add-tache/add-tache.component';
 import { UpdateTacheComponent } from './tache/update-tache/update-tache.component';
 import { ComptesComponent } from './comptes/comptes.component';
-import { HttpClientRequest } from '../shared/services/common/http-request.service';
+import { HttpClientRequest } from '../Shared/services/common/http-request.service';
 import { UpdateChantierComponent } from './chantier/update-chantier/update-chantier.component';
 import { AddCongeComponent } from './conge/add-conge/add-conge.component';
 import { UpdateCongeComponent } from './conge/update-conge/update-conge.component';

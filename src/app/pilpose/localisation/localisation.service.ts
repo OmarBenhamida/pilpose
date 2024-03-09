@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Localisation } from 'src/app/model/localisation.model';
 
 import { HostService } from 'src/app/service/host.service';
-import { HttpClientRequest } from 'src/app/shared/services/common/http-request.service';
+import { HttpClientRequest } from 'src/app/Shared/services/common/http-request.service';
 import { urlsConstantslocalisation } from '../chantier/urlsConstants';
 
 @Injectable({
