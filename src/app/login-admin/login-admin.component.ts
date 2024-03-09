@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Utils } from '../shared/utils/utils';
+import { Utils } from '../Shared/utils/utils';
 import { LoginAdminService } from './login-admin.service';
 import { Constants } from './utils/constants';
 import { MatDialog } from '@angular/material/dialog';
@@ -63,14 +63,14 @@ export class LoginAdminComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-  
+
 
     console.warn(this.loginForm.invalid);
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       // return;
     } else {
-    
+
 
       let user: UserModel = {
         username: this.f.username.value,
@@ -80,7 +80,7 @@ export class LoginAdminComponent implements OnInit {
       };
 
       this.loginService.authUser(user).then((res) => {
-       
+
         localStorage.setItem('nom',res.nom );
         localStorage.setItem('prenom',res.prenom );
         localStorage.setItem('idUser',res.idUser );
@@ -105,8 +105,8 @@ export class LoginAdminComponent implements OnInit {
           );
         }
       });
-      
-      
+
+
       ;
     }
   }

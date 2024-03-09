@@ -11,7 +11,7 @@ import { ClientService } from './client.service';
 import { UpdateClientComponent } from './update-client/update-client.component';
 import * as saveAs from 'file-saver';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
 
 @Component({
@@ -50,7 +50,7 @@ export class MesClientsComponent implements OnInit {
       .then((res) => {
         let clients: Client[] = [];
 
-       
+
         for (let code of res) {
           clients.push({
             idClient: code.idClient,
@@ -60,7 +60,7 @@ export class MesClientsComponent implements OnInit {
             telephone: code.telephone,
           });
         }
-        
+
         this.dataSource.data = clients;
         this.size = this.dataSource.data.length;
       })

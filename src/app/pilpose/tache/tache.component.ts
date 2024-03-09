@@ -9,7 +9,7 @@ import { Constants } from 'src/app/Shared/utils/constants';
 import { UpdateTacheComponent } from './update-tache/update-tache.component';
 import { Tache } from 'src/app/model/tache.model';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 import * as saveAs from 'file-saver';
 import { AddTachService } from './add-tache/addTache.service';
 import { ToastrService } from 'ngx-toastr';
@@ -97,7 +97,7 @@ export class TacheComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-        
+
 
           this.tacheService
             .deleteTache(model.idTache)
@@ -114,7 +114,7 @@ export class TacheComponent implements OnInit {
     this.tacheService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        
+
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
@@ -175,13 +175,13 @@ export class TacheComponent implements OnInit {
                 if (err.status == 409) {
                   this.snackBarNotifService.openSnackBarFailure(
                     'Chevauchement lors affectation salarié ',
-    
+
                     this.translate.instant('Fermer')
                   );
                 } else {
                   this.snackBarNotifService.openSnackBarFailure(
                     'Erreur lors de l affectation',
-    
+
                     this.translate.instant('Fermer')
                   );
                 }
@@ -220,7 +220,7 @@ export class TacheComponent implements OnInit {
       .then((res) => {
         let taches: Tache[] = [];
 
-       
+
         for (let code of res) {
           taches.push({
             idTache: code.idTache,

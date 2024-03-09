@@ -8,7 +8,7 @@ import { Localisation } from 'src/app/model/localisation.model';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
 import { Constants } from 'src/app/Shared/utils/constants';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { LocalisationService } from './localisation.service';
 import { UpdateLocalisationComponent } from './update-localisation/update-localisation.component';
@@ -50,7 +50,7 @@ export class LocalisationComponent implements OnInit {
       .then((res) => {
         let communes: Localisation[] = [];
 
-       
+
         for (let code of res) {
           communes.push({
             idLocalisation: code.idLocalisation,

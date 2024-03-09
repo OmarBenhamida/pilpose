@@ -11,7 +11,7 @@ import { Chantier } from 'src/app/model/chantier.model';
 
 import { AddChantierService } from './add-chantier/addChantier.service';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 import * as saveAs from 'file-saver';
 import { ToastrService } from 'ngx-toastr';
 
@@ -52,7 +52,7 @@ export class ChantierComponent implements OnInit {
       .then((res) => {
         let chantiers: Chantier[] = [];
 
-       
+
         for (let code of res) {
           chantiers.push({
             idChantier: code.idChantier,
@@ -146,7 +146,7 @@ export class ChantierComponent implements OnInit {
     this.chantierService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-       
+
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
@@ -162,7 +162,7 @@ export class ChantierComponent implements OnInit {
     this.chantierService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-      
+
 
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,

@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NoteService } from './note.service';
 import { UpdateNoteComponent } from './update-note/update-note.component';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 import * as saveAs from 'file-saver';
 import { AddNoteService } from './add-note/addNote.service';
 import { ToastrService } from 'ngx-toastr';
@@ -157,7 +157,7 @@ export class NotesComponent implements OnInit {
       .then((res) => {
         let notes: any[] = [];
 
-       
+
         for (let code of res) {
           notes.push({
             idNoteFrais: code.idNoteFrais,

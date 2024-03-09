@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Constants } from 'src/app/Shared/utils/constants';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 import { ConfirmModalComponent } from '../../confirm-modal/confirm-modal.component';
 import { AddAffectationComponent } from './add-affectation/add-affectation.component';
 import { AffectationService } from './affectation.service';
@@ -58,8 +58,8 @@ export class AffectationComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-         
-          
+
+
            this.affectationService.deleteAffecattion(model.idAffectation).then(res => {
             this.getModelTableStructur();
           }).catch(err => { });
@@ -74,7 +74,7 @@ export class AffectationComponent implements OnInit {
     this.affectationService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-      
+
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
@@ -86,7 +86,7 @@ export class AffectationComponent implements OnInit {
           Constants.EXCEL_CSV
         );
 
-  
+
 
         saveAs(blobExcel, 'AFFECTATION_EXCEL' + '.xlsx');
 
@@ -106,7 +106,7 @@ export class AffectationComponent implements OnInit {
       .then((res) => {
         let affectatios: any[] = [];
 
-        
+
         for (let code of res) {
           affectatios.push({
             idAffectation: code.idAffectation,
@@ -122,8 +122,8 @@ export class AffectationComponent implements OnInit {
             commantaire: code.idTache.commantaire,
           });
         }
-        
-        
+
+
         this.dataSource.data = affectatios;
         this.size = this.dataSource.data.length;
       })

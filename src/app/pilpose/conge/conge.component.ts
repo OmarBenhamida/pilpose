@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { AddCongeService } from './add-conge/addConge.service';
 import { ToastrService } from 'ngx-toastr';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 import * as saveAs from 'file-saver';
 
 @Component({
@@ -194,7 +194,7 @@ export class CongeComponent implements OnInit {
       .then((res) => {
         let conges: any[] = [];
 
-       
+
         for (let code of res) {
           conges.push({
             idConge: code.idConge,

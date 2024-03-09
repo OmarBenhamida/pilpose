@@ -12,7 +12,7 @@ import { FeuilleTempsService } from './feuille-temps.service';
 import { UpdateFeuileComponent } from './update-feuile/update-feuile.component';
 import * as saveAs from 'file-saver';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 @Component({
   selector: 'app-feuille-temps',
   templateUrl: './feuille-temps.component.html',
@@ -63,7 +63,7 @@ export class FeuilleTempsComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe((data: true) => {
         if (data) {
-         
+
 
           this.feuilleService
             .deleteTache(model.idFeuilleTemps)
@@ -126,7 +126,7 @@ export class FeuilleTempsComponent implements OnInit {
     this.feuilleService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-        
+
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
@@ -142,7 +142,7 @@ export class FeuilleTempsComponent implements OnInit {
     this.feuilleService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-       
+
 
         var blobChantierCsv = Utils.contentToBlob(
           res.pilposeCsv,
@@ -160,7 +160,7 @@ export class FeuilleTempsComponent implements OnInit {
       .then((res) => {
         let feuilles: FeuilleTemps[] = [];
 
-        
+
         for (let code of res) {
           feuilles.push({
             idFeuilleTemps: code.idFeuilleTemps,

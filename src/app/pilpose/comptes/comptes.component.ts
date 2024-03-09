@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Constants } from 'src/app/Shared/utils/constants';
-import { Utils } from 'src/app/shared/utils/utils';
+import { Utils } from 'src/app/Shared/utils/utils';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { AddCompteComponent } from './add-compte/add-compte.component';
 import { AddCompteService } from './add-compte/addCompte.service';
@@ -52,10 +52,10 @@ export class ComptesComponent implements OnInit {
       .getAllComptes()
       .then((res: Collaborateur[]) => {
         let comptes: Collaborateur[] = [];
-      
+
 
         for (let compte of res) {
-        
+
 
           comptes.push({
             idCollaborateur: compte.idCollaborateur,
@@ -72,7 +72,7 @@ export class ComptesComponent implements OnInit {
             role: compte.role,
           });
         }
-        
+
 
         this.dataSource.data = comptes;
         this.size = this.dataSource.data.length;
@@ -171,7 +171,7 @@ export class ComptesComponent implements OnInit {
     this.compteService
       .exportFile()
       .then((res: PilposeLoaderResponseDto) => {
-       
+
 
         var blobExcel = Utils.contentToBlob(
           res.pilposeXsl,
