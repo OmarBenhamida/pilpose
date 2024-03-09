@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "prod": "ng build --progress --configuration=production --output-path dist",
     "test": "ng test",
     "lint": "ng lint"
   },
