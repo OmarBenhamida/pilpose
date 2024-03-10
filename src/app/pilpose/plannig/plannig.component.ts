@@ -461,26 +461,27 @@ export class PlannigComponent {
 
     if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
 
+      let tache = new Tache();
+      tache.idTache = null;
+      tache.ville =args.data[0].location;
+      tache.typeTravaux = args.data[0].typetache;
+      tache.libelle =  args.data[0].Subject;
+      tache.dateDebut = args.data[0].StartTime;
+      tache.dateFin = args.data[0].EndTime;
+      tache.heureDebut = args.data[0].StartTime.getHours();
+      tache.heureFin = args.data[0].EndTime.getHours();
+      tache.commantaire = args.data[0].Description;
+      tache.idChantier = new Chantier(args.data[0].chantier);
+      tache.responsable = new Collaborateur(args.data[0].EmployeeId);
+      tache.nomCompletResponsable = null;
+      tache.nomCompletChantier = null;
+      tache.typeTache = 'tache';
+
+      this.addTacheService
+    .addOrUpdateTache(tache);
+    
       for (var i = 0; i < args.data.length; i++) {
 
-        let tache = new Tache();
-        tache.idTache = null;
-        tache.ville =args.data[i].location;
-        tache.typeTravaux = args.data[i].typetache;
-        tache.libelle =  args.data[i].Subject;
-        tache.dateDebut = args.data[i].StartTime;
-        tache.dateFin = args.data[i].EndTime;
-        tache.heureDebut = args.data[i].StartTime.getHours();
-        tache.heureFin = args.data[i].EndTime.getHours();
-        tache.commantaire = args.data[i].Description;
-        tache.idChantier = new Chantier(args.data[i].chantier);
-        tache.responsable = new Collaborateur(args.data[i].EmployeeId);
-        tache.nomCompletResponsable = null;
-        tache.nomCompletChantier = null;
-        tache.typeTache = 'tache';
-
-        this.addTacheService
-      .addOrUpdateTache(tache);
       this.selectedSalaries.push(args.data[i].EmployeeId);
 
       }
