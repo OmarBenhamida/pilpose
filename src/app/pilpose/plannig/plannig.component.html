@@ -13,7 +13,7 @@
   <div class="drag-sample-wrapper">
     <div class="schedule-container">
       <ejs-schedule #scheduleObj cssClass='schedule-block-events'  locale='fr' width='100%' height='650px' [group]="group"
-        [currentView]="currentView" [selectedDate]="selectedDate"   (popupOpen)='onPopupOpen($event)' [eventSettings]="eventSettings" (actionBegin)="onActionBegin($event)" (eventRendered)="onEventRendered($event)" (popupClose)="onPopupClose()"
+        [currentView]="currentView" [selectedDate]="selectedDate"  (actionComplete)="onActionComplete()"  (popupOpen)='onPopupOpen($event)' [eventSettings]="eventSettings" (actionBegin)="onActionBegin($event)" (eventRendered)="onEventRendered($event)" (popupClose)="onPopupClose()"
          >
         <e-resources>
           <e-resource field='EmployeeId' title='Salaries' name='Employee' [dataSource]='employeeDataSource'

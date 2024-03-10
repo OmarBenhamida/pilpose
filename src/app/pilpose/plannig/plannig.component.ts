@@ -68,6 +68,10 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { DateTimePicker } from '@syncfusion/ej2-calendars';
 import { ChangeEventArgs } from '@syncfusion/ej2-calendars';
 import {  WeekService, WorkWeekService, MonthService } from '@syncfusion/ej2-angular-schedule';
+import { HttpClient } from '@angular/common/http';
+import { HostService } from 'src/app/service/host.service';
+import { urlsConstantsAffectation } from '../tache/affectation/urlsConstants';
+import { urlsConstantsTache } from '../chantier/urlsConstants';
 
 
 loadCldr(numberingSystems['default'], gregorian['default'], numbers['default'], timeZoneNames['default']);
@@ -96,6 +100,11 @@ L10n.load({
           'owner' : 'salariés',
           'repeat': 'reproduire',
           'description':'commentaire',
+          'delete':'supprimer',
+          "deleteButton": "supprimer",
+
+          'deleteEvent': 'Supprimer la tache',
+          'deleteContent': 'Êtes-vous sûr de vouloir supprimer cet événement ?'
 
           // Add other translations as needed
       }
@@ -159,13 +168,14 @@ export class PlannigComponent {
   public eventSettings: EventSettingsModel = { dataSource: this.data};
 
 
-  
+  public host: string;
 // Chef d'equipe
 
-  constructor(private router: Router,public formBuilder: UntypedFormBuilder, 
+  constructor(private http: HttpClient, private hostService: HostService,private router: Router,public formBuilder: UntypedFormBuilder, 
     private dialog: MatDialog,private addTacheService: AddTachService,
     private addAffectationService: AddAffectationService,private snackBarNotifService: SnackBarNotifService,    public translate: TranslateService, public toast: ToastrService,
     private compteService: CompteService,public tacheService: TacheService,private chantierService: ChantierService) {
+      this.host = this.hostService.getPilposeHost();
     this.service
       .getList()
       .pipe(
@@ -178,6 +188,10 @@ export class PlannigComponent {
             IsAllDay: false,
             IsBlock: false,
             EmployeeId: e.idCollaborateur.idCollaborateur,
+            TacheId:e.idTache.idTache,
+            Location: e.idTache.ville,
+            Description: e.idTache.commantaire,
+            chantier:e.idTache.idChantier.idChantier
             // ...e,
           }));
 
@@ -332,7 +346,36 @@ export class PlannigComponent {
         });
         dropDownList2.appendTo(inputEle2);
         inputEle2.setAttribute('name', 'chefequipe');
+        /**
+         * 
+         */
+
+         const row3: HTMLElement = createElement('div', { className: 'custom-field-row' });
+         const formElement3: HTMLElement = args.element.querySelector('.e-schedule-form') as HTMLElement;
+         formElement3.firstChild.insertBefore(row3, args.element.querySelector('.e-description-row'));
+         const container3: HTMLElement = createElement('div', { className: 'custom-field-container' });
+         const inputEle3: HTMLElement = createElement('input', { className: 'e-field', attrs: { name: 'chantier' } });
+         container3.appendChild(inputEle3);
+         row3.appendChild(container3);
+         const dataSource3: { text: string, value: string }[] = [];
+
+         this.listChantiers.forEach((salarie) => {
+           dataSource3.push({ text: salarie.nomChantier.toString(), value: salarie.idChantier.toString() });
+         });
+         const dropDownList3: DropDownList = new DropDownList({
+           dataSource: dataSource3,
+           fields: { text: 'text', value: 'value' },
+           value: (args.data as Record<string, any>).EventType as string,
+           floatLabelType: 'Always', placeholder: 'liste des chantiers'
+         });
+         dropDownList3.appendTo(inputEle3);
+         inputEle3.setAttribute('name', 'chantier');
+         
       }
+
+     
+        
+      
     }
     /*if (args.type === 'Editor' || args.type === 'QuickInfo')  {
         args.cancel = true;
@@ -416,6 +459,53 @@ export class PlannigComponent {
 
   public onActionBegin(args: ActionEventArgs): void {
 
+    if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
+
+      for (var i = 0; i < args.data.length; i++) {
+
+        let tache = new Tache();
+        tache.idTache = null;
+        tache.ville =args.data[i].location;
+        tache.typeTravaux = args.data[i].typetache;
+        tache.libelle =  args.data[i].Subject;
+        tache.dateDebut = args.data[i].StartTime;
+        tache.dateFin = args.data[i].EndTime;
+        tache.heureDebut = args.data[i].StartTime.getHours();
+        tache.heureFin = args.data[i].EndTime.getHours();
+        tache.commantaire = args.data[i].Description;
+        tache.idChantier = new Chantier(args.data[i].chantier);
+        tache.responsable = new Collaborateur(args.data[i].EmployeeId);
+        tache.nomCompletResponsable = null;
+        tache.nomCompletChantier = null;
+        tache.typeTache = 'tache';
+
+        this.addTacheService
+      .addOrUpdateTache(tache);
+      this.selectedSalaries.push(args.data[i].EmployeeId);
+
+      }
+
+      this.addAffectationService
+          .addOrUpdateAffectationList(this.selectedSalaries)
+ 
+     
+      console.log("add");
+      console.log(args);
+
+    }
+    if (args.requestType === 'eventChange') {
+
+    }
+    if (args.requestType === 'eventRemove') {
+
+      this.http
+      .get<any>(this.host + urlsConstantsTache.urlTache +args.data[0].TacheId)
+      .toPromise();
+
+    }
+
+  
+ 
   
     
     /*if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
@@ -425,7 +515,7 @@ export class PlannigComponent {
       }
     }*/
 
-
+/*
     let libelle: String = this.TacheForm.get('intitule').value;
     let dateDebut: String = this.TacheForm.get('dateDebut').value;
     let dateFin: String = this.TacheForm.get('dateFin').value;
@@ -503,12 +593,14 @@ export class PlannigComponent {
         );
       });
 
-
+*/
   }
 
 
 
-
+  public onActionComplete(): void {
+  
+  }
 
 
 
