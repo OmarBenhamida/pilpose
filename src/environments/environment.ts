@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  pilposeHost: "http://localhost:8888",
+  pilposeHost: "https://pilpose.chd-pro.fr/api",
 };
 
 /*
