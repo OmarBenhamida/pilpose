@@ -163,6 +163,7 @@ export class Constants {
     'nomCompletSalarie',
     'nomCompletClient',
     'ville',
+    'statut',
     'ActionChantier',
   ];
   static FEUILLE_DISPLAY_COLUMNS_NAME: string[] = [
@@ -177,6 +178,7 @@ export class Constants {
     'Salarié',
     'Client',
     'Ville',
+     'Statut',
     'Actions',
   ];
 

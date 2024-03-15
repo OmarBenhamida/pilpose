@@ -169,32 +169,26 @@ export class UpdateFeuileComponent implements OnInit {
 
 
   isCE(): boolean {
-    return this.fonctionUserConnected === "Chef d'equipe";
+    return this.fonctionUserConnected === "Chef d'equipe" && this.FeuilleToAlter.idCollaborateur.fonction ==="Salarié(e)"  ;
+
+
   }
 
   isGerant(): boolean {
     return (
-      this.fonctionUserConnected === 'Gérant' &&
-      this.FeuilleToAlter.validationChefEquipe &&
-      this.FeuilleToAlter.validationResponsableTravaux
+      this.fonctionUserConnected === 'Gérant'
     );
   }
 
   isRT(): boolean {
+
+  
     return (
-      this.fonctionUserConnected === 'Responsable de travaux' &&
-      this.FeuilleToAlter.validationChefEquipe
+      this.fonctionUserConnected === 'Responsable de travaux' && this.FeuilleToAlter.idCollaborateur.fonction !=="Responsable administratif"
     );
   }
 
-  isRA(): boolean {
-    return (
-      this.fonctionUserConnected === 'Responsable administratif' &&
-      this.FeuilleToAlter.validationChefEquipe &&
-      this.FeuilleToAlter.validationResponsableTravaux &&
-      this.FeuilleToAlter.validationGerant
-    );
-  }
+
 
 
   onSubmit() {
