@@ -38,7 +38,7 @@
             </mat-nav-list>
    
 
-            <mat-expansion-panel>
+            <mat-expansion-panel *ngIf="isGerant() || isRA() || isRT() || isCE()">
                 <mat-expansion-panel-header>
                   <p class="nav-list"> Gestion des feuilles de temps</p> 
                 </mat-expansion-panel-header>
@@ -47,7 +47,7 @@
                         <mat-icon>assignment</mat-icon>&nbsp;<span>Synthéses globales</span>
                     </a>
                     <a mat-list-item (click)="redirectToListFeuille()">
-                        <mat-icon>add_task</mat-icon>&nbsp;<span>Listes des feuilles de temps</span>
+                        <mat-icon>work</mat-icon>&nbsp;<span>Listes des feuilles de temps</span>
                     </a>
                     <a mat-list-item (click)="redirectToNewFeuille()">
                         <mat-icon>add_task</mat-icon>&nbsp;<span>Nouvelle feuille de temps</span>
@@ -55,7 +55,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
 
-            <mat-expansion-panel>
+            <mat-expansion-panel *ngIf="isGerant() || isRA() || isRT()">
                 <mat-expansion-panel-header>
                   <p class="nav-list"> Gestion des chantiers</p> 
                 </mat-expansion-panel-header>
@@ -68,7 +68,7 @@
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
-            <mat-expansion-panel [class.mat-elevation-z0]="true">
+            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="isGerant() || isRA()">
                 <mat-expansion-panel-header>
                     <p class="nav-list"> Gestion des tâches</p>
                 </mat-expansion-panel-header>
@@ -83,8 +83,8 @@
                         <mat-icon>library_add</mat-icon>&nbsp;<span>Affectation</span>
                     </a>
                 </mat-nav-list>
-            </mat-expansion-panel>
-            <mat-expansion-panel [class.mat-elevation-z0]="true">
+            </mat-expansion-panel >
+            <mat-expansion-panel [class.mat-elevation-z0]="true"  *ngIf="isGerant() || isRA() || isRT() || isCE()">
                 <mat-expansion-panel-header>
                     <p class="nav-list"> Gestion des congés </p>
                 </mat-expansion-panel-header>
@@ -97,7 +97,7 @@
                     </a>
                 </mat-nav-list>
             </mat-expansion-panel>
-            <mat-expansion-panel [class.mat-elevation-z0]="true">
+            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="isGerant() || isRA() || isRT()">
                 <mat-expansion-panel-header>
                     <p class="nav-list"> Gestion des notes de frais </p>
                 </mat-expansion-panel-header>
@@ -111,7 +111,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="admin">
+            <mat-expansion-panel [class.mat-elevation-z0]="true"  *ngIf="isGerant() || isRA()">
                 <mat-expansion-panel-header>
                     <p class="nav-list"> Gestion des salariés </p>
                 </mat-expansion-panel-header>
@@ -125,7 +125,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="admin">
+            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="isGerant() || isRA() || isRT()">
                 <mat-expansion-panel-header>
                     <p class="nav-list"> Gestion des clients </p>
                 </mat-expansion-panel-header>
@@ -139,7 +139,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
 
-            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="admin">
+            <mat-expansion-panel [class.mat-elevation-z0]="true" *ngIf="isGerant() || isRA()">
                 <mat-expansion-panel-header>
                     <p class="nav-list"> Gestion des localisations </p>
                 </mat-expansion-panel-header>

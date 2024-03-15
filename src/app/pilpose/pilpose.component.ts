@@ -11,6 +11,7 @@ import { AddCompteComponent } from './comptes/add-compte/add-compte.component';
 export class PilposeComponent implements OnInit {
   imageUrl: string = 'assets/img/pilposepic.jpeg';
   firstname: string;
+  fonctionUserConnected: string;
   admin : boolean;
   constructor(
     private router: Router,
@@ -19,6 +20,7 @@ export class PilposeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.fonctionUserConnected = localStorage.getItem('fonction');
 
     if(localStorage.getItem('currentUser') == null){
 
@@ -38,6 +40,29 @@ export class PilposeComponent implements OnInit {
     }
 
     }
+  }
+
+  isCE(): boolean {
+    return this.fonctionUserConnected === "Chef d'equipe";
+  
+  }
+
+  isGerant(): boolean {
+    return (
+      this.fonctionUserConnected === 'Gérant'
+    );
+  }
+
+  isRT(): boolean {
+    return (
+      this.fonctionUserConnected === 'Responsable de travaux'
+    );
+  }
+
+  isRA(): boolean {
+    return (
+      this.fonctionUserConnected === 'Responsable administratif' 
+    );
   }
 
   openNewCompte(): void {
