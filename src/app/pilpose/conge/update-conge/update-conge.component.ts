@@ -106,34 +106,23 @@ export class UpdateCongeComponent implements OnInit {
     });
   }
 
-  isCE(): boolean {
-    return this.fonctionUserConnected === "Chef d'equipe";
-  
-  }
+
 
   isGerant(): boolean {
     return (
-      this.fonctionUserConnected === 'Gérant' &&
-      this.CongeToAlter.validationChefEquipe &&
-      this.CongeToAlter.validationResponsableTravaux
+      this.fonctionUserConnected === 'Gérant' 
+
     );
   }
 
   isRT(): boolean {
     return (
-      this.fonctionUserConnected === 'Responsable de travaux' &&
-      this.CongeToAlter.validationChefEquipe
+      this.fonctionUserConnected === 'Responsable de travaux' 
+     
     );
   }
 
-  isRA(): boolean {
-    return (
-      this.fonctionUserConnected === 'Responsable administratif' &&
-      this.CongeToAlter.validationChefEquipe &&
-      this.CongeToAlter.validationResponsableTravaux &&
-      this.CongeToAlter.validationGerant
-    );
-  }
+ 
 
   getAllCollab() {
     this.compteService
