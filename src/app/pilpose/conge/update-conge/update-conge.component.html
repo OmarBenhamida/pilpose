@@ -205,11 +205,10 @@
 
             <div class="input_field">
               <section class="example-section">
-                <mat-checkbox  [disabled]="!isCE()"  formControlName="validationChefEquipe" class="example-margin">Validation chef d'équipe</mat-checkbox>
+              
                 <mat-checkbox   [disabled]="!isGerant()" formControlName="validationGerant" class="example-margin">Validation gérant</mat-checkbox>
                 <mat-checkbox  [disabled]="!isRT()" formControlName="validationResponsableTravaux" class="example-margin">Validation responsable de travaux</mat-checkbox>
-                <mat-checkbox  [disabled]="!isRA()"  formControlName="validationResponsableAdministratif" class="example-margin">Validation responsable  administratif</mat-checkbox>
-              
+                
               </section>
             </div>
           </div>
