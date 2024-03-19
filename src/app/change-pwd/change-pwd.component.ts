@@ -10,7 +10,7 @@ import { PasswordModel } from '../model/PasswordModel';
 import { SnackBarNotifService } from '../service/snack-bar-notif.service';
 import { messages } from '../Shared/utils/messages';
 import { ParametrageService } from './parametrage.service';
-
+import * as CryptoJS from 'crypto-js';
 
 
 
@@ -37,6 +37,7 @@ export class ChangePwdComponent implements OnInit {
   res: ParametrageModel[];
   compare = false;
   checkPassword = false;
+  hashedPassword  : string;
   maj: number = 0;
   min: number = 0;
   chifre: number = 0;
@@ -133,6 +134,26 @@ export class ChangePwdComponent implements OnInit {
     this.route.navigateByUrl('/welcome/home').then(() => {});
   }
 
+  logout() {
+    localStorage.removeItem('nom');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('idUser');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('fonction');
+    localStorage.removeItem('admin');
+    this.route.navigate(['/login']);
+  }
+
+
+/*  hashPassword(password: string): string {
+  
+    this.hashedPassword = CryptoJS.SHA256(password).toString();
+
+    return this.hashedPassword;
+  }*/
+
+
+
   /**
    * Change le mot de passe en faisons appelle au service dédié
    */
@@ -147,10 +168,12 @@ export class ChangePwdComponent implements OnInit {
         this.snackBarNotifService.openSnackBarSuccess(
           messages.password,
 
+
+
           this.translate.instant("Fermer")
         );
 
-      
+      this.logout();
         
         this.dialogRef.close(res);
       },

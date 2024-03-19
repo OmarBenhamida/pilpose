@@ -1,96 +1,176 @@
-<div class="form_wrapper">
-  <div class="form_container">
-    <div class="title_container">
-      <h2>Mes infos</h2>
-    </div>
-    <div class="row clearfix">
-      <div class="">
-        <form [formGroup]="collabForm" ngNativeValidate>
-          <div class="row clearfix">
-            <div class="col_half">
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                <input
-                  id="reference"
-                  matInput
-                  type="text"
-                  formControlName="nom"
-                  placeholder="Nom"
-                />
+<div>
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Salarié(e) : {{this.CompteToAlter.nom}} {{this.CompteToAlter.prenom}} </h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form [formGroup]="CompteForm" ngNativeValidate>
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Nom :</label>
+                <div class="input_field" >
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="nom" 
+                    placeholder="Merci de saisir un Nom"
+                  readonly
+
+             
+                  />
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Prénom :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="prenom"
+                    placeholder="Merci de saisir un Prénom"
+                    readonly
+                  />
+                </div>
               </div>
             </div>
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Nom d'utilisateur :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="username"
+                    placeholder="Merci de saisir un Username"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Mot de passe :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                  <input
+                    matInput
+                    type="password"
+                    formControlName="password"
+                    placeholder="Merci de saisir un mot de passe"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Email :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="email"
+                    placeholder="Merci de saisir un email"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Date de naissance :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-calendar"></i></span>
+                  <input
+                    matInput
+                    type="date"
+                    formControlName="dateNaissance"
+                    placeholder="date naissance"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Adresse :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-map"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="adresse"
+                    placeholder="Merci de saisir une adresse"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Téléphone :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-phone"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="telephone"
+                    placeholder="Merci de saisir un Numéro telephone"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row clearfix">
+              <div class="col_half">
+                <label>Fonction :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-registered"></i></span>
+                  <select formControlName="fonction" readonly>
+                    <option value="Gérant">Gérant</option>
+                    <option value="Responsable administratif">Responsable administratif</option>
+                    <option value="Responsable de travaux">Responsable de travaux</option>
+                    <option value="Chef d'equipe">Chef d'équipe</option>
+                    <option value="Salarié(e)">Salarié(e)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col_half">
+                <label>Rôle :</label>
+
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-cog"></i></span>
+             
+                  <select formControlName="role" readonly>
+                    <option value="Collaborateur">Collaborateur</option>
+                    <option value="Administrateur">Administrateur</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row clearfix">
             <div class="col_half">
+            
               <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                <input
-                  id="client"
-                  matInput
-                  type="text"
-                  formControlName="prenom"
-                  placeholder="Prenom"
-                />
+                <label>Date d'embauche :</label>
+                <div class="input_field">
+                  <span><i aria-hidden="true" class="fa fa-calendar"></i></span>
+                  <input
+                    matInput
+                    type="date"
+                    formControlName="dateEmbauche"
+                   
+                    readonly
+                  />
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="row clearfix">
-            <div class="col_half">
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-pen"></i></span>
-                <input
-                  id="reference"
-                  matInput
-                  type="text"
-                  formControlName="email"
-                  placeholder="email"
-                />
-              </div>
-            </div>
-            <div class="col_half">
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-brush"></i></span>
-                <input
-                  id="client"
-                  matInput
-                  type="text"
-                  formControlName="cin"
-                  placeholder="CIN"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="row clearfix">
-            <div class="col_half">
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-calendar"></i></span>
-                <input
-                  id="reference"
-                  matInput
-                  type="date"
-                  formControlName="naissance"
-                  placeholder="date de naissance"
-                />
-              </div>
-            </div>
-            <div class="col_half">
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-pen"></i></span>
-                <input
-                  id="client"
-                  matInput
-                  type="text"
-                  formControlName="nationalite"
-                  placeholder="nationalite"
-                />
-              </div>
-            </div>
-          </div>
-
-          <button class="btn-rounded" type="submit" (click)="onSubmit()">
-            <em class="fas fa-check"></em> &nbsp;Soumettre
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>

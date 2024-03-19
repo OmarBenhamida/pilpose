@@ -193,9 +193,9 @@
            
               <select formControlName="statut">
                 <option value="Validé" hidden>Validé</option>
-                <option value="Refusé">Refusé</option>
-                <option value="En cours">En cours</option>
-                <option value="Cloturer">Cloturer</option>
+                <option [disabled]="isvalidated()" value="Refusé">Refusé</option>
+                <option [disabled]="isvalidated()" value="En cours">En cours</option>
+                <option  [disabled]="isvalidated()" value="Cloturer">Cloturer</option>
               </select>
             </div>
           </div>

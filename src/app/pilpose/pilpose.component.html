@@ -8,15 +8,15 @@
         <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
-        <button mat-menu-item (click)="redirectInfoCollab()">
-            <mat-icon>person</mat-icon><span>My Account</span>
+        <button mat-menu-item (click)="openAlterModelPopup()">
+            <mat-icon>person</mat-icon><span>Mon Compte</span>
         </button>
         <button mat-menu-item (click)="redirectChangepWD()">
-            <mat-icon>help</mat-icon><span>Changer mot de passe</span>
+            <mat-icon>fingerprint</mat-icon><span>Changer mot de passe</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon>Logout
+            <mat-icon>exit_to_app</mat-icon>Déconnexion
         </button>
     </mat-menu>
 </mat-toolbar>

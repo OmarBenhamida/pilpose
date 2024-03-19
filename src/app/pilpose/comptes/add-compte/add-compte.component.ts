@@ -12,6 +12,7 @@ import { Chantier } from 'src/app/model/chantier.model';
 import { Constants } from 'src/app/Shared/utils/constants';
 import { AddCompteService } from './addCompte.service';
 import { Collaborateur } from 'src/app/model/collaborateur.model';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-add-compte',
@@ -20,6 +21,7 @@ import { Collaborateur } from 'src/app/model/collaborateur.model';
 })
 export class AddCompteComponent implements OnInit {
   CompteForm: UntypedFormGroup;
+  hashedPassword: string;
   constructor(
     private router: Router,
     private compteService: AddCompteService,
@@ -43,6 +45,14 @@ export class AddCompteComponent implements OnInit {
       telephone: new UntypedFormControl('', Validators.required),
     });
   }
+
+
+ /* hashPassword(password: string): String {
+
+    this.hashedPassword = CryptoJS.SHA256(password).toString();
+   
+    return this.hashedPassword;
+  }*/
 
   onSubmit() {
     let nom: String = this.CompteForm.get('nom').value;

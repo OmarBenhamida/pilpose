@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ForgotPwdComponent } from '../forgot-pwd/forgot-pwd.component';
 import { UserModel } from './model/user.model';
 import { SnackBarNotifService } from '../service/snack-bar-notif.service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-login-admin',
@@ -21,6 +22,7 @@ export class LoginAdminComponent implements OnInit {
   submitted = false;
   show = false;
   hide: boolean = true;
+  hashedPassword  : string;
   isMaintenance: any = false;
   languages = [
     { id: 1, libelle: 'Francais', code: 'fr' },
@@ -60,6 +62,13 @@ export class LoginAdminComponent implements OnInit {
 
     });
   }
+
+  /*hashPassword(password: string): string {
+    
+    this.hashedPassword = CryptoJS.SHA256(password).toString();
+
+    return this.hashedPassword;
+  }*/
 
   onSubmit() {
     this.submitted = true;

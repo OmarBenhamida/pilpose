@@ -110,10 +110,18 @@ export class UpdateCongeComponent implements OnInit {
 
   isGerant(): boolean {
     return (
-      this.fonctionUserConnected === 'Gérant' 
+      this.fonctionUserConnected === 'Gérant' && !this.CongeToAlter.validationGerant
 
     );
   }
+
+  isvalidated(): boolean {
+    return (
+     this.CongeToAlter.validationGerant
+    );
+  }
+
+
 
   isRT(): boolean {
     return (

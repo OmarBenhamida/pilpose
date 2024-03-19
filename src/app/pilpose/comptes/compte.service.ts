@@ -35,6 +35,13 @@ export class CompteService {
     }
     
 
+    getCompteById(idCompte: any): Promise<any> {
+      return this.http
+        .get<any>(
+          this.host + urlsConstantsCompte.urlCompte  + "getUserById/"+ idCompte
+        ).toPromise();
+    }
+
     exportFile(): Promise<any> {
       return this.http.get(this.host + urlsConstantsCompte.urlExport).toPromise();
     }
