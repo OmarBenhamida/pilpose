@@ -34,7 +34,8 @@
         </ng-template>
         <ng-template #eventSettingsTemplate let-data>
           <div class='template-wrap'>
-            <div class="subject">{{data.Subject}}</div>
+            <div *ngIf="data.tacheOrConge == 'tache' "  class="subject">Tâche : {{data.Subject}} / {{data.typetache}} / Chantier : {{data.chantierNom}} </div>
+            <div *ngIf="data.tacheOrConge == 'conge' " class="subject">{{data.chantierNom}}  /  type : {{data.Subject}}</div>
           </div>
         </ng-template>
    
@@ -43,10 +44,10 @@
 
 
 
-
         <e-views>
           <e-view option="Day"></e-view>
           <e-view option="TimelineDay"></e-view>
+          <e-view option="TimelineWeek"></e-view>
           <e-view option="TimelineMonth"></e-view>
         </e-views>
       </ejs-schedule>

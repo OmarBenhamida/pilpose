@@ -1,5 +1,6 @@
 .schedule-block-events.e-schedule .e-timeline-view .e-appointment .template-wrap .subject {
-  padding: 10px 25px;
+  padding: 2px 15px;
+  height: 10%;
 }
 
 .schedule-block-events .subject {
@@ -16,7 +17,7 @@
 
 .schedule-block-events.e-block-appointment .subject,
 .schedule-block-events.e-schedule .e-vertical-view .e-appointment .template-wrap .subject {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 .schedule-block-events.e-schedule .e-timeline-view .e-resource-left-td,
@@ -527,4 +528,6 @@
 }
 
 
-
+.e-schedule-dialog .e-location-wrapper {
+  display: none;
+}

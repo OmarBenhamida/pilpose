@@ -5,7 +5,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
-import { extend } from '@syncfusion/ej2-base';
+import { extend,  Internationalization} from '@syncfusion/ej2-base';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import {
@@ -94,6 +94,7 @@ L10n.load({
       noEvents: "Pas d'événements",
       timelineDay: 'Vue journalière',
       timelineMonth: 'Vue mensuelle',
+      timelineWeek : 'Vue hebdomadaire',
       newEvent: 'Nouvelle Affectation',
       location: 'Localisation',
       start: 'Date début',
@@ -107,9 +108,9 @@ L10n.load({
       description: 'commentaire',
       delete: 'supprimer',
       deleteButton: 'supprimer',
-
       deleteEvent: 'Supprimer la tache',
       deleteContent: 'Êtes-vous sûr de vouloir supprimer cet événement ?',
+      editEvent: "Modifier l'affectation"
 
       // Add other translations as needed
     },
@@ -203,12 +204,18 @@ export class PlannigComponent {
             TacheId: e.idTache.idTache,
             Location: e.idTache.ville,
             Description: e.idTache.commantaire,
-            chantier: e.idTache.idChantier.idChantier,
+            chantier: e.idTache.idChantier.idChantier.toString(),
+            typetache: e.idTache.typeTravaux,
+            chefequipe:e.idTache.responsable.idCollaborateur.toString(),
+            chefId:parseInt(e.idTache.responsable.idCollaborateur.toString()),
+            test:e.idTache.responsable.idCollaborateur,
+            chantierNom:  e.idTache.idChantier.nomChantier.toString(),
+            tacheOrConge: e.idTache.typeTache,
             // ...e,
           }));
 
           this.data = extend([], _list, undefined, true) as any;
-
+        
           this.eventSettings = { dataSource: this.data };
 
           let grouped = list.reduce((grouped, planningDto) => {
@@ -220,6 +227,10 @@ export class PlannigComponent {
             return grouped;
           }, {});
 
+          console.log("grouped");
+          console.log(grouped);
+          
+          
           this.employeeDataSource = Object.entries(grouped)
             .map(([k, v]) => v as PlanningDto[])
             .filter((list) => list.length)
@@ -228,12 +239,7 @@ export class PlannigComponent {
               Text: e.idCollaborateur.nom + ' ' + e.idCollaborateur.prenom,
               Id: e.idCollaborateur.idCollaborateur,
               GroupId: i + 1,
-              Color:
-                e.idTache.typeTache === 'conge'
-                  ? 'bleu'
-                  : e.idCollaborateur.fonction === this.roleChef
-                  ? 'red'
-                  : '#bbdc00',
+              Color: e.idTache.typeTache === "conge" ? 'bleu' :  e.idCollaborateur.fonction === this.roleChef ? 'red' : '#bbdc00',
               Designation: '',
               function: e.idCollaborateur.fonction,
             }));
@@ -242,9 +248,8 @@ export class PlannigComponent {
       )
       .subscribe();
 
-console.log("hhh");
-
-      console.log(this.employeeDataSource);
+     
+      
       
       
   }
@@ -314,7 +319,17 @@ console.log("hhh");
   }
 
   onPopupOpen(args: PopupOpenEventArgs): void {
+     
+    console.log("here all");
+    console.log(args);
+    
+    
+    
     if (args.type === 'Editor') {
+
+     
+
+
       if (!args.element.querySelector('.custom-field-row')) {
         // Create required custom elements in initial time
         const row: HTMLElement = createElement('div', {
@@ -336,6 +351,8 @@ console.log("hhh");
         });
         container.appendChild(inputEle);
         row.appendChild(container);
+
+
         const dropDownList: DropDownList = new DropDownList({
           dataSource: [
             { text: 'Chauffage', value: 'Chauffage' },
@@ -352,12 +369,18 @@ console.log("hhh");
             },
           ],
           fields: { text: 'text', value: 'value' },
-          value: (args.data as Record<string, any>).EventType as string,
+          value: args.data.typetache,
           floatLabelType: 'Always',
           placeholder: 'Type Tache',
         });
+
+
         dropDownList.appendTo(inputEle);
         inputEle.setAttribute('name', 'typetache');
+
+
+
+
         /**
          *
          */
@@ -391,12 +414,16 @@ console.log("hhh");
         const dropDownList2: DropDownList = new DropDownList({
           dataSource: dataSource2,
           fields: { text: 'text', value: 'value' },
-          value: (args.data as Record<string, any>).EventType as string,
+          value: args.data.chefequipe,
           floatLabelType: 'Always',
           placeholder: 'chef d`équipe',
         });
         dropDownList2.appendTo(inputEle2);
         inputEle2.setAttribute('name', 'chefequipe');
+
+
+
+
         /**
          *
          */
@@ -431,7 +458,7 @@ console.log("hhh");
         const dropDownList3: DropDownList = new DropDownList({
           dataSource: dataSource3,
           fields: { text: 'text', value: 'value' },
-          value: (args.data as Record<string, any>).EventType as string,
+          value: args.data.chantier ,
           floatLabelType: 'Always',
           placeholder: 'liste des chantiers',
         });
@@ -508,6 +535,7 @@ console.log("hhh");
       args.requestType === 'eventCreate' ||
       args.requestType === 'eventChange'
     ) {
+     
       let tache = new Tache();
       tache.idTache = null;
       tache.ville = args.data[0].location;
@@ -580,16 +608,24 @@ console.log("hhh");
       tache.typeTache = 'tache';
 
       this.addTacheService.addOrUpdateTache(tache);
-
+      console.log("args data here");
+      console.log(args.data[0]);
       for (var i = 0; i < args.data.length; i++) {
-        this.selectedSalaries.push(args.data[i].EmployeeId);
+        this.selectedSalaries.push(parseInt(args.data[i].EmployeeId));
       }
-
+      
+      
+      this.selectedSalaries.push(parseInt(args.data[0].chefequipe));
+      console.log(" im logging here 00");
+     console.log(parseInt(args.data[0].chefequipe));
+     
+      console.log(" im logging here");
+      console.log(this.selectedSalaries);
       this.addAffectationService.addOrUpdateAffectationList(
         this.selectedSalaries
       );
 
-      console.log('############', args.data[0]);
+     
     }
     if (args.requestType === 'eventChange') {
     }
@@ -601,93 +637,14 @@ console.log("hhh");
         .toPromise();
     }
 
-    /*if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
-      const data: Record<string, any> = args.data instanceof Array ? args.data[0] : args.data;
-      if (!this.scheduleObj.isSlotAvailable(data.StartTime as Date, data.EndTime as Date)) {
-        args.cancel = true;
-      }
-    }*/
-
-    /*
-    let libelle: String = this.TacheForm.get('intitule').value;
-    let dateDebut: String = this.TacheForm.get('dateDebut').value;
-    let dateFin: String = this.TacheForm.get('dateFin').value;
-    let heureDebut: String = this.TacheForm.get('heureDebut').value;
-    let heureFin: String = this.TacheForm.get('heureFin').value;
-    let commantaire: String = this.TacheForm.get('commentaire').value;
-    let idChantier: number = this.TacheForm.get('chantier').value;
-    let idSalarie: number = this.TacheForm.get('idCollaborateur').value;
-    let typeTravaux: String = this.TacheForm.get('typeTravaux').value;
-    let tache = new Tache();
-    tache.idTache = null;
-    tache.typeTravaux = typeTravaux;
-    tache.libelle = libelle;
-    tache.dateDebut = dateDebut;
-    tache.dateFin = dateFin;
-    tache.heureDebut = heureDebut;
-    tache.heureFin = heureFin;
-    tache.commantaire = commantaire;
-    tache.idChantier = new Chantier(idChantier);
-    tache.responsable = new Collaborateur(idSalarie);
-    tache.nomCompletResponsable = null;
-    tache.nomCompletChantier = null;
-    tache.typeTache = 'tache';
-
-    this.selectedSalaries.push(idSalarie);
-
-    console.log("fffff");
-    
-    console.log(this.selectedSalaries);
-    console.log("ggg");
-
-    this.addTacheService
-      .addOrUpdateTache(tache)
-      .then((res) => {
-        this.toast.success(
-          this.translate.instant('Tache ajoutée avec succés'),
-          '',
-          Constants.toastOptions
-        );
-
-        this.addAffectationService
-          .addOrUpdateAffectationList(this.selectedSalaries)
-          .then((res) => {
-            this.toast.success(
-              this.translate.instant('Affectation  ajoutée avec succés'),
-              '',
-              Constants.toastOptions
-            );
-
-            this.router.navigate(['pilpose/tache']);
-          })
-          .catch((err) => {
-            if (err.status == 409) {
-              this.snackBarNotifService.openSnackBarFailure(
-                'Chevauchement lors affectation salarié ',
-
-                this.translate.instant('Fermer')
-              );
-            } else {
-              this.snackBarNotifService.openSnackBarFailure(
-                'Erreur lors de l affectation',
-
-                this.translate.instant('Fermer')
-              );
-            }
-          });
-
-        this.router.navigate(['pilpose/tache']);
-      })
-      .catch((error) => {
-        this.toast.error(
-          this.translate.instant('Erreur lors de la création d une tache'),
-          '',
-          Constants.toastOptions
-        );
-      });
-
-*/
+   
   }
 
   public onActionComplete(): void {}
+
+
+ 
+
 }
+
+
