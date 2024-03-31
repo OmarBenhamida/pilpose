@@ -157,12 +157,12 @@ export class Constants {
     'heureTravaille',
     'vehicule',
     'km',
-
     'nomCompletResponsable',
     'nomCompletChantier',
     'nomCompletSalarie',
     'nomCompletClient',
     'ville',
+    'montantRevise',
     'statut',
     'ActionChantier',
   ];
@@ -178,6 +178,7 @@ export class Constants {
     'Salarié',
     'Client',
     'Ville',
+    'Montant révisé',
      'Statut',
     'Actions',
   ];

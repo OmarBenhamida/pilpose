@@ -25,7 +25,7 @@ export class FeuilleTemps {
     public validationResponsableTravaux?: boolean,
     public validationGerant?: boolean,
     public validationResponsableAdministratif?: boolean,
-    public metier?: String,
+    public montantRevise?: number,
     public indemnite?: boolean,
   ) {}
 }

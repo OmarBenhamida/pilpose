@@ -13,6 +13,7 @@ import { UpdateFeuileComponent } from './update-feuile/update-feuile.component';
 import * as saveAs from 'file-saver';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/Shared/utils/utils';
+import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
 @Component({
   selector: 'app-feuille-temps',
   templateUrl: './feuille-temps.component.html',
@@ -31,7 +32,7 @@ export class FeuilleTempsComponent implements OnInit {
     public toastr: ToastrService,
     private dialog: MatDialog,
     private dialogRef: MatDialog,
-
+    private snackBarNotifService: SnackBarNotifService,
     private addFeuilleService: AddFeuilletempsService,
     private feuilleService: FeuilleTempsService
   ) {}
@@ -98,13 +99,19 @@ export class FeuilleTempsComponent implements OnInit {
             this.getModelTableStructur();
           })
           .catch((err) => {
-            this.toastr.warning(
-              this.translate.instant(
-                'Erreur lors de la modification de la feuille de temps'
-              ),
-              '',
-              Constants.toastOptions
-            );
+            if (err.status == 409) {
+              this.snackBarNotifService.openSnackBarFailure(
+                'Vous ne pouvez pas avoir deux feuilles de temps sur le meme chantier et la meme date.',
+  
+                this.translate.instant('Fermer')
+              );
+            } else {
+              this.snackBarNotifService.openSnackBarFailure(
+                'Erreur lors de la modification de la feuille de temps',
+  
+                this.translate.instant('Fermer')
+              );
+            }
           });
 
         this.getModelTableStructur();
@@ -181,7 +188,7 @@ export class FeuilleTempsComponent implements OnInit {
             nomCompletSalarie: code.nomCompletSalarie,
             statut : code.statut,
             ville: code.ville,
-            metier : code.metier,
+            montantRevise : code.montantRevise,
             indemnite : code.indemnite,
             validationChefEquipe: code.validationChefEquipe,
             validationResponsableTravaux: code.validationResponsableTravaux,

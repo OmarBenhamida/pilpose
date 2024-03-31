@@ -344,18 +344,15 @@ export class PlannigComponent {
 
         const dropDownList: DropDownList = new DropDownList({
           dataSource: [
-            { text: 'Chauffage', value: 'Chauffage' },
-            {
-              text: 'SAV – Entretien – Dépannage 7j/7',
-              value: 'SAV – Entretien – Dépannage 7j/7',
-            },
+            { text: 'Chauffage - sanitaire', value: 'Chauffage - sanitaire' },
+            {text: 'SAV – Entretien – Dépannage 7j/7', value: 'SAV – Entretien – Dépannage 7j/7' },
             { text: 'Climatisation', value: 'Climatisation' },
             { text: 'Électricité', value: 'Électricité' },
             { text: 'Sanitaire – Plomberie', value: 'Sanitaire – Plomberie' },
-            {
-              text: 'Conception et Réalisation',
-              value: 'Conception et Réalisation',
-            },
+            {text: 'Conception et Réalisation', value: 'Conception et Réalisation'},
+            {text: 'Menuiserie intérieure', value: 'Menuiserie intérieure'},
+            {text: 'Platerie', value: 'Platerie'},
+            {text: 'Autre', value: 'Autre'},
           ],
           fields: { text: 'text', value: 'value' },
           value: args.data.typetache,
@@ -433,7 +430,7 @@ export class PlannigComponent {
 
         this.listChantiers.forEach((salarie) => {
           dataSource3.push({
-            text: salarie.nomChantier.toString(),
+            text: salarie.nomChantier.toString() +" - " + salarie.reference.toString(),
             value: salarie.idChantier.toString(),
           });
         });

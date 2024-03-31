@@ -15,18 +15,15 @@
 
                   <select formControlName="typeTravaux">
                     <option>-- Type de travaux</option>
-                    <option value="Chauffage">Chauffage</option>
-                    <option value="SAV – Entretien – Dépannage 7j/7">
-                      SAV – Entretien – Dépannage 7j/7
-                    </option>
+                    <option value="Chauffage - sanitaire">Chauffage - sanitaire</option>
+                    <option value="SAV – Entretien – Dépannage 7j/7"> SAV – Entretien – Dépannage 7j/7 </option>
                     <option value="Climatisation">Climatisation</option>
                     <option value="Électricité">Électricité</option>
-                    <option value="Sanitaire – Plomberie">
-                      Sanitaire – Plomberie
-                    </option>
-                    <option value="Conception et Réalisation">
-                      Conception et Réalisation
-                    </option>
+                    <option value="Sanitaire – Plomberie">Sanitaire – Plomberie </option>
+                    <option value="Conception et Réalisation">Conception et Réalisation </option>
+                    <option value="Menuiserie intérieure">Menuiserie intérieure</option>
+                    <option value="Platerie">Platerie</option>
+                    <option value="Autre">Autre</option>
                   </select>
                 </div>
               </div>
@@ -83,17 +80,17 @@
                   <select formControlName="vehicule">
                     <option>-- Véhicule</option>
                     <option
-                      value="Je vais au chantier avec mon véhicule personnel"
+                      value="Je vais au chantier en ma voiture."
                     >
-                      Je vais au chantier avec mon véhicule personnel
+                      Je vais au chantier en ma voiture.
                     </option>
                     <option value="Je rejoins une camionnette au dépôt">
                       Je rejoins une camionnette au dépôt
                     </option>
                     <option
-                      value="Je rejoins une camionnette dans la commune de :"
+                      value="Je rejoins une camionnette dans la commune :"
                     >
-                      Je rejoins une camionnette dans la commune de :
+                      Je rejoins une camionnette dans la commune :
                     </option>
                   </select>
                 </div>
@@ -181,25 +178,21 @@
                   </section>
                 </div>
               </div>
-
+              
               <div class="col_half">
-                <label>Métier :</label>
+                <label>Montant révisé :</label>
                 <div class="input_field">
-                  <span><i aria-hidden="true" class="fa fa-cubes"></i></span>
-
-                  <select formControlName="metier">
-                    <option>-- Métiers</option>       
-                    <option value="Chauffage / sanitaire">Chauffage / sanitaire</option>
-                    <option value="Climatisation">Climatisation</option>
-                    <option value="Électricité">Électricité</option>
-                    <option value="Menuiserie intérieure">Menuiserie intérieure</option>
-                    <option value="Platerie">Platerie</option>
-                    <option value="Autre">Autre</option>
-
-
-                  </select>
+                  <span><i aria-hidden="true" class="fa fa-brush"></i></span>
+                  <input
+                    matInput
+                    type="text"
+                    formControlName="montantRevise"
+                    placeholder="Montant révisé"
+                  />
                 </div>
               </div>
+
+        
             </div>
 
             <div class="row clearfix">

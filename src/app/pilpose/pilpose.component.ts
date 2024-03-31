@@ -178,10 +178,10 @@ export class PilposeComponent implements OnInit {
   }
 
   redirectToPlanning() {
-    this.router.navigate(['pilpose/plannig']);
+    this.router.navigate(['pilpose/planning']);
   }
   redirectToAllPlanning() {
-    this.router.navigate(['pilpose/plannig']);
+    this.router.navigate(['pilpose/planning']);
   }
 
   redirectAddConge() {

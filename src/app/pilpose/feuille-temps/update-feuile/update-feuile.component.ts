@@ -1,5 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Chantier } from 'src/app/model/chantier.model';
 import { Collaborateur } from 'src/app/model/collaborateur.model';
 import { FeuilleTemps } from 'src/app/model/feuille-temps.model';
+import { Constants } from 'src/app/Shared/utils/constants';
 import { ChantierService } from '../../chantier/chantier.service';
 import { CompteService } from '../../comptes/compte.service';
 import { TacheService } from '../../tache/tache.service';
@@ -14,10 +20,9 @@ import { TacheService } from '../../tache/tache.service';
 @Component({
   selector: 'app-update-feuile',
   templateUrl: './update-feuile.component.html',
-  styleUrls: ['./update-feuile.component.css']
+  styleUrls: ['./update-feuile.component.css'],
 })
 export class UpdateFeuileComponent implements OnInit {
-
   FeuilleForm: UntypedFormGroup;
   FeuilleToAlter: any;
   salaries: Collaborateur[] = [];
@@ -42,28 +47,64 @@ export class UpdateFeuileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     this.getAllChantiers();
     this.getAllCollabCp();
     this.getAllCollab();
     this.fonctionUserConnected = localStorage.getItem('fonction');
     this.FeuilleForm = this.formBuilder.group({
-      idFeuilleTemps: new UntypedFormControl(this.FeuilleToAlter.idFeuilleTemps),
+      idFeuilleTemps: new UntypedFormControl(
+        this.FeuilleToAlter.idFeuilleTemps
+      ),
       reference: new UntypedFormControl(this.FeuilleToAlter.reference),
-      typeTravaux: new UntypedFormControl(this.FeuilleToAlter.typeTravaux,Validators.required),
-      jourSemaine: new UntypedFormControl(this.FeuilleToAlter.jourSemaine,Validators.required),
-      heureTravaille: new UntypedFormControl(this.FeuilleToAlter.heureTravaille,Validators.required),
-      vehicule: new UntypedFormControl(this.FeuilleToAlter.vehicule, Validators.required),
-      vehiculeSuite: new UntypedFormControl(this.FeuilleToAlter.vehiculeSuite, Validators.required ),
-      km: new UntypedFormControl(this.FeuilleToAlter.km, Validators.required ),
-      commentaire: new UntypedFormControl(this.FeuilleToAlter.commantaire, Validators.required),
-      chantier: new UntypedFormControl(this.FeuilleToAlter.idChantier.idChantier,Validators.required),
-      responsable: new UntypedFormControl(this.FeuilleToAlter.responsable.idCollaborateur,Validators.required ),
-      idCollaborateur: new UntypedFormControl(this.FeuilleToAlter.idCollaborateur.idCollaborateur,Validators.required ),
-      statut: new UntypedFormControl(this.FeuilleToAlter.statut,Validators.required ),
-      metier: new UntypedFormControl(this.FeuilleToAlter.metier,Validators.required ),
-      indemnite: new UntypedFormControl(this.FeuilleToAlter.indemnite,Validators.required ),
+      typeTravaux: new UntypedFormControl(
+        this.FeuilleToAlter.typeTravaux,
+        Validators.required
+      ),
+      jourSemaine: new UntypedFormControl(
+        this.FeuilleToAlter.jourSemaine,
+        Validators.required
+      ),
+      heureTravaille: new UntypedFormControl(
+        this.FeuilleToAlter.heureTravaille,
+        Validators.required
+      ),
+      vehicule: new UntypedFormControl(
+        this.FeuilleToAlter.vehicule,
+        Validators.required
+      ),
+      vehiculeSuite: new UntypedFormControl(
+        this.FeuilleToAlter.vehiculeSuite,
+        Validators.required
+      ),
+      km: new UntypedFormControl(this.FeuilleToAlter.km, Validators.required),
+      commentaire: new UntypedFormControl(
+        this.FeuilleToAlter.commantaire,
+        Validators.required
+      ),
+      chantier: new UntypedFormControl(
+        this.FeuilleToAlter.idChantier.idChantier,
+        Validators.required
+      ),
+      responsable: new UntypedFormControl(
+        this.FeuilleToAlter.responsable.idCollaborateur,
+        Validators.required
+      ),
+      idCollaborateur: new UntypedFormControl(
+        this.FeuilleToAlter.idCollaborateur.idCollaborateur,
+        Validators.required
+      ),
+      statut: new UntypedFormControl(
+        this.FeuilleToAlter.statut,
+        Validators.required
+      ),
+      montantRevise: new UntypedFormControl(
+        this.FeuilleToAlter.montantRevise,
+        Validators.required
+      ),
+      indemnite: new UntypedFormControl(
+        this.FeuilleToAlter.indemnite,
+        Validators.required
+      ),
       validationChefEquipe: new UntypedFormControl(
         this.FeuilleToAlter.validationChefEquipe,
         Validators.required
@@ -83,11 +124,7 @@ export class UpdateFeuileComponent implements OnInit {
         this.FeuilleToAlter.validationResponsableAdministratif,
         Validators.required
       ),
-
-   
     });
-
-  
   }
 
   getAllCollab() {
@@ -113,8 +150,6 @@ export class UpdateFeuileComponent implements OnInit {
       })
       .catch((err) => {});
   }
-
-
 
   getAllCollabCp() {
     this.tacheService
@@ -167,33 +202,26 @@ export class UpdateFeuileComponent implements OnInit {
     this.dialogRef.close();
   }
 
-
   isCE(): boolean {
-    return this.fonctionUserConnected === "Chef d'equipe" && this.FeuilleToAlter.idCollaborateur.fonction ==="Salarié(e)"  ;
-
-
+    return (
+      this.fonctionUserConnected === "Chef d'equipe" &&
+      this.FeuilleToAlter.idCollaborateur.fonction === 'Salarié(e)'
+    );
   }
 
   isGerant(): boolean {
-    return (
-      this.fonctionUserConnected === 'Gérant'
-    );
+    return this.fonctionUserConnected === 'Gérant';
   }
 
   isRT(): boolean {
-
-  
     return (
-      this.fonctionUserConnected === 'Responsable de travaux' && this.FeuilleToAlter.idCollaborateur.fonction !=="Responsable administratif"
+      this.fonctionUserConnected === 'Responsable de travaux' &&
+      this.FeuilleToAlter.idCollaborateur.fonction !==
+        'Responsable administratif'
     );
   }
 
-
-
-
   onSubmit() {
-   
-
     let typeTravaux: String = this.FeuilleForm.get('typeTravaux').value;
     let jourSemaine: String = this.FeuilleForm.get('jourSemaine').value;
     let heureTravaille: number = this.FeuilleForm.get('heureTravaille').value;
@@ -205,11 +233,12 @@ export class UpdateFeuileComponent implements OnInit {
     let idSalarie: number = this.FeuilleForm.get('idCollaborateur').value;
     let idResponsable: number = this.FeuilleForm.get('responsable').value;
     let statut: String = this.FeuilleForm.get('statut').value;
-
+    let montantRevise: number = this.FeuilleForm.get('montantRevise').value;
     let indemnite: boolean = this.FeuilleForm.get('indemnite').value;
-    let metier: String = this.FeuilleForm.get('metier').value;
 
-    let validationChefEquipe = this.FeuilleForm.get('validationChefEquipe').value;
+    let validationChefEquipe = this.FeuilleForm.get(
+      'validationChefEquipe'
+    ).value;
     let validationResponsableTravaux = this.FeuilleForm.get(
       'validationResponsableTravaux'
     ).value;
@@ -222,7 +251,7 @@ export class UpdateFeuileComponent implements OnInit {
 
     feuille.idFeuilleTemps = this.FeuilleToAlter.idFeuilleTemps;
     feuille.reference = this.FeuilleToAlter.reference;
-    feuille.statut= statut;
+    feuille.statut = statut;
     feuille.typeTravaux = typeTravaux;
     feuille.jourSemaine = jourSemaine;
     feuille.heureTravaille = heureTravaille;
@@ -244,18 +273,34 @@ export class UpdateFeuileComponent implements OnInit {
     feuille.validationResponsableAdministratif =
       validationResponsableAdministratif;
 
-    feuille.indemnite= indemnite;
-    feuille.metier= metier;
+    feuille.indemnite = indemnite;
+    feuille.montantRevise = montantRevise;
 
+    if (
+      feuille.jourSemaine != null &&
+      feuille.jourSemaine != '' &&
+      feuille.heureTravaille != null &&
+      feuille.heureTravaille > 0 &&
+      feuille.vehicule != null &&
+      feuille.vehicule != ''
+    ) {
 
     this.router.navigate(['pilpose/feuilles']);
 
-  
     this.sendDataToUpdate(feuille);
+
+    } else {
+      this.toastr.error(
+        this.translate.instant('Merci de saisir des informations valide'),
+        '',
+        Constants.toastOptions
+      );
+
+    }
   }
 
-  sendDataToUpdate(data :FeuilleTemps ) {
+  sendDataToUpdate(data: FeuilleTemps) {
     this.dialogRef.close(data);
   }
 }
-0
+
