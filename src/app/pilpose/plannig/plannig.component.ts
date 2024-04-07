@@ -208,6 +208,7 @@ export class PlannigComponent {
             chefId: parseInt(e.idTache.responsable.idCollaborateur.toString()),
             test: e.idTache.responsable.idCollaborateur,
             chantierNom: e.idTache.idChantier.nomChantier.toString(),
+            chantierCode: e.idTache.idChantier.reference.toString(),
             tacheOrConge: e.idTache.typeTache,
             // ...e,
           }));
