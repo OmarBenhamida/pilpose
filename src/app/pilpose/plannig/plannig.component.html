@@ -34,7 +34,7 @@
         </ng-template>
         <ng-template #eventSettingsTemplate let-data>
           <div class='template-wrap'>
-            <div *ngIf="data.tacheOrConge == 'tache' "  class="subject">Tâche : {{data.Subject}} / {{data.typetache}} / Chantier : {{data.chantierNom}} </div>
+            <div *ngIf="data.tacheOrConge == 'tache' "  class="subject">{{data.chantierCode}} - {{data.chantierNom}} / {{data.Location}} </div>
             <div *ngIf="data.tacheOrConge == 'conge' " class="subject">{{data.chantierNom}}  /  type : {{data.Subject}}</div>
           </div>
         </ng-template>

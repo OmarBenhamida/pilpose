@@ -17,6 +17,7 @@ import { TacheService } from '../../tache/tache.service';
 import { FeuilleTempsService } from '../feuille-temps.service';
 import { AddFeuilletempsService } from './add-feuilletemps.service';
 import { Constants } from 'src/app/Shared/utils/constants';
+import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
 
 @Component({
   selector: 'app-add-feuille',
@@ -39,6 +40,7 @@ export class AddFeuilleComponent implements OnInit {
     public toast: ToastrService,
     public feuilleService: FeuilleTempsService,
     private compteService: CompteService,
+    private snackBarNotifService: SnackBarNotifService,
     public translate: TranslateService,
     public tacheService: TacheService,
     public formBuilder: UntypedFormBuilder,
@@ -62,9 +64,8 @@ export class AddFeuilleComponent implements OnInit {
       chantier: new UntypedFormControl('', Validators.required),
       idCollaborateur: new UntypedFormControl('', Validators.required),
       responsable: new UntypedFormControl('', Validators.required),
-      metier: new UntypedFormControl('', Validators.required),
       indemnite: new UntypedFormControl('', Validators.required),
-
+      montantRevise: new UntypedFormControl('', Validators.required),
     });
   }
 
@@ -96,11 +97,7 @@ export class AddFeuilleComponent implements OnInit {
     this.tacheService
       .getAllCp()
       .then((res: Collaborateur[]) => {
-       
-
         for (let compte of res) {
-         
-
           this.salariesCp.push({
             idCollaborateur: compte.idCollaborateur,
             nom: compte.nom,
@@ -135,6 +132,13 @@ export class AddFeuilleComponent implements OnInit {
       .catch((err) => {});
   }
 
+  validateForm(): boolean {
+    return (
+      this.FeuilleForm.get('heureTravaille').value >= 0 &&
+      this.FeuilleForm.get('jourSemaine').value != null
+    );
+  }
+
   onSubmit() {
     let typeTravaux: String = this.FeuilleForm.get('typeTravaux').value;
     let jourSemaine: String = this.FeuilleForm.get('jourSemaine').value;
@@ -146,8 +150,8 @@ export class AddFeuilleComponent implements OnInit {
     let idChantier: number = this.FeuilleForm.get('chantier').value;
     let idSalarie: number = this.FeuilleForm.get('idCollaborateur').value;
     let idResponsable: number = this.FeuilleForm.get('responsable').value;
-   let  indemnite :boolean = this.FeuilleForm.get('indemnite').value;
-    let metier :  String = this.FeuilleForm.get('metier').value;
+    let indemnite: boolean = this.FeuilleForm.get('indemnite').value;
+    let montantRevise: number = this.FeuilleForm.get('montantRevise').value;
 
     let feuille = new FeuilleTemps();
     feuille.idFeuilleTemps = null;
@@ -166,30 +170,55 @@ export class AddFeuilleComponent implements OnInit {
     feuille.nomCompletSalarie = null;
     feuille.nomCompletSalarie = null;
     feuille.ville = null;
-    feuille.reference =null;
+    feuille.reference = null;
     feuille.statut = null;
-    feuille.metier = metier;
+    feuille.montantRevise = montantRevise;
     feuille.indemnite = indemnite;
 
-    this.addFeuilleService
-      .addOrUpdateFeuille(feuille)
-      .then((res) => {
-        this.toast.success(
-          this.translate.instant('Feuille de temps ajoutée avec succés'),
-          '',
-          Constants.toastOptions
-        );
+    console.log(feuille);
 
-        this.router.navigate(['pilpose/feuilles']);
-      })
-      .catch((error) => {
-        this.toast.error(
-          this.translate.instant(
-            'Erreur lors de la création de la feuille de temps'
-          ),
-          '',
-          Constants.toastOptions
-        );
-      });
+    if (
+      feuille.jourSemaine != null &&
+      feuille.jourSemaine != '' &&
+      feuille.heureTravaille != null &&
+      feuille.heureTravaille > 0 &&
+      feuille.vehicule != null &&
+      feuille.vehicule != ''
+    ) {
+      this.addFeuilleService
+        .addOrUpdateFeuille(feuille)
+        .then((res) => {
+          this.toast.success(
+            this.translate.instant('Feuille de temps ajoutée avec succés'),
+            '',
+            Constants.toastOptions
+          );
+
+          this.router.navigate(['pilpose/feuilles']);
+        })
+
+        .catch((err) => {
+          if (err.status == 409) {
+            this.snackBarNotifService.openSnackBarFailure(
+              'Vous ne pouvez pas avoir deux feuilles de temps sur le meme chantier et la meme date.',
+
+              this.translate.instant('Fermer')
+            );
+          } else {
+            this.snackBarNotifService.openSnackBarFailure(
+              'Erreur lors de la création de la feuille de temps',
+
+              this.translate.instant('Fermer')
+            );
+          }
+        });
+
+    } else {
+      this.toast.error(
+        this.translate.instant('Merci de saisir des informations valide'),
+        '',
+        Constants.toastOptions
+      );
+    }
   }
 }
