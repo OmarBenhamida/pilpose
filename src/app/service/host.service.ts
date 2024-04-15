@@ -7,7 +7,7 @@ export class HostService {
 
     constructor() {
         this.pilposeHost = environment.pilposeHost;
-    }
+    } 
 
     getPilposeHost() {
         return this.pilposeHost;
