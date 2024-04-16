@@ -113,7 +113,7 @@ export class LoginAdminComponent implements OnInit {
             this.translate.instant('Fermer')
           );
         }
-      });
+      });  
 
 
       ;

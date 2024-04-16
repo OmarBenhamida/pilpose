@@ -77,6 +77,7 @@ import { UpdateFeuileComponent } from './feuille-temps/update-feuile/update-feui
 import { LocalisationComponent } from './localisation/localisation.component';
 import { AddLocalisationComponent } from './localisation/add-localisation/add-localisation.component';
 import { UpdateLocalisationComponent } from './localisation/update-localisation/update-localisation.component';
+import { AcceuilPageComponent } from './acceuil-page/acceuil-page.component';
 
 
 
@@ -117,6 +118,7 @@ export function createTranslateLoader(http: HttpClient) {
     LocalisationComponent,
     AddLocalisationComponent,
     UpdateLocalisationComponent,
+    AcceuilPageComponent,
   ],
   imports: [
     CommonModule,

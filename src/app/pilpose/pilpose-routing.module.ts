@@ -20,6 +20,7 @@ import { FeuilleTempsComponent } from './feuille-temps/feuille-temps.component';
 import { AddFeuilleComponent } from './feuille-temps/add-feuille/add-feuille.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { AddLocalisationComponent } from './localisation/add-localisation/add-localisation.component';
+import { AcceuilPageComponent } from './acceuil-page/acceuil-page.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
     path: '',
     component: PilposeComponent,
     children: [
-      { path: '', redirectTo: 'planning', pathMatch: 'full' },
+      { path: '', redirectTo: 'accueil', pathMatch: 'full' },
       { path: 'plannig00', component: PlannigComponent },
       {path: 'planning', loadChildren: () => import('./plannig/planning.module').then(m => m.PlanningModule)},
       { path: 'conge', component: CongeComponent },
@@ -50,7 +51,7 @@ const routes: Routes = [
       { path: 'feuilles', component: FeuilleTempsComponent },
       { path: 'add-commune', component: AddLocalisationComponent },
       { path: 'communes', component: LocalisationComponent },
-      
+      { path: 'accueil', component: AcceuilPageComponent },
       
     ],
   },

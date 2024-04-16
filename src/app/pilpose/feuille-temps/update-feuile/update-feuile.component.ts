@@ -204,7 +204,7 @@ export class UpdateFeuileComponent implements OnInit {
 
   isCE(): boolean {
     return (
-      this.fonctionUserConnected === "Chef d'equipe" &&
+      this.fonctionUserConnected === "Chef d'équipe" &&
       this.FeuilleToAlter.idCollaborateur.fonction === 'Salarié(e)'
     );
   }

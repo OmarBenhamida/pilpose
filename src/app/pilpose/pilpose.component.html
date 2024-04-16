@@ -36,6 +36,13 @@
                     <span> &nbsp;&nbsp;&nbsp;Mon planning</span>
                 </a>
             </mat-nav-list>
+
+            <mat-nav-list>
+                <a mat-list-item (click)="redirectToAllAccueil()">
+                    <span> &nbsp;&nbsp;&nbsp;Accueil</span>
+                </a>
+            </mat-nav-list>
+   
    
 
             <mat-expansion-panel *ngIf="isGerant() || isRA() || isRT() || isCE()">

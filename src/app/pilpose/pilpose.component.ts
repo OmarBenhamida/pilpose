@@ -96,7 +96,7 @@ export class PilposeComponent implements OnInit {
   }
 
   isCE(): boolean {
-    return this.fonctionUserConnected === "Chef d'equipe";
+    return this.fonctionUserConnected === "Chef d'équipe";
   }
 
   isGerant(): boolean {
@@ -133,6 +133,11 @@ export class PilposeComponent implements OnInit {
 
   redirectToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  redirectToAllAccueil(){
+
+    this.router.navigate(['pilpose/accueil']);
   }
 
   redirectToClients() {
