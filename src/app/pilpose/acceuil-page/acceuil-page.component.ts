@@ -22,20 +22,46 @@ export class AcceuilPageComponent implements OnInit {
   }
 
   getModelData() {
-    this.accueilPageService
-      .getCountConge()
-      .then((res) => {
-        this.congeCount = res;
-      })
-      .catch((err) => {});
+    if (this.fonctionUserConnected === 'Gérant') {
+      this.accueilPageService
+        .getCountConge()
+        .then((res) => {
+          this.congeCount = res;
+        })
+        .catch((err) => {});
 
       this.accueilPageService
-      .getCountFeuille()
-      .then((res) => {
-        this.feuilleCount = res;
-      })
-      .catch((err) => {});
+        .getCountFeuille()
+        .then((res) => {
+          this.feuilleCount = res;
+        })
+        .catch((err) => {});
+    } else if (this.fonctionUserConnected === "Chef d'équipe") {
+      this.congeCount = 0;
 
+      this.accueilPageService
+        .getCountFeuilleCE()
+        .then((res) => {
+          this.feuilleCount = res;
+        })
+        .catch((err) => {});
+    } else if (this.fonctionUserConnected === 'Responsable travaux') {
+      this.accueilPageService
+        .getCountCongeRT()
+        .then((res) => {
+          this.congeCount = res;
+        })
+        .catch((err) => {});
 
+      this.accueilPageService
+        .getCountFeuilleRT()
+        .then((res) => {
+          this.feuilleCount = res;
+        })
+        .catch((err) => {});
+    } else {
+      this.congeCount = 0;
+      this.feuilleCount = 0;
+    }
   }
 }

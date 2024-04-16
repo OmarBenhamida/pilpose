@@ -17,8 +17,21 @@ export class AccueilPageService {
     return this.http.get(this.host + urlsConstantsConge.urlConge).toPromise();
   }
 
+  getCountCongeRT(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsConge.urlCongeRT).toPromise();
+  }
+
+
   getCountFeuille(): Promise<any> {
     return this.http.get(this.host + urlsConstantsConge.urlFeuille).toPromise();
+  }
+
+  getCountFeuilleRT(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsConge.urlFeuilleRT).toPromise();
+  }
+
+  getCountFeuilleCE(): Promise<any> {
+    return this.http.get(this.host + urlsConstantsConge.urlFeuilleCE).toPromise();
   }
  
 }
