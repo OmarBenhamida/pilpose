@@ -194,8 +194,8 @@ export class PlannigComponent {
           const _list = list.map((e, i) => ({
             Id: i + 1,
             Subject: e.idTache.libelle,
-            StartTime: new Date(e.idTache.dateDebut as any),
-            EndTime: new Date(e.idTache.dateFin as any),
+            StartTime: new Date(e.idTache.startTime as any),
+            EndTime: new Date(e.idTache.endTime as any),
             IsAllDay: false,
             IsBlock: false,
             EmployeeId: e.idCollaborateur.idCollaborateur,
