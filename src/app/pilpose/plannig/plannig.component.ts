@@ -141,7 +141,7 @@ export class PlannigComponent {
 
   public allowMultipleOwner: Boolean = true;
 
-  roleChef: string = "Chef d'equipe";
+  roleChef: string = "Chef d'équipe";
 
   @ViewChild('scheduleObj')
   public scheduleObj!: ScheduleComponent;
