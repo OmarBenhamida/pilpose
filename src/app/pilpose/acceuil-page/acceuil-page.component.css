@@ -1,6 +1,7 @@
 .example-card {
     max-width: 400px;
     margin-right: 10px; /* espace entre les cartes */
+    min-width: 400px;
   }
   
   .example-header-image {
@@ -12,6 +13,12 @@
     margin-top: 1%;
     margin-left: 1%;
   }
+  .example-card:hover {
+    transition: none; /* Désactive les transitions */
+    transform: none; /* Annule toute transformation */
+    /* Ajoutez d'autres propriétés CSS personnalisées au besoin */
+  }
+  
 
   .card-container {
     display: flex;

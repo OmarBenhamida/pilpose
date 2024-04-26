@@ -116,8 +116,8 @@ export class Constants {
     'Heure de debut',
     'Heure de fin',
     'Chantier',
-    'Résponsable',
-    'Client',
+    'Responsable',
+    'Responsable de travaux',
     'Ville',
 
     'Actions',

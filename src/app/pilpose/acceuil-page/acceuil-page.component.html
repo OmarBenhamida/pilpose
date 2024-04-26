@@ -1,45 +1,45 @@
-
 <div class="card-container">
-    <div class="carding">
-      <mat-card class="example-card">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ firstname }}</mat-card-title>
-            <mat-card-subtitle>Pilpose</mat-card-subtitle>
-          </mat-card-header>
-          <img
-            mat-card-image
-            src="../../../assets/img/collaborateur.jpeg"
-            alt="Pilpose"
-          />
-          <mat-card-content>
-            <strong>
-              Organisation : Pilpose <br />
-              Fonction : {{ fonctionUserConnected }}
-            </strong>
-          </mat-card-content>
-      </mat-card>
-    </div>
-  
-    <div class="carding">
-      <mat-card class="example-card">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Validation Manager</mat-card-title>
-            <mat-card-subtitle>Pilpose</mat-card-subtitle>
-          </mat-card-header>
-          <img
-            mat-card-image
-            src="../../../assets/img/loginpictside.jpg" width="180px" height="260px"
-            alt="Validation"
-          />
-          <mat-card-content>
-            <strong>
-              Feuilles de temps : {{feuilleCount}} <br />
-              Congés à valider : {{congeCount}}
-            </strong>
-          </mat-card-content>
-      </mat-card>
-    </div>
+  <div class="carding">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ firstname }}</mat-card-title>
+        <mat-card-subtitle>Pilpose</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="../../../assets/img/collaborateur.jpeg"
+        style="width: 400px; height: 230px; object-fit: cover;"
+        alt="Pilpose"
+      />
+      <mat-card-content>
+        <strong>
+          Organisation : Pilpose <br />
+          Fonction : {{ fonctionUserConnected }}
+        </strong>
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+
+  <div class="carding">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Validation Manager</mat-card-title>
+        <mat-card-subtitle>Pilpose</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="../../../assets/img/loginpictside.jpg"
+        style="width: 400px; height: 230px; object-fit: cover;"
+        alt="Validation"
+      />
+      <mat-card-content>
+        <strong>
+          Feuilles de temps : {{ feuilleCount }} <br />
+          Congés à valider : {{ congeCount }}
+        </strong>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
