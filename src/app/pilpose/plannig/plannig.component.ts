@@ -141,7 +141,7 @@ export class PlannigComponent {
 
   public allowMultipleOwner: Boolean = true;
 
-  roleChef: string = "Chef d'equipe";
+  roleChef: string = "Chef d'équipe";
 
   @ViewChild('scheduleObj')
   public scheduleObj!: ScheduleComponent;
@@ -193,9 +193,15 @@ export class PlannigComponent {
         tap((list) => {
           const _list = list.map((e, i) => ({
             Id: i + 1,
+<<<<<<< HEAD
             Subject: e.idTache.idChantier.reference.toString() + " / "+ e.idTache.idChantier.nomChantier.toString(),
             StartTime: new Date((e.idTache.dateDebut as any)),
             EndTime: new Date(e.idTache.dateFin as any),
+=======
+            Subject: e.idTache.libelle,
+            StartTime: new Date(e.idTache.startTime as any),
+            EndTime: new Date(e.idTache.endTime as any),
+>>>>>>> bb4f8b50ddbfe71cd56885014e23042911bca494
             IsAllDay: false,
             IsBlock: false,
             EmployeeId: e.idCollaborateur.idCollaborateur,

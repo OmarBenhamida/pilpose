@@ -17,6 +17,8 @@ export class Tache {
     public nomCompletChantier?: String,
     public nomCompletClient?: String,
     public ville?: String,
-    public typeTravaux?: String
+    public typeTravaux?: String,
+    public startTime?:String,
+    public endTime?:String
   ) {}
 }
