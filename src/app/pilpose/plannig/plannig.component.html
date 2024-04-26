@@ -7,6 +7,7 @@
     }
     
     </style>
+
 <button class="btn-rounded" (click)="redirectAddTache()"  role="button" aria-disabled="false"> <span><i aria-hidden="true" class="fa fa-plus"></i></span> Nouvelle tâche</button>
 	
 <div class="control-section">
@@ -20,6 +21,11 @@
             [allowMultiple]='allowMultipleOwner' textField='Text' idField='Id' groupIDField="GroupId" colorField='Color'>
           </e-resource>
         </e-resources>
+        
+
+
+
+
         <ng-template #resourceHeaderTemplate let-data>
           <div class="template-wrap">
             <div class="employee-category">
@@ -38,6 +44,8 @@
             <div *ngIf="data.tacheOrConge == 'conge' " class="subject">{{data.chantierNom}}  /  type : {{data.Subject}}</div>
           </div>
         </ng-template>
+
+
    
         <e-views>
           <e-view option="Day"></e-view>

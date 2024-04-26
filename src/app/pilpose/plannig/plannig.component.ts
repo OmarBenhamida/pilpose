@@ -147,7 +147,7 @@ export class PlannigComponent {
   public scheduleObj!: ScheduleComponent;
 
   readonly service = inject(CalendarService);
-
+  public intl: Internationalization = new Internationalization();
   public startDate: Date;
   public endDate: Date;
   public showQuickInfo = false;
@@ -193,8 +193,8 @@ export class PlannigComponent {
         tap((list) => {
           const _list = list.map((e, i) => ({
             Id: i + 1,
-            Subject: e.idTache.libelle,
-            StartTime: new Date(e.idTache.dateDebut as any),
+            Subject: e.idTache.idChantier.reference.toString() + " / "+ e.idTache.idChantier.nomChantier.toString(),
+            StartTime: new Date((e.idTache.dateDebut as any)),
             EndTime: new Date(e.idTache.dateFin as any),
             IsAllDay: false,
             IsBlock: false,
@@ -210,6 +210,8 @@ export class PlannigComponent {
             chantierNom: e.idTache.idChantier.nomChantier.toString(),
             chantierCode: e.idTache.idChantier.reference.toString(),
             tacheOrConge: e.idTache.typeTache,
+            Subject2: e.idTache.libelle,
+            
             // ...e,
           }));
 
@@ -241,17 +243,26 @@ export class PlannigComponent {
                 e.idTache.typeTache === 'conge'
                   ? 'bleu'
                   : e.idCollaborateur.fonction === this.roleChef
-                  ? 'red'
-                  : '#bbdc00',
+                    ? 'red'
+                    : '#bbdc00',
               Designation: '',
               function: e.idCollaborateur.fonction,
             }));
         }),
-        tap((e) => {})
+        tap((e) => { })
       )
       .subscribe();
+
+   
+
+
+      
+
+
   }
 
+
+  
   public getEmployeeName(value: ResourceDetails): string {
     return (value as ResourceDetails).resourceData[
       (value as ResourceDetails).resource.textField!
@@ -289,7 +300,7 @@ export class PlannigComponent {
           });
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 
   getAllCollabCp() {
@@ -313,12 +324,13 @@ export class PlannigComponent {
           });
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 
   onPopupOpen(args: PopupOpenEventArgs): void {
     console.log('here all');
     console.log(args);
+
 
     if (args.type === 'Editor') {
       if (!args.element.querySelector('.custom-field-row')) {
@@ -333,6 +345,15 @@ export class PlannigComponent {
           row,
           args.element.querySelector('.e-title-location-row')
         );
+
+        const locationInput: HTMLInputElement = args.element.querySelector('[name="Subject"]');
+    
+        if (locationInput) {
+            // Set the value of the location field to "Hello World"
+            locationInput.value = args.data.Subject2;
+        }
+
+
         const container: HTMLElement = createElement('div', {
           className: 'custom-field-container',
         });
@@ -346,14 +367,14 @@ export class PlannigComponent {
         const dropDownList: DropDownList = new DropDownList({
           dataSource: [
             { text: 'Chauffage - sanitaire', value: 'Chauffage - sanitaire' },
-            {text: 'SAV – Entretien – Dépannage 7j/7', value: 'SAV – Entretien – Dépannage 7j/7' },
+            { text: 'SAV – Entretien – Dépannage 7j/7', value: 'SAV – Entretien – Dépannage 7j/7' },
             { text: 'Climatisation', value: 'Climatisation' },
             { text: 'Électricité', value: 'Électricité' },
             { text: 'Sanitaire – Plomberie', value: 'Sanitaire – Plomberie' },
-            {text: 'Conception et Réalisation', value: 'Conception et Réalisation'},
-            {text: 'Menuiserie intérieure', value: 'Menuiserie intérieure'},
-            {text: 'Platerie', value: 'Platerie'},
-            {text: 'Autre', value: 'Autre'},
+            { text: 'Conception et Réalisation', value: 'Conception et Réalisation' },
+            { text: 'Menuiserie intérieure', value: 'Menuiserie intérieure' },
+            { text: 'Platerie', value: 'Platerie' },
+            { text: 'Autre', value: 'Autre' },
           ],
           fields: { text: 'text', value: 'value' },
           value: args.data.typetache,
@@ -431,7 +452,7 @@ export class PlannigComponent {
 
         this.listChantiers.forEach((salarie) => {
           dataSource3.push({
-            text: salarie.nomChantier.toString() +" - " + salarie.reference.toString(),
+            text: salarie.nomChantier.toString() + " - " + salarie.reference.toString(),
             value: salarie.idChantier.toString(),
           });
         });
@@ -446,9 +467,7 @@ export class PlannigComponent {
         inputEle3.setAttribute('name', 'chantier');
       }
     }
-    /*if (args.type === 'Editor' || args.type === 'QuickInfo')  {
-        args.cancel = true;
-    }*/
+    
   }
 
   openpopUp = () => {
@@ -470,7 +489,7 @@ export class PlannigComponent {
           });
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 
   public getEmployeeFunction(value: ResourceDetails): string {
@@ -594,11 +613,11 @@ export class PlannigComponent {
         this.selectedSalaries
       );
 
-      
+
       this.refreshPage();
-      
-      
-      
+
+
+
     }
     if (args.requestType === 'eventChange') {
     }
@@ -611,10 +630,17 @@ export class PlannigComponent {
     }
   }
 
-  public onActionComplete(): void {}
+  public onActionComplete(): void { }
 
   refreshPage(): void {
     window.location.reload();
-    
+
   }
+
+
+  public getHeaderTitle(data: Record<string, any>): string {
+    return 'Appointment Details';
+  }
+
+ 
 }
