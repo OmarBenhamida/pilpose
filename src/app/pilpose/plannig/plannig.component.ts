@@ -533,7 +533,7 @@ export class PlannigComponent {
 
       tache.dateDebut = formattedDateDevut;
 
-      const dateFinDateString = args.data[0].StartTime;
+      const dateFinDateString = args.data[0].EndTime;
 
       const dateFinDateObject = new Date(dateFinDateString);
 
