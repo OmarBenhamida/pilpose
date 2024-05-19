@@ -159,7 +159,7 @@ export class PlannigComponent {
     true
   ) as Record<string, any>[];
   public selectedDate: Date = new Date();
-  public currentView: View = 'TimelineDay';
+  public currentView: View = 'TimelineMonth';
   public employeeDataSource: Record<string, any>[] = [];
   public group: GroupModel = {
     enableCompactView: false,
@@ -594,11 +594,11 @@ export class PlannigComponent {
         this.selectedSalaries
       );
 
-      
+
       this.refreshPage();
-      
-      
-      
+
+
+
     }
     if (args.requestType === 'eventChange') {
     }
@@ -615,6 +615,6 @@ export class PlannigComponent {
 
   refreshPage(): void {
     window.location.reload();
-    
+
   }
 }

@@ -5,10 +5,10 @@
         margin-right: 10px;
         size: 1000px;
     }
-    
+
     </style>
 <button class="btn-rounded" (click)="redirectAddTache()"  role="button" aria-disabled="false"> <span><i aria-hidden="true" class="fa fa-plus"></i></span> Nouvelle tâche</button>
-	
+
 <div class="control-section">
   <div class="drag-sample-wrapper">
     <div class="schedule-container">
@@ -38,12 +38,12 @@
             <div *ngIf="data.tacheOrConge == 'conge' " class="subject">{{data.chantierNom}}  /  type : {{data.Subject}}</div>
           </div>
         </ng-template>
-   
+
         <e-views>
-          <e-view option="Day"></e-view>
-          <e-view option="TimelineDay"></e-view>
-          <e-view option="TimelineWeek"></e-view>
           <e-view option="TimelineMonth"></e-view>
+          <e-view option="TimelineWeek"></e-view>
+          <e-view option="TimelineDay"></e-view>
+          <e-view option="Day"></e-view>
         </e-views>
       </ejs-schedule>
     </div>
@@ -63,7 +63,7 @@
               </e-resource>
             </e-resources>
             <ng-template #resourceHeaderTemplate let-data>
-              
+
               <div class="template-wrap">
 
                 <div class="employee-category">
@@ -90,5 +90,5 @@
         </div>
       </div>
     </div>
-    
+
   -->
