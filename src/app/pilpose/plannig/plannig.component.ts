@@ -194,8 +194,8 @@ export class PlannigComponent {
           const _list = list.map((e, i) => ({
             Id: i + 1,
             Subject: e.idTache.idChantier.reference.toString() + " / "+ e.idTache.idChantier.nomChantier.toString(),
-            StartTime: new Date((e.idTache.dateDebut as any)),
-            EndTime: new Date(e.idTache.dateFin as any),
+            StartTime: this.combineDateAndTime(e.idTache.dateDebut, e.idTache.heureDebut),
+            EndTime: this.combineDateAndTime(e.idTache.dateFin, e.idTache.heureFin),
             IsAllDay: false,
             IsBlock: false,
             EmployeeId: e.idCollaborateur.idCollaborateur,
@@ -216,7 +216,8 @@ export class PlannigComponent {
           }));
 
           this.data = extend([], _list, undefined, true) as any;
-
+          
+ 
           this.eventSettings = { dataSource: this.data };
 
           let grouped = list.reduce((grouped, planningDto) => {
@@ -261,6 +262,14 @@ export class PlannigComponent {
 
   }
 
+  private combineDateAndTime(dateString: String, timeString: String): Date {
+    // Split date and time strings
+    const [year, month, day] = dateString.split('-').map(Number);
+    const [hours, minutes] = timeString.split(':').map(Number);
+    
+    // Create a new Date object with combined date and time
+    return new Date(year, month - 1, day, hours, minutes);
+  }
 
   
   public getEmployeeName(value: ResourceDetails): string {
@@ -600,21 +609,26 @@ export class PlannigComponent {
       tache.nomCompletResponsable = null;
       tache.nomCompletChantier = null;
       tache.typeTache = 'tache';
-
-      this.addTacheService.addOrUpdateTache(tache);
-
       for (var i = 0; i < args.data.length; i++) {
         this.selectedSalaries.push(parseInt(args.data[i].EmployeeId));
       }
-
       this.selectedSalaries.push(parseInt(args.data[0].chefequipe));
 
-      this.addAffectationService.addOrUpdateAffectationList(
-        this.selectedSalaries
-      );
+      this.addTacheService.addOrUpdateTache(tache).then((res) => {
+        this.addAffectationService.addOrUpdateAffectationList(
+          this.selectedSalaries
+        ).then((res) => 
+        {
+          this.refreshPage();
+        });
+      });
 
 
-      this.refreshPage();
+
+     
+
+
+      //this.refreshPage();
 
 
 
@@ -628,6 +642,7 @@ export class PlannigComponent {
         )
         .toPromise();
     }
+
   }
 
   public onActionComplete(): void { }
