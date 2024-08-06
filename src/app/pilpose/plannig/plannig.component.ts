@@ -579,7 +579,7 @@ export class PlannigComponent {
 
       const dateDebutString = args.data[0].StartTime;
       const dateDebutObject = new Date(dateDebutString);
-      const hours = (dateDebutObject.getUTCHours()+2).toString().padStart(2, '0');
+      const hours = (dateDebutObject.getUTCHours()+1).toString().padStart(2, '0');
       const minutes = dateDebutObject
         .getUTCMinutes()
         .toString()
@@ -592,7 +592,7 @@ export class PlannigComponent {
 
       const dateFinString = args.data[0].EndTime;
       const dateFinObject = new Date(dateFinString);
-      const hoursFin = (dateFinObject.getUTCHours()+2).toString().padStart(2, '0');
+      const hoursFin = (dateFinObject.getUTCHours()+1).toString().padStart(2, '0');
       const minutesFin = dateFinObject
         .getUTCMinutes()
         .toString()
