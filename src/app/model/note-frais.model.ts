@@ -10,6 +10,10 @@ export class NoteFrais {
     public recu?: File,
     public statut?: String,
     public idCollaborateur?: Collaborateur,
-    public nomCompletEmploye? : String
+    public nomCompletEmploye? : String,
+    public nomCompletChantier?: String,
+    public nomCompletClient?: String,
+    public idChantier?: Chantier,
+    public ville?: String
   ) {}
 }

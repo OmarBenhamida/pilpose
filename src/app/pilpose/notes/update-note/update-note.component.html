@@ -90,6 +90,21 @@
                     </div>
                   </div>
 
+                  <div class="row clearfix">
+                  <div class="col_half">
+                    <label>Chantier :</label>
+      
+                    <div class="input_field">
+                      <span><i aria-hidden="true" class="fa fa-cog"></i></span>
+                      <!-- <input type="text" formControlName="etat" placeholder="Etat" />-->
+                      <select formControlName="chantier">
+                        <option *ngFor="let chantier of listChantiers"
+                        [value] = "chantier.idChantier">{{chantier.reference }} - {{chantier.nomChantier}}</option>
+                       
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
             
            

@@ -165,6 +165,10 @@ export class NotesComponent implements OnInit {
             typeNote: code.typeNote,
             dateNote: code.dateNote,
             idCollaborateur: code.idCollaborateur,
+            ville: code.ville,
+            idChantier: code.idChantier,
+            nomCompletChantier: code.nomCompletChantier,
+            nomCompletClient: code.nomCompletClient,
             statut : code.statut,
             nomCompletEmploye: code.nomCompletEmploye,
           });

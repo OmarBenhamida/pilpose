@@ -251,6 +251,8 @@ export class Constants {
     'typeNote',
     'dateNote',
     'nomCompletEmploye',
+    'nomCompletChantier',
+    'ville',
     'statut',
     'ActionChantier',
   ];
@@ -259,6 +261,8 @@ export class Constants {
     'Type note de frais',
     'Date de la note',
     'Salarié(e)',
+    'Chantier',
+    'Ville',
     'Statut',
     'Actions',
   ];

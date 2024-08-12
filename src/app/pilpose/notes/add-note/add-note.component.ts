@@ -39,7 +39,7 @@ export class AddNoteComponent implements OnInit {
     private compteService: CompteService,
     private http: HttpClient,
     private chantierService: ChantierService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getAllCollab();
@@ -63,16 +63,17 @@ export class AddNoteComponent implements OnInit {
     let typenote: String = this.NoteForm.get('typenote').value;
     let date: String = this.NoteForm.get('date').value;
     let idCollaborateur: number = this.NoteForm.get('collab').value;
-    //let idChantier: number = this.NoteForm.get('chantier').value;
+    let idChantier: number = this.NoteForm.get('chantier').value;
     let recu: File = this.NoteForm.get('recu').value;
 
     let note = new NoteFrais();
     note.idCollaborateur = new Collaborateur(idCollaborateur);
-    //note.idChantier = new Chantier(idChantier);
+    note.idChantier = new Chantier(idChantier);
     note.typeNote = typenote;
     note.dateNote = date;
     note.recu = null;
-    note.statut=null;
+    note.nomCompletChantier = null;
+    note.statut = null;
 
     this.noteService
       .addOrUpdateNote(note)
@@ -102,7 +103,7 @@ export class AddNoteComponent implements OnInit {
       .getAllComptes()
       .then((res: any[]) => {
         for (let compte of res) {
-       
+
 
           this.comptes.push({
             idCollaborateur: compte.idCollaborateur,
@@ -121,7 +122,7 @@ export class AddNoteComponent implements OnInit {
           });
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 
   getAllChantier() {
@@ -136,7 +137,7 @@ export class AddNoteComponent implements OnInit {
           });
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 
   onUpload(id: number): void {

@@ -77,6 +77,10 @@ ref:string;
         this.NoteFormToAlter.idCollaborateur.idCollaborateur,
         Validators.required
       ),
+      chantier: new UntypedFormControl(
+        this.NoteFormToAlter.idChantier.idChantier,
+        Validators.required
+      ),
 
       statut: new UntypedFormControl(this.NoteFormToAlter.statut,Validators.required ),
  
@@ -133,7 +137,7 @@ ref:string;
     let typeNote: String = this.NoteForm.get('typeNote').value;
     let dateNote: String = this.NoteForm.get('dateNote').value;
     let idCollaborateur: number = this.NoteForm.get('idCollaborateur').value;
-   //let idChantier: number = this.NoteForm.get('idChantier').value;
+    let idChantier: number = this.NoteForm.get('chantier').value;
     let recu: File = this.NoteForm.get('recu').value;
     let statut: String = this.NoteForm.get('statut').value;
     note = new NoteFrais();
@@ -143,9 +147,10 @@ ref:string;
 
     note.typeNote = typeNote;
     note.dateNote = dateNote;
+    note.idChantier = new Chantier(idChantier);
     note.statut=statut;
     note.recu = null;
-
+    note.nomCompletChantier = null;
     let Collaborateur: Collaborateur = {
       idCollaborateur: idCollaborateur,
     };
