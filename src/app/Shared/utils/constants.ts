@@ -97,8 +97,8 @@ export class Constants {
    
     'libelle',
     'typeTravaux',
-    'dateDebut',
-    'dateFin',
+    'dateDebutDisplay',
+    'dateFinDisplay',
     'heureDebut',
     'heureFin',
     'nomCompletChantier',
@@ -153,7 +153,7 @@ export class Constants {
 
   static FEUILLE_DISPLAY_COLUMNS: string[] = [
     'typeTravaux',
-    'jourSemaine',
+    'jourSemaineDisplay',
     'heureTravaille',
     'vehicule',
     'km',
@@ -190,8 +190,8 @@ export class Constants {
   static AFFECTATION_DISPLAY_COLUMNS: string[] = [
     'idCollaborateur',
     'idTache',
-    'dateDebut',
-    'dateFin',
+    'dateDebutDisplay',
+    'dateFinDisplay',
     'heureDebut',
     'heureFin',
     'nomCompletChantier',
@@ -220,11 +220,11 @@ export class Constants {
   static CONGE_DISPLAY_COLUMNS: string[] = [
     'reference',
     'nomCompletEmploye',
-    'dateDebut',
-    'dateFin',
+    'dateDebutDisplay',
+    'dateFinDisplay',
     'heureDebut',
     'heureFin',
-    'dateDepot',
+    'dateDepotDisplay',
     'typeConge',
     'statut',
     'ActionChantier',
@@ -249,7 +249,7 @@ export class Constants {
   static NOTE_DISPLAY_COLUMNS: string[] = [
     'reference',
     'typeNote',
-    'dateNote',
+    'dateNoteDisplay',
     'nomCompletEmploye',
     'nomCompletChantier',
     'ville',

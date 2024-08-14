@@ -18,6 +18,7 @@ import { FormControl } from '@angular/forms';
 import { UpdateTacheAffectation } from 'src/app/model/updateTache.model';
 import { AddAffectationService } from './affectation/add-affectation/addAffectation.service';
 import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-tache',
@@ -44,7 +45,7 @@ export class TacheComponent implements OnInit {
     private dialogRef: MatDialog,
     private tacheService: TacheService,
     private addTacheService: AddTachService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getModelTableStructur();
@@ -79,7 +80,7 @@ export class TacheComponent implements OnInit {
           });
         }
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 
   openDeleteModelPopup(model: any) {
@@ -104,7 +105,7 @@ export class TacheComponent implements OnInit {
             .then((res) => {
               this.getModelTableStructur();
             })
-            .catch((err) => {});
+            .catch((err) => { });
         }
       });
     }
@@ -123,7 +124,7 @@ export class TacheComponent implements OnInit {
 
         saveAs(blobExcel, 'TACHE_EXCEL' + '.xlsx');
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 
   exportDataCsv() {
@@ -137,7 +138,7 @@ export class TacheComponent implements OnInit {
 
         saveAs(blobChantierCsv, 'TACHE_CSV' + '.csv');
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 
   openAlterModelPopup(model: any) {
@@ -218,7 +219,7 @@ export class TacheComponent implements OnInit {
     this.tacheService
       .getAllTache()
       .then((res) => {
-        let taches: Tache[] = [];
+        let taches: any[] = [];
 
 
         for (let code of res) {
@@ -228,6 +229,8 @@ export class TacheComponent implements OnInit {
             libelle: code.libelle,
             dateDebut: code.dateDebut,
             dateFin: code.dateFin,
+            dateDebutDisplay: format(new Date(code.dateDebut), 'dd-MM-yyyy'),
+            dateFinDisplay: format(new Date(code.dateFin), 'dd-MM-yyyy'),
             heureDebut: code.heureDebut,
             heureFin: code.heureFin,
             commantaire: code.commantaire,
@@ -237,12 +240,12 @@ export class TacheComponent implements OnInit {
             nomCompletResponsable: code.nomCompletResponsable,
             nomCompletClient: code.nomCompletClient,
             ville: code.ville,
-            typeTache : code.typeTache
+            typeTache: code.typeTache
           });
         }
         this.dataSource.data = taches;
         this.size = this.dataSource.data.length;
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }
 }

@@ -11,6 +11,7 @@ import { AddAffectationComponent } from './add-affectation/add-affectation.compo
 import { AffectationService } from './affectation.service';
 import { UpdateAffectationComponent } from './update-affectation/update-affectation.component';
 import * as saveAs from 'file-saver';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-affectation',
@@ -115,6 +116,8 @@ export class AffectationComponent implements OnInit {
             idTache: code.idTache.libelle,
             dateDebut: code.idTache.dateDebut,
             dateFin: code.idTache.dateFin,
+            dateDebutDisplay: format(new Date(code.idTache.dateDebut), 'dd-MM-yyyy'),
+            dateFinDisplay: format(new Date(code.idTache.dateFin), 'dd-MM-yyyy'),
             heureDebut: code.idTache.heureDebut,
             heureFin: code.idTache.heureFin,
             nomCompletChantier: code.idTache.nomCompletChantier,

@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/Shared/utils/utils';
 import * as saveAs from 'file-saver';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-conge',
@@ -202,7 +203,10 @@ export class CongeComponent implements OnInit {
             statut: code.statut,
             dateDebut: code.dateDebut,
             dateFin: code.dateFin,
+            dateDebutDisplay: format(new Date(code.dateDebut), 'dd-MM-yyyy'),
+            dateFinDisplay: format(new Date(code.dateFin), 'dd-MM-yyyy'),
             dateDepot: code.dateDepot,
+            dateDepotDisplay: format(new Date(code.dateDepot), 'dd-MM-yyyy'),
             heureDebut: code.heureDebut,
             commantaire : code.commantaire,
             heureFin: code.heureFin,

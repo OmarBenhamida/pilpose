@@ -14,6 +14,7 @@ import { AddNoteService } from './add-note/addNote.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-notes',
@@ -164,6 +165,7 @@ export class NotesComponent implements OnInit {
             reference: code.reference,
             typeNote: code.typeNote,
             dateNote: code.dateNote,
+            dateNoteDisplay: format(new Date(code.dateNote), 'dd-MM-yyyy'),
             idCollaborateur: code.idCollaborateur,
             ville: code.ville,
             idChantier: code.idChantier,

@@ -14,6 +14,7 @@ import * as saveAs from 'file-saver';
 import { PilposeLoaderResponseDto } from 'src/app/model/PilposeResponse';
 import { Utils } from 'src/app/Shared/utils/utils';
 import { SnackBarNotifService } from 'src/app/service/snack-bar-notif.service';
+import { format } from 'date-fns';
 @Component({
   selector: 'app-feuille-temps',
   templateUrl: './feuille-temps.component.html',
@@ -165,7 +166,7 @@ export class FeuilleTempsComponent implements OnInit {
     this.feuilleService
       .getAllFeuille()
       .then((res) => {
-        let feuilles: FeuilleTemps[] = [];
+        let feuilles: any[] = [];
 
 
         for (let code of res) {
@@ -173,7 +174,8 @@ export class FeuilleTempsComponent implements OnInit {
             idFeuilleTemps: code.idFeuilleTemps,
             reference: code.reference,
             typeTravaux: code.typeTravaux,
-            jourSemaine: code.jourSemaine,
+            jourSemaine:code.jourSemaine,
+            jourSemaineDisplay: format(new Date(code.jourSemaine), 'dd-MM-yyyy'),
             heureTravaille: code.heureTravaille,
             vehicule: code.vehicule,
             vehiculeSuite : code.vehiculeSuite,
